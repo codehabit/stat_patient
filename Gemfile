@@ -30,7 +30,7 @@ group :test do
   gem 'capybara-webkit'
   gem 'database_cleaner', '1.0.0.RC1'
   gem 'factory_girl_rails'
-  gem 'shoulda-matchers'
+  gem 'shoulda-matchers', require: false
   gem 'vcr'
   gem 'webmock'
 end

@@ -1,0 +1,6 @@
+%table
+- @patients.each do |patient|
+  %tr
+    %td= "#{patient.first_name} #{patient.last_name}"
+    %td= patient.date_of_birth
+
