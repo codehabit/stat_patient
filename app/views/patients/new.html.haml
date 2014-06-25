@@ -7,10 +7,10 @@
         Last name
       .col-sm-7
         .datefield.string.optional.form-control{}
-          = telephone_field_tag :day_of_birth, nil, placeholder: "DD", maxlength: "2", id: "day", data: {role: "autotab-date", unit: "day", target: "month"}
+          = telephone_field_tag :month_of_birth, nil, placeholder: "MM", maxlength: "2", id: "month", data: {role: "autotab-date", unit: "month", target: "year", previous: "day"}
           %span
             \/
-          = telephone_field_tag :month_of_birth, nil, placeholder: "MM", maxlength: "2", id: "month", data: {role: "autotab-date", unit: "month", target: "year", previous: "day"}
+          = telephone_field_tag :day_of_birth, nil, placeholder: "DD", maxlength: "2", id: "day", data: {role: "autotab-date", unit: "day", target: "month"}
           %span
             \/
           = telephone_field_tag :year_of_birth, nil, placeholder: "YYYY", maxlength: "4", class: "year", id: "year", data: {role: "autotab-date", unit: "year", previous: "month"}
