@@ -1,0 +1,21 @@
+%h3
+  = t(:specialists)
+  %span.pull-right
+    = link_to "#{t(:add_new)} #{t(:specialist)}", new_specialist_path, class: "btn btn-primary"
+.listing
+  - if @specialists.blank?
+    %span.empty-message
+      = t(:no_specialists)
+  - else
+    %table.table.table-condensed.table-responsive
+      %thead
+        %th= t(:name)
+        %th= t(:specialty)
+        %th= t(:practice_name)
+      %tbody
+        - @specialists.each do |specialist|
+          %tr
+            %td= "#{specialist.first_name} #{specialist.last_name}"
+            %td= specialist.specialty
+            %td= specialist.practice_name
+
