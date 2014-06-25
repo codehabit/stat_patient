@@ -14,8 +14,10 @@
  *= require_self
  */
 @import 'jquery.ui.all';
+@import 'bootswatch/flatly/variables';
 @import 'bootstrap';
-// @import "bootstrap-responsive";
+// body { padding-top: 60px; }
+@import "bootswatch/flatly/bootswatch";
 @import 'header';
 @import 'main';
 

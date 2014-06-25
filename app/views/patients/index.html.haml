@@ -1,18 +1,19 @@
 %h3
   Patients
-  %span
-    = link_to "Add New Patient", new_patient_path
-- if @patients.blank?
-  %span.empty-message
-    There are no patients yet
-- else
-  %table.table.table-condensed.table-responsive
-    %thead
-      %th Name
-      %th Date of Birth
-    %tbody
-      - @patients.each do |patient|
-        %tr
-          %td= "#{patient.first_name} #{patient.last_name}"
-          %td= patient.date_of_birth.strftime("%m/%d/%Y") if patient.date_of_birth.present?
+  %span.pull-right
+    = link_to "Add New Patient", new_patient_path, class: "btn btn-primary"
+.listing
+  - if @patients.blank?
+    %span.empty-message
+      There are no patients yet
+  - else
+    %table.table.table-condensed.table-responsive
+      %thead
+        %th Name
+        %th Date of Birth
+      %tbody
+        - @patients.each do |patient|
+          %tr
+            %td= "#{patient.first_name} #{patient.last_name}"
+            %td= patient.date_of_birth.strftime("%m/%d/%Y") if patient.date_of_birth.present?
 
