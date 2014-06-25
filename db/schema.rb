@@ -20,9 +20,9 @@ ActiveRecord::Schema.define(version: 20140618192925) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "middile_initial"
-    t.date     "date_of_birth"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "date_of_birth"
   end
 
 end

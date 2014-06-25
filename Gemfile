@@ -12,6 +12,10 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'unicorn'
+gem 'bootstrap-sass', '~> 3.1.1'
+gem 'simple_form', '~> 3.1.0.rc1'
+gem 'autotab-rails'
+gem 'draper', git: 'git@github.com:drapergem/draper.git'
 
 group :development do
   gem 'spring'
@@ -22,6 +26,7 @@ end
 group :test, :development do
   gem 'pry'
   gem 'pry-rails'
+  gem 'quiet_assets'
   gem 'rspec-rails'
 end
 

@@ -1,0 +1,19 @@
+.pull-left
+  = simple_form_for @patient, wrapper: :bootstrap3_horizontal, html: {class: "form-horizontal"} do |f|
+    = f.input :first_name
+    = f.input :last_name
+    .form-group.string.optional.patient_date_of_birth
+      %label.string.optional.col-sm-5.control-label{for: "patient_last_name"}
+        Last name
+      .col-sm-7
+        .datefield.string.optional.form-control{}
+          = telephone_field_tag :day_of_birth, nil, placeholder: "DD", maxlength: "2", id: "day", data: {role: "autotab-date", unit: "day", target: "month"}
+          %span
+            \/
+          = telephone_field_tag :month_of_birth, nil, placeholder: "MM", maxlength: "2", id: "month", data: {role: "autotab-date", unit: "month", target: "year", previous: "day"}
+          %span
+            \/
+          = telephone_field_tag :year_of_birth, nil, placeholder: "YYYY", maxlength: "4", class: "year", id: "year", data: {role: "autotab-date", unit: "year", previous: "month"}
+    .button-group.pull-right
+      = link_to "Cancel", patients_path, class: "btn btn-default"
+      = f.submit "Create", class: "btn btn-primary"
