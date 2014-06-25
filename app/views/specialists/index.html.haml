@@ -14,6 +14,8 @@
         %th= t(:practice_name)
         %th= t(:phone)
         %th= t(:email)
+        %th
+
       %tbody
         - @specialists.each do |specialist|
           %tr
@@ -22,4 +24,5 @@
             %td= specialist.practice_name
             %td= specialist.phone
             %td= specialist.email
+            %td= link_to I18n.t(:edit_specialist), edit_specialist_path(specialist), class: 'btn btn-primary'
 

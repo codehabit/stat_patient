@@ -13,6 +13,17 @@ class SpecialistsController < ApplicationController
     @specialists = Specialist.all
   end
 
+  def edit
+    @specialist = Specialist.find params[:id]
+  end
+
+  def update
+    specialist = Specialist.find params[:id]
+    specialist.update_attributes specialist_params
+    flash[:notice]  = "Successfully updated specialist #{specialist.full_name}"
+    redirect_to specialists_path
+  end
+
   private
 
   def specialist_params

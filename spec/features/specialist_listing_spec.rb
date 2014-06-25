@@ -62,6 +62,7 @@ describe SpecialistsController do
     let(:create_link) {"#{I18n.t :add_new } #{I18n.t :specialist}"}
 
     before do
+      specialist
       visit specialists_path
     end
 
@@ -72,6 +73,10 @@ describe SpecialistsController do
     it "links to the new patient page" do
       click_link create_link
       expect(current_path).to eq new_specialist_path
+    end
+
+    it 'has a link to edit the specialst listed' do
+      expect(page).to have_link "#{I18n.t(:edit)} #{I18n.t(:specialist)}"
     end
   end
 
