@@ -12,10 +12,14 @@
         %th= t(:name)
         %th= t(:specialty)
         %th= t(:practice_name)
+        %th= t(:phone)
+        %th= t(:email)
       %tbody
         - @specialists.each do |specialist|
           %tr
             %td= "#{specialist.first_name} #{specialist.last_name}"
             %td= specialist.specialty
             %td= specialist.practice_name
+            %td= specialist.phone
+            %td= specialist.email
 
