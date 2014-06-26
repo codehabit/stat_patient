@@ -1,0 +1,16 @@
+= @patient.first_name
+= @patient.middle_initial
+= @patient.last_name
+= @patient.street
+= @patient.street2
+= @patient.city
+= @patient.state
+= @patient.home_phone
+= @patient.mobile_phone
+= @patient.work_phone
+= @patient.email
+= @patient.gender
+= @patient.date_of_birth.strftime("%m/%d/%Y") if @patient.date_of_birth.present?
+= @patient.marital_status
+= @patient.social_security_number
+

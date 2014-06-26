@@ -10,6 +10,14 @@ describe PatientsController do
       expect(page).to have_content "Sally Bongo"
     end
 
+    example "with the address" do
+      visit new_patient_path
+      fill_in "Street Address", with: "123 Main St."
+      click_button "Create"
+      visit patient_path(Patient.first)
+      expect(page).to have_content "123 Main St."
+    end
+
     example "with the date of birth" do
       visit new_patient_path
       find(:css, "[data-unit='day']").set "14"

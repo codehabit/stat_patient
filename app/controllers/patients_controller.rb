@@ -7,6 +7,10 @@ class PatientsController < ApplicationController
     @patient = Patient.new
   end
 
+  def show
+    @patient = Patient.find(params[:id])
+  end
+
   def create
     day = params[:day_of_birth]
     month = params[:month_of_birth]
