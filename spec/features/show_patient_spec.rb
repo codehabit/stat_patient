@@ -1,6 +1,13 @@
 require 'spec_helper'
 
 describe PatientsController do
+  it "links to the show page from the listing page" do
+    gretchen = create(:patient, first_name: "Gretchen", last_name: "Mueller")
+    visit patients_path
+    click_link "Gretchen Mueller"
+    expect(current_path).to eq patient_path(gretchen)
+  end
+
   it "shows first name" do
      patient = create(:patient, first_name: "Frank")
      visit patient_path(patient)

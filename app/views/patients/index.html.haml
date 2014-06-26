@@ -10,10 +10,12 @@
     %table.table.table-condensed.table-responsive
       %thead
         %th Name
+        %th Email
         %th Date of Birth
       %tbody
         - @patients.each do |patient|
           %tr
-            %td= "#{patient.first_name} #{patient.last_name}"
+            %td= link_to patient.full_name, patient_path(patient)
+            %td= patient.email
             %td= patient.date_of_birth.strftime("%m/%d/%Y") if patient.date_of_birth.present?
 

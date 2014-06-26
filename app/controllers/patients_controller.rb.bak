@@ -1,30 +1,25 @@
-require 'marital_status'
 require 'patient_params'
 
 class PatientsController < ApplicationController
   def index
-    @patients = Patient.all.decorate
+    @patients = Patient.all
   end
 
   def new
     @patient = Patient.new
   end
 
-  def edit
-    @patient = Patient.find(params[:id])
-  end
-
   def show
     @patient = Patient.find(params[:id])
   end
 
-  def update
+  def edit
     @patient = Patient.find(params[:id])
-    @patient.update_attributes(patient_params)
-    redirect_to patients_path
   end
 
   def create
+    binding.pry
+    params = PatientParams.new(params).as_hash
     Patient.create(patient_params)
     redirect_to patients_path
   end
@@ -32,8 +27,7 @@ class PatientsController < ApplicationController
   private
 
   def patient_params
-    attrs = PatientParams.new(params).as_hash
-    attrs.require(:patient).permit!
+    params.require(:patient).permit!
   end
 end
 
