@@ -76,7 +76,7 @@ describe SpecialistsController do
     end
 
     it 'has a link to edit the specialst listed' do
-      expect(page).to have_link "#{I18n.t(:edit)} #{I18n.t(:specialist)}"
+      expect(page).to have_link "#{I18n.t(:edit_specialist)}"
     end
   end
 
