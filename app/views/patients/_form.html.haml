@@ -1,0 +1,43 @@
+.pull-left
+  = simple_form_for @patient, wrapper: :bootstrap3_horizontal, html: {class: "form-horizontal"} do |f|
+    = f.input :first_name
+    = f.input :last_name
+    = f.input :middle_initial
+    = f.input :street, label: "Street address"
+    = f.input :street2, label: "Street address line 2"
+    = f.input :city
+    = f.input :state
+    = f.input :zip_code
+    = f.input :home_phone
+    = f.input :mobile_phone
+    = f.input :work_phone
+    = f.input :email
+    = f.input :gender, collection: ["Male", "Female"], as: :radio_buttons, label: "Sex", item_wrapper_class: 'inline'
+    = f.input :marital_status, collection: MaritalStatus.all, as: :radio_buttons, label: "Status"
+    .form-group.string.optional.social-security-number
+      %label.string.optional.col-sm-5.control-label{for: "patient_last_name"}
+        Social security number
+      .col-sm-7
+        .social.string.optional.form-control.datefield
+          = telephone_field_tag :social_pre, nil, maxlength: "3", id: "social-pre", data: {role: "autotab-date", unit: "social-pre", target: "social-mid"}
+          %span
+            \-
+          = telephone_field_tag :social_mid, nil,  maxlength: "2", id: "social-mid", data: {role: "autotab-date", unit: "social-mid", target: "social-suffix"}
+          %span
+            \-
+          = telephone_field_tag :social_suffix, nil, class: "year",  maxlength: "4", id: "social-suffix", data: {role: "autotab-date", unit: "social-suffix", previous: "social-mid"}
+    .form-group.string.optional.patient_date_of_birth
+      %label.string.optional.col-sm-5.control-label{for: "patient_last_name"}
+        Date of birth
+      .col-sm-7
+        .datefield.string.optional.form-control{}
+          = telephone_field_tag :month_of_birth, @patient.date_of_birth.try(:month), placeholder: "MM", maxlength: "2", id: "month", data: {role: "autotab-date", unit: "month", target: "year", previous: "day"}
+          %span
+            \/
+          = telephone_field_tag :day_of_birth, @patient.date_of_birth.try(:day), placeholder: "DD", maxlength: "2", id: "day", data: {role: "autotab-date", unit: "day", target: "month"}
+          %span
+            \/
+          = telephone_field_tag :year_of_birth, @patient.date_of_birth.try(:year), placeholder: "YYYY", maxlength: "4", class: "year", id: "year", data: {role: "autotab-date", unit: "year", previous: "month"}
+    .button-group.pull-right
+      = link_to "Cancel", patients_path, class: "btn btn-default"
+      = f.submit action, class: "btn btn-primary"

@@ -1,0 +1,12 @@
+!!!
+%html
+  = render 'layouts/head'
+  %body
+    = render 'layouts/header'
+    .main
+      .main-inner
+        .container-fluid
+          = render "layouts/alert"
+          = yield
+    = render 'layouts/footer'
+

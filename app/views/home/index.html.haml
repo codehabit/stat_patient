@@ -1,1 +1,12 @@
-StatPatient
+%h3
+  Welcome to Stat Patient
+%span.spacer
+.home-main
+  %h4
+    What would you like to do?
+  %ul.unstyled
+    %li
+      = link_to "Manage Patients", patients_path
+    %li
+      = link_to "Manage Specialists", specialists_path
+
