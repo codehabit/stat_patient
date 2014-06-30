@@ -10,7 +10,8 @@ class SpecialistsController < ApplicationController
   end
 
   def index
-    @specialists = Specialist.all
+    page = params[:page] || 1
+    @specialists = Specialist.page(page)
   end
 
   def edit

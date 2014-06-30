@@ -79,6 +79,13 @@ describe SpecialistsController do
       expect(page).to have_link "#{I18n.t(:edit_specialist)}"
     end
   end
+  it "has pagination" do
+    21.times do
+      create(:specialist)
+    end
 
+    visit specialists_path
+    expect(page).to have_link "Next"
+  end
 end
 
