@@ -15,5 +15,8 @@
         = link_to "Help", "#"
     %ul.nav.navbar-nav.navbar-right
       %li
-        = link_to "Sign in", "#"
+        - if user_signed_in?
+          = link_to "Hello #{current_user.email}", "#"
+        - else
+          = link_to "Sign in", "#"
 
