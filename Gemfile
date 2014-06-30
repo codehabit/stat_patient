@@ -16,7 +16,7 @@ gem 'bootstrap-sass', '~> 3.1.1'
 gem 'bootswatch-rails'
 gem 'simple_form', '~> 3.1.0.rc1'
 gem 'autotab-rails'
-gem 'draper', git: 'git@github.com:drapergem/draper.git'
+gem 'draper', git: 'https://github.com/drapergem/draper.git'
 gem 'kaminari'
 gem 'devise'
 
