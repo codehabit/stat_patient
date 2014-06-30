@@ -19,6 +19,7 @@ gem 'autotab-rails'
 gem 'draper', git: 'https://github.com/drapergem/draper.git'
 gem 'kaminari'
 gem 'devise'
+gem 'heroku'
 
 gem 'rails_12factor', group: :production
 

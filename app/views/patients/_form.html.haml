@@ -19,13 +19,14 @@
         Social security number
       .col-sm-7
         .social.string.optional.form-control.datefield
-          = telephone_field_tag :social_pre, nil, maxlength: "3", id: "social-pre", data: {role: "autotab-date", unit: "social-pre", target: "social-mid"}
+          - social_parts = @patient.social_security_number.try(:split, "-")
+          = telephone_field_tag :social_pre, social_parts.try(:[], 0), maxlength: "3", id: "social-pre", data: {role: "autotab-date", unit: "social-pre", target: "social-mid"}
           %span
             \-
-          = telephone_field_tag :social_mid, nil,  maxlength: "2", id: "social-mid", data: {role: "autotab-date", unit: "social-mid", target: "social-suffix"}
+          = telephone_field_tag :social_mid, social_parts.try(:[], 1),  maxlength: "2", id: "social-mid", data: {role: "autotab-date", unit: "social-mid", target: "social-suffix"}
           %span
             \-
-          = telephone_field_tag :social_suffix, nil, class: "year",  maxlength: "4", id: "social-suffix", data: {role: "autotab-date", unit: "social-suffix", previous: "social-mid"}
+          = telephone_field_tag :social_suffix, social_parts.try(:[], 2), class: "year",  maxlength: "4", id: "social-suffix", data: {role: "autotab-date", unit: "social-suffix", previous: "social-mid"}
     .form-group.string.optional.patient_date_of_birth
       %label.string.optional.col-sm-5.control-label{for: "patient_last_name"}
         Date of birth
