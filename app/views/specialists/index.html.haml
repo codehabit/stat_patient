@@ -20,7 +20,7 @@
       %tbody
         - @specialists.each do |specialist|
           %tr
-            %td= "#{specialist.first_name} #{specialist.last_name}"
+            %td= link_to "#{specialist.first_name} #{specialist.last_name}", specialist_path(specialist)
             %td= specialist.specialty
             %td= specialist.practice_name
             %td= specialist.phone

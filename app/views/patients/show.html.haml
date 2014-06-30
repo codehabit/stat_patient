@@ -1,13 +1,38 @@
-= @patient.first_name
-= @patient.middle_initial
-= @patient.last_name
-= address
-= @patient.home_phone
-= @patient.mobile_phone
-= @patient.work_phone
-= @patient.email
-= @patient.gender
-= @patient.date_of_birth.strftime("%m/%d/%Y") if @patient.date_of_birth.present?
-= @patient.marital_status
-= @patient.social_security_number
-
+%h2 Patient
+%dl.dl-horizontal
+  %dt
+    First Name
+    %dd= @patient.first_name
+  %dt
+    Middle Initial
+    %dd= @patient.middle_initial
+  %dt
+    Last Name
+    %dd= @patient.last_name
+  %dt
+    Address
+    %dd= address
+  %dt
+    Home Phone
+    %dd= @patient.home_phone
+  %dt
+    Mobile Phone
+    %dd= @patient.mobile_phone
+  %dt
+    Work Phone
+    %dd= @patient.work_phone
+  %dt
+    Email
+    %dd= @patient.email
+  %dt
+    Gender
+    %dd= @patient.gender
+  %dt
+    Date of Birth
+    %dd= @patient.date_of_birth.strftime("%m/%d/%Y") if @patient.date_of_birth.present?
+  %dt
+    Marital Status
+    %dd= @patient.marital_status
+  %dt
+    Social Security Number
+    %dd= @patient.social_security_number

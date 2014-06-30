@@ -14,6 +14,10 @@ class SpecialistsController < ApplicationController
     @specialists = Specialist.page(page)
   end
 
+  def show
+    @specialist = Specialist.find params[:id]
+  end
+
   def edit
     @specialist = Specialist.find params[:id]
   end
