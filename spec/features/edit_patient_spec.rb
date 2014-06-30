@@ -1,9 +1,13 @@
 require 'spec_helper'
 
 describe PatientsController do
-  it "edits first and last name" do
-    patient = create(:patient, first_name: "Luis", last_name: "Suarez")
+  let(:patient) { create(:patient, first_name: "Luis", last_name: "Suarez") }
+
+  before :each do
     visit edit_patient_path(patient)
+  end
+
+  it "edits first and last name" do
     fill_in "First name", with: "Giorgio"
     fill_in "Last name", with: "Chiellini"
     click_button "Save"
@@ -12,13 +16,26 @@ describe PatientsController do
   end
 
   it "edits the date of birth" do
-    patient = create(:patient, first_name: "Luis", last_name: "Suarez")
-    visit edit_patient_path(patient)
     find(:css, "[data-unit='day']").set "14"
     find(:css, "[data-unit='month']").set "12"
     find(:css, "[data-unit='year']").set "1974"
     click_button "Save"
     expect(page).to have_content "12/14/1974"
+  end
+
+  it "links to the edit patient page" do
+    visit patients_path
+    click_link "Edit patient"
+    expect(current_path).to eq edit_patient_path(patient)
+  end
+
+  it "links to a specific patient's edit page" do
+    other_patient = create("patient")
+    visit patients_path
+    within "tr#patient-#{other_patient.id}" do
+      click_link "Edit patient"
+    end
+    expect(current_path).to eq edit_patient_path(other_patient)
   end
 end
 

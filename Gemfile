@@ -17,6 +17,7 @@ gem 'bootswatch-rails'
 gem 'simple_form', '~> 3.1.0.rc1'
 gem 'autotab-rails'
 gem 'draper', git: 'git@github.com:drapergem/draper.git'
+gem 'kaminari'
 
 group :development do
   gem 'spring'

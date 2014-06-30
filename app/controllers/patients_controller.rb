@@ -3,7 +3,8 @@ require 'patient_params'
 
 class PatientsController < ApplicationController
   def index
-    @patients = Patient.all.decorate
+    page = params[:page] || 1
+    @patients = Patient.page(page)
   end
 
   def new

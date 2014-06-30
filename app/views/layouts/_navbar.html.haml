@@ -7,64 +7,13 @@
       %span.icon-bar
   #navbar-main.navbar-collapse.collapse
     %ul.nav.navbar-nav
-      %li.dropdown
-        %a#themes.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-          Themes
-          %span.caret
-        %ul.dropdown-menu{"aria-labelledby" => "themes"}
-          %li
-            %a{:href => "../default/"} Default
-          %li.divider
-          %li
-            %a{:href => "../amelia/"} Amelia
-          %li
-            %a{:href => "../cerulean/"} Cerulean
-          %li
-            %a{:href => "../cosmo/"} Cosmo
-          %li
-            %a{:href => "../cyborg/"} Cyborg
-          %li
-            %a{:href => "../darkly/"} Darkly
-          %li
-            %a{:href => "../flatly/"} Flatly
-          %li
-            %a{:href => "../journal/"} Journal
-          %li
-            %a{:href => "../lumen/"} Lumen
-          %li
-            %a{:href => "../readable/"} Readable
-          %li
-            %a{:href => "../simplex/"} Simplex
-          %li
-            %a{:href => "../slate/"} Slate
-          %li
-            %a{:href => "../spacelab/"} Spacelab
-          %li
-            %a{:href => "../superhero/"} Superhero
-          %li
-            %a{:href => "../united/"} United
-          %li
-            %a{:href => "../yeti/"} Yeti
       %li
-        %a{:href => "../help/"} Help
+        = link_to "Patients", patients_path
       %li
-        %a{:href => "http://news.bootswatch.com"} Blog
-      %li.dropdown
-        %a#download.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-          Download
-          %span.caret
-        %ul.dropdown-menu{"aria-labelledby" => "download"}
-          %li
-            %a{:href => "./bootstrap.min.css"} bootstrap.min.css
-          %li
-            %a{:href => "./bootstrap.css"} bootstrap.css
-          %li.divider
-          %li
-            %a{:href => "./variables.less"} variables.less
-          %li
-            %a{:href => "./bootswatch.less"} bootswatch.less
+        = link_to "Specialists", specialists_path
+      %li
+        = link_to "Help", "#"
     %ul.nav.navbar-nav.navbar-right
       %li
-        %a{:href => "http://builtwithbootstrap.com/", :target => "_blank"} Built With Bootstrap
-      %li
-        %a{:href => "https://wrapbootstrap.com/?ref=bsw", :target => "_blank"} WrapBootstrap
+        = link_to "Sign in", "#"
+

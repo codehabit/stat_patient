@@ -45,5 +45,15 @@ describe PatientsController do
     click_link "Add New Patient"
     expect(current_path).to eq new_patient_path
   end
+
+  context "with pagination" do
+    it "paginates at 20 records" do
+      21.times do
+        create(:patient)
+      end
+      visit patients_path
+      expect(page).to have_link "Next"
+    end
+  end
 end
 

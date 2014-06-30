@@ -7,15 +7,23 @@
     %span.empty-message
       There are no patients yet
   - else
+    = paginate @patients
     %table.table.table-condensed.table-responsive
       %thead
         %th Name
         %th Email
         %th Date of Birth
+        %th
       %tbody
         - @patients.each do |patient|
-          %tr
+          - patient = patient.decorate
+          %tr{id: "patient-#{patient.id}"}
             %td= link_to patient.full_name, patient_path(patient)
             %td= patient.email
             %td= patient.date_of_birth.strftime("%m/%d/%Y") if patient.date_of_birth.present?
+            %td= link_to "Edit patient", edit_patient_path(patient), class: "btn btn-primary"
+    .pagination
+      %p
+        Here is some pagination!
+      = paginate @patients
 
