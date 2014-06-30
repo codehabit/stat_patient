@@ -37,5 +37,9 @@ describe PatientsController do
     end
     expect(current_path).to eq edit_patient_path(other_patient)
   end
+
+  it "shows the date of birth correctly" do
+    pending "Need to figure out good way to do this"
+  end
 end
 
