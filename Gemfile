@@ -20,6 +20,8 @@ gem 'draper', git: 'git@github.com:drapergem/draper.git'
 gem 'kaminari'
 gem 'devise'
 
+gem 'rails_12factor', group: :production
+
 group :development do
   gem 'spring'
   gem 'capistrano-rails'
