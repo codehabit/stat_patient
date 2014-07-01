@@ -11,7 +11,7 @@ class SpecialistsController < ApplicationController
 
   def index
     page = params[:page] || 1
-    @specialists = Specialist.page(page)
+    @specialists = Specialist.order(:last_name).page(page)
   end
 
   def show

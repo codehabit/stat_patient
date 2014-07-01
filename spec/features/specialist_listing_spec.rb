@@ -79,6 +79,7 @@ describe SpecialistsController do
       expect(page).to have_link "#{I18n.t(:edit_specialist)}"
     end
   end
+
   it "has pagination" do
     21.times do
       create(:specialist)
@@ -86,6 +87,14 @@ describe SpecialistsController do
 
     visit specialists_path
     expect(page).to have_link "Next"
+  end
+
+  it "orders by specialist last name" do
+    create(:specialist, first_name: "Ron", last_name: "Chancellor")
+    create(:specialist, first_name: "Ron", last_name: "Aronson")
+    create(:specialist, first_name: "Ron", last_name: "Bronson")
+    visit specialists_path
+    expect(all("a.show_specialist").map(&:text)).to eq ["Ron Aronson", "Ron Bronson", "Ron Chancellor"]
   end
 end
 
