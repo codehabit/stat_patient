@@ -4,7 +4,7 @@ require 'patient_params'
 class PatientsController < ApplicationController
   def index
     page = params[:page] || 1
-    @patients = Patient.page(page)
+    @patients = Patient.order(:last_name).page(page)
   end
 
   def new
