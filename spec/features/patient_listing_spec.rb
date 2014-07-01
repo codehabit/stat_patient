@@ -46,7 +46,23 @@ describe PatientsController do
     expect(current_path).to eq new_patient_path
   end
 
+  it "lists the patients in order by last name" do
+    create(:patient, last_name: "Chancellor")
+    create(:patient, last_name: "Aronson")
+    create(:patient, last_name: "Brown")
+    visit patients_path
+    expect(all("a.show_patient").map(&:text)).to eq ["Aronson", "Brown", "Chancellor"]
+  end
+
   context "with pagination" do
+    it "doesn't have pagination for fewer than 20 records" do
+      19.times do
+        create(:patient)
+      end
+      visit patients_path
+      expect(page).to_not have_link "Next"
+    end
+
     it "paginates at 20 records" do
       21.times do
         create(:patient)
