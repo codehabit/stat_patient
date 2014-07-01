@@ -18,7 +18,7 @@
         - @patients.each do |patient|
           - patient = patient.decorate
           %tr{id: "patient-#{patient.id}"}
-            %td= link_to patient.full_name, patient_path(patient)
+            %td= link_to patient.full_name, patient_path(patient), class: "show_patient"
             %td= patient.email
             %td= patient.date_of_birth.strftime("%m/%d/%Y") if patient.date_of_birth.present?
             %td= link_to "Edit patient", edit_patient_path(patient), class: "btn btn-primary"
