@@ -41,5 +41,6 @@ describe PatientsController do
   it "shows the date of birth correctly" do
     pending "Need to figure out good way to do this"
   end
+
 end
 
