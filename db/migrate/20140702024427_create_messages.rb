@@ -10,4 +10,3 @@ class CreateMessages < ActiveRecord::Migration
     end
   end
 end
-
