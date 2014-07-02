@@ -1,7 +1,6 @@
 %head
   %meta{"http-equiv" => "X-UA-Compatible", :content => "IE=EmulateIE8"}
-  - application_title = "Stat Patient"
-  %title= content_for?(:title) ? yield(:title) : application_title
+  %title= content_for?(:title) ? yield(:title) : AppSettings.env_title
   = stylesheet_link_tag :application, :media => "all"
   = javascript_include_tag :application
   %meta{:content => "width=device-width, initial-scale=1.0, maximum-scale=1.0", :name => "viewport"}
