@@ -20,25 +20,25 @@
       .col-sm-7
         .social.string.optional.form-control.datefield
           - social_parts = @patient.social_security_number.try(:split, "-")
-          = telephone_field_tag :social_pre, social_parts.try(:[], 0), maxlength: "3", id: "social-pre", data: {role: "autotab-date", unit: "social-pre", target: "social-mid"}
+          = telephone_field_tag :social_pre, social_parts.try(:[], 0), maxlength: "3", required: true, id: "social-pre", data: {role: "autotab-date", unit: "social-pre", target: "social-mid"}
           %span
             \-
-          = telephone_field_tag :social_mid, social_parts.try(:[], 1),  maxlength: "2", id: "social-mid", data: {role: "autotab-date", unit: "social-mid", target: "social-suffix"}
+          = telephone_field_tag :social_mid, social_parts.try(:[], 1),  maxlength: "2", required: true, id: "social-mid", data: {role: "autotab-date", unit: "social-mid", target: "social-suffix"}
           %span
             \-
-          = telephone_field_tag :social_suffix, social_parts.try(:[], 2), class: "year",  maxlength: "4", id: "social-suffix", data: {role: "autotab-date", unit: "social-suffix", previous: "social-mid"}
+          = telephone_field_tag :social_suffix, social_parts.try(:[], 2), class: "year",  maxlength: "4", required: true, ed: "social-suffix", data: {role: "autotab-date", unit: "social-suffix", previous: "social-mid"}
     .form-group.string.optional.patient_date_of_birth
       %label.string.optional.col-sm-5.control-label{for: "patient_last_name"}
         Date of birth
       .col-sm-7
         .datefield.string.optional.form-control{}
-          = telephone_field_tag :month_of_birth, @patient.date_of_birth.try(:month), placeholder: "MM", maxlength: "2", id: "month", data: {role: "autotab-date", unit: "month", target: "year", previous: "day"}
+          = telephone_field_tag :month_of_birth, @patient.date_of_birth.try(:month), placeholder: "MM", maxlength: "2", required: true, id: "month", data: {role: "autotab-date", unit: "month", target: "year", previous: "day"}
           %span
             \/
-          = telephone_field_tag :day_of_birth, @patient.date_of_birth.try(:day), placeholder: "DD", maxlength: "2", id: "day", data: {role: "autotab-date", unit: "day", target: "month"}
+          = telephone_field_tag :day_of_birth, @patient.date_of_birth.try(:day), placeholder: "DD", maxlength: "2", required: true, id: "day", data: {role: "autotab-date", unit: "day", target: "month"}
           %span
             \/
-          = telephone_field_tag :year_of_birth, @patient.date_of_birth.try(:year), placeholder: "YYYY", maxlength: "4", class: "year", id: "year", data: {role: "autotab-date", unit: "year", previous: "month"}
+          = telephone_field_tag :year_of_birth, @patient.date_of_birth.try(:year), placeholder: "YYYY", maxlength: "4", required: true, class: "year", id: "year", data: {role: "autotab-date", unit: "year", previous: "month"}
     .button-group.pull-right
       = link_to "Cancel", patients_path, class: "btn btn-default"
       = f.submit action, class: "btn btn-primary"
