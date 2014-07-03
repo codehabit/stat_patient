@@ -6,3 +6,4 @@ class AppSettings < Settingslogic
     @title ||= self.title << " " << Rails.env
   end
 end
+
