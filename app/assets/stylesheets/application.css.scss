@@ -16,7 +16,8 @@
 @import 'jquery.ui.all';
 @import 'bootswatch/flatly/variables';
 @import 'bootstrap';
-// body { padding-top: 60px; }
+@import 'select2';
+@import 'select2-bootstrap';
 @import "bootswatch/flatly/bootswatch";
 @import 'header';
 @import 'main';
