@@ -20,8 +20,8 @@ gem 'draper', git: 'https://github.com/drapergem/draper.git'
 gem 'kaminari'
 gem 'devise'
 gem 'settingslogic'
-
 gem 'rails_12factor', group: :production
+gem "select2-rails"
 
 group :development do
   gem 'spring'
