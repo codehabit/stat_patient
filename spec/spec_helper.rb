@@ -8,7 +8,8 @@ require 'rspec/rails'
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
 Capybara.javascript_driver = :webkit
-Capybara.ignore_hidden_elements = true
+# Capybara.ignore_hidden_elements = true
+WebMock.disable_net_connect!(allow_localhost: true)
 
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods

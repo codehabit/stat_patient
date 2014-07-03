@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 describe MessagesController do
-  specify "that a patient can be selected" do
-    pending
+  xspecify "that a patient can be selected", js: true do
+    patient = create(:patient, first_name: "Freda", last_name: "Gonzalez", date_of_birth: 60.years.ago)
     visit new_message_path
-    fill_in "Select a patient", with: "Sarah"
-    select "Sarah Jenkins", from: "[data-role='patient-selector']"
+    binding.pry
+    select2(patient.decorate.full_name_with_dob, from: "Patient")
     click_button "Send"
     visit message_path(Message.first)
     expect(page).to have_content "Sarah Jenkins"

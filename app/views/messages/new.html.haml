@@ -1,4 +1,6 @@
 .span12
   = simple_form_for @message, wrapper: :bootstrap3_horizontal, html: {class: "form-horizontal"} do |f|
-    = f.input :patient, as: :select, collection: Patient.all.decorate, label_method: :full_name, value_method: :id, input_html: {data: {role: 'patient-select'}, class: "patient-select span8"}
+    = f.input :patient, as: :select, collection: Patient.all.decorate, label_method: :full_name_with_dob, value_method: :id, input_html: {data: {role: 'patient-select'}, class: "patient-select span8"}
+    .pull-right
+      = f.submit
 

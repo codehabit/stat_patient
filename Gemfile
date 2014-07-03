@@ -34,6 +34,7 @@ group :test, :development do
   gem 'pry-rails'
   gem 'quiet_assets'
   gem 'rspec-rails'
+  gem 'capybara-select2'
 end
 
 group :test do
