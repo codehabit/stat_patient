@@ -47,11 +47,11 @@ describe PatientsController do
   end
 
   it "lists the patients in order by last name" do
-    create(:patient, last_name: "Chancellor")
-    create(:patient, last_name: "Aronson")
-    create(:patient, last_name: "Brown")
+    create(:patient, last_name: "Chancellor", first_name: "a")
+    create(:patient, last_name: "Aronson", first_name: "a")
+    create(:patient, last_name: "Brown", first_name: "a")
     visit patients_path
-    expect(all("a.show_patient").map(&:text)).to eq ["Aronson", "Brown", "Chancellor"]
+    expect(all("a.show_patient").map(&:text)).to eq ["a Aronson", "a Brown", "a Chancellor"]
   end
 
   context "with pagination" do
