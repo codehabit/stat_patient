@@ -63,6 +63,9 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    capybara-select2 (0.0.8)
+      capybara
+      rspec
     capybara-webkit (1.1.0)
       capybara (~> 2.0, >= 2.0.2)
       json
@@ -163,6 +166,10 @@ GEM
     rdoc (4.1.1)
       json (~> 1.4)
     request_store (1.0.6)
+    rspec (3.0.0)
+      rspec-core (~> 3.0.0)
+      rspec-expectations (~> 3.0.0)
+      rspec-mocks (~> 3.0.0)
     rspec-core (3.0.1)
       rspec-support (~> 3.0.0)
     rspec-expectations (3.0.1)
@@ -251,6 +258,7 @@ DEPENDENCIES
   bootswatch-rails
   capistrano-rails
   capybara
+  capybara-select2
   capybara-webkit
   coffee-rails (~> 4.0.0)
   database_cleaner (= 1.0.0.RC1)
