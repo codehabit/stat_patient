@@ -16,7 +16,7 @@ class PatientsController < ApplicationController
   end
 
   def show
-    @patient = Patient.find(params[:id])
+    @patient = Patient.find(params[:id]).decorate
   end
 
   def update
