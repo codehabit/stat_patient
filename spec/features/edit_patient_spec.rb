@@ -1,9 +1,11 @@
 require 'spec_helper'
 
 describe PatientsController do
+  let!(:user) {create(:user, password: "secret123", password_confirmation: "secret123", email: "me@me.me")}
   let(:patient) { create(:patient, first_name: "Luis", last_name: "Suarez") }
 
   before :each do
+    sign_in_as(user, "secret123")
     visit edit_patient_path(patient)
   end
 
@@ -37,10 +39,5 @@ describe PatientsController do
     end
     expect(current_path).to eq edit_patient_path(other_patient)
   end
-
-  it "shows the date of birth correctly" do
-    pending "Need to figure out good way to do this"
-  end
-
 end
 

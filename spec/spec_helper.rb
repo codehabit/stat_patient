@@ -5,6 +5,7 @@ require 'capybara/rails'
 require 'factory_girl'
 require 'pry'
 require 'rspec/rails'
+require 'shoulda/matchers'
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
 Capybara.javascript_driver = :webkit
@@ -64,9 +65,6 @@ RSpec.configure do |config|
     # a real object. This is generally recommended.
     mocks.verify_partial_doubles = true
 
-  end
-  config.before(:each) do
-    sign_in_as
   end
 end
 

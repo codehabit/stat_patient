@@ -1,6 +1,6 @@
-  def sign_in_as(user=nil)
-    password = 'sec5ret)one'
-    user ||= create(:user, password: password, password_confirmation: password)
+  def sign_in_as(user, password)
+    # password = 'sec5ret)one'
+    # user ||= create(:user, password: password, password_confirmation: password)
     visit new_user_session_path
     fill_in 'Email', with: user.email
     fill_in 'Password', with: password
