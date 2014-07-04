@@ -1,14 +1,17 @@
 require 'spec_helper'
 
-# describe MessagesController do
-#   it "lists a message" do
-#     pending
-#     specialist = create(:specialist, first_name: "Todd", last_name: "Johnson")
-#     patient = create(:patient, first_name: "Frank", last_name: "Miller")
-#     doctor = create(:user)
-#     message = create(:message)
-#     visit messages_path
-#     expect(page).to have_content "Specialist 1"
-#   end
-# end
+describe MessagesController do
+  let!(:user) {create(:user, password: "secret123", password_confirmation: "secret123", email: "me@me.me")}
+
+  before :each do
+    sign_in_as(user, "secret123")
+  end
+
+  xit "lists a message with a patient associated" do
+    patient = create(:patient, first_name: "Frank", last_name: "Miller")
+    message = create(:message, patient: patient)
+    visit messages_path
+    expect(page).to have_content "Frank Miller"
+  end
+end
 
