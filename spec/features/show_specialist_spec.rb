@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 describe SpecialistsController do
+  let!(:user) {create(:user, password: "secret123", password_confirmation: "secret123", email: "me@me.me")}
+
+  before :each do
+    sign_in_as(user, "secret123")
+  end
   it "links to the show page from the listing page" do
     gretchen = create(:specialist, first_name: "Gretchen", last_name: "Mueller")
     visit specialists_path

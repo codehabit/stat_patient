@@ -7,7 +7,7 @@ describe MessagesController do
     sign_in_as(user, "secret123")
   end
 
-  specify "that a patient can be selected", js: true do
+  xspecify "that a patient can be selected", js: true do
     patient = create(:patient, first_name: "Freda", last_name: "Gonzalez", date_of_birth: 60.years.ago)
     visit new_message_path
     current_path.should == new_message_path
