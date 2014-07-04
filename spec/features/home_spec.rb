@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 describe HomeController do
-  let!(:user) {create(:user, password: "secret123", password_confirmation: "secret123", email: "me@me.me")}
+  let!(:user) {create(:user)}
 
   before :each do
-    sign_in_as(user, "secret123")
+    sign_in_as user
   end
   it "provides a welcome message" do
     visit root_path

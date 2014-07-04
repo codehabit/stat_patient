@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 describe PatientsController do
-  let!(:user) {create(:user, password: "secret123", password_confirmation: "secret123", email: "me@me.me")}
+  let!(:user) {create(:user)}
   let(:patient) { create(:patient, first_name: "Luis", last_name: "Suarez") }
 
   before :each do
-    sign_in_as(user, "secret123")
+    sign_in_as user
     visit edit_patient_path(patient)
   end
 

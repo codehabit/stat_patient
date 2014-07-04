@@ -1,13 +1,13 @@
 require 'spec_helper'
 
 describe MessagesController do
-  let!(:user) {create(:user, password: "secret123", password_confirmation: "secret123", email: "me@me.me")}
+  let!(:user) {create(:user)}
 
   before :each do
-    sign_in_as(user, "secret123")
+    sign_in_as user
   end
 
-  xit "lists a message with a patient associated" do
+  it "lists a message with a patient associated" do
     patient = create(:patient, first_name: "Frank", last_name: "Miller")
     message = create(:message, patient: patient)
     visit messages_path

@@ -1,11 +1,10 @@
 require 'spec_helper'
 
 describe MessagesController do
-  let!(:pw) {'secret1234'}
-  let!(:user) {create(:user, password: pw, password_confirmation: pw, email: "me@me.com")}
+  let!(:user) {create(:user)}
 
   before :each do
-    sign_in_as user, pw
+    sign_in_as user
   end
 
   specify "that a patient can be selected", js: true do

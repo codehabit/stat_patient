@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 describe PatientsController do
-  let!(:user) {create(:user, password: "secret123", password_confirmation: "secret123", email: "me@me.me")}
+  let!(:user) {create(:user)}
 
   before :each do
-    sign_in_as(user, "secret123")
+    sign_in_as user
   end
   it "links to the show page from the listing page" do
     gretchen = create(:patient, first_name: "Gretchen", last_name: "Mueller")
