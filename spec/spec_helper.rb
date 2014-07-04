@@ -6,11 +6,13 @@ require 'factory_girl'
 require 'pry'
 require 'rspec/rails'
 require 'shoulda/matchers'
+include Warden::Test::Helpers
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
 Capybara.javascript_driver = :webkit
 # Capybara.ignore_hidden_elements = true
 WebMock.disable_net_connect!(allow_localhost: true)
+Warden.test_mode!
 
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
@@ -64,7 +66,9 @@ RSpec.configure do |config|
     # Prevents you from mocking or stubbing a method that does not exist on
     # a real object. This is generally recommended.
     mocks.verify_partial_doubles = true
-
+  end
+  config.after :each do
+    Warden.test_reset!
   end
 end
 
