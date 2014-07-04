@@ -1,2 +1,18 @@
-- @messages.each do |message|
-  = message.patient.decorate.full_name_with_dob
+%h3
+  Inbox
+  %span.pull-right
+    = link_to "Compose message", new_message_path, class: "btn btn-primary"
+.listing
+  - if @messages.blank?
+    %span.empty-message
+      There are no messages in your inbox
+  - else
+    %table.table.table-condensed.table-responsive
+      %thead
+        %th Patient Name
+      %tbody
+        - @messages.each do |message|
+          = message.patient.decorate.full_name_with_dob if message.patient.present?
+          %tr
+            %td= link_to message.subject, message_path(message)
+
