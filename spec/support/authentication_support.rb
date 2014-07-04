@@ -1,10 +1,11 @@
   def sign_in_as(user, password)
+    login_as(user, scope: :user)
     # password = 'sec5ret)one'
     # user ||= create(:user, password: password, password_confirmation: password)
-    visit new_user_session_path
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: password
-    click_button 'Sign in'
+    # visit new_user_session_path
+    # fill_in 'Email', with: user.email
+    # fill_in 'Password', with: password
+    # click_button 'Sign in'
   end
 
   # useful later, no doubt
