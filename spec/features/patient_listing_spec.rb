@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 describe PatientsController do
+  let!(:user) {create(:user, password: "secret123", password_confirmation: "secret123", email: "me@me.me")}
+
+  before :each do
+    sign_in_as(user, "secret123")
+  end
   it "lets the user know that there are no patients" do
     visit patients_path
     expect(page).to have_content "There are no patients yet"
