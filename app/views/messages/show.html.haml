@@ -1,6 +1,11 @@
 %h2 Message
 %dl.dl-horizontal
   %dt
+  %h3
+    Subject:
+  %dd
+    %h3
+      = @message.subject
     From
     %dd= @message.sender.decorate.full_name
   %dt
@@ -9,3 +14,8 @@
   %dt
     Notes
     %dd= @message.notes
+  - if @message.image.present?
+    %dt
+      Images:
+      %dd
+        = image_tag @message.image.url(:thumb)

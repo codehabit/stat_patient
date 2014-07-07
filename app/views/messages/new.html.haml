@@ -1,5 +1,5 @@
 .span12
-  = bootstrap_form_for @message, layout: :horizontal do |f|
+  = bootstrap_nested_form_for @message, layout: :horizontal do |f|
     = f.select :recipient_id, Practitioner.all.collect {|p| [p.decorate.full_name, p.id]}, {include_blank: true}, {data: {role: 'recipient-select'}, class: "patient-select"}
     = f.hidden_field :recipient_type, value: "Practitioner"
     = f.hidden_field :sender_id, value: current_user.practitioner.id
@@ -8,6 +8,8 @@
     = f.text_field :case_number
     = f.text_area :notes
     = f.file_field :image
+    -# = f.fields_for @message.images.build do |fi|
+    -#   = fi.file_field :image
     .pull-right
       = f.submit
 
