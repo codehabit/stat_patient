@@ -16,6 +16,14 @@ ActiveRecord::Schema.define(version: 20140707114903) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "images", force: true do |t|
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.integer  "message_id"
+  end
+
   create_table "messages", force: true do |t|
     t.string   "case_number"
     t.integer  "patient_id"
