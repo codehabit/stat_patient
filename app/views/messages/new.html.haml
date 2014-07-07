@@ -2,6 +2,7 @@
   = bootstrap_form_for @message, layout: :horizontal do |f|
     = f.select :recipient_id, Practitioner.all.collect {|p| [p.decorate.full_name, p.id]}, {include_blank: true}, {data: {role: 'recipient-select'}, class: "patient-select"}
     = f.hidden_field :recipient_type, value: "Practitioner"
+    = f.hidden_field :sender_id, value: current_user.practitioner.id
     = f.text_field :subject
     = f.select :patient_id, Patient.all.collect {|p| [p.decorate.full_name_with_dob, p.id]}, {include_blank: true}, {data: {role: 'patient-select'}, class: "patient-select"}
     = f.text_field :case_number
