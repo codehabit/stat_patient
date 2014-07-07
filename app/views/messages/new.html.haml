@@ -1,12 +1,12 @@
 .span12
-  = simple_form_for @message, wrapper: :bootstrap3_horizontal, html: {class: "form-horizontal"} do |f|
-    = f.association :recipient, as: :select, collection: Practitioner.all, label_method: :full_name, input_html: {data: {role: 'recipient-select'}, class: "patient-select span8"}
+  = bootstrap_form_for @message, layout: :horizontal do |f|
+    = f.select :recipient_id, Practitioner.all.collect {|p| [p.decorate.full_name, p.id]}, {include_blank: true}, {data: {role: 'recipient-select'}, class: "patient-select"}
     = f.hidden_field :recipient_type, value: "Practitioner"
-    = f.input :subject
-    = f.association :patient, as: :select, collection: Patient.all.decorate, label_method: :full_name_with_dob, value_method: :id, input_html: {data: {role: 'patient-select'}, class: "patient-select span8"}
-    = f.input :case_number
-    = f.input :notes
-    = f.input :image
+    = f.text_field :subject
+    = f.select :patient_id, Patient.all.collect {|p| [p.decorate.full_name_with_dob, p.id]}, {include_blank: true}, {data: {role: 'patient-select'}, class: "patient-select"}
+    = f.text_field :case_number
+    = f.text_area :notes
+    = f.file_field :image
     .pull-right
       = f.submit
 
