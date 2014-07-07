@@ -21,11 +21,11 @@
 
 en:
   hello: "Hello world"
-  specialists: "Specialists"
-  specialist: "Specialist"
-  no_specialists: "There are no specialists yet"
+  practitioners: "Practitioners"
+  practitioner: "Practitioner"
+  no_practitioners: "There are no practitioners yet"
   specialty: "Specialty"
   name: "Name"
   practice_name: "Practice Name"
   add_new: "Add New"
-  edit_specialist: "Edit specialist"
+  edit_practitioner: "Edit practitioner"
