@@ -1,5 +1,5 @@
 %h3
-  Inbox
+  = "#{current_user.practitioner.decorate.full_name} - Inbox"
   %span.pull-right
     = link_to "Compose message", new_message_path, class: "btn btn-primary"
 .listing

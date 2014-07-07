@@ -1,5 +1,11 @@
 %h2 Message
 %dl.dl-horizontal
   %dt
+    From
+    %dd= @message.sender.decorate.full_name
+  %dt
     Patient
     %dd= @message.patient.decorate.full_name_with_dob if @message.patient.present?
+  %dt
+    Notes
+    %dd= @message.notes
