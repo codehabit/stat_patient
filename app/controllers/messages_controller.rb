@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   def index
-    @messages = Message.all
+    @messages = Message.where(recipient: current_user.practitioner)
   end
 
   def new
