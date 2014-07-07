@@ -1,0 +1,30 @@
+%h3
+  = t(:practitioners)
+  %span.pull-right
+    = link_to "#{t(:add_new)} #{t(:practitioner)}", new_practitioner_path, class: "btn btn-primary"
+.listing
+  - if @practitioners.blank?
+    %span.empty-message
+      = t(:no_practitioners)
+  - else
+    = paginate @practitioners
+    %table.table.table-condensed.table-responsive
+      %thead
+        %th= t(:name)
+        %th= t(:specialty)
+        %th= t(:practice_name)
+        %th= t(:phone)
+        %th= t(:email)
+        %th
+
+      %tbody
+        - @practitioners.each do |practitioner|
+          %tr
+            %td= link_to "#{practitioner.first_name} #{practitioner.last_name}", practitioner_path(practitioner), class: "show_practitioner"
+            %td= practitioner.specialty
+            %td= practitioner.practice_name
+            %td= practitioner.phone
+            %td= practitioner.email
+            %td= link_to I18n.t(:edit_practitioner), edit_practitioner_path(practitioner), class: 'btn btn-primary'
+    = paginate @practitioners
+

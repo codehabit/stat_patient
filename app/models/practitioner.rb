@@ -1,4 +1,4 @@
-class Specialist < ActiveRecord::Base
+class Practitioner < ActiveRecord::Base
 
   def full_name
     "#{first_name} #{last_name}"

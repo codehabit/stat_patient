@@ -1,32 +1,32 @@
 require 'spec_helper'
 
 
-describe SpecialistsController do
+describe PractitionersController do
   let!(:user) {create(:user)}
 
   before :each do
     sign_in_as user
   end
 
-  let(:specialist) {create :specialist}
+  let(:practitioner) {create :practitioner}
 
   let(:new_first_name) {'joe'}
   before do
-    specialist
-    visit specialists_path
-    click_link I18n.t(:edit_specialist)
-    fill_in 'specialist_first_name', with: new_first_name
+    practitioner
+    visit practitioners_path
+    click_link I18n.t(:edit_practitioner)
+    fill_in 'practitioner_first_name', with: new_first_name
   end
 
   context 'updating' do
     it 'updates data' do
-      click_button 'Update Specialist'
+      click_button 'Update Practitioner'
       expect(page).to have_content new_first_name
     end
 
     it 'returns to the listing page' do
-      click_button 'Update Specialist'
-      expect(current_path).to eq specialists_path
+      click_button 'Update Practitioner'
+      expect(current_path).to eq practitioners_path
     end
   end
 
@@ -38,7 +38,7 @@ describe SpecialistsController do
 
     it 'returns to listing' do
       click_link 'Cancel'
-      expect(current_path).to eq specialists_path
+      expect(current_path).to eq practitioners_path
     end
   end
 end
