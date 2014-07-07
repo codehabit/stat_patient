@@ -8,7 +8,8 @@ class MessagesController < ApplicationController
   end
 
   def create
-    Message.create(message_params)
+    message = Message.create(message_params)
+    PractitionerMailer.notification_email(message).deliver
     redirect_to messages_path
   end
 
