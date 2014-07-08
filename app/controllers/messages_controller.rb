@@ -11,7 +11,7 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     if @message.valid?
       @message.save
-      PractitionerMailer.notification_email(message).deliver
+      PractitionerMailer.notification_email(@message).deliver
       redirect_to messages_path
     else
       render action: :new
