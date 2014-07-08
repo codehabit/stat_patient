@@ -1,15 +1,15 @@
 .span12
-  = bootstrap_nested_form_for @message, layout: :horizontal do |f|
-    = f.select :recipient_id, Practitioner.all.collect {|p| [p.decorate.full_name, p.id]}, {include_blank: true}, {data: {role: 'recipient-select'}, class: "patient-select"}
+  = bootstrap_nested_form_for @message, layout: :horizontal, html: {class: "dropzone", id: "dropzone-enabled"} do |f|
+    = select2_for(field_name: :recipient, field_type: Practitioner, label_method: :full_name)
     = f.hidden_field :recipient_type, value: "Practitioner"
     = f.hidden_field :sender_id, value: current_user.practitioner.id
     = f.text_field :subject
-    = f.select :patient_id, Patient.all.collect {|p| [p.decorate.full_name_with_dob, p.id]}, {include_blank: true}, {data: {role: 'patient-select'}, class: "patient-select"}
+    = select2_for(field_name: :patient, field_type: Patient, label_method: :full_name_with_dob)
     = f.text_field :case_number
     = f.text_area :notes
-    = f.file_field :image
+    .dropzone-previews
     -# = f.fields_for @message.images.build do |fi|
     -#   = fi.file_field :image
     .pull-right
-      = f.submit
+      = f.submit "Send"
 

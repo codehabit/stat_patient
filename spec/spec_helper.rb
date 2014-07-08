@@ -26,7 +26,11 @@ RSpec.configure do |config|
   # get run.
   config.filter_run :focus
   config.run_all_when_everything_filtered = true
-  config.use_transactional_fixtures = true
+
+  config.after :each do
+    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.clean
+  end
 
   # Many RSpec users commonly either run the entire suite or an individual
   # file, and it's useful to allow more verbose output when running an

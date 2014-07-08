@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :patients
   resources :practitioners
   resources :messages
+  resources :images
   root to: "home#index"
 end
 

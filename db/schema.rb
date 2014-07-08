@@ -11,17 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140707114903) do
+ActiveRecord::Schema.define(version: 20140708115143) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "images", force: true do |t|
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-    t.integer  "message_id"
+    t.string   "asset_file_name"
+    t.string   "asset_content_type"
+    t.integer  "asset_file_size"
+    t.datetime "asset_updated_at"
+    t.integer  "imageable_id"
+    t.string   "imageable_type"
+    t.integer  "uploaded_by_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "messages", force: true do |t|
@@ -44,9 +48,9 @@ ActiveRecord::Schema.define(version: 20140707114903) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "middle_initial"
-    t.date     "date_of_birth"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "date_of_birth"
     t.string   "title"
     t.string   "street"
     t.string   "street2"
