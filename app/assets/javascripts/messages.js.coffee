@@ -1,11 +1,23 @@
 $(document).on "ready page:load", ->
-  $("[data-role='patient-select']").select2(
-    placeholder: "Select a patient"
+  $("[data-role='select2']").select2(
+    placeholder: $(this).attr("placeholder")
     width: "75%"
   )
 
-  $("[data-role='recipient-select']").select2(
-    placeholder: "Select a recipient"
-    width: "75%"
-  )
+Dropzone.options.dropzoneEnabled =
+  autoProcessQueue: false
+  uploadMultiple: false
+  paramName: "image"
+  init: ->
+    myDropzone = this
+    @element.querySelector("button[type=submit]").addEventListener "click", (e) ->
+      e.preventDefault()
+      e.stopPropagation()
+      myDropzone.processQueue()
+    @on "sending", ->
+      console.log "Sending"
+    @on "success", (files, response) ->
+      cosole.log "Sent"
+    @on "error", (files, response) ->
+      console.log "Error@!"
 
