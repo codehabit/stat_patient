@@ -1,18 +1,8 @@
+%h3 Message Center
 .row
   .col-lg-3
-    %h3 Message Center
-    .action-item
-      = link_to "Message Box", cases_path
-    .action-item
-      = link_to "Announcements", "#"
-    .action-item
-      = link_to "New Cases", cases_path
-    .action-item
-      = link_to "Practitioners", practitioners_path
-    .action-item
-      = link_to "Patients", patients_path
+    = render 'shared/messages_menu'
   .col-lg-8
-    .inbox-header
-    .inbox-content
+    = render 'shared/inbox'
 
 
