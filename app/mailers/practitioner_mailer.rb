@@ -7,3 +7,4 @@ class PractitionerMailer < ActionMailer::Base
     mail(to: @practitioner.user.email, subject: "Message from StatPatient: #{@message.subject}")
   end
 end
+

@@ -19,8 +19,8 @@ Rails.application.configure do
     address:              'smtp.gmail.com',
     port:                 587,
     domain:               'statpatient.com',
-    user_name:            'alex@codehabit.net',
-    password:             'noneofyourbusiness',
+    user_name:            'admin@codehabit.net',
+    password:             'nJa7JydhmVqmpkRha8ZV',
     authentication:       'plain',
     enable_starttls_auto: true  }
   config.action_mailer.perform_deliveries = true
