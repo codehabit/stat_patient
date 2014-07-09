@@ -12,4 +12,13 @@
 
 
 .row.hero-menu
-  hero-menu
+  - icons = {statimage: 'fa-file-photo-o', statlab: 'fa-flask', statscript: 'fa-edit', statclaim: 'fa-file-text', schedule: 'fa-calendar'}
+
+  -icons.each do |stat_service, icon|
+    .col-sm-2
+      .hero-icon
+        %span.fa-stack.fa-lg
+          %i.fa.fa-circle.fa-stack-2x.fa-inverse
+          %i{class: "fa #{icon} fa-stack-1x"}
+      .hero-caption
+        = stat_service

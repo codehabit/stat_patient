@@ -26,6 +26,9 @@ div {
     margin: 0px;
     padding: $navbar-height * 0.01;
   }
+  li.active {
+    background-color: $navbar-selected-bg;
+  }
 }
 
 .selector-bar {
@@ -34,14 +37,45 @@ div {
   height: $selector-bar-height;
   select {
     height: $selector-bar-height * .4;
+    line-height: 2em;
+    font-size: 1.2em;
+    color: $selector-bar-select-color;
   }
-  padding: 30px;
+  padding-top: $selector-bar-height * .33;
   a { color: $selector-bar-color;}
 }
 
 .hero-menu {
+  padding: 40px 30px 40px 10px;
   background-color: $hero-menu-bg;
-  a { color: $navbar-color;}
+  text-align: center;
+  .hero-icon {
+    color: $hero-icon-color;
+    a { color: $navbar-color;}
+    font-size: $hero-icon-size;
+  }
+  .hero-caption {
+    color: $navbar-color;
+    font-size: $hero-icon-caption-size;
+  }
+}
+
+.main-business {
+  background-color: $body-bg;
+  padding: 20px;
+  // gak.
+  margin-left: -15px;
+  margin-right: -15px;
+  a {
+    font-size: 1.4em;
+    color: $body-text-color;
+  }
+  .action-item {
+    font-size: 0.7em;
+    border-bottom: 1px solid #EAF9F6;
+    padding: 10px;
+    text-transform: uppercase;
+  }
 }
 
 .stat-brand a{
@@ -54,6 +88,9 @@ div {
     .second {
     }
 }
+
+
+
 
 .bottomframe {
   background-color: $footer-bar-bg;

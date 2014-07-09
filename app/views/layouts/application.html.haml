@@ -4,9 +4,8 @@
   %body
     .container
       = render 'layouts/header'
-      .main
-        .main-inner
-          = render "layouts/alert"
-          = yield
+      = render "layouts/alert"
+      .main-business
+        = yield
       = render 'layouts/footer'
 
