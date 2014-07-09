@@ -4,5 +4,7 @@ class Practitioner < ActiveRecord::Base
   def full_name
     "#{first_name} #{last_name}"
   end
-  has_many :cases, as: :recipient
+  has_many :originations, foreign_key: :originator_id, class_name: Case
+  has_many :received_cases, as: :recipient, class_name: Case
+
 end
