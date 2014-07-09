@@ -9,7 +9,6 @@ module Capybara
       if options.has_key? :xpath
         select2_container = first(:xpath, options[:xpath])
       else
-        binding.pry
         select_name = options[:from]
         select2_container = first("label", text: select_name).find(:xpath, '..').find(".select2-container")
       end
