@@ -2,11 +2,11 @@
 %html
   = render 'layouts/head'
   %body
-    = render 'layouts/header'
-    .main
-      .main-inner
-        .container-fluid
+    .container
+      = render 'layouts/header'
+      .main
+        .main-inner
           = render "layouts/alert"
           = yield
-    = render 'layouts/footer'
+      = render 'layouts/footer'
 

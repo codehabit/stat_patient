@@ -1,0 +1,7 @@
+- first, second = AppSettings.title.split(' ')
+.stat-brand
+  = link_to root_path, class: "navbar-brand" do
+    = image_tag  logo_file
+    %span.first= first
+    %span.second= second
+

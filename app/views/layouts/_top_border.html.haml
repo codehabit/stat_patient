@@ -1,0 +1,13 @@
+.row
+  .topframe
+    %ul.nav.navbar-nav.navbar-right
+      %li
+        - if user_signed_in?
+          %span.pull-right.logout-link
+            = link_to "Hello #{current_user.email}", "#"
+            = link_to destroy_user_session_path, method: :delete do
+              %i.glyphicon.glyphicon-remove
+              Logout
+        - else
+          = link_to "Sign in", "#"
+

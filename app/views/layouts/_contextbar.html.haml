@@ -1,0 +1,15 @@
+- patients = ['Robert Broome', 'David Oliver', 'Alex Leach', 'Bob Onesto']
+- patients = Patient.all.map(&:full_name)
+- doctors = ['Dr. Lynn Griebahn', 'Dr. Wm Timothy Brooks', 'Dr. Charles Ray Graham','Dr. James Hudson']
+- doctors = Practitioner.all.map(&:full_name)
+.row.selector-bar
+  .col-sm-4
+    = bootstrap_form_tag(url: "#", data: {role: 'doctor-form'}, layout: :horizontal) do |f|
+      = f.select :doctor, doctors
+  .col-sm-4
+    = bootstrap_form_tag(url: "#", data: {role: 'patient-form'}, layout: :horizontal) do |f|
+      = f.select :patient, patients
+
+
+.row.hero-menu
+  hero-menu
