@@ -1,4 +1,4 @@
-class AddAttachmentImageToCases < ActiveRecord::Migration
+class AddAttachmentImageToMessages < ActiveRecord::Migration
   def self.up
     change_table :messages do |t|
       t.attachment :image
