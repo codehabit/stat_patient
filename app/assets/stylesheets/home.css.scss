@@ -1,0 +1,69 @@
+div {
+  // border: 1px solid red;
+}
+
+.topframe {
+  background-color: $top-bar-bg;
+  width: 100%;
+  height: $top-bar-height;
+  a {
+    color: $top-bar-text-color;
+    padding: 5px;
+    margin: 5px;
+    text-transform:uppercase;
+  }
+}
+
+.navbar {
+  background-color: $navbar-bg;
+  a { color: $navbar-color;}
+  height: $navbar-height;
+  // weird
+  padding-bottom: 0px;
+  margin-bottom: -9px;
+  .stat-brand {
+    a { color: $navbar-color;}
+    margin: 0px;
+    padding: $navbar-height * 0.01;
+  }
+}
+
+.selector-bar {
+  background-color: $selector-bar-bg;
+  color: $selector-bar-color;
+  height: $selector-bar-height;
+  select {
+    height: $selector-bar-height * .4;
+  }
+  padding: 30px;
+  a { color: $selector-bar-color;}
+}
+
+.hero-menu {
+  background-color: $hero-menu-bg;
+  a { color: $navbar-color;}
+}
+
+.stat-brand a{
+    text-transform:lowercase;
+    font-size: 30px;
+    color: $footer-text-color;
+    .first {
+      text-decoration: bold;
+    }
+    .second {
+    }
+}
+
+.bottomframe {
+  background-color: $footer-bar-bg;
+  height: $footer-bar-height;
+  .copyright {
+    color: $text-white;
+    padding: $footer-bar-height * 0.4;
+  }
+  .stat-brand {
+    padding: $footer-bar-height * 0.2;
+  }
+ }
+

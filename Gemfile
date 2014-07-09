@@ -26,6 +26,7 @@ gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 gem 'bootstrap_form'
 gem "nested_form"
 gem 'dropzonejs-rails'
+gem 'font-awesome-sass'
 
 group :development do
   gem 'spring'

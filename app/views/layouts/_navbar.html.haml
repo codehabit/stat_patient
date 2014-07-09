@@ -1,24 +1,19 @@
-.container
-  .navbar-header
-    = link_to AppSettings.title, root_path, class: "navbar-brand"
-    %button.navbar-toggle{"data-target" => "#navbar-main", "data-toggle" => "collapse", :type => "button"}
-      %span.icon-bar
-      %span.icon-bar
-      %span.icon-bar
-  #navbar-main.navbar-collapse.collapse
-    %ul.nav.navbar-nav
-      %li
-        = link_to "Inbox", messages_path
-      %li
-        = link_to "Patients", patients_path
-      %li
-        = link_to "Practitioners", practitioners_path
-      %li
-        = link_to "Help", "#"
-    %ul.nav.navbar-nav.navbar-right
-      %li
-        - if user_signed_in?
-          = link_to "Hello #{current_user.email}", "#"
-        - else
-          = link_to "Sign in", "#"
+.row
+  .navbar
+    .navbar-header
+      = render partial: 'layouts/stat_patient', locals: {logo_file: 'logo-orange.png'}
 
+      %button.navbar-toggle{"data-target" => "#navbar-main", "data-toggle" => "collapse", :type => "button"}
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+    #navbar-main.navbar-collapse.collapse
+      %ul.nav.navbar-nav
+        %li
+          = link_to "Inbox", messages_path
+        %li
+          = link_to "Patients", patients_path
+        %li
+          = link_to "Practitioners", practitioners_path
+        %li
+          = link_to "Help", "#"
