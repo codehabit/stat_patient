@@ -1,0 +1,16 @@
+%h2 Sign up
+-# = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+= bootstrap_nested_form_for(resource, layout: :horizontal, url: registration_path(resource_name)) do |f|
+  -# = f.error_notification
+  .form-inputs
+    = f.fields_for @practitioner do |p|
+      = p.text_field :first_name
+      = p.text_field :last_name
+      = select2_for(input_field_name: "user[practitioner][specialty]", field_name: :specialty, field_type: Specialty, label_method: :pretty)
+    = f.email_field :email, required: true, autofocus: true
+    = f.password_field :password, required: true
+    = f.password_field :password_confirmation, required: true
+  .form-actions
+    = f.submit "Sign up"
+= render "devise/shared/links"
+
