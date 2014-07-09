@@ -1,4 +1,4 @@
-class Message < ActiveRecord::Base
+class Case < ActiveRecord::Base
   belongs_to :patient
   belongs_to :recipient, polymorphic: true
   belongs_to :sender, class_name: Practitioner

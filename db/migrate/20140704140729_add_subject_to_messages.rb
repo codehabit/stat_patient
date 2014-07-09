@@ -1,4 +1,4 @@
-class AddSubjectToMessages < ActiveRecord::Migration
+class AddSubjectToCases < ActiveRecord::Migration
   def change
     add_column :messages, :subject, :string
   end

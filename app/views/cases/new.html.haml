@@ -1,0 +1,15 @@
+.span12
+  = bootstrap_nested_form_for @case, layout: :horizontal, html: {class: "dropzone", id: "dropzone-enabled"} do |f|
+    = select2_for(object_type: :case, field_name: :recipient, field_type: Practitioner, label_method: :full_name)
+    = f.hidden_field :recipient_type, value: "Practitioner"
+    = f.hidden_field :sender_id, value: current_user.practitioner.id
+    = f.text_field :subject
+    = select2_for(object_type: :case, field_name: :patient, field_type: Patient, label_method: :full_name_with_dob)
+    = f.text_field :case_number
+    = f.text_area :notes
+    .dropzone-previews
+    -# = f.fields_for @case.images.build do |fi|
+    -#   = fi.file_field :image
+    .pull-right
+      = f.submit "Send"
+

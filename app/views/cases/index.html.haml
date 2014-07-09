@@ -1,9 +1,9 @@
 %h3
   = "#{current_user.practitioner.decorate.full_name} - Inbox"
   %span.pull-right
-    = link_to "Compose message", new_message_path, class: "btn btn-primary"
+    = link_to "Compose message", new_case_path, class: "btn btn-primary"
 .listing
-  - if @messages.blank?
+  - if @cases.blank?
     %span.empty-message
       There are no messages in your inbox
   - else
@@ -13,9 +13,9 @@
         %th Subject
         %th Patient Name
       %tbody
-        - @messages.each do |message|
+        - @cases.each do |message|
           %tr
             %td= message.sender.decorate.full_name
-            %td= link_to message.subject, message_path(message)
+            %td= link_to message.subject, case_path(message)
             %td= message.patient.decorate.full_name_with_dob
 

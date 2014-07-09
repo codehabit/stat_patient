@@ -19,4 +19,5 @@
 # = require select2
 # = require autotab-jquery
 # = require dropzone
-# = require_tree .
+# = require cases
+#

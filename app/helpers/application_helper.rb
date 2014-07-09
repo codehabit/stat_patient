@@ -4,7 +4,7 @@ module ApplicationHelper
     if input_field_name.nil? && object_type.present?
       input_field_name = "#{object_type}[#{field_name}_id]"
     end
-    error_class = (@message.present? && @message.errors[field_name].present?) ? "has-error" : ""
+    error_class = (@case.present? && @case.errors[field_name].present?) ? "has-error" : ""
     content_tag(:div, class: "form-group #{error_class}") do
       content_tag(:label, class: "control-label col-sm-2", for: "message_subject") do
         field_name.to_s.capitalize

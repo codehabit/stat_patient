@@ -1,0 +1,21 @@
+%h2 Case
+%dl.dl-horizontal
+  %dt
+  %h3
+    Subject:
+  %dd
+    %h3
+      = @case.subject
+    From
+    %dd= @case.sender.decorate.full_name
+  %dt
+    Patient
+    %dd= @case.patient.decorate.full_name_with_dob if @case.patient.present?
+  %dt
+    Notes
+    %dd= @case.notes
+  - if @case.image.present?
+    %dt
+      Images:
+      %dd
+        = image_tag @case.image.url(:thumb)

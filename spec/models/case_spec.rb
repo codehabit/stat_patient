@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Message do
+describe Case do
   it {should belong_to :patient}
   it {should validate_presence_of :recipient}
   it {should validate_presence_of :patient}

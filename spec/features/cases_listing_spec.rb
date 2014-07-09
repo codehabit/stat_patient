@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe MessagesController do
+describe CasesController do
   let!(:practitioner) {create(:practitioner)}
   let!(:user) {create(:user, practitioner: practitioner)}
 
