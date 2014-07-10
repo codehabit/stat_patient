@@ -13,4 +13,4 @@
       Notes:
       %span= @case.notes
     %p
-      %span= link_to("View the message here", case_url(@case))
+      %span= link_to("View the message here", "#{AppSettings.url}#{case_path(@case)}")
