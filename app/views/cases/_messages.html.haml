@@ -1,5 +1,5 @@
 .messages
-  - @case.messages[1..-1].each do |message|
+  - @case.messages.order("created_at desc")[0...@case.messages.count-1].each do |message|
     .well
       .message-heading
         %span.main
