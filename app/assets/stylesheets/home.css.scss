@@ -14,6 +14,11 @@ div {
   }
 }
 
+.login-link a {
+  color: white !important;
+  padding-right: 30px;
+  padding-top: 30px;
+  }
 .navbar {
   background-color: $navbar-bg;
   a { color: $navbar-color;}
@@ -60,6 +65,15 @@ div {
   }
 }
 
+.alert {
+  margin: 0px;
+}
+.alert-alert {
+  background-color: red;
+}
+.alert-notice{
+  background-color: $body-bg;;
+}
 .main-business {
   background-color: $body-bg;
   padding: 20px;
