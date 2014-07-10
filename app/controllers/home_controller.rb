@@ -3,5 +3,8 @@ class HomeController < ApplicationController
     @practitioner = current_user.practitioner
     @received_cases= @practitioner.received_cases
   end
+
+  def coming_soon
+  end
 end
 

@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   resources :cases
   resources :images
   root to: "home#index"
+  get 'coming_soon', to: 'home#coming_soon'
 end
 
