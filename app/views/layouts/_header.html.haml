@@ -1,5 +1,6 @@
 = render 'layouts/top_border'
 = render "layouts/navbar"
-= render 'layouts/context_chooser'
+- if current_user.present?
+  = render 'layouts/context_chooser'
 #main-menu.collapse.in
   = render 'layouts/contextbar'
