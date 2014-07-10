@@ -14,8 +14,9 @@ end
 delete_all = true
 dentist_file = 'data/iowa_dentists_specialists.csv'
 force_valid_email = true
-cases_per_practitioner = 20
-messages_per_case = 6
+force_safe_email = true
+cases_per_practitioner = (8..20).to_a
+messages_per_case = (4..9).to_a
 user_count = 100
 patient_count = 1000
 specialties = Specialty.all.map(&:pretty)
@@ -76,7 +77,8 @@ if dentist_file.present?
   wrlog "Making dentists from file #{dentist_file}"
   CSV.foreach(dentist_file, headers: true) do |row|
     password = Faker::Internet.password(9)
-    user = User.create(first_name: row['first_name'], last_name: row['last_name'], email: row['email1'], password: password, password_confirmation: password)
+    user_email = force_safe_email  ? Faker::Internet.safe_email : row['email1']
+    user = User.create(first_name: row['first_name'], last_name: row['last_name'], email: user_email, password: password, password_confirmation: password)
     if !user.valid? && force_valid_email
       user.update_attributes(email: Faker::Internet.safe_email)
       user.save
@@ -112,7 +114,7 @@ end
 
 wrlog "Making Cases"
 practitioners.each  do |practitioner|
-  case_count = (2..cases_per_practitioner).to_a.sample
+  case_count = cases_per_practitioner.sample
   case_count.times do
     wrlog 'c'
 
@@ -122,7 +124,7 @@ practitioners.each  do |practitioner|
     addrs = [originator, recipient]
     sender, receiver = addrs
 newcase = Case.create originator: originator, recipient: recipient, patient: patient, subject: Faker::Lorem.sentence, notes: Faker::Lorem.paragraph
-    message_count = (1..messages_per_case).to_a.sample
+    message_count = messages_per_case.sample
     message_count.times do
       wrlog 'm'
       Message.create case_id: newcase.id, sender: sender, recipient: receiver, body: Faker::Lorem.sentence
