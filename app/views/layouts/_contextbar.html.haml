@@ -16,9 +16,11 @@
 
   -icons.each do |stat_service, icon|
     .col-sm-2
-      .hero-icon
-        %span.fa-stack.fa-lg
-          %i.fa.fa-circle.fa-stack-2x.fa-inverse
-          %i{class: "fa #{icon} fa-stack-1x"}
-      .hero-caption
-        = stat_service
+      -# = link_to 'javascript:void(0)', html: {class: 'navbar-toggle'}, data: {toggle: 'collapse', target: '#main-menu'}  do
+      = link_to 'javascript:void(0)', data: {role: 'close-menu'}  do
+        .hero-icon
+          %span.fa-stack.fa-lg
+            %i.fa.fa-circle.fa-stack-2x.fa-inverse
+            %i{class: "fa #{icon} fa-stack-1x"}
+        .hero-caption
+          = stat_service

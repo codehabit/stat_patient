@@ -1,5 +1,7 @@
 .row
-  .topframe
+  .topframe{data: {role: 'open-menu'}}
+    %span.pull-left
+      open the menu
     %ul.nav.navbar-nav.navbar-right
       %li
         - if user_signed_in?

@@ -20,4 +20,5 @@
 # = require autotab-jquery
 # = require dropzone
 # = require cases
+# = require menu
 #
