@@ -1,7 +1,7 @@
 %h3
   = t(:practitioners)
   %span.pull-right
-    = link_to "#{t(:add_new)} #{t(:practitioner)}", new_practitioner_path, class: "btn btn-primary"
+    = link_to "#{t(:add_new)} #{t(:practitioner)}", new_practitioner_path, class: "btn btn-primary btn-small"
 .listing
   - if @practitioners.blank?
     %span.empty-message

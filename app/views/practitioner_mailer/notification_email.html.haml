@@ -5,7 +5,7 @@
   %body
     %p
       From:
-      %span= @case.sender.decorate.full_name
+      %span= @case.originator.decorate.full_name
     %p
       Patient:
       %span= @case.patient.decorate.full_name_with_dob

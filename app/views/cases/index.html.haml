@@ -1,7 +1,7 @@
 %h3
   = "#{current_user.practitioner.decorate.full_name} - Inbox"
   %span.pull-right
-    = link_to "Compose message", new_case_path, class: "btn btn-primary"
+    = link_to "Compose message", new_case_path, class: "btn btn-small btn-primary"
 .listing
   - if @cases.blank?
     %span.empty-message
@@ -15,7 +15,7 @@
       %tbody
         - @cases.each do |message|
           %tr
-            %td= message.sender.decorate.full_name
+            %td= message.originator.decorate.full_name
             %td= link_to message.subject, case_path(message)
             %td= message.patient.decorate.full_name_with_dob
 

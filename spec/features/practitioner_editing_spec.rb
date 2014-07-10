@@ -12,7 +12,6 @@ describe PractitionersController do
 
   let(:new_first_name) {'joe'}
   before do
-    practitioner
     visit practitioners_path
     click_link I18n.t(:edit_practitioner)
     fill_in 'practitioner_first_name', with: new_first_name

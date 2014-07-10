@@ -27,6 +27,7 @@ describe PractitionersController do
 
   context 'when no practitioners are defined' do
     it "lets the user know that there are no practitioners" do
+      Practitioner.delete_all
       visit practitioners_path
       expect(page).to have_content I18n.t(:no_practitioners)
     end
@@ -95,6 +96,7 @@ describe PractitionersController do
   end
 
   it "orders by practitioner last name" do
+    Practitioner.delete_all
     create(:practitioner, first_name: "Ron", last_name: "Chancellor")
     create(:practitioner, first_name: "Ron", last_name: "Aronson")
     create(:practitioner, first_name: "Ron", last_name: "Bronson")
