@@ -8,6 +8,7 @@ class CasesController < ApplicationController
   end
 
   def create
+    binding.pry
     @case = Case.new(case_params)
     if @case.valid?
       @case.save
