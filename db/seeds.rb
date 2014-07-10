@@ -12,7 +12,7 @@ def wrlog arg
 end
 
 delete_all = true
-dentist_file = 'app/assets/data/iowa_dentists_specialists.csv'
+dentist_file = 'data/iowa_dentists_specialists.csv'
 force_valid_email = true
 cases_per_practitioner = 20
 messages_per_case = 6
