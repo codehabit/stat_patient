@@ -1,10 +1,9 @@
--patient_options = options_for_select(@patients.map{|p| ["#{p.full_name} - #{p.date_of_birth.strftime("%m/%d/%Y")}", p.id]}, @patient.try(:id))
-.row.hero-menu
-  - icons = {statimage: ['fa-file-photo-o', cases_path], statlab: ['fa-flask', coming_soon_path], statscript: ['fa-edit', coming_soon_path], statclaim: ['fa-file-text', coming_soon_path], schedule: ['fa-calendar',coming_soon_path]}
+.row.hero-menu{data: {collapsed: @collapsed}}
+  - icons = {statimage: ['fa-file-photo-o', cases_url], statlab: ['fa-flask', coming_soon_url], statscript: ['fa-edit', coming_soon_url], statclaim: ['fa-file-text', coming_soon_url], schedule: ['fa-calendar',coming_soon_url]}
 
   -icons.each do |stat_service, stuff|
     .col-sm-2
-      = link_to 'javascript:null();', data: {role: 'close-menu'}  do
+      = link_to 'javascript:null();', data: {role: 'close-menu', target: stuff[1]}  do
         .hero-icon
           %span.fa-stack.fa-lg
             %i.fa.fa-circle.fa-stack-2x.fa-inverse

@@ -65,12 +65,19 @@ div {
   }
 }
 
+[data-collapsed='true'] {
+  display: none;
+}
+[data-collapsed='false'] {
+  display: block;
+}
 .alert {
   margin: 0px;
 }
 .alert-alert {
   background-color: red;
 }
+
 .alert-notice{
   background-color: $body-bg;;
 }
