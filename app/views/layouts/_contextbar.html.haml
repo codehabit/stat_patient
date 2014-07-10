@@ -5,22 +5,21 @@
 .row.selector-bar
   .col-sm-4
     = bootstrap_form_tag(url: "#", data: {role: 'doctor-form'}, layout: :horizontal) do |f|
-      = f.select :doctor, doctors
+      = f.text_field :doctor, value: @practitioner.try(:full_name), disabled: true
   .col-sm-4
     = bootstrap_form_tag(url: "#", data: {role: 'patient-form'}, layout: :horizontal) do |f|
       = f.select :patient, patients
 
 
 .row.hero-menu
-  - icons = {statimage: 'fa-file-photo-o', statlab: 'fa-flask', statscript: 'fa-edit', statclaim: 'fa-file-text', schedule: 'fa-calendar'}
+  - icons = {statimage: ['fa-file-photo-o', cases_path], statlab: ['fa-flask', coming_soon_path], statscript: ['fa-edit', coming_soon_path], statclaim: ['fa-file-text', coming_soon_path], schedule: ['fa-calendar',coming_soon_path]}
 
-  -icons.each do |stat_service, icon|
+  -icons.each do |stat_service, stuff|
     .col-sm-2
-      -# = link_to 'javascript:void(0)', html: {class: 'navbar-toggle'}, data: {toggle: 'collapse', target: '#main-menu'}  do
-      = link_to 'javascript:void(0)', data: {role: 'close-menu'}  do
+      = link_to stuff[1], data: {role: 'close-menu'}  do
         .hero-icon
           %span.fa-stack.fa-lg
             %i.fa.fa-circle.fa-stack-2x.fa-inverse
-            %i{class: "fa #{icon} fa-stack-1x"}
+            %i{class: "fa #{stuff[0]} fa-stack-1x"}
         .hero-caption
           = stat_service
