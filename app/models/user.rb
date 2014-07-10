@@ -6,4 +6,7 @@ class User < ActiveRecord::Base
 
   has_one :practitioner
   accepts_nested_attributes_for :practitioner
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end
