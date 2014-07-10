@@ -27,6 +27,7 @@ gem 'bootstrap_form'
 gem "nested_form"
 gem 'dropzonejs-rails'
 gem 'font-awesome-sass'
+gem 'faker'
 
 group :development do
   gem 'spring'
