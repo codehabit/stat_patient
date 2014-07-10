@@ -13,3 +13,7 @@ $(document).on "ready page:load", ->
     , 500
 
   $('#main-menu').on 'hidden.bs.collapse', ->
+
+  #$('[data-role="patient-form"]')input').change ->
+  $('#_patient').change ->
+    $(this).closest('form').submit()
