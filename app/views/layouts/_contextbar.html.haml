@@ -1,19 +1,10 @@
 -patient_options = options_for_select(@patients.map{|p| ["#{p.full_name} - #{p.date_of_birth.strftime("%m/%d/%Y")}", p.id]}, @patient.try(:id))
-.row.selector-bar
-  .col-sm-4
-    = bootstrap_form_tag(url: "#", data: {role: 'doctor-form'}, layout: :horizontal) do |f|
-      = f.text_field :doctor, value: @practitioner.try(:full_name), disabled: true
-  .col-sm-4
-    = bootstrap_form_tag(url: select_patient_path, data: {role: 'patient-form'}, layout: :horizontal) do |f|
-      = f.select :patient, patient_options , data: {role: 'patient-picker'}
-
-
 .row.hero-menu
   - icons = {statimage: ['fa-file-photo-o', cases_path], statlab: ['fa-flask', coming_soon_path], statscript: ['fa-edit', coming_soon_path], statclaim: ['fa-file-text', coming_soon_path], schedule: ['fa-calendar',coming_soon_path]}
 
   -icons.each do |stat_service, stuff|
     .col-sm-2
-      = link_to stuff[1], data: {role: 'close-menu'}  do
+      = link_to 'javascript:null();', data: {role: 'close-menu'}  do
         .hero-icon
           %span.fa-stack.fa-lg
             %i.fa.fa-circle.fa-stack-2x.fa-inverse
