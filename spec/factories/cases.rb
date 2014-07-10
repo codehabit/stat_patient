@@ -1,5 +1,7 @@
 FactoryGirl.define do
-  factory :message do
+  factory :case do
+    recipient factory: :practitioner
+    patient factory: :patient
   end
 end
 
