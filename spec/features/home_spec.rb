@@ -7,14 +7,9 @@ describe HomeController do
     sign_in_as user
   end
 
-  it "provides a welcome message" do
+  it "has only one link to manage patients" do
     visit root_path
-    expect(page).to have_content "Message Center"
-  end
-
-  it "has a link to manage patients" do
-    visit root_path
-    expect(page).to have_link "Patients"
+    expect(all("a", text: "Patients").size).to eq 1
   end
 
   it "links to the patients index" do
