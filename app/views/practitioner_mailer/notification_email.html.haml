@@ -5,12 +5,12 @@
   %body
     %p
       From:
-      %span= @case.originator.decorate.full_name
+      %span= @message.sender.decorate.full_name
     %p
       Patient:
-      %span= @case.patient.decorate.full_name_with_dob
+      %span= @message.patient.decorate.full_name_with_dob
     %p
       Notes:
-      %span= @case.notes
+      %span= @message.body
     %p
       %span= link_to("View the message here", "#{AppSettings.url}#{case_path(@case)}")

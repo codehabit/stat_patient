@@ -3,8 +3,9 @@ class PractitionerMailer < ActionMailer::Base
 
   def notification_email(message)
     @practitioner = message.recipient
-    @case = message
-    mail(to: @practitioner.user.email, subject: "Case from StatPatient: #{@case.subject}")
+    @case = message.case
+    @message = message
+    mail(to: @practitioner.user.email, subject: "Message from StatPatient: #{@case.subject}")
   end
 end
 
