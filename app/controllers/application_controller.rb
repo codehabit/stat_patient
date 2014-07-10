@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
     end
     @patients = Patient.all
     session[:patient] = @patient.try(:id)
-    @practitioner = current_user.practitioner
-    @received_cases= @practitioner.received_cases
+    @practitioner = current_user.try(:practitioner)
+    @received_cases= @practitioner.try(:received_cases)
   end
 end
