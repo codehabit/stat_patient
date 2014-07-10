@@ -1,9 +1,4 @@
 class RegistrationsController < Devise::RegistrationsController
-  def new
-    @practitioner = Practitioner.new
-    super
-  end
-
   protected
 
   def build_resource(hash=nil)
