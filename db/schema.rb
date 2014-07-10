@@ -11,10 +11,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140630133808) do
+ActiveRecord::Schema.define(version: 20140710121450) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cases", force: true do |t|
+    t.string   "case_number"
+    t.integer  "patient_id"
+    t.integer  "recipient_id"
+    t.string   "recipient_type"
+    t.text     "notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.string   "subject"
+    t.integer  "originator_id"
+  end
+
+  create_table "images", force: true do |t|
+    t.string   "asset_file_name"
+    t.string   "asset_content_type"
+    t.integer  "asset_file_size"
+    t.datetime "asset_updated_at"
+    t.integer  "imageable_id"
+    t.string   "imageable_type"
+    t.integer  "uploaded_by_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "messages", force: true do |t|
+    t.string   "body"
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
+    t.integer  "patient_id"
+    t.integer  "case_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "patients", force: true do |t|
     t.string   "first_name"
@@ -38,13 +76,14 @@ ActiveRecord::Schema.define(version: 20140630133808) do
     t.string   "social_security_number"
   end
 
-  create_table "specialists", force: true do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "practice_name"
-    t.string "email"
-    t.string "specialty"
-    t.string "phone"
+  create_table "practitioners", force: true do |t|
+    t.string  "first_name"
+    t.string  "last_name"
+    t.string  "practice_name"
+    t.string  "email"
+    t.string  "specialty"
+    t.string  "phone"
+    t.integer "user_id"
   end
 
   create_table "users", force: true do |t|

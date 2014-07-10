@@ -1,0 +1,177 @@
+div {
+  // border: 1px solid red;
+}
+
+.topframe {
+  background-color: $top-bar-bg;
+  width: 100%;
+  height: $top-bar-height;
+  a {
+    color: $top-bar-text-color;
+    padding: 5px;
+    margin: 5px;
+    text-transform:uppercase;
+  }
+}
+
+.login-link a {
+  color: white !important;
+  padding-right: 30px;
+  padding-top: 30px;
+  }
+.navbar {
+  background-color: $navbar-bg;
+  a { color: $navbar-color;}
+  height: $navbar-height;
+  // weird
+  padding-bottom: 0px;
+  margin-bottom: -9px;
+  .stat-brand {
+    a { color: $navbar-color;}
+    margin: 0px;
+    padding: $navbar-height * 0.01;
+  }
+  li.active {
+    background-color: $navbar-selected-bg;
+  }
+}
+
+.selector-bar {
+  background-color: $selector-bar-bg;
+  color: $selector-bar-color;
+  height: $selector-bar-height;
+  select {
+    height: $selector-bar-height * .4;
+    line-height: 2em;
+    font-size: 1.2em;
+    color: $selector-bar-select-color;
+  }
+  padding-top: $selector-bar-height * .33;
+  a { color: $selector-bar-color;}
+}
+
+.hero-menu {
+  padding: 40px 30px 40px 10px;
+  background-color: $hero-menu-bg;
+  text-align: center;
+  .hero-icon {
+    color: $hero-icon-color;
+    a { color: $navbar-color;}
+    font-size: $hero-icon-size;
+  }
+  .hero-caption {
+    color: $navbar-color;
+    font-size: $hero-icon-caption-size;
+  }
+}
+
+[data-collapsed='true'] {
+  display: none;
+}
+[data-collapsed='false'] {
+  display: block;
+}
+.alert {
+  margin: 0px;
+}
+.alert-alert {
+  background-color: red;
+}
+
+.alert-notice{
+  background-color: $body-bg;;
+}
+.main-business {
+  min-height: 400px;
+  background-color: $body-bg;
+  padding: 20px;
+  // gak.
+  margin-left: -15px;
+  margin-right: -15px;
+  a {
+    font-size: 1.4em;
+    color: $body-text-color;
+  }
+  .action-item {
+    font-size: 0.7em;
+    border-bottom: 1px solid #EAF9F6;
+    padding: 10px;
+    text-transform: uppercase;
+  }
+}
+
+.body-title {
+  display: inline-block;
+  color: $body-title-color;
+  font-size: 2.0em;
+}
+
+.case-cta {
+  display: inline-block;
+  margin: 10px;
+}
+
+.inbox-header {
+  color: $message-header-color;
+  background-color: $message-header-bg;
+  text-transform: uppercase;
+  font-size: 0.8em;
+  padding: 10px 0px 10px 0px;
+}
+
+.inbox-content {
+  color: $message-default-color;
+  background-color: $message-list-bg;
+  font-size: $message-default-font-size;
+  border-bottom: 1px solid $message-separator-color;
+  padding: 10px 0px 10px 0px;
+  .subject {
+    color: $message-subject-color;
+    padding-left: 4px;
+  }
+  .base {
+  }
+  .meta {
+    font-size: $message-meta-font-size;
+    color: $message-meta-color;
+  }
+  .deleter {
+    color: $message-subject-color;
+    font-size: $message-default-font-size * 1.3;
+  }
+}
+
+.stat-brand a{
+    text-transform:lowercase;
+    font-size: 30px;
+    color: $footer-text-color;
+    .first {
+      text-decoration: bold;
+    }
+    .second {
+    }
+}
+
+img.opacity-medium {
+  opacity: 0.4;
+  filter: alpha(opacity=40); /* For IE8 and earlier */
+  }
+
+
+.bottomframe {
+  background-color: $footer-bar-bg;
+  height: $footer-bar-height;
+  letter-spacing: 2px;
+  .copyright {
+    color: darken($text-white, 20%);
+    padding: $footer-bar-height * 0.4;
+    font-size: 0.9em;
+  }
+  .stat-brand {
+    padding: $footer-bar-height * 0.2;
+  }
+ }
+
+ .messages-menu {
+   margin-left: 10px;
+ }

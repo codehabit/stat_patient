@@ -11,9 +11,14 @@
 # about supported directives.
 #
 # = require jquery
-# = require jquery.ui.all
+# = require jquery-ui
 # = require jquery_ujs
 # = require turbolinks
 # = require bootstrap
+# = require jquery_nested_form
+# = require select2
 # = require autotab-jquery
-# = require_tree .
+# = require dropzone
+# = require cases
+# = require menu
+#

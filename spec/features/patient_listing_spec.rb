@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 describe PatientsController do
+  let!(:user) {create(:user)}
+
+  before :each do
+    sign_in_as user
+  end
   it "lets the user know that there are no patients" do
     visit patients_path
     expect(page).to have_content "There are no patients yet"
@@ -46,7 +51,23 @@ describe PatientsController do
     expect(current_path).to eq new_patient_path
   end
 
+  it "lists the patients in order by last name" do
+    create(:patient, last_name: "Chancellor", first_name: "a")
+    create(:patient, last_name: "Aronson", first_name: "a")
+    create(:patient, last_name: "Brown", first_name: "a")
+    visit patients_path
+    expect(all("a.show_patient").map(&:text)).to eq ["a Aronson", "a Brown", "a Chancellor"]
+  end
+
   context "with pagination" do
+    it "doesn't have pagination for fewer than 20 records" do
+      19.times do
+        create(:patient)
+      end
+      visit patients_path
+      expect(page).to_not have_link "Next"
+    end
+
     it "paginates at 20 records" do
       21.times do
         create(:patient)

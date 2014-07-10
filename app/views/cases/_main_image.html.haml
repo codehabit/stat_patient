@@ -1,0 +1,6 @@
+.well.case-image
+  - if @case.messages.first.image.present?
+    = image_tag @case.messages.first.image.asset.url(:thumb)
+  - else
+    %em No images for this message
+

@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {registrations: "registrations"}
   resources :patients
-  resources :specialists
+  resources :practitioners
+  resources :cases
+  resources :images
   root to: "home#index"
+  get 'coming_soon', to: 'home#coming_soon'
+  post 'select_patient', to: 'home#index'
 end
 

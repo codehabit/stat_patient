@@ -19,9 +19,14 @@ gem 'autotab-rails'
 gem 'draper', git: 'https://github.com/drapergem/draper.git'
 gem 'kaminari'
 gem 'devise'
-gem 'heroku'
-
+gem 'settingslogic'
 gem 'rails_12factor', group: :production
+gem "select2-rails"
+gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
+gem 'bootstrap_form'
+gem "nested_form"
+gem 'dropzonejs-rails'
+gem 'font-awesome-sass'
 
 group :development do
   gem 'spring'
@@ -34,6 +39,7 @@ group :test, :development do
   gem 'pry-rails'
   gem 'quiet_assets'
   gem 'rspec-rails'
+  gem 'capybara-select2'
 end
 
 group :test do
@@ -44,5 +50,6 @@ group :test do
   gem 'shoulda-matchers', require: false
   gem 'vcr'
   gem 'webmock'
+  gem 'launchy'
 end
 

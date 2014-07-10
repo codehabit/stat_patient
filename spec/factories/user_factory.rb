@@ -5,5 +5,6 @@ FactoryGirl.define do
     email "non@non.non"
     password 'sec5ret)ne'
     password_confirmation 'sec5ret)ne'
+    practitioner factory: :practitioner
   end
 end

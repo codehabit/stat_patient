@@ -1,0 +1,14 @@
+.messages
+  - @case.messages.order("created_at desc")[0...@case.messages.count-1].each do |message|
+    .well
+      .message-heading
+        %span.main
+          %b Message from #{message.sender.full_name}
+        %span.time-display
+          Sent on: #{message.created_at.strftime("%b %-d %Y")}
+      %ul.horizontal.unstyled
+        %li
+          = message.body
+        %li
+          - if message.image.present?
+            = image_tag message.image.asset.url(:thumb)

@@ -5,10 +5,14 @@ require 'capybara/rails'
 require 'factory_girl'
 require 'pry'
 require 'rspec/rails'
+require 'shoulda/matchers'
+include Warden::Test::Helpers
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
 Capybara.javascript_driver = :webkit
-Capybara.ignore_hidden_elements = true
+# Capybara.ignore_hidden_elements = true
+WebMock.disable_net_connect!(allow_localhost: true)
+Warden.test_mode!
 
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
@@ -22,7 +26,11 @@ RSpec.configure do |config|
   # get run.
   config.filter_run :focus
   config.run_all_when_everything_filtered = true
-  config.use_transactional_fixtures = true
+
+  config.after :each do
+    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.clean
+  end
 
   # Many RSpec users commonly either run the entire suite or an individual
   # file, and it's useful to allow more verbose output when running an
@@ -62,10 +70,9 @@ RSpec.configure do |config|
     # Prevents you from mocking or stubbing a method that does not exist on
     # a real object. This is generally recommended.
     mocks.verify_partial_doubles = true
-
   end
-  config.before(:each) do
-    sign_in_as
+  config.after :each do
+    Warden.test_reset!
   end
 end
 

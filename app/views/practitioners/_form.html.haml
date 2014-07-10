@@ -1,0 +1,11 @@
+= simple_form_for @practitioner, wrapper: :bootstrap3_horizontal, html: {class: "form-horizontal"} do |f|
+  = f.input :first_name
+  = f.input :last_name
+  = f.input :practice_name
+  = f.input :email
+  = f.input :specialty
+  = f.input :phone
+  .button-group.pull-right
+    = link_to "Cancel", practitioners_path, class: "btn btn-default"
+    = f.submit class: "btn btn-primary"
+

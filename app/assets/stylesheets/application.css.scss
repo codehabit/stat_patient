@@ -10,14 +10,20 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
  *= require_self
+ *= require font-awesome
  */
-@import 'jquery.ui.all';
+@import 'jquery-ui';
 @import 'bootswatch/flatly/variables';
 @import 'bootstrap';
-// body { padding-top: 60px; }
-@import "bootswatch/flatly/bootswatch";
+@import 'rails_bootstrap_forms';
+@import 'select2';
+@import 'select2-bootstrap';
+@import 'bootswatch/flatly/bootswatch';
+@import 'theme-colors';
+@import 'home';
 @import 'header';
 @import 'main';
+@import 'dropzone/basic';
+@import 'cases';
 

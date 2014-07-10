@@ -1,0 +1,15 @@
+defaults: &defaults
+  title: Stat Patient
+  url: http://statpatient.com
+
+development:
+  <<: *defaults
+  url: http://localhost:3000
+
+test:
+  <<: *defaults
+  url: http://localhost:3000
+
+production:
+  <<: *defaults
+  url: http://www.statqa.com
