@@ -1,11 +1,8 @@
 .row.inbox-header
   .col-lg-3 Started By
-  .col-lg-4 To: Subject
-  .col-lg-4 Last Reply By
+  .col-lg-5 To: Subject
+  .col-lg-3 Last Reply By
   .col-lg-1 Delete
-
-
-
 
 - @received_cases.each do |rcase|
   .row.inbox-content
@@ -13,13 +10,13 @@
       .base= rcase.originator.full_name
       .meta= rcase.created_at.strftime("%B %d, %l:%M %p")
 
-    .col-lg-4
+    .col-lg-5
       .base
-        = rcase.patient.first_name
+        = rcase.recipient.first_name
         = ":"
         %span.subject= rcase.subject
       .meta Unread
-    .col-lg-4 
+    .col-lg-3
     .col-lg-1.deleter 
       %i.fa.fa-times
 
