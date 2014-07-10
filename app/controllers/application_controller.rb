@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   def get_context
     @collapsed = params[:collapsed] || session[:collapsed]
-    if patient_id = params[:patient] || session[:patient]
+    if patient_id = (params[:patient] || session[:patient] ) && patient_id.is_a?(Integer)
       @patient = Patient.find patient_id
     end
     @patients = Patient.all

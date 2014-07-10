@@ -1,6 +1,6 @@
 .row
   %span.pull-right.case-cta
-    - cta_text = current_user.practitioner.originations.present? ? "Compose Message" : "Start Collaborating With a Specialist"
+    - cta_text = current_user.practitioner.try(:originations).present? ? "Compose Message" : "Start Collaborating With a Specialist"
     = link_to cta_text, new_case_path, class: "btn btn-small btn-primary"
 .row.inbox-header
   .col-lg-3 Started By
