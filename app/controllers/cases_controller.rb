@@ -18,6 +18,12 @@ class CasesController < ApplicationController
     end
   end
 
+  def update
+    @case = Case.find(params[:id])
+    @case.update(case_params)
+    redirect_to case_path(@case)
+  end
+
   def show
     @case = Case.find(params[:id])
     if @case.recipient.user != current_user

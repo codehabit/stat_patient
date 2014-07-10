@@ -1,4 +1,71 @@
-select.patient-select {
-  width: 100%;
+.case-data {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px;
+}
+
+.case-image {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px;
+}
+
+.reply-area {
+  margin-left: 20px;
+}
+.image-upload-control {
+  margin: 10px;
+}
+.reply-area {
+  textarea.notes {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    width: 70%;
+    height: 35%;
+  }
+  label {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  input.upload {
+    display: inline-block;
+  }
+
+}
+
+.messages .well {
+  background-color: #fff;
+  padding: 0;
+  // width: 50%;
+  border-color: $top-bar-text-color;
+}
+
+ul.unstyled {
+  list-style-type: none;
+}
+
+ul.horizontal li {
+  display: inline-block;
+  padding: 10px;
+}
+
+.message-heading {
+  background-color: $top-bar-text-color;
+  span {
+    display: inline-block;
+  }
+  span.time-display {
+    color: #aaa;
+    font-style: italic;
+    font-size: 14px;
+    margin-left: 10px;
+  }
+  .main {
+    color: #f3f0ee;
+    padding-top: 0;
+  }
+  padding: 5px;
 }
 
