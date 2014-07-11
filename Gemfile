@@ -28,6 +28,7 @@ gem "nested_form"
 gem 'dropzonejs-rails'
 gem 'font-awesome-sass'
 gem 'faker'
+gem 'uuid'
 
 group :development do
   gem 'spring'

@@ -6,6 +6,7 @@ class CasesController < ApplicationController
 
   def new
     @case = Case.new
+    @uuid = UUID.generate
   end
 
   def create

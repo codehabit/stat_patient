@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140710121450) do
+ActiveRecord::Schema.define(version: 20140711113722) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20140710121450) do
     t.integer  "uploaded_by_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "imageable_uuid"
   end
 
   create_table "messages", force: true do |t|
@@ -52,15 +53,16 @@ ActiveRecord::Schema.define(version: 20140710121450) do
     t.integer  "case_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "uuid"
   end
 
   create_table "patients", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.string   "middle_initial"
-    t.date     "date_of_birth"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "date_of_birth"
     t.string   "title"
     t.string   "street"
     t.string   "street2"
