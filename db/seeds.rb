@@ -17,11 +17,15 @@ force_valid_email = true
 force_safe_email = true
 cases_per_practitioner = (8..20).to_a
 messages_per_case = (4..9).to_a
+system_age_range_days = (10..720)
+today = Date.today
 user_count = 100
 patient_count = 1000
 specialties = Specialty.all.map(&:pretty)
 birthday_day_range = (1092..32850).to_a
 marital_status = MaritalStatus.all
+
+random = Random.new
 
 bad_count = 0
 good_count = 0
@@ -52,7 +56,7 @@ patients = patient_count.times.map do
   offset = birthday_day_range.sample
   birthday = offset.days.ago
   wrlog '.'
-  Patient.create(
+  patient = Patient.create(
     first_name: Faker::Name.first_name,
     last_name:  Faker::Name.last_name,
     date_of_birth: birthday ,
@@ -69,6 +73,10 @@ patients = patient_count.times.map do
     zip_code: Faker::Address.zip_code,
     social_security_number: '1111111111'
   )
+    age_days = random.rand(system_age_range_days)
+    create_date = age_days.days.ago
+    patient.update_attribute :created_at, create_date
+    patient
 
 end
 
@@ -80,8 +88,8 @@ if dentist_file.present?
     user_email = force_safe_email  ? Faker::Internet.safe_email : row['email1']
     user = User.create(first_name: row['first_name'], last_name: row['last_name'], email: user_email, password: password, password_confirmation: password)
     if !user.valid? && force_valid_email
-      user.update_attributes(email: Faker::Internet.safe_email)
-      user.save
+      # just ignore if this fails because of unique constraint. That's rare.
+      user.update_attribute(:email, Faker::Internet.safe_email) rescue nil
     end
     if user.valid?
       practitioners << Practitioner.create(user_id: user.id, first_name: user.first_name, last_name: user.last_name, email: user.email, specialty: row['specialty'], phone: row['phone_work'])
@@ -117,20 +125,28 @@ practitioners.each  do |practitioner|
   case_count = cases_per_practitioner.sample
   case_count.times do
     wrlog 'c'
+    patient = patients.sample
+    patient_age_days = (today - patient.created_at.to_date).to_i
+    case_create_date = patient_age_days.days.ago
 
     originator = practitioner
     recipient = (practitioners - [originator]).sample
-    patient = patients.sample
     addrs = [originator, recipient]
     sender, receiver = addrs
-newcase = Case.create originator: originator, recipient: recipient, patient: patient, subject: Faker::Lorem.sentence, notes: Faker::Lorem.paragraph
+    newcase = Case.create originator: originator, recipient: recipient, patient: patient, subject: Faker::Lorem.sentence, notes: Faker::Lorem.paragraph
+    newcase.update_attribute :created_at, case_create_date
+
     message_count = messages_per_case.sample
     message_count.times do
       wrlog 'm'
-      Message.create case_id: newcase.id, sender: sender, recipient: receiver, body: Faker::Lorem.sentence
+      message = Message.create case_id: newcase.id, sender: sender, recipient: receiver, body: Faker::Lorem.sentence
+      message_age_days = random.rand(1..patient_age_days)
+      message.update_attribute :created_at, message_age_days.days.ago
+
       sender, receiver = addrs.reverse!
     end
   end
+  wrlog ' | '
 end
 wrlog "\n Done"
 wrlog "\n #{good_count} dentist records were created"
