@@ -21,18 +21,12 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-
-    width: 70%;
+    width: 90%;
     height: 35%;
   }
-  label {
-    display: inline-block;
-    margin-right: 10px;
+  textarea,input {
+    margin: 10px;
   }
-  input.upload {
-    display: inline-block;
-  }
-
 }
 
 .messages .well {
@@ -70,5 +64,7 @@ ul.horizontal li {
 }
 
 form.dropzone {
-  width: 80%;
+  margin: 10px;
+  display: inline-block;
+  width: 20%;
 }
