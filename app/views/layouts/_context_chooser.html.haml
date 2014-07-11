@@ -1,4 +1,4 @@
--patient_options = options_for_select(@patients.map{|p| ["#{p.full_name} - #{p.date_of_birth.strftime("%m/%d/%Y")}", p.id]}, @patient.try(:id))
+-patient_options = options_for_select(@patients.map{|p| [p.decorate.last_first_with_dob, p.id]}.sort, @patient.try(:id))
 .row.body-element.selector-bar
   .col-sm-4
     = "Doctor: #{@practitioner.try(:full_name)}"
