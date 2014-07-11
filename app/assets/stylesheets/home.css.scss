@@ -51,25 +51,28 @@ div {
   a { color: $selector-bar-color;}
 }
 
-.hero-menu {
+.context-bar-menu {
   background-color: $hero-menu-bg;
   text-align: center;
-  .hero-icon {
-    text-align: center;
-    padding: 40px 30px 0px 0px;
-    margin-bottom: 10px;
-    color: $hero-icon-color;
-    a { color: $navbar-color;}
-    font-size: $hero-icon-size;
-  }
-  a .hero-caption {
-    text-align: center;
-    color: $navbar-color;
-    font-size: $hero-icon-caption-size;
-    padding: 0px;
-    margin: 0px;
-    padding-bottom: 10px;
-    padding-right: 10px;
+  .hero-icon-container {
+    float: left;
+
+    .hero-icon {
+      text-align: center;
+      padding: 20px 30px 0px 0px;
+      margin-bottom: 10px;
+      color: $hero-icon-color;
+      a { color: $navbar-color;}
+      font-size: $hero-icon-size;
+    }
+    a .hero-caption {
+      text-align: center;
+      color: $navbar-color;
+      font-size: $hero-icon-caption-size;
+      padding: 0px;
+      margin: 0px;
+      padding-bottom: 10px;
+    }
   }
 }
 
