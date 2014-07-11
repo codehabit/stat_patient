@@ -29,10 +29,14 @@
   }
 }
 
+.hero img {
+  margin: 10px;
+  width: 70%;
+}
+
 .messages .well {
   background-color: #fff;
   padding: 0;
-  // width: 50%;
   border-color: $top-bar-text-color;
 }
 
