@@ -1,7 +1,6 @@
 class CasesController < ApplicationController
   def index
-    # @cases = Case.where(recipient: current_user.practitioner)
-    @cases = current_user.practitioner.involved_cases
+    @cases = current_user.practitioner.involved_cases.order("updated_at DESC")
   end
 
   def new
