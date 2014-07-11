@@ -1,10 +1,10 @@
 -patient_options = options_for_select(@patients.map{|p| ["#{p.full_name} - #{p.date_of_birth.strftime("%m/%d/%Y")}", p.id]}, @patient.try(:id))
 .row.selector-bar
   .col-sm-4
-    = bootstrap_form_tag(url: "#", data: {role: 'doctor-form'}, layout: :horizontal) do |f|
-      = f.text_field :doctor, value: @practitioner.try(:full_name), disabled: true
+    Doctor 
+    = @practitioner.try(:full_name)
   .col-sm-4
     = bootstrap_form_tag(url: select_patient_path, data: {role: 'patient-form'}, layout: :horizontal) do |f|
-      = f.select :patient, patient_options , data: {role: 'patient-picker'}
+      = f.select :patient, patient_options , data: {role: 'patient-picker'}, include_blank: true
 
 

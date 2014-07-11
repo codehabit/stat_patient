@@ -6,14 +6,25 @@ class ApplicationController < ActionController::Base
   before_action :get_context
 
   def get_context
-    @collapsed = params[:collapsed] || session[:collapsed]
-    if patient_id = (params[:patient] || session[:patient] ) && patient_id.is_a?(Integer)
+    return unless current_user
+
+    @practitioner = current_user.practitioner
+    @patients = @practitioner.patients
+
+    if (patient_param = params['patient']) == ''
+      # patient intentionally removed, show all things
+      session[:patient] = nil
+      @patient_cases = @practitioner.involved_cases
+
+    elsif patient_id = patient_param || session[:patient]
       @patient = Patient.find patient_id
+      session[:patient] = @patient.id
+      @patient_cases = @practitioner.involved_cases_for @patient
     end
-    @patients = Patient.all
+
+    @collapsed = params[:collapsed] || session[:collapsed]
     session[:collapsed] = @collapsed
-    session[:patient] = @patient.try(:id)
-    @practitioner = current_user.try(:practitioner)
-    @received_cases= @practitioner.try(:received_cases)
+
+
   end
 end
