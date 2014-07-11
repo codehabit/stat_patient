@@ -1,5 +1,5 @@
 class PractitionerMailer < ActionMailer::Base
-  default from: "noreply@statpatient.com"
+  default from: "info@statpatient.com"
 
   def notification_email(message)
     @practitioner = message.recipient
