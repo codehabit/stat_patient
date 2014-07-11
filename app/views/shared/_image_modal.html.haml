@@ -1,0 +1,10 @@
+.modal.fade{"aria-hidden" => false, tabindex: "-1", role: "dialog", data: {role: "#{image.asset_file_name}-viewer"}}
+  .modal-header
+    %button.close{data: {dismiss: "modal"}}
+      &times;
+    %h3
+      = "Uploaded at: #{image.created_at}"
+  .modal-body
+    = image_tag image.asset.url(:web_viewer)
+  .modal-footer
+    = link_to "Close", "#", class: "btn"

@@ -8,3 +8,8 @@ $(document).on "ready page:load", ->
     addRemoveLinks: true
   )
 
+$(document).on "click", "[data-toggle='modal']", ->
+  trigger = $(this)
+  modal = $(trigger.data("target"))
+  console.log(modal)
+  modal.modal()
