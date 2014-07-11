@@ -1,6 +1,7 @@
 class CasesController < ApplicationController
   def index
-    @cases = Case.where(recipient: current_user.practitioner)
+    # @cases = Case.where(recipient: current_user.practitioner)
+    @cases = current_user.practitioner.involved_cases
   end
 
   def new
@@ -30,7 +31,7 @@ class CasesController < ApplicationController
 
   def show
     @case = Case.find(params[:id])
-    if @case.recipient.user != current_user
+    if @case.recipient.user != current_user && @case.originator.user != current_user
       redirect_to cases_path
     end
   end

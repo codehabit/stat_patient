@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
     @practitioner = current_user.practitioner
     @patients = @practitioner.patients
 
-    if (patient_param = params['patient']) == ''
+    if (patient_param = params['patient']).blank? || @patients.blank?
       # patient intentionally removed, show all things
       session[:patient] = nil
       @patient_cases = @practitioner.involved_cases
@@ -24,7 +24,6 @@ class ApplicationController < ActionController::Base
 
     @collapsed = params[:collapsed] || session[:collapsed]
     session[:collapsed] = @collapsed
-
-
   end
 end
+
