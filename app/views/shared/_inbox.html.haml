@@ -1,26 +1,24 @@
-.row
-  %span.pull-right.case-cta
-    - cta_text = current_user.practitioner.try(:originations).present? ? "Compose Message" : "Start Collaborating With a Specialist"
-    = link_to cta_text, new_case_path, class: "btn btn-small btn-primary"
 .row.inbox-header
   .col-lg-3 Started By
   .col-lg-5 To: Subject
   .col-lg-3 Last Reply By
-  .col-lg-1 Delete
+  .col-lg-1 Archive
 
 - @patient_cases.each do |rcase|
   .row.inbox-content
-    .col-lg-3
-      .base= rcase.originator.full_name
-      .meta= rcase.created_at.strftime("%B %d, %l:%M %p")
+    = link_to rcase do
+      .col-lg-3
+        .base= rcase.originator.full_name
+        .meta= rcase.created_at.strftime("%B %d, %l:%M %p")
 
-    .col-lg-5
-      .base
-        = rcase.recipient.first_name
-        = ":"
-        %span.subject= rcase.subject
-      .meta Unread
-    .col-lg-3
+      .col-lg-5
+        .base
+          = rcase.recipient.first_name
+          = ":"
+          %span.subject= rcase.subject
+        .meta Unread
+      .col-lg-3
+        = rcase.messages.order("created_at DESC").first.sender.full_name
     .col-lg-1.deleter
       %i.fa.fa-times
 

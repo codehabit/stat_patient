@@ -105,11 +105,13 @@ div {
   display: inline-block;
   color: $body-title-color;
   font-size: 2.0em;
+  margin-left: 10px;
 }
 
 .case-cta {
   display: inline-block;
   margin: 10px;
+  width: 21.5%
 }
 
 .inbox-header {
@@ -117,7 +119,7 @@ div {
   background-color: $message-header-bg;
   text-transform: uppercase;
   font-size: 0.8em;
-  padding: 10px 0px 10px 0px;
+  padding: 10px 10px 10px 0px;
 }
 
 .inbox-content {
@@ -125,7 +127,7 @@ div {
   background-color: $message-list-bg;
   font-size: $message-default-font-size;
   border-bottom: 1px solid $message-separator-color;
-  padding: 10px 0px 10px 0px;
+  padding: 10px 10px 10px 0px;
   .subject {
     color: $message-subject-color;
     padding-left: 4px;
