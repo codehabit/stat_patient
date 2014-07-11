@@ -10,5 +10,7 @@
         %li
           = message.body
         %li
-          - if message.image.present?
-            = image_tag message.image.asset.url(:thumb)
+          - if message.images.present?
+            - message.images.each do |image|
+              = image_tag image.asset.url(:thumb)
+

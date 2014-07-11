@@ -4,9 +4,7 @@
   = nested_form_for @case, layout: :horizontal do |f|
     = f.fields_for :messages, @case.messages.build do |message_builder|
       = message_builder.hidden_field :sender_id, value: current_user.practitioner.id
+      = message_builder.hidden_field :uuid, value: @uuid
       = message_builder.text_area :body, class: "notes form-control"
-      .image-upload-control
-        = message_builder.fields_for :image, Image.new do |image_builder|
-          = image_builder.label :asset, "Upload an image"
-          = image_builder.file_field :asset, class: "upload"
     = f.submit "Reply", class: "btn btn-default"
+  = render "shared/images_drag_and_drop"

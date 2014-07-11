@@ -31,6 +31,7 @@ class CasesController < ApplicationController
   end
 
   def show
+    @uuid = UUID.generate
     @case = Case.find(params[:id])
     if @case.recipient.user != current_user && @case.originator.user != current_user
       redirect_to cases_path
