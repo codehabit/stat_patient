@@ -29,6 +29,7 @@ gem 'dropzonejs-rails'
 gem 'font-awesome-sass'
 gem 'faker'
 gem 'uuid'
+gem 'bootstrap-addons-rails'
 
 group :development do
   gem 'spring'
