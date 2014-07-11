@@ -1,14 +1,18 @@
-.messages-menu
-  .action-item
-    %i.fa.fa-inbox
-    = link_to "Inbox", coming_soon_path
-  .action-item
-    %i.fa.fa-send
-    = link_to "Sent",coming_soon_path
-  .action-item
-    %i.fa.fa-archive
-    = link_to "Archived",coming_soon_path
-  .action-item
-    %i.fa.fa-file
-    = link_to "Drafts",coming_soon_path
+.vertical-menu
+  .menu-item
+    = link_to coming_soon_path do
+      %i.fa.fa-inbox
+      Inbox
+  .menu-item
+    = link_to coming_soon_path do
+      %i.fa.fa-send
+      Sent
+  .menu-item
+    = link_to coming_soon_path do
+      %i.fa.fa-archive
+      Archived
+  .menu-item
+    = link_to coming_soon_path do
+      %i.fa.fa-file
+      Drafts
 

@@ -3,6 +3,7 @@
 .stat-brand
   = link_to root_path, class: "navbar-brand" do
     = image_tag  'statpatient-logomark.png', class: "opacity-#{opacity}"
-    %span.first= first
-    %span.second= second
+    %span.logo-text{class: "opacity-#{opacity}"}
+      %span.first= first
+      %span.second= second
 

@@ -1,6 +1,6 @@
 $(document).on "ready page:load", ->
 
-  $(document).on "click", "[data-role='close-menu']", ->
+  $(document).on "click", ".context-bar-menu [data-role='close-menu']", ->
     target = $(this).data('target')
     url = "#{target}?collapsed=true"
     $('#main-menu').collapse('hide')
