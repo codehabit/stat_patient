@@ -39,11 +39,12 @@ div {
 .selector-bar {
   background-color: $selector-bar-bg;
   color: $selector-bar-color;
-  height: $selector-bar-height;
+  // height: $selector-bar-height;
   select {
-    height: $selector-bar-height * .4;
+    // height: $selector-bar-height * .4;
+    height: 42px;
     line-height: 2em;
-    font-size: 1.2em;
+    font-size: 1em;
     color: $selector-bar-select-color;
   }
   padding-top: $selector-bar-height * .33;
