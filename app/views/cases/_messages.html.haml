@@ -5,7 +5,7 @@
         %span.main
           %b Message from #{message.sender.full_name}
         %span.time-display
-          Sent on: #{message.created_at.strftime("%b %-d %Y")}
+          Sent on: #{message.created_at.strftime("%b %-d %Y %l:%m %P")}
       %ul.horizontal.unstyled
         %li
           = message.body
