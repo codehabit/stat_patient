@@ -4,7 +4,6 @@ div {
 
 .topframe {
   background-color: $top-bar-bg;
-  width: 100%;
   height: $top-bar-height;
   a {
     color: $top-bar-text-color;
@@ -53,17 +52,24 @@ div {
 }
 
 .hero-menu {
-  padding: 40px 30px 40px 10px;
   background-color: $hero-menu-bg;
   text-align: center;
   .hero-icon {
+    text-align: center;
+    padding: 40px 30px 0px 0px;
+    margin-bottom: 10px;
     color: $hero-icon-color;
     a { color: $navbar-color;}
     font-size: $hero-icon-size;
   }
-  .hero-caption {
+  a .hero-caption {
+    text-align: center;
     color: $navbar-color;
     font-size: $hero-icon-caption-size;
+    padding: 0px;
+    margin: 0px;
+    padding-bottom: 10px;
+    padding-right: 10px;
   }
 }
 
@@ -88,17 +94,11 @@ div {
   background-color: $body-bg;
   padding: 20px;
   // gak.
-  margin-left: -15px;
-  margin-right: -15px;
+  // margin-left: -15px;
+  // margin-right: -15px;
   a {
     font-size: 1.4em;
     color: $body-text-color;
-  }
-  .action-item {
-    font-size: 0.7em;
-    border-bottom: 1px solid #EAF9F6;
-    padding: 10px;
-    text-transform: uppercase;
   }
 }
 
@@ -120,7 +120,7 @@ div {
   background-color: $message-header-bg;
   text-transform: uppercase;
   font-size: 0.8em;
-  padding: 10px 10px 10px 0px;
+  padding: 10px 0px 10px 0px;
 }
 
 .inbox-content {
@@ -176,6 +176,23 @@ img.opacity-medium {
   }
  }
 
- .messages-menu {
-   margin-left: 10px;
+.messages-menu {
+  .fa {
+    font-size: 1.4em;
+    color: $hero-icon-color;
+    margin-right: 5px;
+  }
+  margin-right: 10px;
+  .action-item {
+    font-size: 0.7em;
+    border-bottom: 1px solid #EAF9F6;
+    text-transform: uppercase;
+    padding: 10px 0px 10px 0px;
+  }
+}
+
+.body-element {
+  width: 100%;
+  padding-left: 10px;
+  margin-left: 0px;
  }

@@ -1,5 +1,5 @@
 -patient_options = options_for_select(@patients.map{|p| ["#{p.full_name} - #{p.date_of_birth.strftime("%m/%d/%Y")}", p.id]}, @patient.try(:id))
-.row.selector-bar
+.row.body-element.selector-bar
   .col-sm-4
     = "Doctor: #{@practitioner.try(:full_name)}"
   .col-sm-4

@@ -1,16 +1,15 @@
-.row
-  .navbar
-    .navbar-header
-      = render partial: 'layouts/stat_patient'
+.row.body-element.navbar
+  .navbar-header
+    = render partial: 'layouts/stat_patient'
 
-    %ul.nav.navbar-nav
-      %li.active
-        = link_to "Dashboard", root_path
-      %li
-        = link_to "Patient Record", coming_soon_path
-      %li
-        = link_to "Consent Forms", coming_soon_path
-      %li
-        = link_to "Patient Profile", "#"
-      %li
-        = link_to "Patient Education", "#"
+  %ul.nav.navbar-nav
+    %li.active
+      = link_to "Dashboard", root_path
+    %li
+      = link_to "Patient Record", coming_soon_path
+    %li
+      = link_to "Consent Forms", coming_soon_path
+    %li
+      = link_to "Patient Profile", "#"
+    %li
+      = link_to "Patient Education", "#"

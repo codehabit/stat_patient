@@ -1,10 +1,13 @@
 .messages-menu
-  .row
-    .action-item
-      = link_to "Inbox", coming_soon_path
-    .action-item
-      = link_to "Sent",coming_soon_path
-    .action-item
-      = link_to "Archived",coming_soon_path
-    .action-item
-      = link_to "Drafts",coming_soon_path
+  .action-item
+    %i.fa.fa-inbox
+    = link_to "Inbox", coming_soon_path
+  .action-item
+    %i.fa.fa-send
+    = link_to "Sent",coming_soon_path
+  .action-item
+    %i.fa.fa-archive
+    = link_to "Archived",coming_soon_path
+  .action-item
+    %i.fa.fa-file
+    = link_to "Drafts",coming_soon_path
