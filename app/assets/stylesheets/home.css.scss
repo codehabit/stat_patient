@@ -54,9 +54,6 @@ div {
     line-height: 2em;
     font-size: 1em;
     color: $selector-bar-select-color;
-    option {
-      font-family: "Open Sans";
-  }
   }
   padding-top: $selector-bar-height * .20;
   a { color: $selector-bar-color;}
@@ -200,6 +197,7 @@ div {
  }
 
 .vertical-menu {
+  text-align: left;
   a {
     text-decoration: none; 
     font-size: 1.4em;
@@ -221,6 +219,8 @@ div {
 .body-element {
   width: 100%;
   padding-left: 10px;
+  padding-right: 10px;
   margin-left: 0px;
   margin-bottom: 0px;
+  margin-right: 0px;
  }
