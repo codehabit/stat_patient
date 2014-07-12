@@ -1,4 +1,4 @@
-.row.body-element.topframe{data: {role: 'open-menu'}}
+.row.body-element.topframe
   %ul.nav.navbar-nav.navbar-left
     %li
       %span.pull-left
@@ -6,6 +6,9 @@
     %li
       %span.pull-left
         = link_to "Practitioners", practitioners_path
+    %li
+      %span{data: {role: 'open-menu'}}
+        = link_to "Toggle the menu", "javascript:null(0);"
   %ul.nav.navbar-nav.navbar-right
     %li
       - if user_signed_in?

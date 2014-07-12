@@ -26,8 +26,6 @@ class ApplicationController < ActionController::Base
       @patient_cases = @practitioner.involved_cases
     end
 
-    @collapsed = params[:collapsed] || session[:collapsed]
-    session[:collapsed] = @collapsed
   end
 end
 

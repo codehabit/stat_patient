@@ -103,12 +103,9 @@ div {
     }
 }
 
-[data-collapsed='true'] { display: none; }
-
-[data-collapsed='false'] { display: block; }
-
 .main-business {
   min-height: 400px;
+  height: 100%;
   background-color: $body-bg;
   padding: 20px;
   a {

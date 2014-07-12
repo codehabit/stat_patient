@@ -30,6 +30,7 @@ gem 'font-awesome-sass'
 gem 'faker'
 gem 'uuid'
 gem 'font-kit-rails'
+gem 'jquery_total_storage_rails'
 
 group :development do
   gem 'spring'
