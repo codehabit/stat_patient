@@ -1,9 +1,18 @@
-.messages-menu
-  .row
-    %span.body-title Message Center
-    .action-item
-      = link_to "Message Box", coming_soon_path
-    .action-item
-      = link_to "Announcements",coming_soon_path
-    .action-item
-      = link_to "New Messages",coming_soon_path
+.vertical-menu
+  .menu-item
+    = link_to coming_soon_path do
+      %i.fa.fa-inbox
+      Inbox
+  .menu-item
+    = link_to coming_soon_path do
+      %i.fa.fa-send
+      Sent
+  .menu-item
+    = link_to coming_soon_path do
+      %i.fa.fa-archive
+      Archived
+  .menu-item
+    = link_to coming_soon_path do
+      %i.fa.fa-file
+      Drafts
+

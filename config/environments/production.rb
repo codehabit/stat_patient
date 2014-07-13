@@ -66,11 +66,11 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:              'smtp.gmail.com',
+    address:              'gator3058.hostgator.com',
     port:                 587,
     domain:               'statpatient.com',
-    user_name:            'admin@codehabit.net',
-    password:             'nJa7JydhmVqmpkRha8ZV',
+    user_name:            'info@statpatient.com',
+    password:             'statpatient',
     authentication:       'plain',
     enable_starttls_auto: true  }
   config.action_mailer.perform_deliveries = true

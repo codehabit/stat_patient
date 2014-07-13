@@ -1,3 +1,24 @@
+.modal {
+  position: fixed;
+  top: 10%;
+  left: 20%;
+  right: 20%;
+  z-index: 1050;
+  background-color: #ffffff;
+  border: 1px solid #999;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding-box;
+  background-clip: padding-box;
+  outline: none;
+}
+
 .case-data {
   display: inline-block;
   margin: 10px;
@@ -21,24 +42,22 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-
-    width: 70%;
+    width: 90%;
     height: 35%;
   }
-  label {
-    display: inline-block;
-    margin-right: 10px;
+  textarea,input {
+    margin: 10px;
   }
-  input.upload {
-    display: inline-block;
-  }
+}
 
+.hero img {
+  margin: 10px;
+  width: 70%;
 }
 
 .messages .well {
   background-color: #fff;
   padding: 0;
-  // width: 50%;
   border-color: $top-bar-text-color;
 }
 
@@ -69,3 +88,8 @@ ul.horizontal li {
   padding: 5px;
 }
 
+form.dropzone {
+  margin: 10px;
+  display: inline-block;
+  width: 80%;
+}

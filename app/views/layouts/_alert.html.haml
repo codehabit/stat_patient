@@ -1,4 +1,3 @@
 - flash.each do |key, value|
-  .row
-    .alert{:class => "alert-#{key}"}
-      =value
+  .row.body-element.alert{:class => "alert-#{key}"}
+    =value

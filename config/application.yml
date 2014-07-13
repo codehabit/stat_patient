@@ -1,6 +1,6 @@
 defaults: &defaults
   title: Stat Patient
-  url: http://statpatient.com
+  url: http://wwwstat-prod.com
 
 development:
   <<: *defaults

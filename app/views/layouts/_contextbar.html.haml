@@ -1,12 +1,3 @@
-.row.hero-menu{data: {collapsed: @collapsed}}
-  - icons = {statimage: ['fa-file-photo-o', cases_url], statlab: ['fa-flask', coming_soon_url], statscript: ['fa-edit', coming_soon_url], statclaim: ['fa-file-text', coming_soon_url], schedule: ['fa-calendar',coming_soon_url]}
-
-  -icons.each do |stat_service, stuff|
-    .col-sm-2
-      = link_to 'javascript:null();', data: {role: 'close-menu', target: stuff[1]}  do
-        .hero-icon
-          %span.fa-stack.fa-lg
-            %i.fa.fa-circle.fa-stack-2x.fa-inverse
-            %i{class: "fa #{stuff[0]} fa-stack-1x"}
-        .hero-caption
-          = stat_service
+.row.body-element.context-bar-menu
+  = render 'layouts/hero_menu'
+  = render 'layouts/user_menu'

@@ -5,10 +5,14 @@
         %span.main
           %b Message from #{message.sender.full_name}
         %span.time-display
-          Sent on: #{message.created_at.strftime("%b %-d %Y")}
+          Sent on: #{message.created_at.strftime("%b %-d %Y %l:%m %P")}
       %ul.horizontal.unstyled
         %li
           = message.body
         %li
-          - if message.image.present?
-            = image_tag message.image.asset.url(:thumb)
+          - if message.images.present?
+            - message.images.each do |image|
+              = render "shared/image_modal", image: image
+              = link_to "#", class: "button", role: "button", data: {toggle: "modal", target: "[data-role='#{image.asset_file_name}-viewer']"} do
+                = image_tag image.asset.url(:thumb)
+

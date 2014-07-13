@@ -1,10 +1,12 @@
+a { text-decoration: none !important; }
+body { font-family: 'Open Sans' }
+
 div {
   // border: 1px solid red;
 }
 
 .topframe {
   background-color: $top-bar-bg;
-  width: 100%;
   height: $top-bar-height;
   a {
     color: $top-bar-text-color;
@@ -19,13 +21,21 @@ div {
   padding-right: 30px;
   padding-top: 30px;
   }
+
+.navbar-nav > li > a:hover {
+  background-color: $navbar-bg;
+  color: darken($navbar-color, 20%)
+  }
+
 .navbar {
+
+  li {
+    height: 100%;
+  }
+
   background-color: $navbar-bg;
   a { color: $navbar-color;}
   height: $navbar-height;
-  // weird
-  padding-bottom: 0px;
-  margin-bottom: -9px;
   .stat-brand {
     a { color: $navbar-color;}
     margin: 0px;
@@ -39,64 +49,68 @@ div {
 .selector-bar {
   background-color: $selector-bar-bg;
   color: $selector-bar-color;
-  height: $selector-bar-height;
   select {
-    height: $selector-bar-height * .4;
+    height: 42px;
     line-height: 2em;
-    font-size: 1.2em;
+    font-size: 1em;
     color: $selector-bar-select-color;
   }
-  padding-top: $selector-bar-height * .33;
+  padding-top: $selector-bar-height * .20;
   a { color: $selector-bar-color;}
 }
 
-.hero-menu {
-  padding: 40px 30px 40px 10px;
+.context-bar-menu {
+  a { color: $navbar-color;}
+}
+
+.context-bar-menu {
   background-color: $hero-menu-bg;
   text-align: center;
-  .hero-icon {
-    color: $hero-icon-color;
-    a { color: $navbar-color;}
-    font-size: $hero-icon-size;
+  .hero-icon-container {
+    float: left;
+      padding: 20px 30px 0px 0px;
+
+    .hero-icon {
+      text-align: center;
+      margin-bottom: 10px;
+      color: $hero-icon-color;
+      a { color: $navbar-color;}
+      font-size: $hero-icon-size;
+    }
+    a .hero-caption {
+      text-align: center;
+      font-size: $hero-icon-caption-size;
+      margin: 0px;
+      padding-bottom: 10px;
+    }
   }
-  .hero-caption {
-    color: $navbar-color;
-    font-size: $hero-icon-caption-size;
-  }
+  .user-menu-container {
+    float: left;
+    .menu-item {
+      width: 100%;
+      margin: 20px;
+      padding: 20px;
+      border-bottom: 1px solid #EAF9F6;
+      a {
+        color: $navbar-color;
+        font-size: 1.2em;
+        i {
+          color: $hero-icon-color;
+          font-size: 1.2em;
+          }
+        }
+    }
+    }
 }
 
-[data-collapsed='true'] {
-  display: none;
-}
-[data-collapsed='false'] {
-  display: block;
-}
-.alert {
-  margin: 0px;
-}
-.alert-alert {
-  background-color: red;
-}
-
-.alert-notice{
-  background-color: $body-bg;;
-}
 .main-business {
   min-height: 400px;
+  height: 100%;
   background-color: $body-bg;
   padding: 20px;
-  // gak.
-  margin-left: -15px;
-  margin-right: -15px;
   a {
     font-size: 1.4em;
     color: $body-text-color;
-  }
-  .action-item {
-    font-size: 0.7em;
-    border-bottom: 1px solid #EAF9F6;
-    padding: 10px;
-    text-transform: uppercase;
   }
 }
 
@@ -104,11 +118,13 @@ div {
   display: inline-block;
   color: $body-title-color;
   font-size: 2.0em;
+  margin-left: 10px;
 }
 
 .case-cta {
   display: inline-block;
   margin: 10px;
+  width: 21.5%
 }
 
 .inbox-header {
@@ -124,7 +140,7 @@ div {
   background-color: $message-list-bg;
   font-size: $message-default-font-size;
   border-bottom: 1px solid $message-separator-color;
-  padding: 10px 0px 10px 0px;
+  padding: 10px 10px 10px 0px;
   .subject {
     color: $message-subject-color;
     padding-left: 4px;
@@ -143,19 +159,24 @@ div {
 
 .stat-brand a{
     text-transform:lowercase;
-    font-size: 30px;
     color: $footer-text-color;
-    .first {
-      text-decoration: bold;
-    }
-    .second {
-    }
+    span.logo-text {
+      font-size: 0;
+      .first {
+        font-size: $logo-font-size;
+        font-weight: $logo-first-weight;
+      }
+      .second {
+        font-size: $logo-font-size;
+        font-weight: $logo-second-weight;
+      }
+  }
 }
 
-img.opacity-medium {
+.opacity-medium {
   opacity: 0.4;
   filter: alpha(opacity=40); /* For IE8 and earlier */
-  }
+}
 
 
 .bottomframe {
@@ -172,6 +193,31 @@ img.opacity-medium {
   }
  }
 
- .messages-menu {
-   margin-left: 10px;
+.vertical-menu {
+  text-align: left;
+  a {
+    text-decoration: none; 
+    font-size: 1.4em;
+  }
+  .menu-item {
+    font-size: 0.7em;
+    border-bottom: 1px solid #EAF9F6;
+    text-transform: uppercase;
+    padding: 10px 30px 10px 0px;
+    width: 100%;
+  i {
+    font-size: 1.4em;
+    color: $hero-icon-color;
+    margin-right: 10px;
+    }
+  }
+}
+
+.body-element {
+  width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 0px;
+  margin-bottom: 0px;
+  margin-right: 0px;
  }

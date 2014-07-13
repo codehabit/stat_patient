@@ -12,10 +12,12 @@
         %th From
         %th Subject
         %th Patient Name
+        %th Sent
       %tbody
-        - @cases.each do |message|
+        - @cases.each do |rcase|
           %tr
-            %td= message.originator.decorate.full_name
-            %td= link_to message.subject, case_path(message)
-            %td= message.patient.decorate.full_name_with_dob
+            %td= rcase.originator.decorate.full_name
+            %td= link_to rcase.subject, case_path(rcase)
+            %td= rcase.patient.decorate.full_name_with_dob
+            %td= rcase.updated_at.strftime("%b %-d %Y at %I:%M %p")
 

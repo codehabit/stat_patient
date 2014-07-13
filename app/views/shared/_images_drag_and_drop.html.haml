@@ -1,0 +1,2 @@
+= form_for :images, url: images_path, html: {class: "dropzone", data: {role: "dropzone-enabled"}} do |f|
+  = f.hidden_field :message_uuid, value: @uuid

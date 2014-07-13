@@ -1,17 +1,17 @@
 class CasesController < ApplicationController
   def index
-    @cases = Case.where(recipient: current_user.practitioner)
+    @cases = current_user.practitioner.involved_cases.order("updated_at DESC")
   end
 
   def new
     @case = Case.new
+    @uuid = UUID.generate
   end
 
   def create
     @case = Case.new(case_params)
     if @case.valid?
-      @case.save
-      PractitionerMailer.notification_email(@case).deliver
+      CaseBuilder.originate(@case)
       redirect_to cases_path
     else
       render action: :new
@@ -20,13 +20,19 @@ class CasesController < ApplicationController
 
   def update
     @case = Case.find(params[:id])
-    @case.update(case_params)
-    redirect_to case_path(@case)
+    @case.attributes = case_params
+    if @case.valid?
+      CaseBuilder.reply(@case)
+      redirect_to case_path(@case)
+    else
+      render action: :show
+    end
   end
 
   def show
+    @uuid = UUID.generate
     @case = Case.find(params[:id])
-    if @case.recipient.user != current_user
+    if @case.recipient.user != current_user && @case.originator.user != current_user
       redirect_to cases_path
     end
   end

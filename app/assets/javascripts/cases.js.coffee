@@ -3,21 +3,13 @@ $(document).on "ready page:load", ->
     placeholder: $(this).attr("placeholder")
     width: "75%"
   )
+  Dropzone.autoDiscover = false;
+  $("[data-role='dropzone-enabled']").dropzone(
+    addRemoveLinks: true
+  )
 
-Dropzone.options.dropzoneEnabled =
-  autoProcessQueue: false
-  uploadMultiple: false
-  paramName: "image"
-  init: ->
-    myDropzone = this
-    @element.querySelector("button[type=submit]").addEventListener "click", (e) ->
-      e.preventDefault()
-      e.stopPropagation()
-      myDropzone.processQueue()
-    @on "sending", ->
-      console.log "Sending"
-    @on "success", (files, response) ->
-      cosole.log "Sent"
-    @on "error", (files, response) ->
-      console.log "Error@!"
-
+$(document).on "click", "[data-toggle='modal']", ->
+  trigger = $(this)
+  modal = $(trigger.data("target"))
+  console.log(modal)
+  modal.modal()

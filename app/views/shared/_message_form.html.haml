@@ -1,5 +1,4 @@
 = f.fields_for :messages, @case.messages.build do |message_builder|
   = message_builder.hidden_field :sender_id, value: current_user.practitioner.id
+  = message_builder.hidden_field :uuid, value: @uuid
   = message_builder.text_area :body, label: "Notes", hide_label: hide_label
-  = message_builder.fields_for :image, Image.new do |image_builder|
-    = image_builder.file_field :asset, label: "Upload an image"

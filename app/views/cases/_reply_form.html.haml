@@ -1,12 +1,12 @@
-.reply-area.form-group
-  %h4
-    Reply to this message
-  = nested_form_for @case, layout: :horizontal do |f|
-    = f.fields_for :messages, @case.messages.build do |message_builder|
-      = message_builder.hidden_field :sender_id, value: current_user.practitioner.id
-      = message_builder.text_area :body, class: "notes form-control"
-      .image-upload-control
-        = message_builder.fields_for :image, Image.new do |image_builder|
-          = image_builder.label :asset, "Upload an image"
-          = image_builder.file_field :asset, class: "upload"
-    = f.submit "Reply", class: "btn btn-default"
+.messages
+  .reply-area.form-group.well
+    .message-heading
+      %span.main
+        %h4 Reply to this message
+    = render "shared/images_drag_and_drop"
+    = nested_form_for @case, layout: :horizontal do |f|
+      = f.fields_for :messages, @case.messages.build do |message_builder|
+        = message_builder.hidden_field :sender_id, value: current_user.practitioner.id
+        = message_builder.hidden_field :uuid, value: @uuid
+        = message_builder.text_area :body, class: "notes form-control", placeholder: "Enter notes here"
+      = f.submit "Reply", class: "btn btn-default"

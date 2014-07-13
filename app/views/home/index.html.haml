@@ -1,4 +1,9 @@
-.row
+.row.body-element
+  %span.body-title Message Center
+  %span.pull-right.case-cta.col-lg-3
+    - cta_text = current_user.practitioner.try(:originations).present? ? "Compose Message" : "Start Collaborating With a Specialist"
+    = link_to cta_text, new_case_path, class: "btn btn-small btn-primary"
+.row.body-element
   .col-lg-3
     = render 'shared/messages_menu'
   .col-lg-8

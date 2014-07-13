@@ -3,7 +3,11 @@ class AppSettings < Settingslogic
   namespace Rails.env
 
   def env_title
-    @title ||= self.title << " " << Rails.env
+    @title ||= if Rails.env.production?
+                 self.title
+               else
+                 self.title << " " << Rails.env
+               end
   end
 end
 
