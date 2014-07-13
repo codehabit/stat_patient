@@ -10,10 +10,8 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_self
- *= require font-awesome
- *= require font-kit-rails
  */
+@import url('//fonts.googleapis.com/css?family=Open+Sans:400italic,400,700,300');
 @import 'jquery-ui';
 @import 'bootswatch/flatly/variables';
 @import 'bootstrap';
@@ -22,10 +20,10 @@
 @import 'select2-bootstrap';
 @import 'bootswatch/flatly/bootswatch';
 @import 'theme-colors';
+@import 'font-awesome';
 @import 'home';
 @import 'header';
 @import 'main';
 @import 'dropzone/basic';
 @import 'cases';
 @import 'alert';
-

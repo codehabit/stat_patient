@@ -118,8 +118,6 @@ GEM
       i18n (~> 0.5)
     font-awesome-sass (4.1.0)
       sass (~> 3.2)
-    font-kit-rails (1.0.2)
-      rails
     haml (4.0.5)
       tilt
     hike (1.2.3)
@@ -302,7 +300,6 @@ DEPENDENCIES
   factory_girl_rails
   faker
   font-awesome-sass
-  font-kit-rails
   haml
   jbuilder (~> 2.0)
   jquery-rails

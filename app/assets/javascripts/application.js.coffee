@@ -22,4 +22,3 @@
 # = require cases
 # = require menu
 # = require jquery.total-storage
-#
