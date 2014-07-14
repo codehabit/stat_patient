@@ -23,3 +23,6 @@
 # = require cases
 # = require menu
 # = require jquery.total-storage
+# = require jquery.zoom
+# = require images
+
