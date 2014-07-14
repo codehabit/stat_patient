@@ -1,12 +1,12 @@
 .messages
   .reply-area.form-group.well
-    .message-heading
-      %span.main
-        %h4 Reply to this message
-    = render "shared/images_drag_and_drop"
-    = nested_form_for @case, layout: :horizontal do |f|
-      = f.fields_for :messages, @case.messages.build do |message_builder|
-        = message_builder.hidden_field :sender_id, value: current_user.practitioner.id
-        = message_builder.hidden_field :uuid, value: @uuid
-        = message_builder.text_area :body, class: "notes form-control", placeholder: "Enter notes here"
-      = f.submit "Reply", class: "btn btn-default"
+    .row
+      .col-sm-8
+        = nested_form_for @case, layout: :horizontal do |f|
+          = f.fields_for :messages, @case.messages.build do |message_builder|
+            = message_builder.hidden_field :sender_id, value: current_user.practitioner.id
+            = message_builder.hidden_field :uuid, value: @uuid
+            = message_builder.text_area :body, class: "notes form-control", placeholder: "Reply to this message"
+          = f.submit "Reply", class: "btn btn-default"
+      .col-sm-3
+        = render "shared/images_drag_and_drop"
