@@ -1,23 +1,24 @@
 .row.body-element.topframe
-  %ul.nav.navbar-nav.navbar-left
-    %li
-      %span.pull-left
-        = link_to "Patients", patients_path
-    %li
-      %span.pull-left
-        = link_to "Practitioners", practitioners_path
-    %li
-      %span{data: {role: 'open-menu'}}
-        = link_to "Toggle the menu", "javascript:null(0);"
-  %ul.nav.navbar-nav.navbar-right
-    %li
-      - if user_signed_in?
-        %span.pull-right.logout-link
-          = link_to "Hello #{current_user.practitioner.decorate.full_name}", "#"
-          = link_to destroy_user_session_path, method: :delete do
-            %i.glyphicon.glyphicon-remove
-            Logout
-      - else
-        %span.pull-right.login-link
-          = link_to "Sign in", "#"
+  .col-lg-12
+    %ul.nav.navbar-nav.navbar-left
+      %li
+        %span.pull-left
+          = link_to "Patients", patients_path
+      %li
+        %span.pull-left
+          = link_to "Practitioners", practitioners_path
+      %li
+        %span.pull-left{data: {role: 'open-menu'}}
+          = link_to "Toggle Menu", "javascript:null(0);", id: 'menu-state-lamp'
+    %ul.nav.navbar-nav.navbar-right
+      %li
+        - if user_signed_in?
+          %span.pull-right.logout-link
+            = link_to "Hello #{current_user.practitioner.decorate.full_name}", "#"
+            = link_to destroy_user_session_path, method: :delete do
+              %i.glyphicon.glyphicon-remove
+              Logout
+        - else
+          %span.pull-right.login-link
+            = link_to "Sign in", "#"
 

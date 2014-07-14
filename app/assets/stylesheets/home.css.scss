@@ -1,14 +1,11 @@
-
-div {
-  // border: 1px solid red;
-}
-
 .topframe {
   background-color: $top-bar-bg;
   height: $top-bar-height;
+  padding-top: 10px;
   a {
     color: $top-bar-text-color;
     padding: 5px;
+    padding-left: 0;
     margin: 5px;
     text-transform:uppercase;
   }
@@ -101,36 +98,27 @@ div {
     }
 }
 
-.main-business {
-  min-height: 400px;
-  height: 100%;
-  background-color: $body-bg;
-  padding: 20px;
-  a {
-    font-size: 1.4em;
-    color: $body-text-color;
-  }
-}
 
 .body-title {
-  display: inline-block;
+  // display: inline-block;
   color: $body-title-color;
   font-size: 2.0em;
-  margin-left: 10px;
+  font-weight: 300;
 }
 
 .case-cta {
   display: inline-block;
-  margin: 10px;
-  width: 21.5%
+  margin: 15px;
+  width: 21.5%;
 }
 
 .inbox-header {
   color: $message-header-color;
   background-color: $message-header-bg;
   text-transform: uppercase;
-  font-size: 0.8em;
-  padding: 10px 0px 10px 0px;
+  font-size: 1.0em;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .inbox-content {
@@ -138,7 +126,8 @@ div {
   background-color: $message-list-bg;
   font-size: $message-default-font-size;
   border-bottom: 1px solid $message-separator-color;
-  padding: 10px 10px 10px 0px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   .subject {
     color: $message-subject-color;
     padding-left: 4px;
@@ -156,19 +145,20 @@ div {
 }
 
 .stat-brand a{
-    text-transform:lowercase;
-    color: $footer-text-color;
-    span.logo-text {
-      font-size: 0;
-      .first {
-        font-size: $logo-font-size;
-        font-weight: $logo-first-weight;
-      }
-      .second {
-        font-size: $logo-font-size;
-        font-weight: $logo-second-weight;
-      }
-  }
+  padding-left: 0;
+  text-transform:lowercase;
+  color: $footer-text-color;
+  span.logo-text {
+    font-size: 0;
+    .first {
+      font-size: $logo-font-size;
+      font-weight: $logo-first-weight;
+    }
+    .second {
+      font-size: $logo-font-size;
+      font-weight: $logo-second-weight;
+    }
+}
 }
 
 .opacity-medium {
@@ -176,8 +166,9 @@ div {
   filter: alpha(opacity=40); /* For IE8 and earlier */
 }
 
-
 .bottomframe {
+  float: left;
+
   background-color: $footer-bar-bg;
   height: $footer-bar-height;
   letter-spacing: 2px;
@@ -186,8 +177,10 @@ div {
     padding: $footer-bar-height * 0.4;
     font-size: 0.9em;
   }
+
   .stat-brand {
-    padding: $footer-bar-height * 0.2;
+    padding-top: $footer-bar-height * 0.2;
+    padding-left: 0;
   }
  }
 
@@ -211,8 +204,14 @@ div {
   }
 }
 
+.coming-soon {
+  overflow: hidden;
+  width: 100%;
+}
+
 .body-element {
   width: 100%;
+  min-width: 100%;
   padding-left: 10px;
   padding-right: 10px;
   margin-left: 0px;

@@ -8,6 +8,9 @@ $(document).on "ready page:load", ->
     addRemoveLinks: true
   )
 
+  $('[data-role="case-selector"]').on "click", () ->
+    window.location = $(this).data('target')
+
 $(document).on "click", "[data-toggle='modal']", ->
   trigger = $(this)
   modal = $(trigger.data("target"))

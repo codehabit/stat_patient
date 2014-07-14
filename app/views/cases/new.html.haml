@@ -1,13 +1,18 @@
-.span12
-  = bootstrap_nested_form_for @case, layout: :horizontal do |f|
-    = select2_for(object_type: :case, field_name: :recipient, field_type: Practitioner, label_method: :full_name)
-    = f.hidden_field :recipient_type, value: "Practitioner"
-    = f.hidden_field :originator_id, value: current_user.practitioner.id
-    = f.text_field :subject
-    = select2_for(object_type: :case, field_name: :patient, field_type: Patient, label_method: :full_name_with_dob, selected: @patient)
-    = f.text_field :case_number
-    = render "shared/message_form", f: f, hide_label: false
-    .pull-right
-      = f.submit "Send"
-  = render "shared/images_drag_and_drop"
+.row
+  .hero
+    = image_tag "AdultToothChart_1.jpg"
+.row
+  .col-sm-8
+    = bootstrap_nested_form_for @case, layout: :horizontal do |f|
+      = select2_for(object_type: :case, field_name: :recipient, field_type: Practitioner, label_method: :full_name)
+      = f.hidden_field :recipient_type, value: "Practitioner"
+      = f.hidden_field :originator_id, value: current_user.practitioner.id
+      = f.text_field :subject
+      = select2_for(object_type: :case, field_name: :patient, field_type: Patient, label_method: :full_name_with_dob, selected: @patient)
+      = f.text_field :case_number
+      = render "shared/message_form", f: f, hide_label: false
+      .pull-right
+        = f.submit "Send"
 
+  .col-sm-3
+    = render "shared/images_drag_and_drop"

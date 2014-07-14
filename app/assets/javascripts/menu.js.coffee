@@ -5,24 +5,27 @@ $ ->
     new_state = if (current_state == 'closed') then 'open' else 'closed'
     $.totalStorage('context-bar-state', new_state)
 
-    console.log "toggling #{current_state} -> #{new_state}"
     if new_state == 'open'
       menu.show('blind')
+      $('#menu-state-lamp').text("Close Menu")
     else
       menu.hide('blind')
+      $('#menu-state-lamp').text("Open Menu")
 
 ready = ->
   menu = $('#main-menu')
-  main_menu_visible= menu.is(":visible")
-  state = $.totalStorage('context-bar-state')
-  console.log "desired_state is #{state}"
+  main_menu_visible = menu.is(":visible")
+  desired_state = $.totalStorage('context-bar-state')
 
-  if state == 'closed' && main_menu_visible
-    console.log 'closing on load'
+  if main_menu_visible
+    $('#menu-state-lamp').text("Close Menu")
+  else
+    $('#menu-state-lamp').text("Open Menu")
+
+  if desired_state == 'closed' && main_menu_visible
     menu.hide()
 
-  if state == 'open' && !main_menu_visible
-    console.log 'opening on load'
+  if desired_state == 'open' && !main_menu_visible
     menu.show()
 
   $(document).on "click", ".context-bar-menu [data-role='close-menu']", ->

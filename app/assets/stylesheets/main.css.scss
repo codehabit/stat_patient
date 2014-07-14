@@ -4,6 +4,11 @@ body {
 
 a { text-decoration: none !important; }
 
+
+div {
+  // border: 1px solid red;
+}
+
 .main {
   // max-width: 900px;
   padding-top: 20px;
@@ -31,3 +36,15 @@ a.btn-small {
   text-transform: uppercase;
 }
 
+.main-business {
+  width: 100%;
+  float: left;
+  min-height: 400px;
+  height: auto;
+  background-color: $body-bg;
+  padding: 20px;
+  a {
+    font-size: 1.4em;
+    color: $body-text-color;
+  }
+}
