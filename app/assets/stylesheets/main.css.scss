@@ -48,3 +48,13 @@ a.btn-small {
     color: $body-text-color;
   }
 }
+[data-role="link-selector"] {
+  cursor: pointer;
+}
+[data-role="link-selector"]:hover {
+  background-color: $row-selected-background-color;
+}
+
+.btn-primary {
+  background-color: $row-selected-background-color;
+}

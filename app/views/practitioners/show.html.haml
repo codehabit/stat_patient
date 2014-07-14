@@ -1,18 +1,22 @@
-%h2 Practitioner
-%dl.dl-horizontal
-  %dt
-    Name
-    %dd= @practitioner.full_name
-  %dt
-    Practice Name
-    %dd= @practitioner.practice_name
-  %dt
-    Email
-    %dd= @practitioner.email
-  %dt
-    Specialty
-    %dd= @practitioner.specialty
-  %dt
-    Phone
-    %dd= @practitioner.phone
+.row.body-element
+  %span.body-title Practitioner
+  %span.pull-right
+    = link_to "Edit", edit_practitioner_path(@practitioner), class: 'btn btn-primary'
+.row.body-element
+  %dl.dl-horizontal
+    %dt
+      Name
+      %dd= @practitioner.full_name
+    %dt
+      Practice Name
+      %dd= @practitioner.practice_name
+    %dt
+      Email
+      %dd= @practitioner.email
+    %dt
+      Specialty
+      %dd= @practitioner.specialty
+    %dt
+      Phone
+      %dd= @practitioner.phone
 

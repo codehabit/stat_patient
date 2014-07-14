@@ -18,6 +18,7 @@
 # = require jquery_nested_form
 # = require select2
 # = require autotab-jquery
+# = require main
 # = require dropzone
 # = require cases
 # = require menu
