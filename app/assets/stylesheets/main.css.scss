@@ -51,10 +51,18 @@ a.btn-small {
 [data-role="link-selector"] {
   cursor: pointer;
 }
+[data-role="row-selector"]:hover {
+  background-color: $row-selected-background-color;
+}
+
 [data-role="link-selector"]:hover {
   background-color: $row-selected-background-color;
 }
 
 .btn-primary {
   background-color: $row-selected-background-color;
+}
+
+.table {
+  font-size: $message-default-font-size * 0.9;
 }

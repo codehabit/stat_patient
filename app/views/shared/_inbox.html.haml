@@ -5,8 +5,8 @@
   .col-lg-2 Archive
 
 - @patient_cases.each do |rcase|
-  .row.inbox-content{data: {role: 'link-selector', target: case_url(rcase)}}
-    .col-lg-3
+  .row.inbox-content{data: {role: 'row-selector'}}
+    .col-lg-3{data: {role: 'link-selector', target: case_url(rcase)}}
       .base= rcase.originator.full_name
       .meta= rcase.created_at.strftime("%B %d, %l:%M %p")
 
