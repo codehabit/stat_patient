@@ -1,3 +1,4 @@
+-patient_options = options_for_select(@patients.map{|p| [p.decorate.last_first_with_dob, p.id]}.sort, @patient.try(:id))
 .row.body-element.topframe
   %ul.nav.navbar-nav.navbar-left
     %li
@@ -7,8 +8,8 @@
       %span.pull-left
         = link_to "Practitioners", practitioners_path
     %li
-      %span{data: {role: 'open-menu'}}
-        = link_to "Toggle the menu", "javascript:null(0);"
+      %span.pull-left{data: {role: 'open-menu'}}
+        = link_to "Toggle Menu", "javascript:null(0);", id: 'menu-state-lamp'
   %ul.nav.navbar-nav.navbar-right
     %li
       - if user_signed_in?
