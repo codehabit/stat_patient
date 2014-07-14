@@ -86,7 +86,8 @@ ul.horizontal li {
 }
 
 .image-gallery {
-  background-color: $image-gallery-bg;
+  // background-color: $image-gallery-bg;
+  background-color: #fff;
   border-radius: 4px;
   margin-bottom: 10px;
   overflow-x: scroll;
@@ -98,7 +99,7 @@ ul.horizontal li {
 }
 
 .image {
-  background-color: #fff;
+  background-color: $image-gallery-bg;
   border-radius: 4px;
   display: inline-block;
   line-height: 8;

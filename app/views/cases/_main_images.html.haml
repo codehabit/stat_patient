@@ -3,4 +3,4 @@
     = render "shared/image_modal", image: image
     = link_to "#", class: "button", role: "button", data: {toggle: "modal", target: "[data-role='#{image.asset_file_name}-viewer']"}, id: "#{image.asset_file_name}-viewer" do
       .image
-        = image_tag image.asset.url(:thumb)
+        = image_tag image.asset.url(:thumb), data: {"zoom-image" => image.asset.url(:original), role: "zoom"}
