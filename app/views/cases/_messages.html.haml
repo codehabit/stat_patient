@@ -2,8 +2,8 @@
   - @case.messages.order("created_at desc")[0...@case.messages.count-1].each do |message|
     .well
       .message-heading
-        %span.main
-          %b Message from #{message.sender.full_name}
+        %b= message.sender.full_name
+        %b to #{message.recipient.full_name}
         %span.time-display
           Sent on: #{message.created_at.strftime("%b %-d %Y %l:%m %P")}
       %ul.horizontal.unstyled
