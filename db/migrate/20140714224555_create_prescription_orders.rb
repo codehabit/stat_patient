@@ -10,6 +10,7 @@ class CreatePrescriptionOrders < ActiveRecord::Migration
       t.date :expiration_date
       t.integer :refills
       t.integer :pharmacy_id
+      t.string :rx_id
       t.timestamps
     end
   end
