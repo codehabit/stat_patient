@@ -5,19 +5,20 @@
   .col-lg-2 Archive
 
 - @patient_cases.each do |rcase|
-  .row.inbox-content{data: {role: 'case-selector', target: case_url(rcase)}}
-    .col-lg-3
+  .row.inbox-content
+    .col-lg-3{data: {role: 'case-selector', target: case_url(rcase)}}
       .base= rcase.originator.full_name
       .meta= rcase.created_at.strftime("%B %d, %l:%M %p")
 
-    .col-lg-4
+    .col-lg-4{data: {role: 'case-selector', target: case_url(rcase)}}
       .base
         = rcase.recipient.first_name
         = ":"
         %span.subject= rcase.subject
       .meta Unread
-    .col-lg-3
+    .col-lg-3{data: {role: 'case-selector', target: case_url(rcase)}}
       = rcase.messages.order("created_at DESC").first.sender.full_name
     .col-lg-2.deleter
-      %i.fa.fa-archive
+      = link_to "javascript:null(0);", data: {role: 'coming-soon', message: "Archive this case"} do
+        %i.fa.fa-archive
 

@@ -14,7 +14,7 @@ $ ->
 
 ready = ->
   menu = $('#main-menu')
-  main_menu_visible = menu.is(":visible")
+  main_menu_visible = menu.css('display') != 'none'
   desired_state = $.totalStorage('context-bar-state')
 
   if main_menu_visible
@@ -35,6 +35,12 @@ ready = ->
 
   $('#_patient').change ->
     $(this).closest('form').submit()
+
+  $('[data-role="coming-soon"]').hover ->
+    message =  $(this).data('message') + ' is coming soon.'
+    $(this).tooltip( title: message)
+
+
 
 $(document).ready(ready)
 $(document).on('page:load', ready)
