@@ -5,6 +5,9 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :get_context
 
+  # Skip if we are creating a new patient
+  skip_before_action :get_context, if: ->{request.path == patients_path}
+
   def get_context
     return unless current_user
 
@@ -16,7 +19,6 @@ class ApplicationController < ActionController::Base
       # patient intentionally removed, show all things
       session[:patient] = nil
       @patient_cases = @practitioner.involved_cases
-
     elsif patient_id = (patient_param || session[:patient])
       @patient = Patient.find patient_id
       session[:patient] = @patient.id

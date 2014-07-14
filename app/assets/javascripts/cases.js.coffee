@@ -5,11 +5,9 @@ $(document).on "ready page:load", ->
   )
   Dropzone.autoDiscover = false;
   $("[data-role='dropzone-enabled']").dropzone(
-    addRemoveLinks: true
+    # addRemoveLinks: true
+    previewsContainer: "[data-role='image-previews']"
   )
-
-  $('[data-role="case-selector"]').on "click", () ->
-    window.location = $(this).data('target')
 
 $(document).on "click", "[data-toggle='modal']", ->
   trigger = $(this)

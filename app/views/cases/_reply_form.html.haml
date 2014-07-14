@@ -1,6 +1,6 @@
 .messages
   .reply-area.form-group.well
-    .row
+    .row.body-element
       .col-sm-8
         = nested_form_for @case, layout: :horizontal do |f|
           = f.fields_for :messages, @case.messages.build do |message_builder|
@@ -10,3 +10,5 @@
           = f.submit "Reply", class: "btn btn-default"
       .col-sm-3
         = render "shared/images_drag_and_drop"
+    .row.body-element
+      .dropzone{data: {role: "image-previews"}}

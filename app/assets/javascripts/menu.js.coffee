@@ -7,20 +7,13 @@ $ ->
 
     if new_state == 'open'
       menu.show('blind')
-      $('#menu-state-lamp').text("Close Menu")
     else
       menu.hide('blind')
-      $('#menu-state-lamp').text("Open Menu")
 
 ready = ->
   menu = $('#main-menu')
-  main_menu_visible = menu.is(":visible")
+  main_menu_visible = menu.css('display') != 'none'
   desired_state = $.totalStorage('context-bar-state')
-
-  if main_menu_visible
-    $('#menu-state-lamp').text("Close Menu")
-  else
-    $('#menu-state-lamp').text("Open Menu")
 
   if desired_state == 'closed' && main_menu_visible
     menu.hide()
@@ -32,9 +25,12 @@ ready = ->
     $.totalStorage('context-bar-state', 'closed')
     menu.hide('blind') if main_menu_visible
 
-
   $('#_patient').change ->
     $(this).closest('form').submit()
+
+  $('[data-role="coming-soon"]').hover ->
+    message =  $(this).data('message') + ' is coming soon.'
+    $(this).tooltip( title: message)
 
 $(document).ready(ready)
 $(document).on('page:load', ready)

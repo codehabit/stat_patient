@@ -21,17 +21,19 @@
 
 .case-data {
   display: inline-block;
-  // margin: 10px;
-  // padding: 10px;
+  width: 50%;
+  vertical-align: top;
 }
 
-.case-image {
+.case-tooth-chart {
   display: inline-block;
   margin: 10px;
   padding: 10px;
+  width: 45%;
 }
 
-.reply-area {
+.reply-area .row {
+  background-color: #f3f0ee;
   padding: 10px;
 }
 .image-upload-control {
@@ -48,11 +50,6 @@
   textarea,input {
     margin: 10px;
   }
-}
-
-.hero img {
-  margin: 10px;
-  width: 90%;
 }
 
 .messages .well {
@@ -88,8 +85,98 @@ ul.horizontal li {
   padding: 5px;
 }
 
-form.dropzone {
-  margin: 10px;
+.image-gallery {
+  background-color: $image-gallery-bg;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  overflow-x: scroll;
+  overflow: scroll;
+  overflow: -moz-scrollbars-horizontal;
+  margin-bottom: 10px;
+  padding: 10px;
+  white-space: nowrap;
+}
+
+.image {
+  background-color: #fff;
+  border-radius: 4px;
   display: inline-block;
-  width: 90%;
+  line-height: 8;
+  margin: 5px;
+  min-height: 100%;
+  padding: 0 10px 0 10px;
+}
+
+.tooth-chart img {
+  width: 100%;
+}
+
+.case-form .submit {
+  input {
+    padding: 10px 40px 10px 40px;
+  }
+  position: relative;
+  right: -98%;
+}
+
+.case-form .body-element {
+  margin-bottom: 40px;
+}
+
+.case-form label {
+  color: $body-title-color;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 30px;
+  padding-top: 0 !important;
+  padding-right: 0;
+}
+
+form.dropzone {
+  text-align: center;
+  width: 100%;
+  p {
+    color: $selector-bar-bg;
+  }
+
+  p.top {
+    font-weight: 100;
+  }
+
+  p.or {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .btn-standard {
+    background-color: $selector-bar-bg;
+    border-color: $selector-bar-bg;
+  }
+}
+
+.dropzone-container {
+  margin-top: 17px;
+}
+
+.btn-standard {
+  color: #fff;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.send {
+  background-color: $navbar-bg;
+  border-color: $navbar-bg;
+}
+
+::-webkit-scrollbar {
+    // -webkit-appearance: none;
+    width: 7px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.5);
+    margin: 5px;
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
 }

@@ -4,7 +4,7 @@
       &times;
     %h3
       = "Uploaded at: #{image.created_at}"
-  .modal-body
+  .modal-body{data: { role: "viewpane", target: image.asset.url(:original)}}
     = image_tag image.asset.url(:web_viewer)
   .modal-footer
     = link_to "Close", "#", class: "btn"

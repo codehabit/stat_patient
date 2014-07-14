@@ -1,16 +1,18 @@
-%dl.dl-horizontal.case-data
-  %dt
-    %h3
-      Subject:
-  %dd
-    %h3
-      = @case.subject
-  %dt
-    From
-    %dd= @case.originator.decorate.full_name
-  %dt
-    Patient
-    %dd= @case.patient.decorate.full_name_with_dob if @case.patient.present?
-  %dt
-    Notes
-    %dd= @case.messages.first.body
+.case-data
+  %dl.dl-horizontal
+    %dt
+      %h3
+        Subject:
+    %dd
+      %h3
+        = @case.subject
+    %dt
+      From
+      %dd= @case.originator.decorate.full_name
+    %dt
+      Patient
+      %dd= @case.patient.decorate.full_name_with_dob if @case.patient.present?
+    %dt
+      Notes
+      %dd= @case.messages.first.body
+

@@ -29,5 +29,10 @@ describe CasesController, js: true do
     click_button "Send"
     page.should have_content "You must select a patient"
   end
+
+  specify "that case number is no longer on the create page" do
+    visit new_case_path
+    expect(page).to_not have_field "Case number"
+  end
 end
 
