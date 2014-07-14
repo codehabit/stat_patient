@@ -9,7 +9,8 @@
       = f.hidden_field :originator_id, value: current_user.practitioner.id
       = f.text_field :subject
       = select2_for(object_type: :case, field_name: :patient, field_type: Patient, label_method: :full_name_with_dob, selected: @patient)
-      = f.text_field :case_number
+      -# Removing since there is no use case yet for this. Leaving in commented out.
+      -# = f.text_field :case_number
       = render "shared/message_form", f: f, hide_label: false
       .pull-right
         = f.submit "Send"
