@@ -25,4 +25,5 @@
 # = require jquery.total-storage
 # = require jquery.zoom
 # = require images
+# = require elevatezoom-master/jquery.elevatezoom
 
