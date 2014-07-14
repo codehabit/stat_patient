@@ -1,2 +1,10 @@
 = form_for :images, url: images_path, html: {class: "dropzone", data: {role: "dropzone-enabled"}} do |f|
+  .dz-default.dz-message
+    %p.top
+      Drag and drop files here
+    %p.or
+      or
+    %p
+      .btn.btn-primary.btn-standard
+        Upload files
   = f.hidden_field :message_uuid, value: @uuid
