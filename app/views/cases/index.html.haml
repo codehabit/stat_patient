@@ -1,5 +1,5 @@
-%h3
-  = "#{current_user.practitioner.decorate.full_name} - Inbox"
+.row.body-element
+  %span.body-title= "#{current_user.practitioner.decorate.full_name} - Inbox"
   %span.pull-right
     = link_to "Compose message", new_case_path, class: "btn btn-small btn-primary"
 .listing
