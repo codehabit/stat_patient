@@ -1,7 +1,8 @@
 class PractitionerMailer < ActionMailer::Base
   default from: "info@statpatient.com"
 
-  def notification_email(message)
+  def notification_email(message, request)
+    @request = request
     @practitioner = message.recipient
     @case = message.case
     @message = message
