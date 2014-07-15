@@ -18,7 +18,7 @@ class PrescriptionOrdersController < ApplicationController
 
   def index
     page = params[:page] || 1
-    @prescription_orders = PrescriptionOrder.all.page(page)
+    @prescription_orders = PrescriptionOrder.order('created_at DESC').page(page)
   end
 
   private
