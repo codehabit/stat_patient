@@ -17,7 +17,7 @@
         %th Pharmacy
       %tbody
         - @prescription_orders.each do |rcase|
-          %tr{data: {role: 'link-selector', target: prescription_order_url(rcase)}}
+          %tr{data: {role: 'link-selector', target: edit_prescription_order_url(rcase)}}
             %td= rcase.created_at.strftime("%b %-d %Y")
             %td= rcase.patient.decorate.full_name_with_dob
             %td= rcase.drug.name

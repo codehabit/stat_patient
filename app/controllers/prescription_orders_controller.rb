@@ -5,7 +5,7 @@ class PrescriptionOrdersController < ApplicationController
   end
 
   def create
-    @po = @prescription_order = PrescriptionOrder.create(prescription_order_params)
+    @prescription_order = PrescriptionOrder.create(prescription_order_params)
     if @prescription_order.save
       redirect_to prescription_orders_path
     else
@@ -19,6 +19,12 @@ class PrescriptionOrdersController < ApplicationController
 
   def edit
     @prescription_order = PrescriptionOrder.find params[:id]
+  end
+
+  def update
+    @prescription_order = PrescriptionOrder.find params[:id]
+    @prescription_order.update_attributes prescription_order_params
+    redirect_to prescription_orders_path
   end
 
   def index
