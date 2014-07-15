@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   resources :patients
   resources :practitioners
   resources :cases
+  resources :tooth_charts do
+    resources :annotations, only: [:index, :create, :update, :destroy]
+  end
   resources :images
   resources :prescription_orders
   resources :laboratory_orders

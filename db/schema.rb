@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140715033523) do
+ActiveRecord::Schema.define(version: 20140715111812) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "annotations", force: true do |t|
+    t.integer "tooth_chart_id"
+    t.string  "text"
+    t.integer "height"
+    t.integer "width"
+    t.integer "top"
+    t.integer "left"
+  end
 
   create_table "cases", force: true do |t|
     t.string   "case_number"

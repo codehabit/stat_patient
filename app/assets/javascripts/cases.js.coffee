@@ -14,4 +14,6 @@ $(document).on "ready page:load", ->
 $(window).load ->
   $(".tooth-chart").annotateImage
     editable: true
-    useAjax: false
+    useAjax: true
+    getUrl: $(".tooth-chart").data("index")
+    createUrl: $(".tooth-chart").data("index")

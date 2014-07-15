@@ -14,7 +14,7 @@
 
         // Assign defaults
         this.getUrl = opts.getUrl;
-        this.saveUrl = opts.saveUrl;
+        this.createUrl = opts.createUrl;
         this.deleteUrl = opts.deleteUrl;
         this.editable = opts.editable;
         this.useAjax = opts.useAjax;
@@ -75,7 +75,7 @@
     **/
     $.fn.annotateImage.defaults = {
         getUrl: 'your-get.rails',
-        saveUrl: 'your-save.rails',
+        createUrl: 'your-save.rails',
         deleteUrl: 'your-delete.rails',
         editable: true,
         useAjax: true,
@@ -149,10 +149,21 @@
             $.fn.annotateImage.appendPosition(form, editable)
             image.mode = 'view';
 
+            // ALEX: Determine ajax method, this is horrible
+            var annotationId = form.find("[name='annotation[id]']").val();
+            var url = image.createUrl;
+            var type = "POST";
+            if (annotationId != "new") {
+                url = url + "/" + annotationId;
+                type = "PUT";
+            }
+
             // Save via AJAX
+            // ALEX: variable method
             if (image.useAjax) {
                 $.ajax({
-                    url: image.saveUrl,
+                    url: url,
+                    type: type,
                     data: form.serialize(),
                     error: function(e) { alert("An error occured saving that note.") },
                     success: function(data) {
@@ -240,7 +251,7 @@
         image.canvas.children('.image-annotate-edit').show();
 
         // Add the note (which we'll load with the form afterwards)
-        var form = $('<div id="image-annotate-edit-form"><form><textarea id="image-annotate-text" name="text" rows="3" cols="30">' + this.note.text + '</textarea></form></div>');
+        var form = $('<div id="image-annotate-edit-form"><form><textarea id="image-annotate-text" name="annotation[text]" rows="3" cols="30">' + this.note.text + '</textarea></form></div>');
         this.form = form;
 
         $('body').append(this.form);
@@ -293,7 +304,9 @@
 
         this.note = note;
 
-        this.editable = (note.editable && image.editable);
+        // ALEX: no need to make a note non-editable
+        // this.editable = (note.editable && image.editable);
+        this.editable = (image.editable);
 
         // Add the area
         this.area = $('<div class="image-annotate-area' + (this.editable ? ' image-annotate-area-editable' : '') + '"><div></div></div>');
@@ -408,11 +421,12 @@
         /// <summary>
         ///   Appends the annotations coordinates to the given form that is posted to the server.
         /// </summary>
-        var areaFields = $('<input type="hidden" value="' + editable.area.height() + '" name="height"/>' +
-                           '<input type="hidden" value="' + editable.area.width() + '" name="width"/>' +
-                           '<input type="hidden" value="' + editable.area.position().top + '" name="top"/>' +
-                           '<input type="hidden" value="' + editable.area.position().left + '" name="left"/>' +
-                           '<input type="hidden" value="' + editable.note.id + '" name="id"/>');
+        // ALEX: make it rails-y
+        var areaFields = $('<input type="hidden" value="' + editable.area.height() + '" name="annotation[height]"/>' +
+                           '<input type="hidden" value="' + editable.area.width() + '" name="annotation[width]"/>' +
+                           '<input type="hidden" value="' + editable.area.position().top + '" name="annotation[top]"/>' +
+                           '<input type="hidden" value="' + editable.area.position().left + '" name="annotation[left]"/>' +
+                           '<input type="hidden" value="' + editable.note.id + '" name="annotation[id]"/>');
         form.append(areaFields);
     }
 
