@@ -13,7 +13,9 @@ class Case < ActiveRecord::Base
   private
 
   def add_tooth_chart
-    self.tooth_chart = ToothChart.new(chart: File.new(Rails.root + "app/assets/images/AdultToothChart_1.jpg", "r"))
+    file = File.new(Rails.root + "app/assets/images/AdultToothChart_1.jpg", "r")
+    self.tooth_chart = ToothChart.new(chart: file)
+    file.close
   end
 
 end
