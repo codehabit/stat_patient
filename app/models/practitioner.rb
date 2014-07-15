@@ -1,5 +1,6 @@
 class Practitioner < ActiveRecord::Base
   belongs_to :user, autosave: true
+  has_many :prescription_orders
 
   def full_name
     "#{first_name} #{last_name}"

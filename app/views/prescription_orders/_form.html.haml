@@ -1,0 +1,16 @@
+.row
+  .col-sm-8
+    = bootstrap_form_for(@prescription_order,  data: {role: 'patient-form'}, layout: :horizontal) do |f|
+      = f.text_field :rx_id, disabled: true
+      = f.hidden_field :rx_id
+      = select2_for(object_type: :prescription_order, field_name: :patient, field_type: Patient, label_method: :last_first_with_dob)
+      = select2_for(object_type: :prescription_order, field_name: :practitioner, field_type: Practitioner, label_method: :full_name)
+      = select2_for(object_type: :prescription_order, field_name: :drug, field_type: Drug, label_method: :name)
+      = select2_for(object_type: :prescription_order, field_name: :pharmacy, field_type: Pharmacy, label_method: :name)
+      .pull-right.submit
+        = f.submit "Submit", class: "btn-standard btn btn-primary"
+
+  .col-sm-1
+  .col-sm-3
+    .body-title Monograph
+

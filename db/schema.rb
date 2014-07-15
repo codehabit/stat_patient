@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140714225226) do
+ActiveRecord::Schema.define(version: 20140715001731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,21 @@ ActiveRecord::Schema.define(version: 20140714225226) do
     t.datetime "image_updated_at"
     t.string   "subject"
     t.integer  "originator_id"
+  end
+
+  create_table "drugs", force: true do |t|
+    t.string   "name"
+    t.string   "dispense_amount"
+    t.string   "dispense_frequency"
+    t.string   "uuid"
+    t.text     "adult_dosing"
+    t.text     "peds_dosing"
+    t.text     "contraindications"
+    t.text     "dosage_forms"
+    t.text     "pharmacy_instructions"
+    t.text     "patient_instructions"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "images", force: true do |t|
@@ -105,6 +120,7 @@ ActiveRecord::Schema.define(version: 20140714225226) do
     t.date     "expiration_date"
     t.integer  "refills"
     t.integer  "pharmacy_id"
+    t.string   "rx_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
