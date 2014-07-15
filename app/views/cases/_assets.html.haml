@@ -1,2 +1,2 @@
-.case-tooth-chart.tooth-chart
-  = image_tag "AdultToothChart_1.jpg"
+.case-tooth-chart
+  = image_tag @case.tooth_chart.chart.url(:web_viewer), class: "tooth-chart"
