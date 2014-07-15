@@ -11,7 +11,7 @@ def wrlog arg
   STDOUT.print arg
 end
 
-drugs_only = true
+drugs_only = false
 
 delete_all = true
 dentist_file = 'data/iowa_dentists_specialists.csv'
