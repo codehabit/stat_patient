@@ -10,7 +10,7 @@ module ApplicationHelper
         field_name.to_s.humanize
       end +
       content_tag(:div, class: "col-sm-10") do
-        select_tag(input_field_name, options_from_collection_for_select(field_type.all.decorate, :id, label_method), {placeholder: "Select a #{field_name}", include_blank: true, data: {role: 'select2'}}) +
+        select_tag(input_field_name, options_from_collection_for_select(field_type.all.decorate, :id, label_method), {placeholder: "Select a #{field_name.to_s.humanize}", include_blank: true, data: {role: 'select2'}}) +
         if error_class.present?
           message = "You must select a #{field_name}"
           content_tag(:span, message, class: "help-block")
