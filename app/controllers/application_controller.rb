@@ -20,9 +20,15 @@ class ApplicationController < ActionController::Base
       session[:patient] = nil
       @patient_cases = @practitioner.involved_cases
     elsif patient_id = (patient_param || session[:patient])
-      @patient = Patient.find patient_id
-      session[:patient] = @patient.id
-      @patient_cases = @practitioner.involved_cases_for @patient
+      # allow for patient.id changing when data is reloaded
+      @patient = Patient.where(id: patient_id ).first
+      if @patient
+        session[:patient] = @patient.id
+        @patient_cases = @practitioner.involved_cases_for @patient
+      else
+        session[:patient] = nil
+        @patient_cases = @practitioner.involved_cases
+      end
     else
       # nothing present (like at sign in)
       @patient_cases = @practitioner.involved_cases
