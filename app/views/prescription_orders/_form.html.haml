@@ -11,12 +11,11 @@
       = f.text_area :patient_instructions, value: @prescription_order.drug.try(:patient_instructions), disabled: true
       = f.text_field :created_at , value: Date.today, label: 'Rx Date',disabled: true
       = f.text_field :expiration_date , value: 30.days.from_now.to_date, label: 'Exp Dt', disabled: true
-      = f.text_field :refills 
+      = f.text_field :refills
 
       = f.select 'pharmacy_id', Pharmacy.all.map{|d| [d.name, d.id]},{include_blank: true}, class: 'form-control', data: {role: 'select2'}
-      .print-buttons
-        = link_to "Print Prescription", "#", data: {warning: 'coming-soon', message: "Printing prescriptions"}, class: "btn btn-primary send"
       .submit.pull-right
+        = link_to "Print Prescription", "#", data: {warning: 'coming-soon', message: "Printing prescriptions"}, class: "btn-standard btn btn-primary send print"
         = f.submit "Submit", class: "btn-standard btn btn-primary send"
 
   .col-sm-1
