@@ -60,6 +60,19 @@ ActiveRecord::Schema.define(version: 20140715001731) do
     t.string   "imageable_uuid"
   end
 
+  create_table "laboratory_orders", force: true do |t|
+    t.integer  "patient_id"
+    t.integer  "practitioner_id"
+    t.integer  "laboratory_id"
+    t.text     "requisition"
+    t.string   "vita_number"
+    t.datetime "due_date"
+    t.integer  "shipping_method_id"
+    t.text     "special_instructions"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "messages", force: true do |t|
     t.string   "body"
     t.integer  "sender_id"
@@ -80,9 +93,9 @@ ActiveRecord::Schema.define(version: 20140715001731) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "middle_initial"
-    t.date     "date_of_birth"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "date_of_birth"
     t.string   "title"
     t.string   "street"
     t.string   "street2"

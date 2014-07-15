@@ -3,5 +3,5 @@ class PrescriptionOrder < ActiveRecord::Base
   belongs_to :patient
   belongs_to :practitioner
   belongs_to :drug
-
 end
+
