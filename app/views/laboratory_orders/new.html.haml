@@ -6,7 +6,7 @@
     .col-sm-6
       = bootstrap_form_for(@laboratory_order,  data: {role: 'patient-form'}, layout: :horizontal) do |f|
         = select2_for(object_type: :laboratory_order, field_name: :patient, field_type: Patient, label_method: :last_first_with_dob)
-        = f.select :laboratory, ["Fred's Retainers", "Back Bay Bite Emporium", "Fischer's Molds, Inc"], {include_blank: true}, {placeholder: "Select a lab", data: {role: "select2"}}
+        = select2_for(object_type: :laboratory_order, field_name: :laboratory, field_type: Laboratory, label_method: :pretty)
         = f.text_area :requisition
         = select2_for(object_type: :laboratory_order, field_name: :vita_number, field_type: VitaNumber, label_method: :pretty)
         = f.date_field :due_date

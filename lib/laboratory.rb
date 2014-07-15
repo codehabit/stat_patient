@@ -1,4 +1,4 @@
-class ShippingMethod
+class Laboratory
   attr_accessor :value
 
   def initialize(value)
@@ -7,7 +7,7 @@ class ShippingMethod
 
   class << self
     def all
-      values = %w{USPS UPS FedEx DHL}.map {|v| self.new(v)}
+      values = ["Fred's Retainers", "Back Bay Bite Emporium", "Fischer's Molds, Inc"].map {|v| self.new(v)}
       values.define_singleton_method :decorate do
         values
       end
@@ -31,7 +31,7 @@ class ShippingMethod
   end
 
   def ==(other_object)
-    other_object.is_a?(ShippingMethod) && other_object.value == self.value
+    other_object.is_a?(Laboratory) && other_object.value == self.value
   end
 end
 
