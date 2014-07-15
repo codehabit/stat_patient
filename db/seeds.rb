@@ -52,7 +52,7 @@ unless drugs_only
   # make the demo users
   User.create(first_name: 'Bob', last_name: 'Onesto', email: 'ronesto@gmail.com', password: defpass, password_confirmation: defpass)
   User.create(first_name: 'Robb', last_name: 'Broome', email: 'robb@codehabit.net', password: defpass, password_confirmation: defpass)
-  User.create(first_name: 'David', last_name: 'Oliver', email: 'david.oliver@codehabit.net', password: defpass, password_confirmation: defpass)
+  User.create(first_name: 'David', last_name: 'Oliver', email: 'david@codehabit.net', password: defpass, password_confirmation: defpass)
   User.create(first_name: 'Alex', last_name: 'Leach', email: 'alex@codehabit.net', password: defpass, password_confirmation: defpass)
 
   wrlog 'Creating Patients'
