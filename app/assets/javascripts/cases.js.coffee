@@ -12,8 +12,8 @@ $(document).on "ready page:load", ->
   $("[data-role='zoom']").elevateZoom()
 
 $(window).load ->
-  $(".tooth-chart").annotateImage
+  $(".tooth-chart-annotate").annotateImage
     editable: true
     useAjax: true
-    getUrl: $(".tooth-chart").data("index")
-    createUrl: $(".tooth-chart").data("index")
+    getUrl: $(".tooth-chart-annotate").data("index")
+    createUrl: $(".tooth-chart-annotate").data("index")
