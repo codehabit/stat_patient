@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140711230521) do
+ActiveRecord::Schema.define(version: 20140715020230) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,21 @@ ActiveRecord::Schema.define(version: 20140711230521) do
     t.integer  "originator_id"
   end
 
+  create_table "drugs", force: true do |t|
+    t.string   "name"
+    t.string   "dispense_amount"
+    t.string   "dispense_frequency"
+    t.string   "uuid"
+    t.text     "adult_dosing"
+    t.text     "peds_dosing"
+    t.text     "contraindications"
+    t.text     "dosage_forms"
+    t.text     "pharmacy_instructions"
+    t.text     "patient_instructions"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "images", force: true do |t|
     t.string   "asset_file_name"
     t.string   "asset_content_type"
@@ -45,6 +60,19 @@ ActiveRecord::Schema.define(version: 20140711230521) do
     t.string   "imageable_uuid"
   end
 
+  create_table "laboratory_orders", force: true do |t|
+    t.integer  "patient_id"
+    t.integer  "practitioner_id"
+    t.integer  "laboratory_id"
+    t.text     "requisition"
+    t.string   "vita_number"
+    t.datetime "due_date"
+    t.integer  "shipping_method_id"
+    t.text     "special_instructions"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "messages", force: true do |t|
     t.string   "body"
     t.integer  "sender_id"
@@ -54,6 +82,11 @@ ActiveRecord::Schema.define(version: 20140711230521) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "uuid"
+  end
+
+  create_table "organizations", force: true do |t|
+    t.string "organization_type"
+    t.string "name"
   end
 
   create_table "patients", force: true do |t|
@@ -86,6 +119,21 @@ ActiveRecord::Schema.define(version: 20140711230521) do
     t.string   "specialty"
     t.string   "phone"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "prescription_orders", force: true do |t|
+    t.integer  "patient_id"
+    t.integer  "practitioner_id"
+    t.integer  "drug_id"
+    t.string   "dispense"
+    t.text     "instructions"
+    t.text     "patient_instructions"
+    t.date     "expiration_date"
+    t.integer  "refills"
+    t.integer  "pharmacy_id"
+    t.string   "rx_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -7,5 +7,6 @@ class Case < ActiveRecord::Base
   accepts_nested_attributes_for :messages
   validates :recipient, presence: true
   validates :patient, presence: true
+
 end
 

@@ -9,10 +9,5 @@ $(document).on "ready page:load", ->
     previewsContainer: "[data-role='image-previews']"
   )
 
-# $(document).on "click", "[data-toggle='modal']", ->
-#   trigger = $(this)
-#   modal = $(trigger.data("target"))
-#   console.log(modal)
-#   modal.modal()
-
   $("[data-role='zoom']").elevateZoom()
+

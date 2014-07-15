@@ -4,5 +4,10 @@ class Patient < ActiveRecord::Base
   has_many :cases
   has_many :messages
   has_many :images, as: :imageable
+  has_many :prescription_orders
+
+  def practitioners
+    cases.map(&:originator)
+  end
 end
 

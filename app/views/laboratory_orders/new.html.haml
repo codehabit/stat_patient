@@ -1,0 +1,25 @@
+.case-form.lab-form
+  .row.body-element
+    %span.body-title
+      New Lab Order
+  .row.body-element
+    .col-sm-6
+      = bootstrap_form_for(@laboratory_order,  data: {role: 'patient-form'}, layout: :horizontal) do |f|
+        = select2_for(object_type: :laboratory_order, field_name: :patient, field_type: Patient, label_method: :last_first_with_dob)
+        = select2_for(object_type: :laboratory_order, field_name: :laboratory, field_type: Laboratory, label_method: :name)
+        = f.text_area :requisition
+        = select2_for(object_type: :laboratory_order, field_name: :vita_number, field_type: VitaNumber, label_method: :pretty)
+        = f.date_field :due_date
+        = select2_for(object_type: :laboratory_order, field_name: :shipping_method, field_type: ShippingMethod, label_method: :pretty)
+        .print-buttons
+          = link_to "Print ship label", "#", class: "btn btn-primary send"
+          = link_to "Print packing slip", "#", class: "btn btn-primary send"
+        .pull-right.submit
+          = f.submit "Place order", class: "btn-standard btn btn-primary send"
+    .col-sm-6.dropzone-container
+      = render "shared/images_drag_and_drop"
+    .col-sm-6
+      .large-input
+        = text_area_tag :special_instructions, nil, rows: 10, placeholder: "Special instructions"
+.row.body-element
+  .dropzone{data: {role: "image-previews"}}

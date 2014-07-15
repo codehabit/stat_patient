@@ -1,0 +1,33 @@
+.row
+  .col-sm-6
+    = bootstrap_form_for(@prescription_order,  data: {role: 'patient-form'}, layout: :horizontal) do |f|
+      = f.text_field :rx_id, label: "Rx ID", disabled: true
+      = f.hidden_field :rx_id
+      = f.select 'patient_id', Patient.all.map{|d| [d.decorate.last_first_with_dob, d.id]},{include_blank: true}, data: {role: 'select2'}
+      = f.select 'practitioner_id', Practitioner.all.map{|d| [d.full_name, d.id]},{include_blank: true}, data: {role: 'select2'}
+      = f.select 'drug_id', Drug.all.map{|d| [d.name, d.id]},{include_blank: true}, data: {change: 'update-form', role: 'select2'}
+      = f.text_field :dispense, value: @prescription_order.drug.try(:dispense), disabled: true
+      = f.text_area :pharmacy_instructions, value: @prescription_order.drug.try(:pharmacy_instructions), label: 'Rx Instructions', disabled: true
+      = f.text_area :patient_instructions, value: @prescription_order.drug.try(:patient_instructions), disabled: true
+      = f.text_field :created_at , value: Date.today, label: 'Rx Date',disabled: true
+      = f.text_field :expiration_date , value: 30.days.from_now.to_date, label: 'Exp Dt', disabled: true
+      = f.text_field :refills 
+
+      = f.select 'pharmacy_id', Pharmacy.all.map{|d| [d.name, d.id]},{include_blank: true}, class: 'form-control', data: {role: 'select2'}
+      .print-buttons
+        = link_to "Print Prescription", "#", data: {warning: 'coming-soon', message: "Printing prescriptions"}, class: "btn btn-primary send"
+      .submit.pull-right
+        = f.submit "Submit", class: "btn-standard btn btn-primary send"
+
+  .col-sm-1
+  .col-sm-5
+    .body-title Monograph
+    .monograph
+      %dl.dl-horizontal
+        %dt Adult Dosing
+        %dd= @prescription_order.drug.try :adult_dosing
+        %dt Peds Dosing
+        %dd= @prescription_order.drug.try :peds_dosing
+        %dt Contraindications & Cautions
+        %dd= @prescription_order.drug.try :contraindications
+
