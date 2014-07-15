@@ -11,7 +11,7 @@ class CasesController < ApplicationController
   def create
     @case = Case.new(case_params)
     if @case.valid?
-      CaseBuilder.originate(@case)
+      CaseBuilder.originate(@case, request)
       redirect_to cases_path
     else
       render action: :new
@@ -22,7 +22,7 @@ class CasesController < ApplicationController
     @case = Case.find(params[:id])
     @case.attributes = case_params
     if @case.valid?
-      CaseBuilder.reply(@case)
+      CaseBuilder.reply(@case, request)
       redirect_to case_path(@case)
     else
       render action: :show

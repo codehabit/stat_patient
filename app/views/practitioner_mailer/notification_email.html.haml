@@ -13,4 +13,4 @@
       Notes:
       %span= @message.body
     %p
-      %span= link_to("View the message here", "#{AppSettings.url}#{case_path(@case)}")
+      %span= link_to("View the message here", "#{Url.from_request(@request)}#{case_path(@case)}")
