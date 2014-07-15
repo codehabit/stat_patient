@@ -1,3 +1,3 @@
 class OrganizationDecorator < Draper::Decorator
-  delegete_all
+  delegate_all
 end
