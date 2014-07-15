@@ -28,9 +28,9 @@ ready = ->
  # $('#_patient').change ->
  #   $(this).closest('form').submit()
 
- # $('[data-role="coming-soon"]').hover ->
- #   message =  $(this).data('message') + ' is coming soon.'
- #   $(this).tooltip( title: message)
+ $('[data-warning="coming-soon"]').hover ->
+   message =  $(this).data('message') + ' is coming soon.'
+   $(this).tooltip( title: message)
 
 $(document).ready(ready)
 $(document).on('page:load', ready)

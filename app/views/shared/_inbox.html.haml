@@ -19,6 +19,6 @@
     .col-lg-3{data: {role: 'link-selector', target: case_url(rcase)}}
       = rcase.messages.order("created_at DESC").first.sender.full_name
     .col-lg-2.deleter
-      = link_to "javascript:null(0);", data: {role: 'coming-soon', message: "Archive this case"} do
+      = link_to "javascript:null(0);", data: {warning: 'coming-soon', message: "Archive this case"} do
         %i.fa.fa-archive
 

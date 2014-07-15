@@ -14,8 +14,10 @@
       = f.text_field :refills 
 
       = f.select 'pharmacy_id', Pharmacy.all.map{|d| [d.name, d.id]},{include_blank: true}, class: 'form-control', data: {role: 'select2'}
-      .pull-right.submit
-        = f.submit "Submit", class: "btn-standard btn btn-primary"
+      .print-buttons
+        = link_to "Print Prescription", "#", data: {warning: 'coming-soon', message: "Printing prescriptions"}, class: "btn btn-primary send"
+      .submit.pull-right
+        = f.submit "Submit", class: "btn-standard btn btn-primary send"
 
   .col-sm-1
   .col-sm-5
