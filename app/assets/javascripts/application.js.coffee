@@ -26,4 +26,5 @@
 # = require jquery.zoom
 # = require images
 # = require elevatezoom-master/jquery.elevatezoom
-
+# = require jquery.annotate
+#

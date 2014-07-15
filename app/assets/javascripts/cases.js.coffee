@@ -11,3 +11,7 @@ $(document).on "ready page:load", ->
 
   $("[data-role='zoom']").elevateZoom()
 
+$(window).load ->
+  $(".adult-tooth-chart").annotateImage
+    editable: true
+    useAjax: false
