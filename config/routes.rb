@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :cases
   resources :images
   resources :prescription_orders
+  resources :laboratory_orders
   root to: "home#index"
   get 'coming_soon', to: 'home#coming_soon'
   post 'select_patient', to: 'home#index'
