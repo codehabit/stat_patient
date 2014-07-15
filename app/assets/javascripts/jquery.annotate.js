@@ -400,9 +400,12 @@
 
                 $.fn.annotateImage.appendPosition(form, editable)
 
+                var annotationId = form.find("[name='annotation[id]']").val();
+
                 if (annotation.image.useAjax) {
                     $.ajax({
-                        url: annotation.image.deleteUrl,
+                        url: annotation.image.deleteUrl + "/" + annotationId,
+                        type: "DELETE",
                         data: form.serialize(),
                         error: function(e) { alert("An error occured deleting that note.") }
                     });

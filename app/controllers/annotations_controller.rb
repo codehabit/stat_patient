@@ -17,6 +17,9 @@ class AnnotationsController < ApplicationController
   end
 
   def destroy
+    annotation = @tooth_chart.annotations.find(params[:id])
+    annotation.destroy!
+    head :ok
   end
 
   private
