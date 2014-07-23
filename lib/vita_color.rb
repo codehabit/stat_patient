@@ -1,4 +1,4 @@
-class VitaNumber
+class VitaColor
   attr_accessor :value
 
   def initialize(value)
