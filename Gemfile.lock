@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/rweng/jquery-datatables-rails.git
+  revision: ee838ffc755e7c205a416870efb4f27400eb2c53
+  specs:
+    jquery-datatables-rails (2.1.10.0.3)
+      jquery-rails
+      sass-rails
+
+GIT
   remote: git://github.com/thoughtbot/paperclip.git
   revision: a424b82daed0247d5926ddbff14dffb8553b1695
   specs:
@@ -118,6 +126,7 @@ GEM
       i18n (~> 0.5)
     font-awesome-sass (4.1.0)
       sass (~> 3.2)
+    gs (0.2.0)
     haml (4.0.5)
       tilt
     hike (1.2.3)
@@ -140,6 +149,8 @@ GEM
     kgio (2.9.2)
     launchy (2.4.2)
       addressable (~> 2.3)
+    lodash-rails (2.4.1)
+      railties (>= 3.1)
     macaddr (1.7.1)
       systemu (~> 2.6.2)
     mail (2.5.4)
@@ -299,14 +310,17 @@ DEPENDENCIES
   factory_girl_rails
   faker
   font-awesome-sass
+  gs
   haml
   jbuilder (~> 2.0)
+  jquery-datatables-rails!
   jquery-rails
   jquery-ui-rails
   jquery-zoom-rails
   jquery_total_storage_rails
   kaminari
   launchy
+  lodash-rails
   nested_form
   paperclip!
   pg

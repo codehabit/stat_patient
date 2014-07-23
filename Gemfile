@@ -31,6 +31,9 @@ gem 'faker'
 gem 'uuid'
 gem 'jquery_total_storage_rails'
 gem 'jquery-zoom-rails'
+gem 'gs'
+gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
+gem 'lodash-rails'
 
 group :development do
   gem 'spring'

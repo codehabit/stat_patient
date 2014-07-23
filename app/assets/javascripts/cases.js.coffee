@@ -18,3 +18,4 @@ $(window).load ->
     getUrl: $(".tooth-chart-annotate").data("index")
     createUrl: $(".tooth-chart-annotate").data("index")
     deleteUrl: $(".tooth-chart-annotate").data("index")
+

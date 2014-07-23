@@ -26,4 +26,8 @@
 # = require images
 # = require elevatezoom-master/jquery.elevatezoom
 # = require jquery.annotate
+# = require dataTables/jquery.dataTables
+# = require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+# = require dataTables/extras/dataTables.responsive
+# = require dataTablesInit
 #

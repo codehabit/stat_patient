@@ -1,24 +1,25 @@
-.row.inbox-header
-  .col-lg-3 Started By
-  .col-lg-4 To: Subject
-  .col-lg-3 Last Reply By
-  .col-lg-2 Archive
-
-- @patient_cases.each do |rcase|
-  .row.inbox-content{data: {role: 'row-selector'}}
-    .col-lg-3{data: {role: 'link-selector', target: case_url(rcase)}}
-      .base= rcase.originator.full_name
-      .meta= rcase.created_at.strftime("%B %d, %l:%M %p")
-
-    .col-lg-4{data: {role: 'link-selector', target: case_url(rcase)}}
-      .base
-        = rcase.recipient.first_name
-        = ":"
-        %span.subject= rcase.subject
-      .meta Unread
-    .col-lg-3{data: {role: 'link-selector', target: case_url(rcase)}}
-      = rcase.messages.order("created_at DESC").first.sender.full_name
-    .col-lg-2.deleter
-      = link_to "javascript:null(0);", data: {warning: 'coming-soon', message: "Archive this case"} do
-        %i.fa.fa-archive
+-# %table.table
+%table{data: {role: "datatableized"}}
+  %thead.inbox-header
+    %th.col-lg-3{data: {class: "expand"}} Started By
+    %th.col-lg-4{data: {hide: "phone", name: "To"}} To: Subject
+    %th.col-lg-3{data: {hide: "phone", name: "Replied By"}} Last Reply By
+    %th.col-lg-2{data: {hide: "phone", name: "X"}} Archive
+  %tbody
+    - @patient_cases.each do |rcase|
+      %tr.inbox-content
+        %td.col-lg-3
+          .base= rcase.originator.full_name
+          .meta= rcase.created_at.strftime("%B %d, %l:%M %p")
+        %td.col-lg-4
+          .base
+            = rcase.recipient.first_name
+            = ":"
+            %span.subject= rcase.subject
+          .meta Unread
+        %td.col-lg-3
+          = rcase.messages.order("created_at DESC").first.sender.full_name
+        %td.col-lg-2
+          = link_to "javascript:null(0);", data: {warning: 'coming-soon', message: "Archive this case"} do
+            %i.fa.fa-archive
 
