@@ -3,6 +3,7 @@
     %th.col-lg-3{data: {class: "expand"}} Started By
     %th.col-lg-4{data: {hide: "phone", name: "To"}} To: Subject
     %th.col-lg-3{data: {hide: "phone", name: "Replied By"}} Last Reply By
+    %th.col-lg-3{data: {hide: "phone", name: "On"}} Replied On
     %th.col-lg-2{data: {hide: "phone", name: "X"}} Archive
   %tbody
     - @patient_cases.each do |rcase|
@@ -16,8 +17,12 @@
             = ":"
             %span.subject= rcase.subject
           .meta Unread
+        - most_recent = rcase.messages.order("created_at DESC").first
         %td.col-lg-3{data: {role: 'link-selector', target: case_url(rcase)}}
-          = rcase.messages.order("created_at DESC").first.sender.full_name
+          = most_recent.sender.full_name
+        %td.col-lg-3{data: {role: 'link-selector', target: case_url(rcase)}}
+          .meta= most_recent.created_at.strftime("%b %d")
+          .meta= most_recent.created_at.strftime("%l:%M %p")
         %td.col-lg-2.deleter
           = link_to "javascript:null(0);", data: {warning: 'coming-soon', message: "Archive this case"} do
             %i.fa.fa-archive
