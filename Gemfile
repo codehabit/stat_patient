@@ -34,6 +34,7 @@ gem 'jquery-zoom-rails'
 gem 'gs'
 gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 gem 'lodash-rails'
+gem 'chewy'
 
 group :development do
   gem 'spring'
