@@ -12,10 +12,11 @@ $(document).on "ready page:load", ->
   $("[data-role='zoom']").elevateZoom()
 
 $(window).load ->
-  $(".tooth-chart-annotate").annotateImage
-    editable: true
-    useAjax: true
-    getUrl: $(".tooth-chart-annotate").data("index")
-    createUrl: $(".tooth-chart-annotate").data("index")
-    deleteUrl: $(".tooth-chart-annotate").data("index")
+  if $(".tooth-chart-annotate").length > 0
+    $(".tooth-chart-annotate").annotateImage
+      editable: true
+      useAjax: true
+      getUrl: $(".tooth-chart-annotate").data("index")
+      createUrl: $(".tooth-chart-annotate").data("index")
+      deleteUrl: $(".tooth-chart-annotate").data("index")
 
