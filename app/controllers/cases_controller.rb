@@ -33,8 +33,9 @@ class CasesController < ApplicationController
     @uuid = UUID.generate
     @case = Case.find(params[:id])
     if @case.recipient.user != current_user && @case.originator.user != current_user
-      redirect_to cases_path
+      redirect_to root_path
     end
+    @case.update(read: true)
   end
 
   def edit

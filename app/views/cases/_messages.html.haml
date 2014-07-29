@@ -10,9 +10,8 @@
         %li
           = message.body
         %li
-          - if message.attachments.present?
-            - message.attachments.each do |attachment|
-              -# = render "shared/image_modal", image: image
-              = link_to "#", class: "button", role: "button", data: {toggle: "modal", target: "[data-role='#{attachment.asset_file_name}-viewer']"} do
-                = image_tag attachment.asset.url(:thumb), data: {"zoom-image" => attachment.asset.url(:original), role: "zoom"}
+          - message.attachments.each do |attachment|
+            -# = render "shared/image_modal", image: image
+            = link_to "#", class: "button", role: "button", data: {toggle: "modal", target: "[data-role='#{attachment.asset_file_name}-viewer']"} do
+              = image_tag attachment.asset.url(:thumb), data: {"zoom-image" => attachment.asset.url(:original), role: "zoom"}
 

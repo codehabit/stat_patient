@@ -7,7 +7,7 @@
     %th.col-lg-2{data: {hide: "phone", name: "X"}} Archive
   %tbody
     - @patient_cases.each do |rcase|
-      %tr.inbox-content{data: {role: 'row-selector'}}
+      %tr.inbox-content{data: {role: 'row-selector'}, class: rcase.read? ? "read" : "unread"}
         %td.col-lg-3{data: {role: 'link-selector', target: case_url(rcase)}}
           .base= rcase.originator.full_name
           .meta= rcase.created_at.strftime("%B %d, %l:%M %p")
@@ -16,7 +16,7 @@
             = rcase.recipient.first_name
             = ":"
             %span.subject= rcase.subject
-          .meta Unread
+          .meta= "Unread" unless rcase.read?
         - most_recent = rcase.messages.order("created_at DESC").first
         %td.col-lg-3{data: {role: 'link-selector', target: case_url(rcase)}}
           = most_recent.sender.full_name
