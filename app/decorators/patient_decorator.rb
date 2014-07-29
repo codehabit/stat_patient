@@ -17,5 +17,14 @@ class PatientDecorator < Draper::Decorator
   def last_first_with_dob
     "#{last_first_name} - #{object.date_of_birth.strftime("%m/%d/%Y")}"
   end
+
+  def years_old
+    (Date.today - object.date_of_birth).to_i / 365
+  end
+
+  def pt_description
+    "#{years_old} yo #{object.gender}"
+  end
+
 end
 

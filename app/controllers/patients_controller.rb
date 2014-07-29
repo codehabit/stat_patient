@@ -17,6 +17,15 @@ class PatientsController < ApplicationController
 
   def show
     @patient = Patient.find(params[:id]).decorate
+    session[:patient] = @patient.id
+
+    respond_to do |format|
+      format.html
+      format.json do
+        patient_attr = @patient.attributes.merge('age' => @patient.years_old)
+        render json: patient_attr.to_json
+      end
+    end
   end
 
   def update

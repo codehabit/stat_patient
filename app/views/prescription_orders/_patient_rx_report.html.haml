@@ -1,0 +1,33 @@
+- po = @prescription_order
+- @patient = po.patient
+.row
+  .col-md-1
+    Time
+    = po.created_at.strftime("%I:%M %p")
+  .col-md-10
+    = po.practice.name
+  .col-md-1
+    Date
+    = po.created_at.strftime("%m/%d/%Y")
+.row
+  .col-md-12
+    Patient Prescription Report
+.row
+  .col-md-4.col-xs-4 Rx ID:
+  .col-md-4.col-xs-4= po.uuid
+.row
+  .col-md-4.col-xs-4 Prescribed By:
+  .col-md-4.col-xs-4= po.practitioner.full_name
+.row
+  .col-md-4.col-xs-4 Patient:
+  .col-md-4.col-xs-4
+    %p= po.patient.full_name
+    %p= po.patient.address
+  .col-md-4.col-xs-4
+    %p= po.patient.home_phone
+    %p= l po.patient.date_of_birth
+    %p= l po.created_at
+    %p= l po.expiration_date
+
+
+

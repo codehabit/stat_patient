@@ -7,7 +7,10 @@ Rails.application.routes.draw do
     resources :annotations, only: [:index, :create, :update, :destroy]
   end
   resources :attachments
-  resources :prescription_orders
+  resources :prescription_orders do
+    get :print, on: :member
+  end
+  resources :drugs
   resources :laboratory_orders
   root to: "home#index"
   get 'coming_soon', to: 'home#coming_soon'

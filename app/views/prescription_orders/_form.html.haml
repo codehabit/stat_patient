@@ -3,17 +3,21 @@
     = bootstrap_form_for(@prescription_order,  data: {role: 'patient-form'}, layout: :horizontal) do |f|
       = f.text_field :rx_id, label: "Rx ID", disabled: true
       = f.hidden_field :rx_id
-      = f.select 'patient_id', Patient.all.map{|d| [d.decorate.last_first_with_dob, d.id]},{include_blank: true}, data: {role: 'select2'}
-      = f.select 'practitioner_id', Practitioner.all.map{|d| [d.full_name, d.id]},{include_blank: true}, data: {role: 'select2'}
-      = f.select 'drug_id', Drug.all.map{|d| [d.name, d.id]},{include_blank: true}, data: {change: 'update-form', role: 'select2'}
-      = f.text_field :dispense, value: @prescription_order.drug.try(:dispense), disabled: true
-      = f.text_area :pharmacy_instructions, value: @prescription_order.drug.try(:pharmacy_instructions), label: 'Rx Instructions', disabled: true
-      = f.text_area :patient_instructions, value: @prescription_order.drug.try(:patient_instructions), disabled: true
-      = f.text_field :created_at , value: Date.today, label: 'Rx Date',disabled: true
-      = f.text_field :expiration_date , value: 30.days.from_now.to_date, label: 'Exp Dt', disabled: true
+      = f.select 'patient_id', Patient.all.map{|d| [d.decorate.last_first_with_dob, d.id]},{include_blank: true}, data: {type: 'select2', change: 'update-pt'}
+      .form-group
+        .col-sm-2
+        .col-sm-10.pt-info
+          = @patient.try(:pt_description)
+      = f.select 'practitioner_id', Practitioner.all.map{|d| [d.full_name, d.id]},{include_blank: true }, data: {type: 'xselect2'}
+      = f.select 'drug_id', Drug.all.map{|d| [d.name, d.id]},{label: 'Rx', include_blank: true}, data: {type: 'select2', attr: 'drug_id', change: 'update-rx'}
+      = f.text_field :dispense_amount
+      = f.text_area :rx_instructions, label: 'SIG'
+      = f.text_area :patient_instructions
+      = f.date_field :created_at, disabled: true, label: 'Created'
+      = f.date_field :expiration_date,  label: 'Expires'
       = f.text_field :refills
 
-      = f.select 'pharmacy_id', Pharmacy.all.map{|d| [d.name, d.id]},{include_blank: true}, class: 'form-control', data: {role: 'select2'}
+      = f.select 'pharmacy_id', Pharmacy.all.map{|d| [d.name, d.id]},{include_blank: true}, class: 'form-control', data: {type: 'select2'}
       .submit.pull-right
         = link_to "Print Prescription", "#", data: {warning: 'coming-soon', message: "Printing prescriptions"}, class: "btn-standard btn btn-primary send print"
         = f.submit "Submit", class: "btn-standard btn btn-primary send"
@@ -22,11 +26,15 @@
   .col-sm-5
     .body-title Monograph
     .monograph
-      %dl.dl-horizontal
-        %dt Adult Dosing
-        %dd= @prescription_order.drug.try :adult_dosing
-        %dt Peds Dosing
-        %dd= @prescription_order.drug.try :peds_dosing
-        %dt Contraindications & Cautions
-        %dd= @prescription_order.drug.try :contraindications
+      %p.drug-attr#title= @prescription_order.drug.try :name
+      %p.drug-attr Adult Dosing
+      %p.drug-desc#adult_dosing= @prescription_order.drug.try :adult_dosing
+      %p.drug-attr Peds Dosing
+      %p.drug-desc#peds_dosing= @prescription_order.drug.try :peds_dosing
+      %p.drug-attr Contraindications & Cautions
+      %p.drug-desc#contraindications= @prescription_order.drug.try :contraindications
+      %p.drug-attr Interactions
+      %p.drug-desc#interactions= @prescription_order.drug.try :interactions
+      %p.drug-attr Pregnancy / Lactating Precautions
+      %p.drug-desc#pregnancy_lactating_precautions= @prescription_order.drug.try :pregnancy_lactating_precautions
 

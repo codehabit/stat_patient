@@ -2,13 +2,19 @@ class Practitioner < ActiveRecord::Base
   belongs_to :user, autosave: true
   has_many :prescription_orders
 
+  has_many :organization_memberships
+  has_many :memberships, through: :organization_memberships, source: :organization
+
   def full_name
     "#{first_name} #{last_name}"
   end
+
   has_many :originations, foreign_key: :originator_id, class_name: Case
   has_many :received_cases, as: :recipient, class_name: Case
   has_many :sent_messages, foreign_key: :sender_id, class_name: Message
   has_many :received_messages, as: :recipient, class_name: Message
+  has_many :contact_points, as: :contactable
+  has_many :addresses, as: :addressable
 
   def patients
     (originations.map(&:patient) + received_cases.map(&:patient)).uniq

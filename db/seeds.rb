@@ -7,37 +7,142 @@ require 'csv'
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-def wrlog arg
-  STDOUT.print arg
-end
-
-drugs_only = false
+make_drugs  = true
+make_dentists = true
 
 delete_all = true
 dentist_file = 'data/iowa_dentists_specialists.csv'
 drugs_file = 'data/drugs_list.csv'
-force_valid_email = true
-force_safe_email = true
+
 cases_per_practitioner = (1..2).to_a
 messages_per_case = (2..3).to_a
 system_age_range_days = (10..720)
 today = Date.today
 user_count = 100
 patient_count = 100
+organization_count = 300
 specialties = Specialty.all.map(&:pretty)
 birthday_day_range = (1092..32850).to_a
 marital_status = MaritalStatus.all
 
-random = Random.new
 
 bad_count = 0
 good_count = 0
 
+def force_safe_email; true; end
 
-unless drugs_only
+def helper
+  @helper ||= ActionController::Base.helpers
+end
+
+def filler(range = (20..40))
+  Faker::Lorem.sentence(random.rand(range))
+end
+
+def pluralize(amt, thing)
+  helper.pluralize(amt, thing)
+end
+
+def random
+  @random ||= Random.new
+end
+
+def wrlog arg
+  STDOUT.print arg
+end
+
+def password
+  Faker::Internet.password(9)
+end
+
+def invalid_data row
+ row['first_name'].blank? || row['last_name'].blank?
+end
+
+def user_email row
+  force_safe_email ? Faker::Internet.safe_email : row['email1']
+end
+
+def create_practitioner user, practice, row
+  practitioner = Practitioner.create(user_id: user.id, first_name: user.first_name, last_name: user.last_name, salutation: row['salutation'], suffix: row['suffix'], title: row['title'], specialty: row['specialty'])
+
+  user.update_attribute( :practitioner, practitioner)
+
+  practice.members << practitioner
+  practice.save
+
+  practitioner
+end
+
+def create_practice row
+  # todo: check for previous existance
+  org = Practice.create name: row['office']
+  org.addresses <<  Address.create(address1: row['primary_address_street'], city: row['primary_address_city'], state: row['primary_address_state'], postal_code: row['primary_address_postalcode'])
+
+  contacts= {work_phone: row['phone_work'], work_fax: row['phone_fax'], mobile_phone: row['phone_mobile'], email: row['email1'], website: row['website']}
+
+  contacts.each do |type, info|
+    next if info.blank?
+    org.contact_points << ContactPoint.create(contact_type: type.to_s, info: info)
+  end
+  org.save
+  org.reload
+end
+
+
+def instructions
+  type = %w(tabs liquid).sample
+  hits = random.rand(1..4)
+  dose = ['mg', 'mcg'].sample
+  dose_hits = random.rand(4..20)
+  times = random.rand(1..3)
+  frequency = [1,2,3,4,6,8,12].sample
+
+  if type == 'tabs'
+    amt = [10, 12, 15, 24, 30, 45, 60].sample
+    unit = ['pill', 'capsule'].sample
+
+    dispense = [pluralize(amt, unit)].sample
+
+
+    instr = ["#{pluralize(hits, unit)}  #{pluralize(times, 'time')} per day.",
+      "#{pluralize(hits, unit)} every #{pluralize(frequency, 'hour')}."].sample
+    dose_instr = ["#{dose_hits} #{dose}  #{pluralize(times, 'time')} per day.",
+      "#{dose_hits} #{dose} every #{pluralize(frequency, 'hour')}."].sample
+    dose_instr_pd = ["#{dose_hits} #{dose}  #{pluralize(times, 'time')} per day.",
+      "#{dose_hits} #{dose} every #{pluralize(frequency, 'hour')}."].sample
+    {
+      disp: dispense,
+      rx_instructions: "Take #{instr}",
+      dose_ad: dose_instr,
+      dose_pd: dose_instr_pd,
+    }
+  elsif type == 'liquid'
+    quant = [4, 6, 8, 10, 12, 16, 32].sample
+    dispense = [pluralize(quant, 'ounce')].sample
+    unit = %w(teaspoon tablespoon).sample
+    instr = ["#{pluralize(hits, unit)}  #{pluralize(times, 'time')} per day.",
+      "#{pluralize(hits, unit)} every #{pluralize(frequency, 'hour')}."].sample
+    dose_instr = ["#{dose_hits} #{dose}  #{pluralize(times, 'time')} per day.",
+      "#{dose_hits} #{dose} every #{pluralize(frequency, 'hour')}."].sample
+    dose_instr_pd = ["#{dose_hits} #{ dose}  #{pluralize(times, 'time')} per day.",
+      "#{dose_hits} #{ dose} every #{pluralize(frequency, 'hour')}."].sample
+    {
+      disp: dispense,
+      rx_instructions: "Take #{instr}",
+      dose_ad: dose_instr,
+      dose_pd: dose_instr_pd,
+    }
+  end
+
+end
+
+
+if make_dentists
   if delete_all
-    wrlog 'Deleting all'
+    wrlog 'Deleting all dentists'
     User.delete_all
+    Organization.delete_all
     Practitioner.delete_all
     Patient.delete_all
     Case.delete_all
@@ -55,7 +160,18 @@ unless drugs_only
   User.create(first_name: 'David', last_name: 'Oliver', email: 'david@codehabit.net', password: defpass, password_confirmation: defpass)
   User.create(first_name: 'Alex', last_name: 'Leach', email: 'alex@codehabit.net', password: defpass, password_confirmation: defpass)
 
-  wrlog 'Creating Patients'
+  wrlog "\n Make #{organization_count} pharmacies and labs"
+  ActiveRecord::Base.transaction do
+    organization_count.times.map do |t|
+      wrlog '.'
+      Laboratory.create name: Faker::Company.name
+    end
+    organization_count.times.map do |t|
+      wrlog '.'
+      Pharmacy.create name: Faker::Company.name
+    end
+  end
+  wrlog "Creating #{patient_count} Patients"
   patients = []
   ActiveRecord::Base.transaction do
     patient_count.times.map do
@@ -90,26 +206,37 @@ unless drugs_only
 
   wrlog "\n"
   if dentist_file.present?
-    wrlog "Making dentists from file #{dentist_file}"
+    wrlog "Making dentists and practices from file #{dentist_file}"
+
+    limit = 100
+    count = 0
     ActiveRecord::Base.transaction do
       CSV.foreach(dentist_file, headers: true) do |row|
-        next if row['first_name'].blank? || row['last_name'].blank?
-        password = Faker::Internet.password(9)
-        user_email = force_safe_email  ? Faker::Internet.safe_email : row['email1']
-        user = User.create(first_name: row['first_name'], last_name: row['last_name'], email: user_email, password: password, password_confirmation: password)
-        if !user.valid? && force_valid_email
-          # just ignore if this fails because of unique constraint. That's rare.
-          user.update_attribute(:email, Faker::Internet.safe_email) rescue nil
+        count += 1
+        break if count > limit
+
+        practice = create_practice(row)
+
+        next if invalid_data(row)
+
+        pw = password
+        user = User.create(email: user_email(row), first_name: row['first_name'], last_name: row['last_name'], password: pw, password_confirmation: pw)
+
+        if !user.valid?
+          # just ignore if this fails because of unique constraint, because it's rare
+          user.update_attribute(:email, user_email(row)) rescue nil
         end
+
         if user.valid?
-          practitioners << Practitioner.create(user_id: user.id, first_name: user.first_name, last_name: user.last_name, email: user.email, specialty: row['specialty'], phone: row['phone_work'])
+          practitioners << create_practitioner(user, practice, row)
           good_count += 1
           wrlog '.'
+
         else
           bad_count += 1
           wrlog 'x'
-        end
 
+        end
       end
     end
 
@@ -124,10 +251,12 @@ unless drugs_only
 
   wrlog "\n"
 
+  # backfill practitioner
   User.all.each do |user|
     next if user.practitioner.present?
     wrlog "making a practitioner for #{user.full_name} \n"
-    practitioners << Practitioner.create(user_id: user.id, first_name: user.first_name, last_name: user.last_name, email: user.email, specialty: specialties.sample, phone: Faker::PhoneNumber.cell_phone)
+    practitioners << Practitioner.create(user_id: user.id, first_name: user.first_name, last_name: user.last_name, specialty: specialties.sample)
+    #TODO: make practice, addresses, contact points
   end
 
   wrlog "Making Cases"
@@ -163,53 +292,51 @@ unless drugs_only
   end
 end
 
-Drug.delete_all
-Organization.delete_all
-PrescriptionOrder.delete_all
-
-wrlog "\n Make drugs"
-ActiveRecord::Base.transaction do
-  drug_names = []
-  CSV.foreach(drugs_file, headers: false) do |row|
-    next if row[0].blank?
-    name = row[0].split('- ').first
-    drug_names << name
+if make_drugs
+  if delete_all
+    wrlog "\n Delete all drugs and Rx"
+    Drug.delete_all
+    PrescriptionOrder.delete_all
   end
-  drug_names.each do |drug|
-    Drug.create name: drug, dispense_amount: '4 tabs', dispense_frequency: 'Twice per day', 
-      uuid: SecureRandom.uuid, adult_dosing: '4 pills twice per day', peds_dosing: '1 pill twice per day', contraindications: 'None known', 
-      pharmacy_instructions: Faker::Lorem.sentence(3), patient_instructions: Faker::Lorem.sentence(3)
-    wrlog drug
+
+  wrlog "\n Make drugs and Rx"
+  ActiveRecord::Base.transaction do
+    drug_names = []
+    CSV.foreach(drugs_file, headers: false) do |row|
+      next if row[0].blank?
+      name = row[0].split('- ').first
+      drug_names << name
+    end
+    med_types = %w(tablets spoonfulls capsules lozenges)
+    drug_names.each do |drug|
+      instr = instructions
+      Drug.create name: drug, dispense_amount: instr[:disp],
+        uuid: SecureRandom.uuid, adult_dosing: instr[:dose_ad], peds_dosing: instr[:dose_pd], contraindications: filler,
+        rx_instructions: instr[:rx_instructions], patient_instructions: filler, interactions: filler, pregnancy_lactating_precautions: %w(A B C D X N).sample
+      wrlog drug
+    end
   end
-end
 
-wrlog "\n Make orgs"
-org_types = %w(pharmacy laboratory practice)
-ActiveRecord::Base.transaction do
-  300.times.map do |t|
-    wrlog '.'
-    Organization.create name: Faker::Company.name, organization_type: org_types.sample
-  end
-end
 
-patient_count = Patient.count
-practitioner_count = Practitioner.count
-drug_count = Drug.count
-pharmacy_count = Pharmacy.count
+  patient_count = Patient.count
+  practitioner_count = Practitioner.count
+  drug_count = Drug.count
+  pharmacy_count = Pharmacy.count
 
-drugs = Drug.all
-pharmacies = Pharmacy.all
+  drugs = Drug.all
+  pharmacies = Pharmacy.all
 
-wrlog "\n Make prescriptions"
-ActiveRecord::Base.transaction do
-  Patient.all.each do |patient|
-    practitioner = patient.practitioners.sample
-    pharmacy = pharmacies.sample
-    drug = drugs.sample
+  wrlog "\n Make prescriptions"
+  ActiveRecord::Base.transaction do
+    Patient.all.each do |patient|
+      practitioner = patient.practitioners.sample
+      pharmacy = pharmacies.sample
+      drug = drugs.sample
 
-    rx  = PrescriptionOrder.create rx_id: SecureRandom.uuid, practitioner: practitioner, patient: patient, drug: drug, pharmacy: pharmacy
-    rx.update_attribute :created_at, patient.created_at
-    wrlog '.'
+      rx  = PrescriptionOrder.create rx_id: SecureRandom.uuid, practitioner: practitioner, patient: patient, drug: drug, pharmacy: pharmacy
+      rx.update_attribute :created_at, patient.created_at
+      wrlog '.'
+    end
   end
 end
 

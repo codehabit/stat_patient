@@ -12,7 +12,7 @@
     = f.input :mobile_phone
     = f.input :work_phone
     = f.input :email
-    = f.input :gender, collection: ["Male", "Female"], as: :radio_buttons, label: "Sex", item_wrapper_class: 'inline'
+    = f.input :gender, collection: Gender.all, as: :radio_buttons, label: "Sex", item_wrapper_class: 'inline'
     = f.input :marital_status, collection: MaritalStatus.all, as: :radio_buttons, label: "Status"
     .form-group.string.optional.social-security-number
       %label.string.optional.col-sm-5.control-label{for: "patient_last_name"}
