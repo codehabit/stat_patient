@@ -1,11 +1,11 @@
 .image-gallery
   - @case.messages.first.attachments.each do |attachment|
     -# = render "shared/image_modal", image: image
-    - if attachment.is_a? Pdf
-      .image
-        = image_tag attachment.asset.url
-    - else
+    - if attachment.is_a? Image
       = link_to "#", class: "button", role: "button", data: {toggle: "modal", target: "[data-role='#{attachment.asset_file_name}-viewer']"}, id: "#{attachment.asset_file_name}-viewer" do
         .image
         = image_tag attachment.asset.url(:thumb), data: {"zoom-image" => attachment.asset.url(:original), role: "zoom"}
+    - else
+      .image{class: attachment.doc_type.dasherize}
+        = image_tag attachment.asset.url
 

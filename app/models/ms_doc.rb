@@ -13,5 +13,9 @@ class MsDoc < Attachment
   def self.ms_type? content_type
     content_type =~ /officedocument/ || content_type == "application/msword" || content_type == "application/octet-stream"
   end
+
+  def doc_type
+    MsDocTypes.all[asset_content_type]
+  end
 end
 
