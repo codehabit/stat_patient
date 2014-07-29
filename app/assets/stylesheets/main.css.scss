@@ -4,9 +4,11 @@ body {
 
 a { text-decoration: none !important; }
 
-
-div {
-  // border: 1px solid red;
+.truncate {
+  width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .main {

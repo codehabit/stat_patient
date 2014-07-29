@@ -105,6 +105,7 @@ ul.horizontal li {
   line-height: 8;
   margin: 5px;
   min-height: 100%;
+  width: 200px;
   padding: 0 10px 0 10px;
 }
 
@@ -185,4 +186,18 @@ form.dropzone {
     background-color: rgba(0,0,0,.5);
     margin: 5px;
     -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
+.document {
+  background-color: #fff;
+  color: $image-gallery-bg;
+  font-size: 12px;
+  margin-top: 10px;
+  padding-left: 20px;
+  i.fa {
+    font-size: 100px;
+  }
+  p {
+    width: 100%;
+  }
 }

@@ -6,6 +6,12 @@
         .image
         = image_tag attachment.asset.url(:thumb), data: {"zoom-image" => attachment.asset.url(:original), role: "zoom"}
     - else
-      .image{class: attachment.doc_type.dasherize}
-        = image_tag attachment.asset.url
+      = link_to attachment.asset.url do
+        .image
+          .document
+            %p
+              %span.fa-stack.fa-lg
+                %i{class: "fa fa-file-#{attachment.doc_type.dasherize}-o fa-stack-2x"}
+            %p.truncate
+              = attachment.asset_file_name
 

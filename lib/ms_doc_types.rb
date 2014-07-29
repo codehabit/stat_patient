@@ -2,11 +2,11 @@ module MsDocTypes
   class << self
     def all
       {
-        "application/vnd.openxmlformats-officedocument.presentationml.presentation" => "ms_ppt",
-        "application/vnd.openxmlformats-officedocument.wordprocessingml.document" => "ms_word",
-        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" => "ms_excel",
-        "application/msword" => "ms_word",
-        "application/octet-stream" => "ms_excel"
+        "application/vnd.openxmlformats-officedocument.presentationml.presentation" => "powerpoint",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document" => "word",
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" => "excel",
+        "application/msword" => "word",
+        "application/octet-stream" => "excel"
       }
     end
   end
