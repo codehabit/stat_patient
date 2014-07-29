@@ -1,6 +1,11 @@
 .image-gallery
-  - @case.messages.first.images.each do |image|
+  - @case.messages.first.attachments.each do |attachment|
     -# = render "shared/image_modal", image: image
-    = link_to "#", class: "button", role: "button", data: {toggle: "modal", target: "[data-role='#{image.asset_file_name}-viewer']"}, id: "#{image.asset_file_name}-viewer" do
+    - if attachment.is_a? Pdf
       .image
-        = image_tag image.asset.url(:thumb), data: {"zoom-image" => image.asset.url(:original), role: "zoom"}
+        = image_tag attachment.asset.url
+    - else
+      = link_to "#", class: "button", role: "button", data: {toggle: "modal", target: "[data-role='#{attachment.asset_file_name}-viewer']"}, id: "#{attachment.asset_file_name}-viewer" do
+        .image
+        = image_tag attachment.asset.url(:thumb), data: {"zoom-image" => attachment.asset.url(:original), role: "zoom"}
+

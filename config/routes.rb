@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :tooth_charts do
     resources :annotations, only: [:index, :create, :update, :destroy]
   end
-  resources :images
+  resources :attachments
   resources :prescription_orders
   resources :laboratory_orders
   root to: "home#index"

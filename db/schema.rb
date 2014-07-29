@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140717145137) do
+ActiveRecord::Schema.define(version: 20140725142427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,20 @@ ActiveRecord::Schema.define(version: 20140717145137) do
     t.integer "width"
     t.integer "top"
     t.integer "left"
+  end
+
+  create_table "attachments", force: true do |t|
+    t.string   "asset_file_name"
+    t.string   "asset_content_type"
+    t.integer  "asset_file_size"
+    t.datetime "asset_updated_at"
+    t.integer  "attachable_id"
+    t.string   "attachable_type"
+    t.integer  "uploaded_by_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "attachable_uuid"
+    t.string   "type"
   end
 
   create_table "cases", force: true do |t|
@@ -54,19 +68,6 @@ ActiveRecord::Schema.define(version: 20140717145137) do
     t.text     "patient_instructions"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "images", force: true do |t|
-    t.string   "asset_file_name"
-    t.string   "asset_content_type"
-    t.integer  "asset_file_size"
-    t.datetime "asset_updated_at"
-    t.integer  "imageable_id"
-    t.string   "imageable_type"
-    t.integer  "uploaded_by_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "imageable_uuid"
   end
 
   create_table "laboratory_orders", force: true do |t|
