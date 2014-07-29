@@ -1,17 +1,22 @@
 .image-gallery
-  - @case.messages.first.attachments.each do |attachment|
-    -# = render "shared/image_modal", image: image
-    - if attachment.is_a? Image
-      = link_to "#", class: "button", role: "button", data: {toggle: "modal", target: "[data-role='#{attachment.asset_file_name}-viewer']"}, id: "#{attachment.asset_file_name}-viewer" do
-        .image
-        = image_tag attachment.asset.url(:thumb), data: {"zoom-image" => attachment.asset.url(:original), role: "zoom"}
-    - else
-      = link_to attachment.asset.url do
-        .image
-          .document
-            %p
-              %span.fa-stack.fa-lg
-                %i{class: "fa fa-file-#{attachment.doc_type.dasherize}-o fa-stack-2x"}
-            %p.truncate
-              = attachment.asset_file_name
+  .title
+    Uploaded images
+  - @case.messages.first.attachments.where(type: "Image").each do |attachment|
+    = link_to "#", id: "#{attachment.asset_file_name}-viewer" do
+      .image
+        %span
+          = image_tag attachment.asset.url(:thumb), data: {"zoom-image" => attachment.asset.url(:original), role: "zoom"}
+
+.image-gallery
+  .title
+    Uploaded files
+  - @case.messages.first.attachments.where("type != 'Image'").each do |attachment|
+    = link_to attachment.asset.url do
+      .document
+        .inner
+          %p
+            %span.fa-stack.fa-sm
+              %i{class: "fa fa-file-#{attachment.doc_type.dasherize}-o fa-stack-2x"}
+          %p.truncate
+            = attachment.asset_file_name
 

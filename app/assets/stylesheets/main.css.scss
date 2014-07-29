@@ -11,6 +11,10 @@ a { text-decoration: none !important; }
   text-overflow: ellipsis;
 }
 
+ul.horizontal li {
+ display: inline-block;
+}
+
 .main {
   // max-width: 900px;
   padding-top: 20px;
