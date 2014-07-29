@@ -9,9 +9,10 @@ describe CasesController do
   end
 
   it "marks a case as read when visited" do
-    rcase = create(:case, originator: practitioner, recipient: practitioner, patient: create(:patient), messages: [create(:message)])
+    rcase = create(:case, originator: practitioner, recipient: practitioner, patient: create(:patient), messages: [create(:message, sender: practitioner)])
     visit polymorphic_path(rcase)
-    expect(Case.first).to be_read
+    visit root_path
+    expect(page).to_not have_content("Unread")
   end
 
   it "disallows visiting a case unless a participant" do
