@@ -17,7 +17,15 @@
           = f.submit "Send", class: "btn-standard btn btn-primary send"
     .col-sm-6
       .tooth-chart
-        = image_tag "AdultToothChart_1.jpg"
+        = bs_tabs do |tab|
+          = tab.bs_tab_for "Adult", true do
+            = image_tag "AdultToothChart_1.jpg"
+          = tab.bs_tab_for "Child" do
+            Coming Soon
+          = tab.bs_tab_for "Perio" do
+            Coming Soon
+          = tab.bs_tab_for "Soft Tissue" do
+            Coming Soon
     .col-sm-6.dropzone-container
       = render "shared/images_drag_and_drop"
 
