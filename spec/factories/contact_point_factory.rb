@@ -3,15 +3,15 @@ FactoryGirl.define do
 
     trait :email do
       contact_type 'email'
-      sequence(:info) {|n| "example#{n}@non.non"}
+      info {Faker::Internet.safe_email}
     end
     trait :work_phone do
       contact_type 'work_phone'
-      sequence(:info) {|n| "111-222-3333"}
+      info {Faker::PhoneNumber.phone_number}
     end
     trait :work_fax do
       contact_type 'work_fax'
-      sequence(:info) {|n| "111-222-3333"}
+      info {Faker::PhoneNumber.phone_number}
     end
   end
 end
