@@ -18,8 +18,13 @@ shared_examples  "a value set" do
       expect(subject.id).to eq subject.value
     end
   end
+
   it "is equal" do
     expect(subject_class.new(value)).to eq subject_class.new(value)
+  end
+
+  it 'lists all values as pretty' do
+    expect(subject_class.values.first).to eq subject_class.values.first.capitalize
   end
 end
 

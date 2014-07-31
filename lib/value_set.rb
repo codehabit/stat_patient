@@ -1,4 +1,5 @@
 class ValueSet
+  # TODO: values_for_collection with permanent IDs
   attr_accessor :value
 
   def initialize(value)
@@ -9,7 +10,7 @@ class ValueSet
 
     def value_set value_array
       define_singleton_method(:values) do
-        value_array
+        value_array.map(&:capitalize)
       end
     end
 
