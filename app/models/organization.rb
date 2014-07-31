@@ -5,5 +5,15 @@ class Organization < ActiveRecord::Base
   has_many :members, through: :organization_memberships, source: :practitioner
   has_many :contact_points, as: :contactable
   has_many :addresses, as: :addressable
+
+  def work_phone
+    contact_points.where(contact_type: 'work_phone').first.try(:info)
+  end
+  def email
+    contact_points.where(contact_type: 'email').first.try(:info)
+  end
+  def work_fax
+    contact_points.where(contact_type: 'work_fax').first.try(:info)
+  end
 end
 

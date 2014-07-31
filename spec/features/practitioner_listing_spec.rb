@@ -9,16 +9,14 @@ describe PractitionersController do
 
   let(:practitioner) {create :practitioner}
   let(:practitioners) do
-    %w(sam dave joe).map do |first_name|
-      create :practitioner, first_name: first_name
-    end
+    create_list :practitioner, 3
   end
 
   let(:expected_list_attributes) do
       [
         :first_name,
         :last_name,
-        :phone,
+        :work_phone,
         :specialty,
         :practice_name,
         :email
@@ -101,7 +99,8 @@ describe PractitionersController do
     create(:practitioner, first_name: "Ron", last_name: "Aronson")
     create(:practitioner, first_name: "Ron", last_name: "Bronson")
     visit practitioners_path
-    expect(all("a.show_practitioner").map(&:text)).to eq ["Ron Aronson", "Ron Bronson", "Ron Chancellor"]
+    save_and_open_page
+    expect(all(".show_practitioner").map(&:text)).to eq ["Ron Aronson", "Ron Bronson", "Ron Chancellor"]
   end
 end
 

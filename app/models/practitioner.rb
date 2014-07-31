@@ -4,10 +4,9 @@ class Practitioner < ActiveRecord::Base
 
   has_many :organization_memberships
   has_many :memberships, through: :organization_memberships, source: :organization
-
-  def full_name
-    "#{first_name} #{last_name}"
-  end
+  has_many :practices, through: :organization_memberships, source: :practice
+  has_many :laboratories, through: :organization_memberships, source: :laboratory
+  has_many :pharmacies, through: :organization_memberships, source: :pharmacy
 
   has_many :originations, foreign_key: :originator_id, class_name: Case
   has_many :received_cases, as: :recipient, class_name: Case
@@ -15,6 +14,10 @@ class Practitioner < ActiveRecord::Base
   has_many :received_messages, as: :recipient, class_name: Message
   has_many :contact_points, as: :contactable
   has_many :addresses, as: :addressable
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 
   def patients
     (originations.map(&:patient) + received_cases.map(&:patient)).uniq
@@ -29,6 +32,19 @@ class Practitioner < ActiveRecord::Base
     ids  = patient.cases.where(recipient: self).map(&:id) +
       patient.cases.where(originator: self).map(&:id)
     Case.where(id: ids)
+  end
+
+  def practice_name
+    practices.first.try(:name)
+  end
+
+  def email
+    contact_points.where(contact_type: 'email').first.try(:info) ||
+      memberships.first.try(:email)
+  end
+  def work_phone
+    contact_points.where(contact_type: 'work_phone').first.try(:info) ||
+      memberships.first.try(:work_phone)
   end
 end
 
