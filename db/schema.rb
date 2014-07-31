@@ -11,10 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140729211033) do
+ActiveRecord::Schema.define(version: 20140729211906) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: true do |t|
+    t.integer  "addressable_id"
+    t.string   "addressable_type"
+    t.string   "type"
+    t.string   "title"
+    t.string   "address1"
+    t.string   "address_2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "postal_code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "annotations", force: true do |t|
     t.integer "tooth_chart_id"
@@ -56,19 +70,30 @@ ActiveRecord::Schema.define(version: 20140729211033) do
     t.boolean  "read"
   end
 
+  create_table "contact_points", force: true do |t|
+    t.string   "contactable_type"
+    t.integer  "contactable_id"
+    t.string   "contact_type"
+    t.string   "info"
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "drugs", force: true do |t|
     t.string   "name"
     t.string   "dispense_amount"
-    t.string   "dispense_frequency"
     t.string   "uuid"
     t.text     "adult_dosing"
     t.text     "peds_dosing"
     t.text     "contraindications"
     t.text     "dosage_forms"
-    t.text     "pharmacy_instructions"
+    t.text     "rx_instructions"
     t.text     "patient_instructions"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "interactions"
+    t.text     "pregnancy_lactating_precautions"
   end
 
   create_table "laboratory_orders", force: true do |t|
@@ -95,8 +120,16 @@ ActiveRecord::Schema.define(version: 20140729211033) do
     t.string   "uuid"
   end
 
+  create_table "organization_memberships", force: true do |t|
+    t.integer  "organization_id"
+    t.integer  "practitioner_id"
+    t.string   "role"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "organizations", force: true do |t|
-    t.string "organization_type"
+    t.string "type"
     t.string "name"
   end
 
@@ -104,9 +137,9 @@ ActiveRecord::Schema.define(version: 20140729211033) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "middle_initial"
+    t.date     "date_of_birth"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.datetime "date_of_birth"
     t.string   "title"
     t.string   "street"
     t.string   "street2"
@@ -125,21 +158,21 @@ ActiveRecord::Schema.define(version: 20140729211033) do
   create_table "practitioners", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "practice_name"
-    t.string   "email"
     t.string   "specialty"
-    t.string   "phone"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "title"
+    t.string   "salutation"
+    t.string   "suffix"
   end
 
   create_table "prescription_orders", force: true do |t|
     t.integer  "patient_id"
     t.integer  "practitioner_id"
     t.integer  "drug_id"
-    t.string   "dispense"
-    t.text     "instructions"
+    t.string   "dispense_amount"
+    t.text     "rx_instructions"
     t.text     "patient_instructions"
     t.date     "expiration_date"
     t.integer  "refills"
