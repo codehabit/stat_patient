@@ -8,9 +8,9 @@
         = select2_for(object_type: :laboratory_order, field_name: :patient, field_type: Patient, label_method: :last_first_with_dob)
         = select2_for(object_type: :laboratory_order, field_name: :laboratory, field_type: Laboratory, label_method: :name)
         = f.text_area :requisition
-        = select2_for(object_type: :laboratory_order, field_name: :vita_color, field_type: VitaColor.values, label_method: :pretty)
+        = select2_for(object_type: :laboratory_order, field_name: :vita_color, field_type: VitaColor, label_method: :pretty)
         = f.date_field :due_date
-        = select2_for(object_type: :laboratory_order, field_name: :shipping_method, field_type: ShippingMethod.values, label_method: :pretty)
+        = select2_for(object_type: :laboratory_order, field_name: :shipping_method, field_type: ShippingMethod, label_method: :pretty)
         .print-buttons
           = link_to "Print ship label", "#", class: "btn btn-primary send"
           = link_to "Print packing slip", "#", class: "btn btn-primary send"
