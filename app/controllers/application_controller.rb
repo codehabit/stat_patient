@@ -8,12 +8,14 @@ class ApplicationController < ActionController::Base
   # Skip if we are creating a new patient
   skip_before_action :get_context, if: ->{request.path == patients_path}
 
+  private
+
   def get_context
     return unless current_user
 
     @practitioner = current_user.practitioner
     @patients = @practitioner.patients
-    patient_param = params['patient']
+    patient_param = params['patient_id']
 
     if patient_param == ""
       # patient intentionally removed, show all things
@@ -29,5 +31,6 @@ class ApplicationController < ActionController::Base
     end
 
   end
+
 end
 
