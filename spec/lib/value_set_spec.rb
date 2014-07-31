@@ -1,7 +1,7 @@
 shared_examples  "a value set" do
+  let!(:subject_class) {subject.class}
+  let(:value) {'xenomorph'}
   context "with draper compatability" do
-    let(:subject_class) {subject.class}
-    let(:value) {'xenomorph'}
     it "returns itself on decorate call" do
       expect(subject.decorate).to eq subject
     end
