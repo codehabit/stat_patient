@@ -23,3 +23,86 @@
   margin: 0px;
   padding-left: 10px;
 }
+
+.rx-paper {
+  background: white;
+  border: 1px solid black;
+  padding: 10px;
+}
+.rx-print {
+  padding: 10px;
+}
+
+.rx-attr-name { 
+  font-weight: bold;
+}
+
+.rx-practice-name {
+  font-size: 2em;
+  text-align: center;
+  font-weight: bold;
+}
+
+.rx-header {
+  border-bottom: 3px solid black;
+  margin-bottom: 10px;
+  .practice-addr {
+    margin: 0;
+    text-align: center;
+    }
+  p {margin: 0;}
+}
+
+.rx-footer {
+  border-top: 3px solid black;
+  text-align: center;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.pt-info {
+  font-size: 1.0em;
+}
+.pt-info p {
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.rx-logo {
+  background-image:  url('rx-logo-60.png');
+  background-repeat: no-repeat;
+  height: 60px;
+  margin: 10px;
+  margin-left: 20px;
+}
+
+.rx-drug-name {
+  font-size: 1.2em;
+  text-transform: uppercase;
+}
+.spacer {
+  height: 15px;
+}
+
+.rx-info {
+  padding: 10px;
+  font-size: 1.0em;
+}
+
+.rx-info .dd {
+  font-weight: bold;
+}
+
+.rx-info .dt {
+}
+
+.inline {
+  float: left;
+  padding: 5px;
+}
+
+.refills {
+  text-align: center;
+  border-bottom: 1px solid black;
+  width: 3em;
+}

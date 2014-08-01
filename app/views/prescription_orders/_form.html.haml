@@ -8,7 +8,7 @@
         .col-sm-2
         .col-sm-10.pt-info
           = @patient.try(:pt_description)
-      = f.select 'practitioner_id', Practitioner.all.map{|d| [d.full_name, d.id]},{include_blank: true }, data: {type: 'xselect2'}
+      = f.text_field :practitioner_id, value: "#{@practitioner.full_name} - #{@current_practice.name}", disabled: true
       = f.select 'drug_id', Drug.all.map{|d| [d.name, d.id]},{label: 'Rx', include_blank: true}, data: {type: 'select2', attr: 'drug_id', change: 'update-rx'}
       = f.text_field :dispense_amount
       = f.text_area :rx_instructions, label: 'SIG'
@@ -19,8 +19,7 @@
 
       = f.select 'pharmacy_id', Pharmacy.all.map{|d| [d.name, d.id]},{include_blank: true}, class: 'form-control', data: {type: 'select2'}
       .submit.pull-right
-        = link_to "Print Prescription", "#", data: {warning: 'coming-soon', message: "Printing prescriptions"}, class: "btn-standard btn btn-primary send print"
-        = f.submit "Submit", class: "btn-standard btn btn-primary send"
+        = f.submit "Save", class: "btn-standard btn btn-primary send"
 
   .col-sm-1
   .col-sm-5

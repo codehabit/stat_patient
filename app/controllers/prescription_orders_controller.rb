@@ -1,19 +1,24 @@
 class PrescriptionOrdersController < ApplicationController
 
   def new
-    @patient = Patient.find(session[:patient_id]).decorate if session[:patient_id]
-
-    @prescription_order = PrescriptionOrder.new rx_id: SecureRandom.uuid, created_at: Date.today, refills: 0, practitioner: current_user.practitioner, patient: @patient, expiration_date: 30.days.from_now
+    @prescription_order = PrescriptionOrder.new rx_id: SecureRandom.uuid, created_at: Date.today, refills: 0, practitioner: @practitioner, practice: @current_practice, patient: @patient, expiration_date: 30.days.from_now
   end
 
   def create
-    @prescription_order = PrescriptionOrder.create(prescription_order_params)
-    session[:patient_id] = @prescription_order.patient_id
-    if @prescription_order.save
-      redirect_to prescription_orders_path
+    @prescription_order = PrescriptionOrder.create(prescription_order_params.merge(practitioner: @practitioner, practice: @current_practice))
+    @prescription_order.practice = @current_practice
+    set_current_patient @prescription_order.patient
+
+    if @prescription_order.valid?
+      redirect_to prescription_order_path(@prescription_order)
     else
       render action: :new
     end
+  end
+
+  def print
+    @prescription_order = PrescriptionOrder.find params[:id]
+    @patient = @prescription_order.patient.decorate
   end
 
   def show
@@ -29,7 +34,7 @@ class PrescriptionOrdersController < ApplicationController
   def update
     @prescription_order = PrescriptionOrder.find params[:id]
     @prescription_order.update_attributes prescription_order_params
-    redirect_to prescription_orders_path
+    redirect_to prescription_order_path(@prescription_order)
   end
 
   def index

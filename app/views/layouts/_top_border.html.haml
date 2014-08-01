@@ -15,8 +15,8 @@
           = link_to "Practitioners", practitioners_path
       %li
         %span.pull-left
-          - if @patient
-            = link_to "PT: #{@patient.decorate.full_name}", patient_path(@patient)
+          - if @patient.present?
+            -# = link_to "PT: #{@patient.decorate.full_name}", patient_path(@patient)
           -else
             = link_to 'No patient selected', "#"
     %ul.nav.navbar-nav.navbar-right

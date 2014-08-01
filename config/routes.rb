@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :prescription_orders do
     get :print, on: :member
   end
+  resources :organizations
   resources :drugs
   resources :laboratory_orders
   root to: "home#index"

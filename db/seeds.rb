@@ -7,29 +7,58 @@ require 'csv'
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-make_drugs  = true
-make_dentists = true
+def dentist_limit; 100; end
 
-delete_all = true
-dentist_file = 'data/iowa_dentists_specialists.csv'
-drugs_file = 'data/drugs_list.csv'
+def make_dentists_from_file dentist_file
+  wrlog "Making dentists and practices from file #{dentist_file}"
+  practitioners = []
+  count = 0
+  ActiveRecord::Base.transaction do
+    CSV.foreach(dentist_file, headers: true) do |row|
+      count += 1
+      break if count > dentist_limit
+      practice = create_practice(row)
 
-cases_per_practitioner = (1..2).to_a
-messages_per_case = (2..3).to_a
-system_age_range_days = (10..720)
-today = Date.today
-user_count = 100
-patient_count = 100
-organization_count = 300
-specialties = Specialty.all.map(&:pretty)
-birthday_day_range = (1092..32850).to_a
-marital_status = MaritalStatus.all
+      next if invalid_data(row)
 
+      pw = row['password'] || password
+      user = User.create(email: user_email(row), first_name: row['first_name'], last_name: row['last_name'], password: pw, password_confirmation: pw)
 
-bad_count = 0
-good_count = 0
+      if !user.valid?
+        # just ignore if this fails because of unique constraint, because it's rare
+        user.update_attribute(:email, user_email(row)) rescue nil
+      end
+
+      if user.valid?
+        practitioners << create_practitioner(user, practice, row)
+        wrlog '.'
+
+      else
+        wrlog 'x'
+
+      end
+    end
+  end
+  practitioners
+end
 
 def force_safe_email; true; end
+
+def dea_check_digit number
+  # assume that everyone getting this is a practitioner (i.e., a doctor) (for now)
+  odds, evens, count = [0,0,1]
+  number.each_char do |digit|
+    evens += digit.to_i if count.even?
+    odds += digit.to_i if count.odd?
+    count += 1
+  end
+  (evens + odds).to_s.last
+end
+
+def update_dea_identifier practitioner
+  number = Faker::Number.number(6)
+ practitioner.update_attribute(:dea_identifier, "A#{practitioner.last_name[0]}#{number}#{dea_check_digit(number)}")
+end
 
 def helper
   @helper ||= ActionController::Base.helpers
@@ -60,11 +89,17 @@ def invalid_data row
 end
 
 def user_email row
-  force_safe_email ? Faker::Internet.safe_email : row['email1']
+  if(email = row['email1']).include? 'codehabit.net'
+    email
+  else
+    force_safe_email ? Faker::Internet.safe_email : row['email1']
+  end
 end
 
 def create_practitioner user, practice, row
   practitioner = Practitioner.create(user_id: user.id, first_name: user.first_name, last_name: user.last_name, salutation: row['salutation'], suffix: row['suffix'], title: row['title'], specialty: row['specialty'])
+
+  update_dea_identifier practitioner
 
   user.update_attribute( :practitioner, practitioner)
 
@@ -76,7 +111,7 @@ end
 
 def create_practice row
   # todo: check for previous existance
-  org = Practice.create name: row['office']
+  org = Practice.create name: row['office'], npi_identifier: Faker::Number.number(10)
   org.addresses <<  Address.create(address1: row['primary_address_street'], city: row['primary_address_city'], state: row['primary_address_state'], postal_code: row['primary_address_postalcode'])
 
   contacts= {work_phone: row['phone_work'], work_fax: row['phone_fax'], mobile_phone: row['phone_mobile'], email: row['email1'], website: row['website']}
@@ -138,6 +173,29 @@ def instructions
 end
 
 
+make_drugs  = true
+make_dentists = true
+
+delete_all = true
+dentist_file = 'data/iowa_dentists_specialists.csv'
+demo_user_file = 'data/demo_users.csv'
+drugs_file = 'data/drugs_list.csv'
+
+
+cases_per_practitioner = (1..2).to_a
+messages_per_case = (2..3).to_a
+system_age_range_days = (10..720)
+today = Date.today
+user_count = 100
+patient_count = 100
+organization_count = 300
+specialties = Specialty.all.map(&:pretty)
+birthday_day_range = (1092..32850).to_a
+marital_status = MaritalStatus.values
+
+
+
+
 if make_dentists
   if delete_all
     wrlog 'Deleting all dentists'
@@ -151,14 +209,6 @@ if make_dentists
 
   wrlog "\n"
 
-  defpass = 'stat.1234'
-  practitioners = []
-
-  # make the demo users
-  User.create(first_name: 'Bob', last_name: 'Onesto', email: 'ronesto@gmail.com', password: defpass, password_confirmation: defpass)
-  User.create(first_name: 'Robb', last_name: 'Broome', email: 'robb@codehabit.net', password: defpass, password_confirmation: defpass)
-  User.create(first_name: 'David', last_name: 'Oliver', email: 'david@codehabit.net', password: defpass, password_confirmation: defpass)
-  User.create(first_name: 'Alex', last_name: 'Leach', email: 'alex@codehabit.net', password: defpass, password_confirmation: defpass)
 
   wrlog "\n Make #{organization_count} pharmacies and labs"
   ActiveRecord::Base.transaction do
@@ -204,64 +254,15 @@ if make_dentists
     end
   end
 
+  practitioners = []
   wrlog "\n"
-  if dentist_file.present?
-    wrlog "Making dentists and practices from file #{dentist_file}"
-
-    limit = 100
-    count = 0
-    ActiveRecord::Base.transaction do
-      CSV.foreach(dentist_file, headers: true) do |row|
-        count += 1
-        break if count > limit
-
-        practice = create_practice(row)
-
-        next if invalid_data(row)
-
-        pw = password
-        user = User.create(email: user_email(row), first_name: row['first_name'], last_name: row['last_name'], password: pw, password_confirmation: pw)
-
-        if !user.valid?
-          # just ignore if this fails because of unique constraint, because it's rare
-          user.update_attribute(:email, user_email(row)) rescue nil
-        end
-
-        if user.valid?
-          practitioners << create_practitioner(user, practice, row)
-          good_count += 1
-          wrlog '.'
-
-        else
-          bad_count += 1
-          wrlog 'x'
-
-        end
-      end
-    end
-
-  else
-    wrlog "Making dentists randomly"
-    user_count.times.map do
-      password = Faker::Internet.password(9)
-      User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.safe_email, password: password, password_confirmation: password)
-      wrlog '.'
-    end
-  end
+  # practitioners << make_dentists_from_file(dentist_file)
+  practitioners << make_dentists_from_file(demo_user_file)
 
   wrlog "\n"
-
-  # backfill practitioner
-  User.all.each do |user|
-    next if user.practitioner.present?
-    wrlog "making a practitioner for #{user.full_name} \n"
-    practitioners << Practitioner.create(user_id: user.id, first_name: user.first_name, last_name: user.last_name, specialty: specialties.sample)
-    #TODO: make practice, addresses, contact points
-  end
-
   wrlog "Making Cases"
 
-  practitioners.each  do |practitioner|
+  Practitioner.all.each  do |practitioner|
     ActiveRecord::Base.transaction do
       case_count = cases_per_practitioner.sample
       case_count.times do
@@ -271,7 +272,7 @@ if make_dentists
         case_create_date = patient_age_days.days.ago
 
         originator = practitioner
-        recipient = (practitioners - [originator]).sample
+        recipient = Practitioner.limit(1).order("RANDOM()").first
         addrs = [originator, recipient]
         sender, receiver = addrs
         newcase = Case.create originator: originator, recipient: recipient, patient: patient, subject: Faker::Lorem.sentence, notes: Faker::Lorem.paragraph
@@ -317,7 +318,6 @@ if make_drugs
     end
   end
 
-
   patient_count = Patient.count
   practitioner_count = Practitioner.count
   drug_count = Drug.count
@@ -341,5 +341,3 @@ if make_drugs
 end
 
 wrlog "\n Done"
-wrlog "\n #{good_count} dentist records were created"
-wrlog "\n #{bad_count} dentist records were rejected"

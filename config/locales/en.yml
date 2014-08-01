@@ -29,3 +29,11 @@ en:
   practice_name: "Practice Name"
   add_new: "Add New"
   edit_practitioner: "Edit practitioner"
+
+  date:
+    formats:
+      default: "%B %d, %Y"
+
+  time:
+    formats:
+      default: "%B %d, %Y"

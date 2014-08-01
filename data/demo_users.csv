@@ -1,0 +1,5 @@
+full_name,salutation,first_name,last_name,suffix,office,primary_address_street,primary_address_city,primary_address_state,primary_address_postalcode,primary_address_country,phone_work,phone_fax,phone_mobile,email1,website,title,category,specialty,password
+Robb Broome,Mr.,Robb,Broome,DDS,Robb Dental Arts,123 Main Street,Anytown,CO,81023,USA,224-628-0876,224-628-0876,224-628-0876,robb@codehabit.net,www.dentist.com,,Dentist,Cosmetic,stat.1234
+Bob Onesto,Mr.,Bob,Onesto,DMD,Bob Dental Arts,123 Main Street,Anytown,CO,81023,USA,224-628-0876,224-628-0876,224-628-0876,ronesto@gmail.com,www.dentist.com,,Dentist,Ortho,stat.1234
+David Oliver,Mr.,David,Oliver,DDS,David Dental Arts,123 Main Street,Anytown,CO,81023,USA,224-628-0876,224-628-0876,224-628-0876,david@codehabit.net,www.dentist.com,,Dentist,Peri,stat.1234
+Alex Leach,Mr.,Alex,Leach,DDS,Alex Dental Arts,123 Main Street,Anytown,CO,81023,USA,224-628-0876,224-628-0876,224-628-0876,alex@codehabit.net,www.dentist.com,,Dentist,Pedo,stat.1234
