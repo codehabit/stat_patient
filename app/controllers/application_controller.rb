@@ -14,7 +14,11 @@ class ApplicationController < ActionController::Base
     return unless current_user
 
     @practitioner = current_user.practitioner
+    # TODO: allow choosing the practice from your memberships
+    last_current_practice = Practice.where(id: session[:current_practice_id]).first
+    @current_practice = last_current_practice || @practitioner.practices.first
     @patients = @practitioner.patients
+
     patient_param = params['patient_id']
 
     if patient_param == ""
@@ -31,6 +35,11 @@ class ApplicationController < ActionController::Base
     end
 
   end
+
+  def set_current_patient patient
+    session[:patient] = patient.try :id
+  end
+
 
 end
 
