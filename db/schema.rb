@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140729211906) do
+ActiveRecord::Schema.define(version: 20140801140718) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -137,9 +137,9 @@ ActiveRecord::Schema.define(version: 20140729211906) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "middle_initial"
-    t.date     "date_of_birth"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "date_of_birth"
     t.string   "title"
     t.string   "street"
     t.string   "street2"
@@ -218,5 +218,12 @@ ActiveRecord::Schema.define(version: 20140729211906) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
+
+  create_table "watcher_connections", force: true do |t|
+    t.integer "watchable_id"
+    t.integer "watchable_type"
+    t.integer "watcher_id"
+    t.integer "watcher_type"
+  end
 
 end

@@ -1,6 +1,7 @@
 class Case < ActiveRecord::Base
   belongs_to :patient
   belongs_to :recipient, polymorphic: true
+  has_many :watchers, through: :watcher_connections
   belongs_to :originator, class_name: Practitioner
   has_many :attachments, as: :attachable
   has_many :messages
