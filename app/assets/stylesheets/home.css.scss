@@ -127,7 +127,7 @@
 
 .inbox-content {
   color: $message-default-color;
-  font-size: $message-default-font-size;
+  font-size: $message-inbox-font-size;
   border-bottom: 1px solid $message-separator-color;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -149,10 +149,12 @@
 
 .inbox-content.read td {
   background-color: #f3f0ee;
+  font-weight: 100;
 }
 
 .inbox-content.unread td {
   background-color: $message-list-bg;
+  font-weight: bold;
 }
 
 .stat-brand a{
