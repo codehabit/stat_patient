@@ -3,5 +3,5 @@
 .row
   .col-sm-4
     .print-buttons.rx-buttons
-      = link_to "Print Prescription",print_prescription_order_path(@prescription_order) , data: {}, class: "btn-standard btn btn-primary "
+      = link_to "Print Prescription",print_prescription_order_path(@prescription_order) , target: 'rx-print', data: {}, class: "btn-standard btn btn-primary "
 

@@ -18,7 +18,11 @@ class PrescriptionOrdersController < ApplicationController
 
   def print
     @prescription_order = PrescriptionOrder.find params[:id]
+    @prescription_order.update_attribute :flow_status, 'printed'
     @patient = @prescription_order.patient.decorate
+    respond_to do |format|
+      format.html {render layout: 'print'}
+    end
   end
 
   def show
@@ -29,6 +33,15 @@ class PrescriptionOrdersController < ApplicationController
   def edit
     @prescription_order = PrescriptionOrder.find params[:id]
     @patient = @prescription_order.patient.decorate
+    respond_to do |format|
+      format.html do
+        if @prescription_order.flow_status == 'printed'
+          render action: 'show'
+        else
+          render 
+        end
+      end
+    end
   end
 
   def update
