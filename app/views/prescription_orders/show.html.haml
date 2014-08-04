@@ -1,7 +1,13 @@
 = render 'patient_rx_page'
 
 .row
-  .col-sm-4
+  .col-sm-2
     .print-buttons.rx-buttons
       = link_to "Print Prescription",print_prescription_order_path(@prescription_order) , target: 'rx-print', data: {}, class: "btn-standard btn btn-primary "
-
+  = bootstrap_form_for(@prescription_order, url: submit_prescription_order_url(@prescription_order), method: :put, data: {role: 'patient-form'}, layout: :horizontal) do |f|
+    .col-sm-4
+      .print-buttons.rx-buttons
+        = f.submit "Submit", class: "btn-standard btn btn-primary"
+    .col-sm-3
+      .print-buttons.rx-buttons
+      = f.select 'pharmacy_id', Pharmacy.all.map{|d| [d.name, d.id]},{include_blank: true, hide_label: true}, class: 'form-control', data: {type: 'select2'}

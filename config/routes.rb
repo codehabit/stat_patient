@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :attachments
   resources :prescription_orders do
     get :print, on: :member
+    put :submit, on: :member
   end
   resources :organizations
   resources :drugs

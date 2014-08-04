@@ -30,6 +30,12 @@ class PrescriptionOrdersController < ApplicationController
     @patient = @prescription_order.patient.decorate
   end
 
+  def submit
+    @prescription_order = PrescriptionOrder.find params[:id]
+    @patient = @prescription_order.patient.decorate
+    @prescription_order.update_attributes prescription_order_params.merge(flow_status: 'submitted')
+  end
+
   def edit
     @prescription_order = PrescriptionOrder.find params[:id]
     @patient = @prescription_order.patient.decorate
