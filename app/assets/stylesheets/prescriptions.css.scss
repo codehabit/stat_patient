@@ -1,3 +1,21 @@
+.padded {
+  padding-top: 10px;
+}
+
+.compact p{
+  padding: 0px;
+  margin: 0px;
+}
+
+.sigblock {
+  border-bottom: 1px solid black;
+  width: 400px;
+}
+
+.centered {
+  text-align: center;
+}
+
 .monograph {
   border: 1px solid black;
   min-height: 600px;;
@@ -22,6 +40,11 @@
   padding: 0px;
   margin: 0px;
   padding-left: 10px;
+}
+
+.rx-buttons {
+  margin: 10px;
+  color: white !important;
 }
 
 .rx-paper {
@@ -81,7 +104,7 @@
   text-transform: uppercase;
 }
 .spacer {
-  height: 15px;
+  height: 25px;
 }
 
 .rx-info {

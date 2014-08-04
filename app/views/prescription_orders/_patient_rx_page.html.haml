@@ -1,3 +1,109 @@
-= @prescription_order.practice.name
-= @prescription_order.practice.address
+- po = @prescription_order
+- pt = po.patient.decorate
+- pr = po.practitioner.decorate
+- practice = pr.memberships.first
+- drug = po.drug
+- ph = po.pharmacy
+- addr = practice.addresses.first
+.row
+  .col-sm-12.rx-paper
+    .rx-header
+      .rx-practice-name= po.practice.name
+      .practice-addr
+        %p= "#{addr.address1} #{addr.address_2}"
+        %p= "#{addr.city}, #{addr.state} #{addr.postal_code}"
+      .row.spacer
+      .row
+        .col-sm-6
+          %p Prescribed by: #{pr.full_name}
+          %p= "DEA Reg No: #{pr.dea_identifier}"
+
+        .col-sm-6
+          %p= "NPI: #{practice.national_provider_identifier}"
+          %p Telephone: #{po.practice.work_phone}
+
+      .row.spacer
+
+    .row.pt-info
+      .col-sm-2.dt
+        Patient
+      .col-sm-4.dd
+        %p= pt.full_name
+        %p= pt.street
+        %p #{pt.city}, #{pt.state}  #{pt.zip_code}
+
+      .col-sm-6
+        .row
+          .col-sm-5
+            %p Telephone
+          .col-sm-5
+            %p= pt.home_phone
+        .row
+          .col-sm-5
+            %p Date of Birth
+          .col-sm-5
+            %p= pt.date_of_birth.strftime("%m/%d/%Y")
+        .row
+          .col-sm-5
+            %p Rx Date
+          .col-sm-5
+            %p= po.created_at.strftime("%m/%d/%Y")
+        .row
+          .col-sm-5
+            %p Exp Date
+          .col-sm-5
+            %p= po.expiration_date.strftime("%m/%d/%Y")
+
+    .row.spacer
+
+    .row.rx-info
+      .col-sm-2.rx-logo
+      .col-sm-9
+        .row.rx-info
+          .col-sm-11
+            %span.rx-drug-name= drug.name
+        .row.rx-info
+          .col-sm-3
+            Dispense
+          .col-sm-8
+            = po.dispense_amount
+        .row.rx-info
+          .col-sm-3
+            Rx Inst
+          .col-sm-8
+            = po.rx_instructions
+        .row.rx-info
+          .col-sm-3
+            Patient Inst
+          .col-sm-8
+            = po.patient_instructions
+
+    .row
+      .col-sm-5
+        .inline Label
+        - if po.label
+          .inline
+            %i.fa.fa-check-square-o
+        - else
+          .inline
+            %i.fa.fa-square-o
+    .row.spacer
+    .row
+      .col-sm-3
+        .inline Refill
+        .inline.refills= po.refills
+        .inline= 'time'.pluralize
+      .col-sm-8
+        .sigblock
+        = "#{pr.full_name}, #{pr.suffix}"
+
+    .row
+      .col-sm-12
+        .rx-footer
+          .inline
+            - if po.dispense_only_as_written
+              Dispense only as written
+              %i.fa.fa-check-square-o
+            - else
+              Substitution Allowed
 

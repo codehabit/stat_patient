@@ -1,1 +1,76 @@
-receipt
+- po = @prescription_order
+- addr = po.practice.addresses.first
+- patient = po.patient.decorate
+.row
+  .col-sm-12.rx-paper
+    .row
+      .col-md-1
+      .col-md-11
+        .row.padded
+          .col-md-12.centered
+            = po.practice.name
+        .row.spacer
+        .row.padded
+          .col-md-3
+            Prescribed by
+          .col-md-8
+            = po.practitioner.full_name
+        .row
+          .col-md-3.compact
+            Telephone
+          .col-md-8.compact
+            = po.practitioner.work_phone
+        .row.spacer
+        .row.padded
+          .col-md-3
+            Patient
+          .col-md-8.compact
+            %p= patient.full_name
+            %p= patient.street
+            %p= "#{patient.city}, #{patient.state} #{patient.zip_code}"
+
+        .row.padded
+          .col-md-3
+            Telephone
+          .col-md-8.compact
+            %p= patient.home_phone
+        .row.padded
+          .col-md-3
+            Date of Birth
+          .col-md-8.compact
+            %p= l patient.date_of_birth
+        .row.spacer
+        .row.padded
+          .col-md-3
+            Drug Name
+          .col-md-8.compact
+            %p= po.drug.name
+        .row
+          .col-md-3
+            Dispense
+          .col-md-8.compact
+            = po.dispense_amount
+        .row
+          .col-md-3
+            Rx Date
+          .col-md-3.compact
+            = po.created_at.strftime("%m/%d/%Y")
+          .col-md-3.compact
+            Exp Date
+          .col-md-3.compact
+            = po.expiration_date.strftime("%m/%d/%Y")
+        .row.padded
+          .col-md-3
+            Rx Instructions
+          .col-md-8.compact
+            %p= po.rx_instructions
+        .row.padded
+          .col-md-3
+            Patient Instructions
+          .col-md-8.compact
+            %p= po.patient_instructions
+        .row.padded
+          .col-md-3
+            Refills
+          .col-md-8.compact
+            %p= po.refills

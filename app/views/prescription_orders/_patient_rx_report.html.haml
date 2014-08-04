@@ -1,33 +1,85 @@
 - po = @prescription_order
-- @patient = po.patient
-.row
-  .col-md-1
+- addr = po.practice.addresses.first
+- patient = po.patient.decorate
+.row.padded
+  .col-md-3
     Time
     = po.created_at.strftime("%I:%M %p")
-  .col-md-10
+  .col-md-6.centered
     = po.practice.name
-  .col-md-1
+  .col-md-2.pull-right
     Date
     = po.created_at.strftime("%m/%d/%Y")
-.row
+.row.spacer
+.row.padded
   .col-md-12
-    Patient Prescription Report
+    .rx-practice-name
+      Patient Prescription Report
+.row.spacer
 .row
-  .col-md-4.col-xs-4 Rx ID:
-  .col-md-4.col-xs-4= po.uuid
-.row
-  .col-md-4.col-xs-4 Prescribed By:
-  .col-md-4.col-xs-4= po.practitioner.full_name
-.row
-  .col-md-4.col-xs-4 Patient:
-  .col-md-4.col-xs-4
-    %p= po.patient.full_name
-    %p= po.patient.address
-  .col-md-4.col-xs-4
-    %p= po.patient.home_phone
-    %p= l po.patient.date_of_birth
-    %p= l po.created_at
-    %p= l po.expiration_date
+  .col-md-2
+  .col-md-8
+    .row.padded
+      .col-md-3 Rx ID
+      .col-md-6= po.rx_id
+    .row.padded
+      .col-md-3 Prescribed By
+      .col-md-6= po.practitioner.full_name
+    .row.padded
+      .col-md-3
+        Patient
+      .col-md-4.compact
+        %p= patient.full_name
+        %p= patient.street
+        %p= "#{patient.city}, #{patient.state} #{patient.zip_code}"
+      .col-md-5
+        .row.compact
+          .col-md-4
+            %p Telephone
+          .col-md-7
+            %p= patient.home_phone
+        .row.compact
+          .col-md-4
+            %p DOB
+          .col-md-7
+            %p= l patient.date_of_birth
+        .row.compact
+          .col-md-4
+            %p Rx Date
+          .col-md-7
+            %p= l po.created_at
+        .row.compact
+          .col-md-4
+            %p Exp Date
+          .col-md-7
+            %p= l po.expiration_date
+    .row.padded
+      .col-md-3
+        Drug
+      .col-md-6
+        %span.rx-drug-name= po.drug.name
+    .row.padded
+      .col-md-3
+        Dispense
+      .col-md-6
+        %span= po.dispense_amount
+    .row.padded
+      .col-md-3
+        Rx Instructions
+      .col-md-6
+        %span= po.rx_instructions
+    .row.padded
+      .col-md-3
+        Patient Instructions
+      .col-md-6
+        %span= po.patient_instructions
+    .row.padded
+      .col-md-3
+        Refills
+      .col-md-6
+        %span= po.refills
+    .row.spacer
+
 
 
 
