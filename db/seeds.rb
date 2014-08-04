@@ -9,7 +9,7 @@ require 'csv'
 
 def dentist_limit; 100; end
 
-def make_dentists_from_file dentist_file
+def make_dentists_from_file dentist_file, use_real_email = false
   wrlog "Making dentists and practices from file #{dentist_file}"
   practitioners = []
   count = 0
@@ -22,11 +22,11 @@ def make_dentists_from_file dentist_file
       next if invalid_data(row)
 
       pw = row['password'] || password
-      user = User.create(email: user_email(row), first_name: row['first_name'], last_name: row['last_name'], password: pw, password_confirmation: pw)
+      user = User.create(email: user_email(row, use_real_email), first_name: row['first_name'], last_name: row['last_name'], password: pw, password_confirmation: pw)
 
       if !user.valid?
         # just ignore if this fails because of unique constraint, because it's rare
-        user.update_attribute(:email, user_email(row)) rescue nil
+        user.update_attribute(:email, user_email(row, use_real_email)) rescue nil
       end
 
       if user.valid?
@@ -88,8 +88,8 @@ def invalid_data row
  row['first_name'].blank? || row['last_name'].blank?
 end
 
-def user_email row
-  if(email = row['email1']).include? 'codehabit.net'
+def user_email row, use_real = false
+  if use_real
     email
   else
     force_safe_email ? Faker::Internet.safe_email : row['email1']
@@ -257,7 +257,7 @@ if make_dentists
   practitioners = []
   wrlog "\n"
   # practitioners << make_dentists_from_file(dentist_file)
-  practitioners << make_dentists_from_file(demo_user_file)
+  practitioners << make_dentists_from_file(demo_user_file, true)
 
   wrlog "\n"
   wrlog "Making Cases"
