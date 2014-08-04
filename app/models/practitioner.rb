@@ -12,7 +12,7 @@ class Practitioner < ActiveRecord::Base
   has_many :received_cases, as: :recipient, class_name: Case
   has_many :sent_messages, foreign_key: :sender_id, class_name: Message
   has_many :received_messages, as: :recipient, class_name: Message
-  has_many :contact_points, as: :contactable
+  has_many :contacts, as: :contactable
   has_many :addresses, as: :addressable
 
   def full_name
@@ -39,11 +39,11 @@ class Practitioner < ActiveRecord::Base
   end
 
   def email
-    contact_points.where(contact_type: 'email').first.try(:info) ||
+    contacts.where(contact_type: 'email').first.try(:info) ||
       memberships.first.try(:email)
   end
   def work_phone
-    contact_points.where(contact_type: 'work_phone').first.try(:info) ||
+    contacts.where(contact_type: 'work_phone').first.try(:info) ||
       memberships.first.try(:work_phone)
   end
 end

@@ -1,6 +1,6 @@
 class CreateContacts < ActiveRecord::Migration
   def change
-    create_table :contact_points do |t|
+    create_table :contacts do |t|
       t.string :contactable_type
       t.integer :contactable_id
       t.string :contact_type

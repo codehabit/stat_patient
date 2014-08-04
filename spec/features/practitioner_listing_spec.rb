@@ -99,7 +99,6 @@ describe PractitionersController do
     create(:practitioner, first_name: "Ron", last_name: "Aronson")
     create(:practitioner, first_name: "Ron", last_name: "Bronson")
     visit practitioners_path
-    save_and_open_page
     expect(all(".show_practitioner").map(&:text)).to eq ["Ron Aronson", "Ron Bronson", "Ron Chancellor"]
   end
 end

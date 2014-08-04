@@ -19,7 +19,7 @@
           %p= "DEA Reg No: #{pr.dea_identifier}"
 
         .col-sm-6
-          %p= "NPI: #{practice.npi_identifier}"
+          %p= "NPI: #{practice.national_provider_identifier}"
           %p Telephone: #{po.practice.work_phone}
 
       .row.spacer
@@ -79,6 +79,15 @@
           .col-sm-8
             = po.patient_instructions
 
+    .row
+      .col-sm-5
+        .inline Label
+        - if po.label
+          .inline
+            %i.fa.fa-check-square-o
+        - else
+          .inline
+            %i.fa.fa-square-o
     .row
       .col-sm-5
         .inline Refill

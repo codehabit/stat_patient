@@ -111,14 +111,14 @@ end
 
 def create_practice row
   # todo: check for previous existance
-  org = Practice.create name: row['office'], npi_identifier: Faker::Number.number(10)
+  org = Practice.create name: row['office'], national_provider_identifier: Faker::Number.number(10)
   org.addresses <<  Address.create(address1: row['primary_address_street'], city: row['primary_address_city'], state: row['primary_address_state'], postal_code: row['primary_address_postalcode'])
 
   contacts= {work_phone: row['phone_work'], work_fax: row['phone_fax'], mobile_phone: row['phone_mobile'], email: row['email1'], website: row['website']}
 
   contacts.each do |type, info|
     next if info.blank?
-    org.contact_points << ContactPoint.create(contact_type: type.to_s, info: info)
+    org.contacts << Contact.create(contact_type: type.to_s, info: info)
   end
   org.save
   org.reload

@@ -7,11 +7,11 @@ describe PractitionersController do
     sign_in_as user
   end
   let(:practice) {create :practice}
-  let(:email) {create :contact_point, :email}
-  let(:work_phone) {create :contact_point, :work_phone }
+  let(:email) {create :contact, :email}
+  let(:work_phone) {create :contact, :work_phone }
   let(:addr) {create :address}
   let(:practice) {create :practice}
-  let(:practitioner) {create :practitioner, memberships: [practice], contact_points: [work_phone, email], addresses: [addr]}
+  let(:practitioner) {create :practitioner, memberships: [practice], contacts: [work_phone, email], addresses: [addr]}
 
   it "links to the show page from the listing page" do
     visit practitioners_path

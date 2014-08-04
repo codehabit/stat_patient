@@ -18,6 +18,8 @@
       = f.text_field :refills
 
       = f.select 'pharmacy_id', Pharmacy.all.map{|d| [d.name, d.id]},{include_blank: true}, class: 'form-control', data: {type: 'select2'}
+      = f.check_box :dispense_only_as_written
+      = f.check_box :label
       .submit.pull-right
         = f.submit "Save", class: "btn-standard btn btn-primary send"
 

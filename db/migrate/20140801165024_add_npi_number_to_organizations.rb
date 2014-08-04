@@ -1,5 +1,5 @@
 class AddNpiNumberToOrganizations < ActiveRecord::Migration
   def change
-    add_column :organizations, :npi_identifier, :string
+    add_column :organizations, :national_provider_identifier, :string
   end
 end

@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :contact_point do
+  factory :contact do
 
     trait :email do
       contact_type 'email'
