@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :practitioner do
-    sequence(:first_name) {|n| "#{n}Sam"} 
-    last_name 'Practitioner'
+    first_name {Faker::Name.first_name}
+    last_name {Faker::Name.last_name}
     specialty 'Teeth'
   end
 end

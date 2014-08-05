@@ -5,6 +5,6 @@ class PrescriptionOrder < ActiveRecord::Base
   belongs_to :practice
   belongs_to :drug
 
-  validates_presence_of :patient, :practitioner, :pharmacy, :drug
+  validates_presence_of :patient, :practitioner, :drug
 end
 

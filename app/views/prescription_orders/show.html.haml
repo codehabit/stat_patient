@@ -10,4 +10,4 @@
         = f.submit "Submit", class: "btn-standard btn btn-primary"
     .col-sm-3
       .print-buttons.rx-buttons
-      = f.select 'pharmacy_id', Pharmacy.all.map{|d| [d.name, d.id]},{include_blank: true, hide_label: true}, class: 'form-control', data: {type: 'select2'}
+      = f.select 'pharmacy_id', Pharmacy.all.map{|d| [d.name, d.id]},{include_blank: true, hide_label: true}, class: 'form-control', data: {role: 'pharmacy-selector', type: 'select2'}
