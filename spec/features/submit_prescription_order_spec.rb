@@ -36,7 +36,7 @@ describe PrescriptionOrdersController do
 
     it 'shows "VOID" watermark once submitted so that it cant be reprinted' do
       visit prescription_order_path(prescription_order)
-      expect(page).to have_content 'VOID'
+      expect(page).to have_content I18n.t(:copy_watermark, scope: :prescription)
     end
 
     it 'will not allow editing once submitted' do

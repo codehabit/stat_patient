@@ -29,6 +29,8 @@ en:
   practice_name: "Practice Name"
   add_new: "Add New"
   edit_practitioner: "Edit practitioner"
+  prescription:
+    copy_watermark: COPY
 
   date:
     formats:

@@ -10,7 +10,7 @@
   .col-sm-12.rx-paper
     - unless po.printable?
       #void-watermark
-        VOID
+        = t(:copy_watermark, scope: :prescription)
     .rx-header
       .rx-practice-name= po.practice.name
       .practice-addr

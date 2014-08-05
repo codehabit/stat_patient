@@ -35,7 +35,7 @@ describe PrescriptionOrdersController do
     it 'shows "VOID" watermark once so that it cant be reprinted' do
       pending 'verify that this is desired'
       visit prescription_order_path(prescription_order)
-      expect(page).to have_content 'VOID'
+      expect(page).to have_content I18n.t(:copy_watermark, scope: :prescription)
     end
   end
 end
