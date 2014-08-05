@@ -34,7 +34,6 @@ describe PrescriptionOrdersController do
   end
 
   it 'makes the status "printed" after printing' do
-    pending
     click_link 'Print Prescription'
     expect(prescription_order.reload.flow_status).to eq 'printed'
   end

@@ -18,7 +18,7 @@ class PrescriptionOrdersController < ApplicationController
 
   def print
     @prescription_order = PrescriptionOrder.find params[:id]
-    @prescription_order.update_attribute :flow_status, 'printed'
+    @prescription_order.update_attribute(:flow_status, 'printed') if @prescription_order.printable?
     @patient = @prescription_order.patient.decorate
     respond_to do |format|
       format.html {render layout: 'print'}
@@ -31,9 +31,14 @@ class PrescriptionOrdersController < ApplicationController
   end
 
   def submit
-    @prescription_order = PrescriptionOrder.find params[:id]
-    @patient = @prescription_order.patient.decorate
-    @prescription_order.update_attributes prescription_order_params.merge(flow_status: 'submitted')
+    if (@prescription_order = PrescriptionOrder.find params[:id]).submittable?
+      @patient = @prescription_order.patient.decorate
+      @prescription_order.update_attributes prescription_order_params.merge(flow_status: 'submitted')
+      render
+    else
+      flast[:warning] = "This prescription is no longer submittable"
+      redirect_to prescription_order_path(@prescription_order)
+    end
   end
 
   def edit
@@ -41,10 +46,10 @@ class PrescriptionOrdersController < ApplicationController
     @patient = @prescription_order.patient.decorate
     respond_to do |format|
       format.html do
-        if @prescription_order.flow_status == 'printed'
-          render action: 'show'
+        if ['printed', 'submitted'].include?(@prescription_order.flow_status)
+          redirect_to prescription_order_path(@prescription_order)
         else
-          render 
+          render
         end
       end
     end

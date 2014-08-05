@@ -5,8 +5,12 @@
 - drug = po.drug
 - ph = po.pharmacy
 - addr = practice.addresses.first
+
 .row
   .col-sm-12.rx-paper
+    - unless po.printable?
+      #void-watermark
+        VOID
     .rx-header
       .rx-practice-name= po.practice.name
       .practice-addr

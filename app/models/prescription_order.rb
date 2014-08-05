@@ -6,5 +6,21 @@ class PrescriptionOrder < ActiveRecord::Base
   belongs_to :drug
 
   validates_presence_of :patient, :practitioner, :drug
+
+  def submittable?
+    !submitted? && !printed?
+  end
+
+  def printable?
+    !submitted?
+  end
+
+  def submitted?
+    self.flow_status == 'submitted'
+  end
+
+  def printed?
+    self.flow_status == 'printed'
+  end
 end
 

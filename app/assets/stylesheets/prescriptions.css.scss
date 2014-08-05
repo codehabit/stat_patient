@@ -75,7 +75,7 @@
   .practice-addr {
     margin: 0;
     text-align: center;
-    }
+  }
   p {margin: 0;}
 }
 
@@ -131,4 +131,21 @@
   text-align: center;
   border-bottom: 1px solid black;
   width: 3em;
+}
+
+#void-watermark {
+  -webkit-transform:rotate(-20deg);
+  -moz-transform:rotate(-20deg);
+  -o-transform:rotate(-20deg);
+  transform:rotate(-20deg);
+  font-size:200px;
+  color:#CCC;
+  font-weight:bold;
+  letter-spacing:40px;
+  position:absolute;
+  z-index:1000;
+  top:20%;
+  left:5%;
+  opacity:0.5;
+  filter:alpha(opacity=50);
 }
