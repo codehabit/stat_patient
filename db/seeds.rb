@@ -90,7 +90,7 @@ end
 
 def user_email row, use_real = false
   if use_real
-    email
+    row['email1']
   else
     force_safe_email ? Faker::Internet.safe_email : row['email1']
   end
