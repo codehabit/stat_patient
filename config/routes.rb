@@ -2,7 +2,10 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {registrations: "registrations"}
   resources :patients
   resources :practitioners
-  resources :cases
+  resources :cases do
+    put :reply
+    put :add_participant
+  end
   resources :tooth_charts do
     resources :annotations, only: [:index, :create, :update, :destroy]
   end

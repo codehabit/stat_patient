@@ -1,5 +1,12 @@
-class CaseBuilder
+class CaseUpdater
   class << self
+    def add_participant(the_case, request)
+      the_case.save
+      added_participant = the_case.case_watchers.order("created_at DESC").first.watcher
+      body = "#{added_participant.name} was added to the conversation"
+      message = InfoMessage.create(body: body, case: the_case, patient: the_case.patient, recipient: the_case.originator, sender: the_case.originator)
+    end
+
     def reply(the_case, request)
       the_case.save
       message = the_case.messages.order("created_at DESC").first

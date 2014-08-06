@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 describe CasesController do
-  let!(:practitioner) {create(:practitioner)}
+  let!(:practitioner) do
+    create(:practitioner)
+  end
   let(:user) {create(:user, practitioner: practitioner)}
   let(:rcase) {create(:case, originator: practitioner, recipient: practitioner, patient: create(:patient), messages: [create(:message, sender: practitioner)])}
 
@@ -23,13 +25,13 @@ describe CasesController do
     expect(current_path).to eq root_path
   end
 
-  describe "adding participants" do
+  describe "adding participants", js: true do
     example "a practitioner can be added to a case" do
-      participant = create(:practitioner, first_name: "Wally", last_name: "Winters")
+      participant = create(:practice, name: "Some practice")
       visit polymorphic_path(rcase)
-      select2 "Wally Winters", from: "Add a participant"
+      select2 "Some practice", from: "Add a participant"
       click_button "Send"
-      expect(page).to have_content "Wally Winters was added to the conversation"
+      expect(page).to have_content "Some practice was added to the conversation"
     end
   end
 end

@@ -7,6 +7,8 @@ class Practitioner < ActiveRecord::Base
   has_many :practices, through: :organization_memberships, source: :practice
   has_many :laboratories, through: :organization_memberships, source: :laboratory
   has_many :pharmacies, through: :organization_memberships, source: :pharmacy
+  has_many :watcher_connections
+  has_many :watchable_cases, through: :watcher_connections, as: :watchables, source_type: "Case"
 
   has_many :originations, foreign_key: :originator_id, class_name: Case
   has_many :received_cases, as: :recipient, class_name: Case
