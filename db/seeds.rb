@@ -329,11 +329,14 @@ if make_drugs
   wrlog "\n Make prescriptions"
   ActiveRecord::Base.transaction do
     Patient.all.each do |patient|
-      practitioner = patient.practitioners.sample
+      practitioner = patient.reload.practitioners.sample
+      # patient may not have a case, therefor no practitioner
+      next unless practitioner
+      practice = practitioner.memberships.first
       pharmacy = pharmacies.sample
       drug = drugs.sample
 
-      rx  = PrescriptionOrder.create rx_id: SecureRandom.uuid, practitioner: practitioner, patient: patient, drug: drug, pharmacy: pharmacy
+      rx  = PrescriptionOrder.create rx_id: SecureRandom.uuid, practitioner: practitioner, patient: patient, drug: drug, pharmacy: pharmacy, practice: practice
       rx.update_attribute :created_at, patient.created_at
       wrlog '.'
     end
