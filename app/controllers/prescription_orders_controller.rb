@@ -36,7 +36,7 @@ class PrescriptionOrdersController < ApplicationController
       @prescription_order.update_attributes prescription_order_params.merge(flow_status: 'submitted')
       render
     else
-      flast[:warning] = "This prescription is no longer submittable"
+      flash[:warning] = "This prescription is no longer submittable"
       redirect_to prescription_order_path(@prescription_order)
     end
   end
