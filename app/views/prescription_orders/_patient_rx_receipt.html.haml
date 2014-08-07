@@ -2,7 +2,11 @@
 - addr = po.practice.addresses.first
 - patient = po.patient.decorate
 .row
-  .col-sm-12.rx-paper
+  .col-sm-12.rx-paper.equal-height-div
+    - unless po.printable?
+      #void-watermark-container
+        #void-watermark
+          = t(:copy_watermark, scope: :prescription)
     .row
       .col-md-1
       .col-md-11
@@ -31,46 +35,46 @@
 
         .row.padded
           .col-md-3
-            Telephone
+            = I18n.t(:patient_contact_phone)
           .col-md-8.compact
             %p= patient.home_phone
         .row.padded
           .col-md-3
-            Date of Birth
+            = I18n.t(:date_of_birth)
           .col-md-8.compact
             %p= l patient.date_of_birth
         .row.spacer
         .row.padded
           .col-md-3
-            Drug Name
+            = I18n.t(:drug_name, scope: :prescription)
           .col-md-8.compact
             %p= po.drug.name
         .row
           .col-md-3
-            Dispense
+            = I18n.t(:dispense_amount, scope: :prescription)
           .col-md-8.compact
             = po.dispense_amount
         .row
           .col-md-3
-            Rx Date
+            = I18n.t(:rx_date, scope: :prescription)
           .col-md-3.compact
             = po.created_at.strftime("%m/%d/%Y")
           .col-md-3.compact
-            Exp Date
+            = I18n.t(:expiration_date, scope: :prescription)
           .col-md-3.compact
             = po.expiration_date.strftime("%m/%d/%Y")
         .row.padded
           .col-md-3
-            Rx Instructions
+            = I18n.t(:rx_instructions, scope: :prescription)
           .col-md-8.compact
             %p= po.rx_instructions
         .row.padded
           .col-md-3
-            Patient Instructions
+            = I18n.t(:precautions, scope: :prescription)
           .col-md-8.compact
             %p= po.patient_instructions
         .row.padded
           .col-md-3
-            Refills
+            = I18n.t(:refills_allowed, scope: :prescription)
           .col-md-8.compact
             %p= po.refills

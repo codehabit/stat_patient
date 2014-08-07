@@ -7,10 +7,11 @@
 - addr = practice.addresses.first
 
 .row
-  .col-sm-12.rx-paper
+  .col-sm-12.rx-paper.equal-height-div.right-gutter
     - unless po.printable?
-      #void-watermark
-        = t(:copy_watermark, scope: :prescription)
+      #void-watermark-container
+        #void-watermark
+          = t(:copy_watermark, scope: :prescription)
     .rx-header
       .rx-practice-name= po.practice.name
       .practice-addr
@@ -19,8 +20,7 @@
       .row.spacer
       .row
         .col-sm-6
-          %p Prescribed by: #{pr.full_name}
-          %p= "DEA Reg No: #{pr.dea_identifier}"
+          %p Prescribed by: #{pr.full_name_with_suffix}
 
         .col-sm-6
           %p= "NPI: #{practice.national_provider_identifier}"
@@ -68,46 +68,51 @@
             %span.rx-drug-name= drug.name
         .row.rx-info
           .col-sm-3
-            Dispense
+            = I18n.t(:dispense_amount, scope: :prescription)
           .col-sm-8
             = po.dispense_amount
         .row.rx-info
           .col-sm-3
-            Rx Inst
+            = I18n.t(:rx_instructions, scope: :prescription)
           .col-sm-8
             = po.rx_instructions
         .row.rx-info
           .col-sm-3
-            Patient Inst
+            = I18n.t(:precautions, scope: :prescription)
           .col-sm-8
             = po.patient_instructions
 
     .row
-      .col-sm-5
-        .inline Label
+      .col-sm-3
+        .inline
+          = I18n.t(:label_prescription, scope: :prescription)
         - if po.label
           .inline
             %i.fa.fa-check-square-o
         - else
           .inline
             %i.fa.fa-square-o
+      .col-sm-4
+        %span= I18n.t(:refills_allowed, scope: :prescription)
+        %span.refills
+          = pluralize(po.refills, 'time')
+      .col-sm-5
+        .inline
+          - if po.dispense_only_as_written
+            = I18n.t(:dispense_as_written, scope: :prescription)
+            %i.fa.fa-check-square-o
+          - else
+            = I18n.t(:substitution_allowed, scope: :prescription)
+            %i.fa.fa-check-square-o
+
     .row.spacer
-    .row
-      .col-sm-3
-        .inline Refill
-        .inline.refills= po.refills
-        .inline= 'time'.pluralize
-      .col-sm-8
+    .row.spacer
+    .row.spacer
+      .col-sm-1
+      .col-sm-11
         .sigblock
         = "#{pr.full_name}, #{pr.suffix}"
-
     .row
       .col-sm-12
         .rx-footer
-          .inline
-            - if po.dispense_only_as_written
-              Dispense only as written
-              %i.fa.fa-check-square-o
-            - else
-              Substitution Allowed
 

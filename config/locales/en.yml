@@ -29,8 +29,20 @@ en:
   practice_name: "Practice Name"
   add_new: "Add New"
   edit_practitioner: "Edit practitioner"
+  date_of_birth: "Date of Birth"
+  patient_contact_phone: Telephone
   prescription:
     copy_watermark: COPY
+    precautions: Precautions
+    rx_instructions: Rx Instructions
+    rx_date: Rx Date
+    expiration_date: Exp Date
+    dispense_amount: Dispense
+    drug_name: Drug Name
+    refills_allowed: Refills
+    label_prescription: Label
+    dispense_only_as_written:  Dispense only as written
+    substitution_allowed: Substitution Allowed
 
   date:
     formats:

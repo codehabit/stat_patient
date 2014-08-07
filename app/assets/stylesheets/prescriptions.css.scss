@@ -2,6 +2,10 @@
   padding-top: 10px;
 }
 
+.right-gutter{
+  margin-right: 5px;
+}
+
 .compact p{
   padding: 0px;
   margin: 0px;
@@ -50,7 +54,8 @@
 .rx-paper {
   background: white;
   border: 1px solid black;
-  padding: 10px;
+  padding: 20px;
+  width: 600px;
 }
 .rx-print {
   padding: 10px;
@@ -128,24 +133,33 @@
 }
 
 .refills {
-  text-align: center;
   border-bottom: 1px solid black;
   width: 3em;
 }
 
+#void-watermark-container {
+  width:100%;
+  height:100%; //or if you want to just make this a px amount, it might not take 100% height
+  position:absolute;
+  top:0;
+  left: 0;
+  padding: 20px;
+}
+
 #void-watermark {
-  -webkit-transform:rotate(-20deg);
-  -moz-transform:rotate(-20deg);
-  -o-transform:rotate(-20deg);
-  transform:rotate(-20deg);
-  font-size:200px;
+  -webkit-transform:rotate(-40deg);
+  -moz-transform:rotate(-40deg);
+  -o-transform:rotate(-40deg);
+  transform:rotate(-40deg);
+  font-size:150px;
   color:#CCC;
   font-weight:bold;
-  letter-spacing:40px;
+  letter-spacing:30px;
   position:absolute;
   z-index:1000;
   top:20%;
-  left:5%;
+  left:10%;
+  #margin-left: -200px;
   opacity:0.5;
   filter:alpha(opacity=50);
 }
