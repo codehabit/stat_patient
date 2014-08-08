@@ -337,7 +337,7 @@ if make_drugs
       drug = drugs.sample
 
       rx  = PrescriptionOrder.create rx_id: SecureRandom.uuid, practitioner: practitioner, patient: patient, drug: drug, pharmacy: pharmacy, practice: practice
-      rx.update_attribute :created_at, patient.created_at
+      rx.update_attributes created_at: patient.created_at, expiration_date: (patient.created_at + 30.days)
       wrlog '.'
     end
   end
