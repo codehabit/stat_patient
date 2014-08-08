@@ -99,7 +99,7 @@
       .col-sm-5
         .inline
           - if po.dispense_only_as_written
-            = I18n.t(:dispense_as_written, scope: :prescription)
+            = I18n.t(:dispense_only_as_written, scope: :prescription)
             %i.fa.fa-check-square-o
           - else
             = I18n.t(:substitution_allowed, scope: :prescription)
