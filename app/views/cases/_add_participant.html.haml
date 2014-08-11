@@ -1,0 +1,4 @@
+.col-sm-6
+  = bootstrap_nested_form_for @case, url: case_add_participant_path(@case), method: :put, layout: :horizontal do |f|
+    = f.select :watching_practice_ids, options_from_collection_for_select(Practice.all, :id, :name), {label: "Add a participant", include_blank: true}, data: {role: "select2"}
+    = f.submit "Send"

@@ -62,11 +62,6 @@ ul.unstyled {
   list-style-type: none;
 }
 
-ul.horizontal li {
-  display: inline-block;
-  padding: 10px;
-}
-
 .message-heading {
   background-color: $top-bar-text-color;
   span {
@@ -85,8 +80,15 @@ ul.horizontal li {
   padding: 5px;
 }
 
+.image-gallery .title {
+  border-bottom: 1px solid $image-gallery-bg;
+  color: $image-gallery-bg;
+  font-weight: bold;
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
 .image-gallery {
-  // background-color: $image-gallery-bg;
   background-color: #fff;
   border-radius: 4px;
   margin-bottom: 10px;
@@ -94,7 +96,7 @@ ul.horizontal li {
   overflow: scroll;
   overflow: -moz-scrollbars-horizontal;
   margin-bottom: 10px;
-  padding: 10px;
+  padding-left: 10px;
   white-space: nowrap;
 }
 
@@ -104,8 +106,28 @@ ul.horizontal li {
   display: inline-block;
   line-height: 8;
   margin: 5px;
-  min-height: 100%;
+  width: 200px;
+  img {
+    width: 95%;
+  }
   padding: 0 10px 0 10px;
+}
+
+.document {
+  display: inline-block;
+  .inner {
+    background-color: #fff;
+    color: $image-gallery-bg;
+    font-size: 12px;
+    margin-top: 10px;
+    padding-left: 20px;
+    i {
+      font-size: 35px;
+    }
+    p {
+      width: 100%;
+    }
+  }
 }
 
 .tooth-chart img {
@@ -186,3 +208,4 @@ form.dropzone {
     margin: 5px;
     -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
 }
+

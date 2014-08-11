@@ -3,13 +3,22 @@
     %ul.nav.navbar-nav.navbar-left
       %li
         %span.pull-left
+          - if @current_practice
+            = link_to  @current_practice.try(:name), organization_path(@current_practice)
+          -else
+            = link_to 'No practice selected', "#"
+      %li
+        %span.pull-left
           = link_to "Patients", patients_path
       %li
         %span.pull-left
           = link_to "Practitioners", practitioners_path
-      -# %li
-      -#   %span.pull-left{data: {role: 'open-menu'}}
-      -#     = link_to "Toggle Menu", "javascript:null(0);", id: 'menu-state-lamp'
+      %li
+        %span.pull-left
+          - if @patient.present?
+            -# = link_to "PT: #{@patient.decorate.full_name}", patient_path(@patient)
+          -else
+            = link_to 'No patient selected', "#"
     %ul.nav.navbar-nav.navbar-right
       %li
         - if user_signed_in?

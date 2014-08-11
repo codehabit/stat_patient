@@ -1,4 +1,4 @@
-= form_for :images, url: images_path, html: {class: "dropzone", data: {role: "dropzone-enabled"}} do |f|
+= form_for :attachments, url: attachments_path, html: {class: "dropzone", data: {role: "dropzone-enabled"}} do |f|
   .dz-default.dz-message
     %p.top
       Drag and drop files here
@@ -8,3 +8,4 @@
       .btn.btn-primary.btn-standard
         Upload files
   = f.hidden_field :message_uuid, value: @uuid
+  = f.hidden_field :asset, multiple: true, data: {role: "hidden-file-input"}, id: "file-input"

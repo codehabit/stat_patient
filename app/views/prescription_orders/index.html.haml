@@ -15,6 +15,7 @@
         %th Drug
         %th Practitioner
         %th Pharmacy
+        %th Status
       %tbody
         - @prescription_orders.each do |rcase|
           %tr{data: {role: 'link-selector', target: edit_prescription_order_url(rcase)}}
@@ -22,6 +23,7 @@
             %td= rcase.patient.decorate.full_name_with_dob
             %td= rcase.drug.name
             %td= rcase.practitioner.decorate.full_name
-            %td= rcase.pharmacy.name
+            %td= rcase.pharmacy.try(:name)
+            %td= rcase.flow_status
 
 

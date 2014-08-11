@@ -1,6 +1,23 @@
-.image-gallery
-  - @case.messages.first.images.each do |image|
-    -# = render "shared/image_modal", image: image
-    = link_to "#", class: "button", role: "button", data: {toggle: "modal", target: "[data-role='#{image.asset_file_name}-viewer']"}, id: "#{image.asset_file_name}-viewer" do
-      .image
-        = image_tag image.asset.url(:thumb), data: {"zoom-image" => image.asset.url(:original), role: "zoom"}
+- if (images = @case.messages.first.attachments.where(type: 'Image')).present?
+  .image-gallery
+    .title
+      Uploaded images
+    - images.each do |attachment|
+      = link_to "#", id: "#{attachment.asset_file_name}-viewer" do
+        .image
+          %span
+            = image_tag attachment.asset.url(:thumb), data: {"zoom-image" => attachment.asset.url(:original), role: "zoom"}
+- if (files = @case.messages.first.attachments.where("type != 'Image'")).present?
+  .image-gallery
+    .title
+      Uploaded files
+    - files.each do |attachment|
+      = link_to attachment.asset.url do
+        .document
+          .inner
+            %p
+              %span.fa-stack.fa-sm
+                %i{class: "fa fa-file-#{attachment.doc_type.dasherize}-o fa-stack-2x"}
+            %p.truncate
+              = attachment.asset_file_name
+

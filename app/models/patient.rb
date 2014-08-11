@@ -3,7 +3,7 @@ class Patient < ActiveRecord::Base
   validates_presence_of :first_name, :last_name, :date_of_birth, :street, :city, :state, :zip_code, :home_phone, :gender, :social_security_number
   has_many :cases
   has_many :messages
-  has_many :images, as: :imageable
+  has_many :attachments, as: :attachable
   has_many :prescription_orders
 
   def practitioners

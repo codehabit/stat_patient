@@ -1,5 +1,165 @@
+.padded {
+  padding-top: 10px;
+}
+
+.right-gutter{
+  margin-right: 5px;
+}
+
+.compact p{
+  padding: 0px;
+  margin: 0px;
+}
+
+.sigblock {
+  border-bottom: 1px solid black;
+  width: 400px;
+}
+
+.centered {
+  text-align: center;
+}
+
 .monograph {
   border: 1px solid black;
   min-height: 600px;;
   padding: 20px;
+}
+
+.pt-info {
+  font-size: 10px;
+}
+
+.drug-attr {
+  font-weight: bold;
+  font-size: 18px;
+  padding: 0px;
+  margin: 0px;
+  margin-top: 10px;
+}
+
+.drug-desc {
+  font-size: 15px;
+  text-decoration: italic;
+  padding: 0px;
+  margin: 0px;
+  padding-left: 10px;
+}
+
+.rx-buttons {
+  margin: 10px;
+  color: white !important;
+}
+
+.rx-paper {
+  background: white;
+  border: 1px solid black;
+  padding: 20px;
+  width: 600px;
+}
+.rx-print {
+  padding: 10px;
+}
+
+.print-container {
+  padding: 30px;
+}
+.rx-attr-name { 
+  font-weight: bold;
+}
+
+.rx-practice-name {
+  font-size: 2em;
+  text-align: center;
+  font-weight: bold;
+}
+
+.rx-header {
+  border-bottom: 3px solid black;
+  margin-bottom: 10px;
+  .practice-addr {
+    margin: 0;
+    text-align: center;
+  }
+  p {margin: 0;}
+}
+
+.rx-footer {
+  border-top: 3px solid black;
+  text-align: center;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.pt-info {
+  font-size: 1.0em;
+}
+.pt-info p {
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.rx-logo {
+  background-image:  url('rx-logo-60.png');
+  background-repeat: no-repeat;
+  height: 60px;
+  margin: 10px;
+  margin-left: 20px;
+}
+
+.rx-drug-name {
+  font-size: 1.2em;
+  text-transform: uppercase;
+}
+.spacer {
+  height: 25px;
+}
+
+.rx-info {
+  padding: 10px;
+  font-size: 1.0em;
+}
+
+.rx-info .dd {
+  font-weight: bold;
+}
+
+.rx-info .dt {
+}
+
+.inline {
+  float: left;
+  padding: 5px;
+}
+
+.refills {
+  border-bottom: 1px solid black;
+  width: 3em;
+}
+
+#void-watermark-container {
+  width:100%;
+  height:100%; //or if you want to just make this a px amount, it might not take 100% height
+  position:absolute;
+  top:0;
+  left: 0;
+  padding: 20px;
+}
+
+#void-watermark {
+  -webkit-transform:rotate(-40deg);
+  -moz-transform:rotate(-40deg);
+  -o-transform:rotate(-40deg);
+  transform:rotate(-40deg);
+  font-size:150px;
+  color:#CCC;
+  font-weight:bold;
+  letter-spacing:30px;
+  position:absolute;
+  z-index:1000;
+  top:20%;
+  left:10%;
+  #margin-left: -200px;
+  opacity:0.5;
+  filter:alpha(opacity=50);
 }

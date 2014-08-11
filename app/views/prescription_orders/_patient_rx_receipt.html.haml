@@ -1,0 +1,80 @@
+- po = @prescription_order
+- addr = po.practice.addresses.first
+- patient = po.patient.decorate
+.row
+  .col-sm-12.rx-paper.equal-height-div
+    - unless po.printable?
+      #void-watermark-container
+        #void-watermark
+          = t(:copy_watermark, scope: :prescription)
+    .row
+      .col-md-1
+      .col-md-11
+        .row.padded
+          .col-md-12.centered
+            = po.practice.name
+        .row.spacer
+        .row.padded
+          .col-md-3
+            Prescribed by
+          .col-md-8
+            = po.practitioner.full_name
+        .row
+          .col-md-3.compact
+            Telephone
+          .col-md-8.compact
+            = po.practitioner.work_phone
+        .row.spacer
+        .row.padded
+          .col-md-3
+            Patient
+          .col-md-8.compact
+            %p= patient.full_name
+            %p= patient.street
+            %p= "#{patient.city}, #{patient.state} #{patient.zip_code}"
+
+        .row.padded
+          .col-md-3
+            = I18n.t(:patient_contact_phone)
+          .col-md-8.compact
+            %p= patient.home_phone
+        .row.padded
+          .col-md-3
+            = I18n.t(:date_of_birth)
+          .col-md-8.compact
+            %p= l patient.date_of_birth
+        .row.spacer
+        .row.padded
+          .col-md-3
+            = I18n.t(:drug_name, scope: :prescription)
+          .col-md-8.compact
+            %p= po.drug.name
+        .row
+          .col-md-3
+            = I18n.t(:dispense_amount, scope: :prescription)
+          .col-md-8.compact
+            = po.dispense_amount
+        .row
+          .col-md-3
+            = I18n.t(:rx_date, scope: :prescription)
+          .col-md-3.compact
+            = po.created_at.strftime("%m/%d/%Y")
+          .col-md-3.compact
+            = I18n.t(:expiration_date, scope: :prescription)
+          .col-md-3.compact
+            = po.expiration_date.strftime("%m/%d/%Y")
+        .row.padded
+          .col-md-3
+            = I18n.t(:rx_instructions, scope: :prescription)
+          .col-md-8.compact
+            %p= po.rx_instructions
+        .row.padded
+          .col-md-3
+            = I18n.t(:precautions, scope: :prescription)
+          .col-md-8.compact
+            %p= po.patient_instructions
+        .row.padded
+          .col-md-3
+            = I18n.t(:refills_allowed, scope: :prescription)
+          .col-md-8.compact
+            %p= po.refills

@@ -1,18 +1,7 @@
 .messages
   - @case.messages.order("created_at desc")[0...@case.messages.count-1].each do |message|
-    .well
-      .message-heading
-        %b= message.sender.full_name
-        %b to #{message.recipient.full_name}
-        %span.time-display
-          Sent on: #{message.created_at.strftime("%b %-d %Y %l:%m %P")}
-      %ul.horizontal.unstyled
-        %li
-          = message.body
-        %li
-          - if message.images.present?
-            - message.images.each do |image|
-              -# = render "shared/image_modal", image: image
-              = link_to "#", class: "button", role: "button", data: {toggle: "modal", target: "[data-role='#{image.asset_file_name}-viewer']"} do
-                = image_tag image.asset.url(:thumb), data: {"zoom-image" => image.asset.url(:original), role: "zoom"}
+    - if message.is_a? InfoMessage
+      = render "info_message", message: message
+    - else
+      = render "message", message: message
 

@@ -1,11 +1,8 @@
 FactoryGirl.define do
   factory :practitioner do
-    first_name 'Sam'
-    last_name 'Practitioner'
+    first_name {Faker::Name.first_name}
+    last_name {Faker::Name.last_name}
     specialty 'Teeth'
-    phone '111-111-1111'
-    email 'non@non.non'
-    practice_name 'Sams Practice'
   end
 end
 

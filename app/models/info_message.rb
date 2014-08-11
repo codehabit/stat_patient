@@ -1,0 +1,3 @@
+class InfoMessage < Message
+end
+

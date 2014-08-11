@@ -6,29 +6,32 @@ describe PractitionersController do
   before :each do
     sign_in_as user
   end
+  let(:practice) {create :practice}
+  let(:email) {create :contact, :email}
+  let(:work_phone) {create :contact, :work_phone }
+  let(:addr) {create :address}
+  let(:practice) {create :practice}
+  let(:practitioner) {create :practitioner, memberships: [practice], contacts: [work_phone, email], addresses: [addr]}
+
   it "links to the show page from the listing page" do
-    gretchen = create(:practitioner, first_name: "Gretchen", last_name: "Mueller")
     visit practitioners_path
-    click_link "Gretchen Mueller"
-    expect(current_path).to eq practitioner_path(gretchen)
+    click_link practitioner.full_name
+    expect(current_path).to eq practitioner_path(practitioner)
   end
 
   it "shows first name" do
-     practitioner = create(:practitioner, first_name: "Frank")
      visit practitioner_path(practitioner)
-     expect(page).to have_content "Frank"
+     expect(page).to have_content practitioner.first_name
   end
 
   it "shows last name" do
-     practitioner = create(:practitioner, last_name: "Sinatra")
      visit practitioner_path(practitioner)
-     expect(page).to have_content "Sinatra"
+     expect(page).to have_content practitioner.last_name
   end
 
   it "shows the practice" do
-     practitioner = create(:practitioner, practice_name: "Big Practice")
      visit practitioner_path(practitioner)
-     expect(page).to have_content "Big Practice"
+     expect(page).to have_content practice.name
   end
 
   it "shows the specialty" do
@@ -38,16 +41,12 @@ describe PractitionersController do
   end
 
   it "shows the phone" do
-     practitioner = create(:practitioner, phone: "(773) 478-5555")
      visit practitioner_path(practitioner)
-     expect(page).to have_content "(773) 478-5555"
+     expect(page).to have_content practitioner.work_phone
   end
 
   it "shows the email" do
-     practitioner = create(:practitioner, email: "johnny@rotten.com")
      visit practitioner_path(practitioner)
-     expect(page).to have_content "johnny@rotten.com"
+     expect(page).to have_content practitioner.email
   end
-
 end
-

@@ -11,10 +11,55 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140715020230) do
+ActiveRecord::Schema.define(version: 20140806153341) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: true do |t|
+    t.integer  "addressable_id"
+    t.string   "addressable_type"
+    t.string   "type"
+    t.string   "title"
+    t.string   "street1"
+    t.string   "street2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "postal_code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "annotations", force: true do |t|
+    t.integer "tooth_chart_id"
+    t.string  "text"
+    t.integer "height"
+    t.integer "width"
+    t.integer "top"
+    t.integer "left"
+  end
+
+  create_table "attachments", force: true do |t|
+    t.string   "asset_file_name"
+    t.string   "asset_content_type"
+    t.integer  "asset_file_size"
+    t.datetime "asset_updated_at"
+    t.integer  "attachable_id"
+    t.string   "attachable_type"
+    t.integer  "uploaded_by_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "attachable_uuid"
+    t.string   "type"
+  end
+
+  create_table "case_watchers", force: true do |t|
+    t.integer  "case_id"
+    t.integer  "watcher_id"
+    t.string   "watcher_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "cases", force: true do |t|
     t.string   "case_number"
@@ -30,34 +75,33 @@ ActiveRecord::Schema.define(version: 20140715020230) do
     t.datetime "image_updated_at"
     t.string   "subject"
     t.integer  "originator_id"
+    t.boolean  "read"
+  end
+
+  create_table "contacts", force: true do |t|
+    t.string   "contactable_type"
+    t.integer  "contactable_id"
+    t.string   "contact_type"
+    t.string   "info"
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "drugs", force: true do |t|
     t.string   "name"
     t.string   "dispense_amount"
-    t.string   "dispense_frequency"
     t.string   "uuid"
     t.text     "adult_dosing"
     t.text     "peds_dosing"
     t.text     "contraindications"
     t.text     "dosage_forms"
-    t.text     "pharmacy_instructions"
+    t.text     "rx_instructions"
     t.text     "patient_instructions"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "images", force: true do |t|
-    t.string   "asset_file_name"
-    t.string   "asset_content_type"
-    t.integer  "asset_file_size"
-    t.datetime "asset_updated_at"
-    t.integer  "imageable_id"
-    t.string   "imageable_type"
-    t.integer  "uploaded_by_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "imageable_uuid"
+    t.text     "interactions"
+    t.text     "pregnancy_lactating_precautions"
   end
 
   create_table "laboratory_orders", force: true do |t|
@@ -65,7 +109,7 @@ ActiveRecord::Schema.define(version: 20140715020230) do
     t.integer  "practitioner_id"
     t.integer  "laboratory_id"
     t.text     "requisition"
-    t.string   "vita_number"
+    t.string   "vita_color"
     t.datetime "due_date"
     t.integer  "shipping_method_id"
     t.text     "special_instructions"
@@ -82,11 +126,21 @@ ActiveRecord::Schema.define(version: 20140715020230) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "uuid"
+    t.string   "type"
+  end
+
+  create_table "organization_memberships", force: true do |t|
+    t.integer  "organization_id"
+    t.integer  "practitioner_id"
+    t.string   "role"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "organizations", force: true do |t|
-    t.string "organization_type"
+    t.string "type"
     t.string "name"
+    t.string "national_provider_identifier"
   end
 
   create_table "patients", force: true do |t|
@@ -114,21 +168,22 @@ ActiveRecord::Schema.define(version: 20140715020230) do
   create_table "practitioners", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "practice_name"
-    t.string   "email"
     t.string   "specialty"
-    t.string   "phone"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "title"
+    t.string   "salutation"
+    t.string   "suffix"
+    t.string   "dea_identifier"
   end
 
   create_table "prescription_orders", force: true do |t|
     t.integer  "patient_id"
     t.integer  "practitioner_id"
     t.integer  "drug_id"
-    t.string   "dispense"
-    t.text     "instructions"
+    t.string   "dispense_amount"
+    t.text     "rx_instructions"
     t.text     "patient_instructions"
     t.date     "expiration_date"
     t.integer  "refills"
@@ -136,6 +191,18 @@ ActiveRecord::Schema.define(version: 20140715020230) do
     t.string   "rx_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "practice_id"
+    t.boolean  "dispense_only_as_written"
+    t.boolean  "label"
+    t.string   "flow_status"
+  end
+
+  create_table "tooth_charts", force: true do |t|
+    t.string   "chart_file_name"
+    t.string   "chart_content_type"
+    t.integer  "chart_file_size"
+    t.datetime "chart_updated_at"
+    t.integer  "case_id"
   end
 
   create_table "users", force: true do |t|

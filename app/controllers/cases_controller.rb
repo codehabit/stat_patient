@@ -11,18 +11,29 @@ class CasesController < ApplicationController
   def create
     @case = Case.new(case_params)
     if @case.valid?
-      CaseBuilder.originate(@case, request)
+      CaseUpdater.originate(@case, request)
       redirect_to cases_path
     else
       render action: :new
     end
   end
 
-  def update
-    @case = Case.find(params[:id])
+  def add_participant
+    @case = Case.find(params[:case_id])
     @case.attributes = case_params
     if @case.valid?
-      CaseBuilder.reply(@case, request)
+      CaseUpdater.add_participant(@case, request)
+      redirect_to case_path(@case)
+    else
+      render action: :show
+    end
+  end
+
+  def reply
+    @case = Case.find(params[:case_id])
+    @case.attributes = case_params
+    if @case.valid?
+      CaseUpdater.reply(@case, request)
       redirect_to case_path(@case)
     else
       render action: :show
@@ -33,8 +44,9 @@ class CasesController < ApplicationController
     @uuid = UUID.generate
     @case = Case.find(params[:id])
     if @case.recipient.user != current_user && @case.originator.user != current_user
-      redirect_to cases_path
+      redirect_to root_path
     end
+    @case.update(read: true)
   end
 
   def edit
