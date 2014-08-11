@@ -103,6 +103,15 @@
   margin-top: 0px;
 }
 
+[data-role="rx-form"] .submit {
+  input {
+    padding: 10px 40px 10px 40px;
+    position: relative;
+    font-size: 1.2em;
+    left: -40%;
+  }
+}
+
 .rx-logo {
   background-image:  url(asset_path 'rx-logo-60.png');
   background-repeat: no-repeat;
