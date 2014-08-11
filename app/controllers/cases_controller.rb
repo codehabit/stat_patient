@@ -21,8 +21,9 @@ class CasesController < ApplicationController
   def add_participant
     @case = Case.find(params[:case_id])
     @case.attributes = case_params
+    added_id = params[:case][:watching_practice_ids]
     if @case.valid?
-      CaseUpdater.add_participant(@case, request)
+      CaseUpdater.on_participant_added(@case, request, added_id)
       redirect_to case_path(@case)
     else
       render action: :show

@@ -5,12 +5,13 @@
   %body
     %p
       From:
-      %span= @message.sender.decorate.full_name
+      %span
+        StatPatient
     %p
-      Patient:
+      Regarding patient:
       %span= @message.patient.decorate.full_name_with_dob
     %p
-      Notes:
-      %span= @message.body
+      You have been requested to join the conversation.
     %p
-      %span= link_to("View the message here", "#{Url.from_request(@request)}#{case_path(@case)}")
+      %span= link_to("Click here to respond", "#{Url.from_request(@request)}#{case_path(@case)}")
+

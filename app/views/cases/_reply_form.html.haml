@@ -5,6 +5,7 @@
         = nested_form_for @case, url: case_reply_path(@case), method: :put, layout: :horizontal do |f|
           = f.fields_for :messages, @case.messages.build do |message_builder|
             = message_builder.hidden_field :sender_id, value: current_user.practitioner.id
+            = message_builder.hidden_field :sender_type, value: "Practitioner"
             = message_builder.hidden_field :uuid, value: @uuid
             = message_builder.text_area :body, class: "notes form-control", placeholder: "Reply to this message"
           = f.submit "Reply", class: "btn btn-default"
