@@ -113,7 +113,7 @@
 }
 
 .rx-logo {
-  background-image:  url(asset_path 'rx-logo-60.png');
+  background-image:  asset-url('rx-logo-60.png');
   background-repeat: no-repeat;
   height: 60px;
   margin: 10px;
