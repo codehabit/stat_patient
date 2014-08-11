@@ -8,8 +8,11 @@ $(document).on "click", "[data-action='star']", ->
     $this.removeClass("glyphicon-star-empty")
     if data.starred
       whichOne = "glyphicon-star"
+      order = 1
     else
       whichOne = "glyphicon-star-empty"
+      order = 0
     $this.addClass(whichOne)
+    $this.closest("td").attr("data-order", order)
   )
 
