@@ -1,0 +1,13 @@
+.participants-list
+  .row
+    %span.prompt
+      In this conversation:
+    %span
+      = "#{@case.originator.full_name}, #{@case.recipient.full_name}"
+      - @case.case_watchers.each do |watcher|
+        = ", #{watcher.watcher.name}"
+  .row
+    .add-participant
+      = nested_form_for @case, url: case_add_participant_path(@case), method: :put, layout: :horizontal do |f|
+        = f.select :watching_practice_ids, options_from_collection_for_select(Practice.all, :id, :name), {include_blank: true}, placeholder: "Add a participant", data: {role: "select2"}
+        = f.submit "Send", class: "btn btn-sm"

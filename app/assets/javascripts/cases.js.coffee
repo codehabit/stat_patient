@@ -1,6 +1,7 @@
 $(document).on "ready page:load", ->
   $("[data-role='select2']").select2(
     placeholder: $(this).attr("placeholder")
+    height: "10"
     width: "75%"
   )
   Dropzone.autoDiscover = false;
