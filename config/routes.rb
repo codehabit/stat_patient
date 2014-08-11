@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :cases do
     put :reply
     put :add_participant
+    put :star
   end
   resources :tooth_charts do
     resources :annotations, only: [:index, :create, :update, :destroy]

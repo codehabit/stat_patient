@@ -18,6 +18,15 @@ class CasesController < ApplicationController
     end
   end
 
+  def star
+    @case = Case.find(params[:case_id])
+    @case.update(starred: !(@case.starred))
+    result = {starred: @case.starred}
+    respond_to do |format|
+      format.json { render json: result.to_json }
+    end
+  end
+
   def add_participant
     @case = Case.find(params[:case_id])
     @case.attributes = case_params
