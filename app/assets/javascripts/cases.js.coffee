@@ -21,3 +21,16 @@ $(window).load ->
       createUrl: $(".tooth-chart-annotate").data("index")
       deleteUrl: $(".tooth-chart-annotate").data("index")
 
+  $("#dialog").dialog
+    autoOpen: false
+    draggable: false
+
+  $("#selectable").selectable
+    stop: (e) ->
+      $("#dialog").dialog "option", "position",
+        my: "center",
+        at: "center",
+        of: e
+      $("#dialog").dialog "option", "title", "Choose an option"
+      $("#dialog").dialog "option", "modal", true
+      $("#dialog").dialog "open"
