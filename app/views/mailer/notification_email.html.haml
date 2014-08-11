@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+%html
+  %head
+    %meta{ content: 'text/html; charset=UTF-8', "http-equiv" => 'Content-Type'}
+  %body
+    %p
+      From:
+      %span= @message.sender.decorate.full_name
+    %p
+      Patient:
+      %span= @message.patient.decorate.full_name_with_dob
+    %p
+      Notes:
+      %span= @message.body
+    %p
+      %span= link_to("View the message here", "#{Url.from_request(@request)}#{case_path(@case)}")
+
