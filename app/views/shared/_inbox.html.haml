@@ -22,7 +22,7 @@
             %span.subject= rcase.subject
         - most_recent = rcase.messages.from_participant.order("created_at DESC").first
         %td.col-lg-3{data: {role: 'link-selector', target: case_url(rcase)}}
-          = most_recent.sender.full_name
+          = most_recent.try(:sender).try(:full_name)
         %td.col-lg-3{data: {role: 'link-selector', target: case_url(rcase), order: most_recent.created_at.to_i}}
           .meta= most_recent.created_at.strftime("%b %d")
           .meta= most_recent.created_at.strftime("%l:%M %p")
