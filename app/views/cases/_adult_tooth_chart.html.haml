@@ -1,4 +1,4 @@
-= link_to "Show tooth chart", "#modal"
+= link_to image_tag(@case.tooth_chart.chart.url(:web_viewer)), "#modal"
 
 .remodal{data: {remodal_id: "modal"}}
   %ul#selectable
