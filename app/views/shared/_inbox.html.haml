@@ -1,5 +1,6 @@
 %table{data: {role: "datatableized"}}
   %thead.inbox-header
+    %th.col-sm-1.glyphicon.glyphicon-exclamation-sign
     %th.col-lg-3{data: {class: "expand"}} Started By
     %th.col-lg-4{data: {hide: "phone", name: "To"}} To: Subject
     %th.col-lg-3{data: {hide: "phone", name: "Replied By"}} Last Reply By
@@ -9,6 +10,8 @@
   %tbody
     - @patient_cases.each do |rcase|
       %tr.inbox-content{data: {role: 'row-selector'}, class: rcase.read? ? "read" : "unread"}
+        %td.col-sm-1{data: {order: rcase.starred? ? 1 : 0}}
+          %i{class: rcase.starred? ? "glyphicon glyphicon-star" : "glyphicon glyphicon-star-empty", data: {action: "star", url: case_star_path(rcase)}}
         %td.col-lg-3{data: {role: 'link-selector', target: case_url(rcase)}}
           .base= rcase.originator.full_name
           .meta= rcase.created_at.strftime("%B %d, %l:%M %p")
@@ -17,7 +20,7 @@
             = rcase.recipient.first_name
             = ":"
             %span.subject= rcase.subject
-        - most_recent = rcase.messages.order("created_at DESC").first
+        - most_recent = rcase.messages.from_participant.order("created_at DESC").first
         %td.col-lg-3{data: {role: 'link-selector', target: case_url(rcase)}}
           = most_recent.sender.full_name
         %td.col-lg-3{data: {role: 'link-selector', target: case_url(rcase), order: most_recent.created_at.to_i}}
