@@ -1,8 +1,11 @@
 .row.body-element
-  = render "add_participant"
-.row.body-element
-  = render "data"
-  = render "assets"
+  .col-lg-6
+    .row
+      = render "participants"
+    .row
+      = render "data"
+  .col-lg-6
+    = render "assets"
 .row.body-element
   = render "main_images"
 .row.body-element

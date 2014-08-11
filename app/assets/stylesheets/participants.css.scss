@@ -1,0 +1,29 @@
+.participants-list {
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 13px;
+  .prompt {
+    font-weight: bold;
+  }
+  .row {
+    padding-left: 15px;
+  }
+}
+
+.add-participant .btn {
+  display: inline-block;
+  margin-left: 60px;
+  margin-top: 5px;
+}
+
+.select2-container .select2-choice {
+  height: 26px;
+}
+
+.participants-section {
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 10px;
+}
+
