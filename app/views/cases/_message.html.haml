@@ -1,7 +1,7 @@
 .well
   .message-heading
-    %b= message.sender.full_name
-    %b to #{message.recipient.full_name}
+    %b= message.try(:sender).try(:full_name)
+    %b to #{message.try(:recipient).try(:full_name)}
     %span.time-display
       Sent on: #{message.created_at.strftime("%b %-d %Y %l:%m %P")}
   %ul.horizontal.unstyled
