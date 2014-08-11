@@ -54,9 +54,14 @@ a.btn-small {
     color: $body-text-color;
 }
 }
+[data-role="date-selector"] {
+  width: 240px;
+}
+
 [data-role="link-selector"] {
   cursor: pointer;
 }
+
 [data-role="row-selector"]:hover {
   background-color: $row-selected-background-color;
 }
@@ -82,7 +87,7 @@ a.btn-small {
 .select2-container .select2-choice {
   display: block;
   height: 41px;
-  width: 440px;
+  width: 100%;
   padding: 0 0 0 8px;
   overflow: hidden;
   position: relative;

@@ -32,9 +32,11 @@ en:
   date_of_birth: "Date of Birth"
   patient_contact_phone: Telephone
   prescription:
+    submit: Create Prescription
     copy_watermark: COPY
-    precautions: Precautions
+    precautions: Patient Precautions
     rx_instructions: Rx Instructions
+    sig: SIG
     rx_date: Rx Date
     expiration_date: Exp Date
     dispense_amount: Dispense
@@ -43,6 +45,7 @@ en:
     label_prescription: Label
     dispense_only_as_written:  Dispense only as written
     substitution_allowed: Substitution Allowed
+    rx_id: Rx ID
 
   date:
     formats:

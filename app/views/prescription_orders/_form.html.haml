@@ -1,7 +1,7 @@
 .row
-  .col-sm-6
+  .col-sm-7
     = bootstrap_form_for(@prescription_order,  data: {role: 'patient-form'}, layout: :horizontal) do |f|
-      = f.text_field :rx_id, label: "Rx ID", disabled: true
+      = f.text_field :rx_id, label: t(:rx_id, scope: :prescription), disabled: true
       = f.hidden_field :rx_id
       = f.select 'patient_id', Patient.all.map{|d| [d.decorate.last_first_with_dob, d.id]},{include_blank: true}, data: {type: 'select2', change: 'update-pt'}
       .form-group
@@ -10,19 +10,18 @@
           = @patient.try(:pt_description)
       = f.text_field :practitioner_id, value: "#{@practitioner.full_name} - #{@current_practice.name}", disabled: true
       = f.select 'drug_id', Drug.all.map{|d| [d.name, d.id]},{label: 'Rx', include_blank: true}, data: {type: 'select2', attr: 'drug_id', change: 'update-rx'}
-      = f.text_field :dispense_amount
-      = f.text_area :rx_instructions, label: 'SIG'
-      = f.text_area :patient_instructions
-      = f.date_field :created_at, disabled: true, label: 'Created'
-      = f.date_field :expiration_date,  label: 'Expires'
-      = f.text_field :refills
+      = f.text_field :dispense_amount, label: t(:dispense_amount, scope: :prescription)
+      = f.text_area :rx_instructions, label: t(:sig, scope: :prescription)
+      = f.text_area :patient_instructions, label: t(:precautions, scope: :prescription)
+      = f.date_field :created_at, disabled: true, label: t(:rx_date, scope: :prescription), data: {role: 'date-selector'}
+      = f.date_field :expiration_date,  label: t(:expiration_date, scope: :prescription), data: {role: 'date-selector'}
+      = f.text_field :refills, data: {role: 'refill-selector'}
 
-      = f.check_box :dispense_only_as_written
+      = f.check_box :dispense_only_as_written, label: t(:dispense_only_as_written, scope: :prescription)
       = f.check_box :label
-      .submit.pull-right
-        = f.submit "Save", class: "btn-standard btn btn-primary"
+      .submit
+        = f.submit t(:submit, scope: :prescription), class: "btn-standard btn btn-primary send"
 
-  .col-sm-1
   .col-sm-5
     .body-title Monograph
     .monograph
