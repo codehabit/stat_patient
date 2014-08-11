@@ -41,7 +41,7 @@ en:
     expiration_date: Exp Date
     dispense_amount: Dispense
     drug_name: Drug Name
-    refills_allowed: Refills
+    refills_allowed: Refill
     label_prescription: Label
     dispense_only_as_written:  Dispense only as written
     substitution_allowed: Substitution Allowed
