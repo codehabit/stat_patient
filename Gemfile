@@ -35,6 +35,7 @@ gem 'gs'
 gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 gem 'lodash-rails'
 gem 'chewy'
+gem 'newrelic_rpm'
 
 group :development do
   gem 'spring'
