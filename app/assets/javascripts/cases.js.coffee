@@ -24,8 +24,12 @@ $(window).load ->
   $("#dialog").dialog
     autoOpen: false
     draggable: false
+    close: ->
+      $(".temp-selected").removeClass("temp-selected ui-selected")
 
   $("#selectable").selectable
+    selected: ->
+      $(".ui-selected").addClass("temp-selected")
     stop: (e) ->
       $("#dialog").dialog "option", "position",
         my: "center",
