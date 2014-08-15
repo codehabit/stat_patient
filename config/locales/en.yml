@@ -58,3 +58,4 @@ en:
     formats:
       default: "%B %d, %Y"
       datetime: "%B %d, %Y, %l:%M %p"
+      time: "%l:%M %p"

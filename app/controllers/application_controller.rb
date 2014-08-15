@@ -12,34 +12,25 @@ class ApplicationController < ActionController::Base
 
   def get_context
     return unless current_user
-
-    @practitioner = current_user.practitioner
-    # TODO: allow choosing the practice from your memberships
-    last_current_practice = Practice.where(id: session[:current_practice_id]).first
-    @current_practice = last_current_practice || @practitioner.practices.first
-    @patients = @practitioner.patients
-
-    patient_param = params['patient_id']
-
-    if patient_param == ""
-      # patient intentionally removed, show all things
-      session[:patient] = nil
-    elsif patient_id = (patient_param || session[:patient])
-      # allow for patient.id changing when data is reloaded
-      @patient = Patient.where(id: patient_id ).first
-      if @patient
-        session[:patient] = @patient.id
-      else
-        session[:patient] = nil
-      end
-    end
-
+    set_practice_context
+    get_visit_context
   end
 
-  def set_current_patient patient
-    session[:patient] = patient.try :id
+  def set_practice_context
+    @current_practitioner = @current_user.practitioner
+    @current_practice = @current_practitioner.memberships.first
   end
 
+  def set_visit_context visit
+    session[:visit_id] = visit.id
+    @current_visit = visit
+    @current_patient = @current_visit.patient.decorate
+  end
+
+  def get_visit_context
+    return unless session[:visit_id]
+    @current_visit = Visit.find session[:visit_id]
+    @current_patient = @current_visit.patient.decorate
+  end
 
 end
-

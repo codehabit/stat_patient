@@ -4,7 +4,7 @@ class CasesController < ApplicationController
   end
 
   def new
-    @case = Case.new
+    @case = Case.new(patient: @current_patient, originator: @current_practitioner)
     @uuid = UUID.generate
   end
 
@@ -12,7 +12,12 @@ class CasesController < ApplicationController
     @case = Case.new(case_params)
     if @case.valid?
       CaseUpdater.originate(@case, request)
-      redirect_to cases_path
+      if @current_visit.present?
+        @current_visit.cases << @case
+        redirect_to visit_path(@current_visit)
+      else
+        redirect_to cases_path
+      end
     else
       render action: :new
     end

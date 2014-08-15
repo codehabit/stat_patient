@@ -1,17 +1,18 @@
 class PrescriptionOrdersController < ApplicationController
 
   def new
-    @prescription_order = PrescriptionOrder.new rx_id: SecureRandom.uuid, created_at: Date.today, refills: 0, practitioner: @practitioner, practice: @current_practice, patient: @patient, expiration_date: 30.days.from_now
+    @prescription_order = PrescriptionOrder.new rx_id: SecureRandom.uuid, created_at: Date.today, refills: 0, practitioner: @current_practitioner, practice: @current_practice, patient: @current_patient, expiration_date: 30.days.from_now
   end
 
   def create
-    @prescription_order = PrescriptionOrder.create(prescription_order_params.merge(practitioner: @practitioner, practice: @current_practice))
-    @prescription_order.practice = @current_practice
-    set_current_patient @prescription_order.patient
+    @prescription_order = PrescriptionOrder.create(prescription_order_params)
+    @current_visit.prescription_orders << @prescription_order if @current_visit
 
     if @prescription_order.valid?
       redirect_to prescription_order_path(@prescription_order)
     else
+
+      flash[:error] = @prescription_order.errors.full_messages.join(', ')
       render action: :new
     end
   end
@@ -34,7 +35,11 @@ class PrescriptionOrdersController < ApplicationController
     if (@prescription_order = PrescriptionOrder.find params[:id]).submittable?
       @patient = @prescription_order.patient.decorate
       @prescription_order.update_attributes prescription_order_params.merge(flow_status: 'submitted')
-      render
+      if @current_visit.present?
+        redirect_to visit_path(@current_visit)
+      else
+        redirect_to root_path
+      end
     else
       flash[:warning] = "This prescription is no longer submittable"
       redirect_to prescription_order_path(@prescription_order)
