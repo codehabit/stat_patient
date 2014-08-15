@@ -31,6 +31,8 @@ en:
   edit_practitioner: "Edit practitioner"
   date_of_birth: "Date of Birth"
   patient_contact_phone: Telephone
+  visit:
+    submit: Go
   prescription:
     submit: Create Prescription
     copy_watermark: COPY
@@ -51,6 +53,8 @@ en:
     formats:
       default: "%B %d, %Y"
 
+
   time:
     formats:
       default: "%B %d, %Y"
+      datetime: "%B %d, %Y, %l:%M %p"
