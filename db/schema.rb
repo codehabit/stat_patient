@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140811194656) do
+ActiveRecord::Schema.define(version: 20140815155347) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -236,5 +236,24 @@ ActiveRecord::Schema.define(version: 20140811194656) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
+
+  create_table "visit_artifact_attachments", force: true do |t|
+    t.integer  "visit_id"
+    t.integer  "artifact_id"
+    t.string   "artifact_type"
+    t.integer  "created_by_user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "visits", force: true do |t|
+    t.integer  "patient_id"
+    t.integer  "practitioner_id"
+    t.integer  "organization_id"
+    t.datetime "visit_start_dttm"
+    t.integer  "created_by_user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

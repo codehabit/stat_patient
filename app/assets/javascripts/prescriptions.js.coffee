@@ -22,6 +22,9 @@ ready = ->
       success: (result) ->
         $('.pt-info').html(result.age + ' yo ' + result.gender  )
 
+  $('[data-role="rx-print-button"]').on "click", () ->
+    window.location = $(this).data('target')
+
 $(document).on('ready page:load', ready)
 
 monographContent = (drug) ->

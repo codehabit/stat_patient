@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {registrations: "registrations"}
   resources :patients
   resources :practitioners
+  resources :visits
   resources :cases do
     put :reply
     put :add_participant

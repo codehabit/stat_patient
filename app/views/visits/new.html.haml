@@ -1,0 +1,12 @@
+.case-form.lab-form
+  .row.body-element
+    %span.body-title
+      New Visit
+  .row.body-element
+    = bootstrap_form_for(@visit,  data: {role: 'visit-form'}, layout: :horizontal) do |f|
+      = f.select :patient_id, Patient.all.map{|d| [d.decorate.last_first_with_dob, d.id]}, include_blank: true, data: {type: 'select2'}
+      = f.hidden_field :practitioner_id
+      = f.hidden_field :organization_id
+      = f.hidden_field :visit_start_dttm
+      .submit
+        = f.submit t(:submit, scope: :visit), class: "btn-standard btn btn-primary send"

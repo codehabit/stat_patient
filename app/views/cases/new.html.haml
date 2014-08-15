@@ -7,9 +7,13 @@
       = bootstrap_nested_form_for @case, layout: :horizontal do |f|
         = select2_for(object_type: :case, field_name: :recipient, field_type: Practitioner, label_method: :full_name)
         = f.hidden_field :recipient_type, value: "Practitioner"
-        = f.hidden_field :originator_id, value: current_user.practitioner.id
+        = f.hidden_field :originator_id
         = f.text_field :subject
-        = select2_for(object_type: :case, field_name: :patient, field_type: Patient, label_method: :full_name_with_dob, selected: @patient)
+        - if @current_patient.present?
+          = f.text_field :patient_id, value: @current_patient.full_name_with_dob, disabled: true
+          = f.hidden_field :patient_id, value: @current_patient.id
+        -else
+          = select2_for(object_type: :case, field_name: :patient, field_type: Patient, label_method: :full_name_with_dob, selected: @patient)
         -# Removing since there is no use case yet for this. Leaving in commented out.
         -# = f.text_field :case_number
         = render "shared/message_form", f: f, hide_label: false

@@ -17,6 +17,8 @@ class Practitioner < ActiveRecord::Base
   has_many :contacts, as: :contactable
   has_many :addresses, as: :addressable
 
+  has_many :visits
+
   def full_name
     "#{first_name} #{last_name}"
   end
