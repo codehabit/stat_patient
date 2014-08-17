@@ -105,6 +105,16 @@ ActiveRecord::Schema.define(version: 20140815155347) do
     t.text     "pregnancy_lactating_precautions"
   end
 
+  create_table "lab_items", force: true do |t|
+    t.string   "name"
+    t.string   "price"
+    t.string   "description"
+    t.string   "item_type"
+    t.integer  "lab_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "laboratory_orders", force: true do |t|
     t.integer  "patient_id"
     t.integer  "practitioner_id"
