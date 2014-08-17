@@ -8,9 +8,15 @@ describe LaboratoryOrdersController do
     sign_in_as user
   end
 
-  xit "has vita color" do
+  it "has vita color", js: true do
     visit new_laboratory_order_path
     select2 "B1", from: "Vita color"
+  end
+
+  it "can submit an order", js: true do
+    patient = create(:patient)
+    visit new_laboratory_order_path
+    select2 patient.decorate.last_first_with_dob, from: "Patient"
   end
 end
 
