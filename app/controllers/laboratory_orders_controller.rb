@@ -7,6 +7,7 @@ class LaboratoryOrdersController < ApplicationController
     @laboratory_order = LaboratoryOrder.create laboratory_order_params
     @current_visit.laboratory_orders << @laboratory_order if @current_visit
     if @laboratory_order.valid?
+      flash[:success] = "Laboratory order created"
       redirect_to visit_path(@current_visit)
     else
       flash[:error] = @laboratory_order.errors.full_messages.join(', ')
