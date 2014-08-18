@@ -3,7 +3,7 @@
     - other_visits = (patient.visits - [visit]).sort{|a,b| b.visit_start_dttm <=> a.visit_start_dttm}
     - if other_visits.blank?
       %span.empty-message
-        There are no other visits
+        There are no other visits for this patient
     - else
       %table.table.table-condensed.table-responsive.inbox-content
         %thead.inbox-header
@@ -22,7 +22,7 @@
     - rx_history = patient.prescription_orders.order('created_at desc')
     - if rx_history.blank?
       %span.empty-message
-        There are no prescriptions
+        There are no prescriptions for this patient
     - else
       %table.table.table-condensed.table-responsive.inbox-content
         %thead.inbox-header
@@ -41,7 +41,7 @@
     - history = patient.cases.order('created_at DESC')
     - if history.blank?
       %span.empty-message
-        There are no messages
+        There are no messages involving this patient
     - else
       %table.table.table-condensed.table-responsive.inbox-content
         %thead.inbox-header
@@ -61,7 +61,7 @@
     - history = patient.laboratory_orders.order('created_at DESC')
     - if history.blank?
       %span.empty-message
-        There are no messages
+        There are no lab orders for this patient
     - else
       %table.table.table-condensed.table-responsive.inbox-content
         %thead.inbox-header
