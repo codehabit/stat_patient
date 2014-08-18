@@ -1,6 +1,6 @@
 class LaboratoryOrder < ActiveRecord::Base
   belongs_to :patient
-  belongs_to :practitioner
+  belongs_to :originator, class_name: Practitioner
   belongs_to :recipient, polymorphic: true
   belongs_to :visit
 
