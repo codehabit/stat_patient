@@ -33,6 +33,8 @@ en:
   patient_contact_phone: Telephone
   visit:
     submit: Go
+    artifacts: Activity
+    no_artifacts:  No activity for this visit yet.
   prescription:
     submit: Create Prescription
     copy_watermark: COPY

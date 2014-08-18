@@ -125,6 +125,10 @@
   }
 }
 
+.meta {
+  font-size: $message-meta-font-size;
+  color: $message-meta-color;
+}
 .inbox-content {
   color: $message-default-color;
   font-size: $message-inbox-font-size;
@@ -136,10 +140,6 @@
     padding-left: 4px;
   }
   .base {
-  }
-  .meta {
-    font-size: $message-meta-font-size;
-    color: $message-meta-color;
   }
   .deleter {
     color: $message-subject-color;
