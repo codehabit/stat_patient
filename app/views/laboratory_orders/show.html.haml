@@ -1,0 +1,14 @@
+.case-data
+  %dl.dl-horizontal
+    %dt
+      %h3
+        Subject:
+    %dd
+      %h3
+        = @laboratory_order.subject
+    %dt
+      From
+      %dd= @laboratory_order.originator.decorate.full_name
+    %dt
+      Patient
+      %dd= @laboratory_order.patient.decorate.full_name_with_dob if @laboratory_order.patient.present?
