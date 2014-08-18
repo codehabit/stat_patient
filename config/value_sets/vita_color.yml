@@ -1,0 +1,57 @@
+---
+-:id: 0
+    :value: B1
+- A1:
+    :id: 1
+    :value: A1
+- B2:
+    :id: 2
+    :value: B2
+- D2:
+    :id: 3
+    :value: D2
+- A2:
+    :id: 4
+    :value: A2
+- C1:
+    :id: 5
+    :value: C1
+- C2:
+    :id: 6
+    :value: C2
+- D4:
+    :id: 7
+    :value: D4
+- A3:
+    :id: 8
+    :value: A3
+- D3:
+    :id: 9
+    :value: D3
+- B3:
+    :id: 10
+    :value: B3
+- A3.5:
+    :id: 11
+    :value: A3.5
+- B4:
+    :id: 12
+    :value: B4
+- C3:
+    :id: 13
+    :value: C3
+- A4:
+    :id: 14
+    :value: A4
+- C4:
+    :id: 15
+    :value: C4
+- 0m1:
+    :id: 16
+    :value: 0m1
+- 0m2:
+    :id: 17
+    :value: 0m2
+- 0m3:
+    :id: 18
+    :value: 0m3
