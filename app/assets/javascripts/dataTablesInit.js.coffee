@@ -8,6 +8,8 @@ $(document).on "ready page:load", ->
   tableElement.dataTable
     "sPaginationType": "bootstrap"
     autoWidth: false
+    stateSave: false
+    order: []
     preDrawCallback: ->
       responsiveHelper = new ResponsiveDatatablesHelper(tableElement, breakpointDefinition)  unless responsiveHelper
       return

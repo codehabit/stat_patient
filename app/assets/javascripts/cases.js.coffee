@@ -38,3 +38,8 @@ $(window).load ->
       $("#dialog").dialog "option", "title", "Choose an option"
       $("#dialog").dialog "option", "modal", true
       $("#dialog").dialog "open"
+  $(document).on "click", "[data-role='urgent-toggle']", ->
+    self = $(this)
+    form_field = $(self.data("target"))
+    current_value = form_field.val()
+    form_field.val(!(current_value == "true"))

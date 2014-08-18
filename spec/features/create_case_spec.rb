@@ -4,9 +4,20 @@ describe CasesController, js: true do
 
   let!(:practitioner) {create(:practitioner, first_name: "Marsha", last_name: "Wilson")}
   let!(:user) {create(:user, practitioner: practitioner)}
+  let(:patient) {create(:patient)}
 
   before :each do
     sign_in_as user
+  end
+
+  example "mark a case as urgent" do
+    visit new_case_path
+    check "Mark as urgent"
+    select2(patient.decorate.full_name_with_dob, from: "Patient")
+    select2(practitioner.decorate.full_name, from: "Recipient")
+    click_button "Send"
+    visit root_path
+    expect(page).to have_content "Urgent"
   end
 
   specify "that a message can be created" do

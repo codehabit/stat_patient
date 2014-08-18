@@ -291,6 +291,10 @@ if make_dentists
     end
     wrlog ' | '
   end
+  Case.all.each do |c|
+    latest_message = c.messages.order("created_at DESC").first
+    c.update last_activity_date: latest_message.created_at
+  end
 end
 
 if make_drugs
