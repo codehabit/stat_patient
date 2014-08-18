@@ -8,7 +8,8 @@
         = @laboratory_order.subject
     %dt
       From
-      %dd= @laboratory_order.originator.decorate.full_name
+      - if @laboratory_order.originator.present?
+        %dd= @laboratory_order.originator.decorate.full_name
     %dt
       Patient
       %dd= @laboratory_order.patient.decorate.full_name_with_dob if @laboratory_order.patient.present?
