@@ -1,21 +1,30 @@
 class LaboratoryOrdersController < ApplicationController
   def new
-    @laboratory_order = LaboratoryOrder.new due_date: 5.days.from_now, patient: @current_patient, practitioner: @current_practitioner
+    @laboratory_order = LaboratoryOrder.new due_date: 5.days.from_now, patient: @current_patient, originator: @current_practitioner
   end
 
   def create
     @laboratory_order = LaboratoryOrder.create laboratory_order_params
     @current_visit.laboratory_orders << @laboratory_order if @current_visit
     if @laboratory_order.valid?
-      flash[:success] = "Laboratory order created"
-      redirect_to visit_path(@current_visit)
+      flash[:success] = "Laboratory order #{view_context.link_to(@laboratory_order.id, view_context.laboratory_order_path(@laboratory_order))} created"
+      if @current_visit
+        redirect_to visit_path(@current_visit)
+      else
+        redirect_to root_path
+      end
     else
       flash[:error] = @laboratory_order.errors.full_messages.join(', ')
       render action: :new
     end
-
   end
+
+  def show
+    @laboratory_order = LaboratoryOrder.find params[:id]
+  end
+
   private
+
   def laboratory_order_params
     params.require(:laboratory_order).permit!
   end
