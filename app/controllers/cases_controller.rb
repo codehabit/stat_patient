@@ -16,7 +16,7 @@ class CasesController < ApplicationController
         @current_visit.cases << @case
         redirect_to visit_path(@current_visit)
       else
-        redirect_to cases_path
+        redirect_to root_path
       end
     else
       render action: :new
