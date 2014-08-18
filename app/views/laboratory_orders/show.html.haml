@@ -1,15 +1,15 @@
-.case-data
-  %dl.dl-horizontal
-    %dt
-      %h3
-        Subject:
-    %dd
-      %h3
-        = @laboratory_order.subject
-    %dt
-      From
-      - if @laboratory_order.originator.present?
-        %dd= @laboratory_order.originator.decorate.full_name
-    %dt
-      Patient
-      %dd= @laboratory_order.patient.decorate.full_name_with_dob if @laboratory_order.patient.present?
+.row.body-element
+  %span.body-title Laboratory Order: #{@laboratory_order.subject}
+.row.body-element
+  .col-xs-5
+    %dl.dl-horizontal
+      %dt
+        Patient
+        %dd= @laboratory_order.patient.decorate.full_name_with_dob if @laboratory_order.patient.present?
+      %dt
+        Originator
+        - if @laboratory_order.originator.present?
+          %dd= @laboratory_order.originator.decorate.full_name_with_suffix
+        - else
+          %dd Not Specified
+
