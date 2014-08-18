@@ -38,8 +38,15 @@ $(window).load ->
       $("#dialog").dialog "option", "title", "Choose an option"
       $("#dialog").dialog "option", "modal", true
       $("#dialog").dialog "open"
+
   $(document).on "click", "[data-role='urgent-toggle']", ->
     self = $(this)
+    self.blur()
     form_field = $(self.data("target"))
     current_value = form_field.val()
-    form_field.val(!(current_value == "true"))
+    marked = current_value == "true"
+    form_field.val(!marked)
+    current_value = form_field.val()
+    marked = current_value == "true"
+    button_text = if marked then "Unmark as urgent" else "Mark as urgent"
+    self.text(button_text)

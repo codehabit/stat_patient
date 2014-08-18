@@ -1,3 +1,7 @@
+- if @case.urgent?
+  .row.body-element
+    .alert.alert-danger.col-sm-3.urgent
+      Marked urgent by #{@case.originator.full_name}
 .row.body-element
   .col-lg-6
     .row

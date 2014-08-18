@@ -542,16 +542,8 @@ ul#selectable {
   background: url(image-path("toothchart-adult-highlighted.png")) -1103px -276px;
 }
 
-.urgent-toggle {
+.alert-danger.urgent {
+  background-color: #E25341;
   margin-bottom: 10px;
+  padding: 5px;
 }
-
-.urgent-toggle.active {
-  background-color: red;
-}
-
-.urgent.btn {
-  background-color: red;
-  color: #fff;
-}
-
