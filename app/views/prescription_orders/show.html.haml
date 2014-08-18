@@ -3,7 +3,10 @@
 .row
   .col-sm-2
     .print-buttons.rx-buttons.pull-left
-      = link_to "Print Prescription",print_prescription_order_path(@prescription_order) , target: 'rx-print', data: {role: 'rx-print-button', target: visit_path(@current_visit)}, class: "btn-standard btn btn-primary "
+      - if @current_visit
+        = link_to "Print Prescription",print_prescription_order_path(@prescription_order) , target: 'rx-print', data: {role: 'rx-print-button', target: visit_path(@current_visit)}, class: "btn-standard btn btn-primary "
+      - else
+        = link_to "Print Prescription",print_prescription_order_path(@prescription_order) , target: 'rx-print', data: {role: 'rx-print-button', target: prescription_orders_path}, class: "btn-standard btn btn-primary "
   .col-sm-10
     .row
       -if @prescription_order.submittable?
