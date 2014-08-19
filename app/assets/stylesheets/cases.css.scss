@@ -140,7 +140,7 @@ a.print {
 }
 
 .case-form .submit {
-  input {
+  .btn {
     margin-top: 15px;
     padding: 10px 40px 10px 40px;
   }
@@ -546,4 +546,21 @@ ul#selectable {
   background-color: #E25341;
   margin-bottom: 10px;
   padding: 5px;
+}
+
+.urgent-toggle.active {
+  background-color: red;
+}
+
+.urgent.btn {
+  background-color: red;
+  color: #fff;
+}
+
+.checkbox {
+  display: inline-block;
+  margin-right: 10px;
+  input {
+    margin-top: 8px;
+  }
 }

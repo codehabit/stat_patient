@@ -39,7 +39,8 @@ $(window).load ->
       $("#dialog").dialog "option", "modal", true
       $("#dialog").dialog "open"
 
-  $(document).on "click", "[data-role='urgent-toggle']", ->
+  $(document).on "click", "[data-role='urgent-toggle']", (evt)->
+    evt.preventDefault()
     self = $(this)
     self.blur()
     form_field = $(self.data("target"))
