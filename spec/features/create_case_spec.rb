@@ -13,7 +13,7 @@ describe CasesController, js: true do
   context "when marking cases as urgent" do
     before :each do
       visit new_case_path
-      click_button "Mark as urgent"
+      check "Mark message as urgent"
       select2(patient.decorate.full_name_with_dob, from: "Patient")
       select2(practitioner.decorate.full_name, from: "Recipient")
     end
@@ -27,12 +27,6 @@ describe CasesController, js: true do
       click_button "Send"
       all("td", text: practitioner.decorate.full_name).first.click
       expect(page).to have_content "Marked urgent"
-    end
-
-    specify "that the text changes to Unmark" do
-      expect(page).to_not have_content "Mark as urgent"
-      click_button "Unmark as urgent"
-      expect(page).to_not have_content "Unmark as urgent"
     end
   end
 
