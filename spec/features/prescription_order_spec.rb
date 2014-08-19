@@ -6,7 +6,8 @@ describe PrescriptionOrdersController, js:true do
   let!(:practice) {create :practice}
   let!(:practitioner) {create :practitioner , memberships: [practice]}
   let!(:user) {create :user, practitioner: practitioner }
-  let!(:patient) {create :patient }
+  # let!(:patient) {create :patient }
+  let!(:patient) {create(:patient, first_name: "Freda", last_name: "Gonzalez", date_of_birth: 60.years.ago)}
 
   before :each do
     sign_in_as user
@@ -27,7 +28,6 @@ describe PrescriptionOrdersController, js:true do
   context 'with no active visit' do
 
     it 'saves' do
-      pending 'select2 helper does not work'
       visit new_prescription_order_path
       select2(patient.decorate.last_first_with_dob, from: "Patient")
       select2(drug.name, from: "Rx")
