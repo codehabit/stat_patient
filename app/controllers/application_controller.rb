@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
 
   def set_practice_context
     @current_practitioner = @current_user.practitioner
-    @current_practice = @current_practitioner.memberships.first
+    @current_practice = @current_practitioner.practices.first
   end
 
   def set_visit_context visit

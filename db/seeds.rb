@@ -17,7 +17,6 @@ def make_dentists_from_file dentist_file, use_real_email = false
     CSV.foreach(dentist_file, headers: true) do |row|
       count += 1
       break if count > dentist_limit
-      practice = create_practice(row)
 
       next if invalid_data(row)
 
@@ -30,7 +29,18 @@ def make_dentists_from_file dentist_file, use_real_email = false
       end
 
       if user.valid?
-        practitioners << create_practitioner(user, practice, row)
+        practitioner = create_practitioner(user, row)
+        practitioners << practitioner
+
+        %w(Practice Laboratory Pharmacy).each  do |kind|
+          practice = create_org(row, kind)
+          practice.members << practitioner
+          5.times do
+            practice.members << create_practitioner(user)
+          end
+
+          practice.save
+        end
         wrlog '.'
 
       else
@@ -96,22 +106,31 @@ def user_email row, use_real = false
   end
 end
 
-def create_practitioner user, practice, row
-  practitioner = Practitioner.create(user_id: user.id, first_name: user.first_name, last_name: user.last_name, salutation: row['salutation'], suffix: row['suffix'], title: row['title'], specialty: row['specialty'])
+def create_practitioner user, row = nil
+  if row.present?
+    attrs = {first_name: user.first_name, last_name: user.last_name, salutation: row['salutation'], suffix: row['suffix'], title: row['title'], specialty: row['specialty']}
+  else
+    attrs = {first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, salutation: 'Mr.', suffix: 'DDS', title: '', specialty: 'Cosmetic'}
+    user = User.create email: Faker::Internet.safe_email, first_name: attrs[:first_name], last_name: attrs[:last_name] rescue nil
+  end
 
+  return unless user.present?
+  practitioner = Practitioner.create(attrs.merge(user_id: user.id))
   update_dea_identifier practitioner
 
   user.update_attribute( :practitioner, practitioner)
 
-  practice.members << practitioner
-  practice.save
-
   practitioner
 end
 
-def create_practice row
+def kinds
+  @kinds ||= {'Practice' => 'Dental', 'Laboratory' => 'Manufacturing', 'Pharmacy' => 'Pharmaceutical'}
+end
+def create_org row, type
   # todo: check for previous existance
-  org = Practice.create name: row['office'], national_provider_identifier: Faker::Number.number(10)
+  name = row['office'].gsub('Dental', kinds[type])
+  attrs = {name: name, national_provider_identifier: Faker::Number.number(10)}
+  org = type.classify.constantize.send(:create, attrs)
   org.addresses <<  Address.create(street1: row['primary_address_street'], city: row['primary_address_city'], state: row['primary_address_state'], postal_code: row['primary_address_postalcode'])
 
   contacts= {work_phone: row['phone_work'], work_fax: row['phone_fax'], mobile_phone: row['phone_mobile'], email: row['email1'], website: row['website']}
@@ -211,16 +230,16 @@ if make_dentists
 
 
   wrlog "\n Make #{organization_count} pharmacies and labs"
-  ActiveRecord::Base.transaction do
-    organization_count.times.map do |t|
-      wrlog '.'
-      Laboratory.create name: Faker::Company.name
-    end
-    organization_count.times.map do |t|
-      wrlog '.'
-      Pharmacy.create name: Faker::Company.name
-    end
-  end
+  # ActiveRecord::Base.transaction do
+  #   organization_count.times.map do |t|
+  #     wrlog '.'
+  #     Laboratory.create name: Faker::Company.name
+  #   end
+  #   organization_count.times.map do |t|
+  #     wrlog '.'
+  #     Pharmacy.create name: Faker::Company.name
+  #   end
+  # end
   wrlog "Creating #{patient_count} Patients"
   patients = []
   ActiveRecord::Base.transaction do
@@ -336,7 +355,7 @@ if make_drugs
       practitioner = patient.reload.practitioners.sample
       # patient may not have a case, therefor no practitioner
       next unless practitioner
-      practice = practitioner.memberships.first
+      practice = practitioner.practices.first
       pharmacy = pharmacies.sample
       drug = drugs.sample
 
