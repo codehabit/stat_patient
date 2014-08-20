@@ -3,20 +3,48 @@
   %span.pull-right
     = link_to "Edit", edit_practitioner_path(@practitioner), class: 'btn btn-primary'
 .row.body-element
-  %dl.dl-horizontal
-    %dt
-      Name
-      %dd= @practitioner.full_name
-    %dt
-      Practice Name
-      %dd= @practitioner.practice_name
-    %dt
-      Email
-      %dd= @practitioner.email
-    %dt
-      Specialty
-      %dd= @practitioner.specialty
-    %dt
-      Phone
-      %dd= @practitioner.work_phone
+  .col-xs-5
+    %dl.dl-horizontal
+      %dt
+        Name
+        %dd= @practitioner.full_name
+      %dt
+        Practice Name
+        %dd= @practitioner.practice_name
+      %dt
+        Email
+        %dd= @practitioner.email
+      %dt
+        Specialty
+        %dd= @practitioner.specialty
+      %dt
+        Phone
+        %dd= @practitioner.work_phone
+    .contact-info
+      %p Address Info
+      - @practitioner.addresses.each do |adrs|
+        - prax.addresses.each do |adrs|
+          %p.meta= adrs.full_address
+      %p Contact Info
+      - @practitioner.contacts.each do |contact|
+        %p.meta= "#{contact.title} #{contact.contact_type} #{contact.info}"
+
+  .col-xs-6
+    .memberships
+      - @practitioner.memberships.each do |prax|
+        .row
+          .col-xs-5
+            %p #{prax.type}:
+            %h4 #{prax.name}
+          .col-xs-5
+            %p Addresses
+            - prax.addresses.each do |adrs|
+              %p.meta= adrs.full_address
+            %p Contact Info
+            - prax.contacts.each do |contact|
+              %p.meta= "#{contact.title} #{contact.contact_type} #{contact.info}"
+            %p Members
+            - prax.members.each do |member|
+              %p.meta= member.decorate.full_name
+
 
