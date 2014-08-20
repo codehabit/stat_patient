@@ -1,0 +1,10 @@
+.row.body-element
+  %span.body-title #{@organization.type}
+  %span.pull-right
+    = link_to "Edit", edit_organization_path(@organization), class: 'btn btn-primary'
+.row.body-element
+  .col-xs-5
+    %dl.dl-horizontal
+      %dt
+        Name
+        %dd= @organization.name
