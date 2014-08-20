@@ -33,4 +33,5 @@
 # = require prescriptions
 # = require inbox
 # = require jquery.remodal
+# = require labs
 #

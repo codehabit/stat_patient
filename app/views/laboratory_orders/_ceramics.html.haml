@@ -1,0 +1,12 @@
+.lab-item-types.next{data: {role: "ceramic-container"}}
+  = render "fixed_lab_item_types_title_bar", title: "Select a material", back: "types"
+  - Labs::Catalog.new.items["Ceramic"]["material"].each do |material|
+    = button_tag material, class: "btn btn-primary type-button", data: {role: "item-option", next: "[data-role='shades-container']"}
+.lab-item-types.next{data: {role: "shades-container"}}
+  = render "fixed_lab_item_types_title_bar", title: "Select a shade", back: "ceramic"
+  - Labs::Catalog.new.items["Ceramic"]["shading"].each do |shade|
+    = label_tag shade.to_sym, shade.capitalize
+    = select_tag shade.to_sym, options_from_collection_for_select(VitaColor.all.decorate, :id, :pretty), include_blank: true, data: {label: shade, role: "item-option-selector"}
+  .row
+    .pull-right
+      = button_tag "Done", class: "btn btn-primary", data: {role: "finisher"}
