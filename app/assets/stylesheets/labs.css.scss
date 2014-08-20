@@ -19,3 +19,62 @@
   margin-top: 0;
 }
 
+.lab_item_types .type {
+  background-color: #1dbc9c;
+  display: inline-block;
+  margin: 5px;
+  padding: 5px;
+}
+
+.lab-items .next {
+  display: none;
+}
+
+a.back-button {
+  display: inline-block;
+  font-size: 17px;
+}
+
+.lab-item-types .title {
+  margin-bottom: 15px;
+}
+
+.next .title {
+  display: inline-block;
+}
+
+.lab-item-types {
+  background-color: #fff;
+  border-radius: 4px;
+  color: #868e8c;
+  padding: 10px;
+}
+
+.type-button {
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.restart {
+  a {
+    font-size: 14px;
+  }
+  background-color: #f3f0ee;
+  border-radius: 0px 0px 4px 4px;
+  float: left;
+  margin-top: -9px;
+  padding: 5px 5px 5px 5px;
+}
+
+.item-description {
+  background-color: #fff;
+  border-radius: 4px;
+  display: none;
+  color: #868e8c;
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
+.item-description.with-tab {
+  border-radius: 4px 4px 4px 0;
+}

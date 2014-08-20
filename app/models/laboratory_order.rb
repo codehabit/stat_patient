@@ -3,6 +3,7 @@ class LaboratoryOrder < ActiveRecord::Base
   belongs_to :originator, class_name: Practitioner
   belongs_to :recipient, polymorphic: true
   belongs_to :visit
+  has_one :lab_item
 
   def artifact_type
     "Laboratory Order"
