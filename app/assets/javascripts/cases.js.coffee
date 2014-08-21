@@ -13,13 +13,21 @@ $(document).on "ready page:load", ->
   $("[data-role='zoom']").elevateZoom()
 
 $(window).load ->
-  if $(".tooth-chart-annotate").length > 0
-    $(".tooth-chart-annotate").annotateImage
+  # if $(".tooth-chart-annotate").length > 0
+  #   $(".tooth-chart-annotate").annotateImage
+  #     editable: true
+  #     useAjax: true
+  #     getUrl: $(".tooth-chart-annotate").data("index")
+  #     createUrl: $(".tooth-chart-annotate").data("index")
+  #     deleteUrl: $(".tooth-chart-annotate").data("index")
+
+  $(".annotate").each ->
+    $(this).annotateImage
       editable: true
       useAjax: true
-      getUrl: $(".tooth-chart-annotate").data("index")
-      createUrl: $(".tooth-chart-annotate").data("index")
-      deleteUrl: $(".tooth-chart-annotate").data("index")
+      getUrl: $(this).data("get-url")
+      createUrl: $(this).data("create-url")
+      deleteUrl: $(this).data("delete-url")
 
   $("#dialog").dialog
     autoOpen: false

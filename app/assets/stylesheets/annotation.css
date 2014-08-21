@@ -71,6 +71,7 @@
     padding: 7px;
     position: absolute;
     width: 264px;
+    z-index: 101;
 }
 #image-annotate-edit-form form {
     clear: right;

@@ -23,7 +23,8 @@ html.remodal_lock, body.remodal_lock {
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 100; /* Alex: This is important as the jquery ui stuff is set at 101 */
+    /* Alex: This is important as the jquery ui stuff is set at 101 */
+    z-index: 100;
 
     display: none;
     overflow: auto;
