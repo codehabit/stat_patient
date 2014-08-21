@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     put :add_participant
     put :star
   end
-  resources :tooth_charts do
+  resources :attachments do
     resources :annotations, only: [:index, :create, :update, :destroy]
   end
   resources :attachments

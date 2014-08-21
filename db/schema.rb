@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20140818121051) do
   end
 
   create_table "annotations", force: true do |t|
-    t.integer "tooth_chart_id"
+    t.integer "attachment_id"
     t.string  "text"
     t.integer "height"
     t.integer "width"
