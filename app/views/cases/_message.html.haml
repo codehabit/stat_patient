@@ -11,4 +11,4 @@
       - message.attachments.each do |attachment|
         = link_to image_tag(attachment.asset.url(:thumb)), "#testmodal#{attachment.id}"
         .remodal{data: {remodal_id: "testmodal#{attachment.id}"}}
-          = image_tag attachment.asset.url(:original), class: "annotate", data: {get_url: attachment_annotations_path(attachment), create_url: attachment_annotations_path(attachment), delete_url: "null"}
+          = image_tag attachment.asset.url(:original), class: "annotate", data: {get_url: attachment_annotations_path(attachment), create_url: attachment_annotations_path(attachment), delete_url: attachment_annotations_path(attachment)}

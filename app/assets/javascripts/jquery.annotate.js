@@ -27,10 +27,10 @@
         this.image.after(this.canvas);
 
         // Give the canvas and the container their size and background
-        this.parent().parent().show(); // hack for modals
+        this.parents(".remodal-overlay").show(); // hack for modals
         this.canvas.height(this.height());
         this.canvas.width(this.width());
-        this.parent().parent().hide(); // hack for modals
+        this.parents(".remodal-overlay").hide(); // hack for modals
         this.canvas.css('background-image', 'url("' + this.attr('src') + '")');
         this.canvas.children('.image-annotate-view, .image-annotate-edit').height(this.height());
         this.canvas.children('.image-annotate-view, .image-annotate-edit').width(this.width());
