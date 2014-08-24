@@ -10,11 +10,10 @@
           = f.hidden_field :patient_id, value: @current_patient.id
         - else
           = select2_for(object_type: :laboratory_order, field_name: :patient, field_type: Patient, label_method: :last_first_with_dob)
-        = select2_for(object_type: :case, field_name: :recipient, field_type: Laboratory, label_method: :name)
+        = select2_for(object_type: :case, field_name: :recipient, field_type: Laboratory, label_method: :name, label: "Lab")
         = f.hidden_field :recipient_type, value: "Laboratory"
         = f.hidden_field :originator_id
         = render "lab_item_selector"
-        = select2_for(object_type: :laboratory_order, field_name: :vita_color, field_type: VitaColor, label_method: :pretty)
         = f.date_field :due_date
         = select2_for(object_type: :laboratory_order, field_name: :shipping_method, field_type: ShippingMethod, label_method: :pretty)
         .print-buttons
