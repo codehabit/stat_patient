@@ -222,6 +222,10 @@ ul#selectable {
   height: 178px;
 }
 
+#selectable .tooth.missing {
+  background: url(image-path("FFFFFF-1.png"))
+}
+
 #selectable .tooth-1 {
   width: 64px;
   background: url(image-path("toothchart-adult.png")) -29px -40px;
@@ -541,6 +545,168 @@ ul#selectable {
   width: 87px;
   background: url(image-path("toothchart-adult-highlighted.png")) -1103px -276px;
 }
+
+#selectable .tooth-1.extracted {
+  width: 64px;
+  background: url(image-path("toothchart-adult-extracted.png")) -29px -40px;
+}
+
+#selectable .tooth-2.extracted {
+  width: 70px;
+  background: url(image-path("toothchart-adult-extracted.png")) -98px -40px;
+}
+
+#selectable .tooth-3.extracted {
+  width: 80px;
+  background: url(image-path("toothchart-adult-extracted.png")) -168px -40px;
+}
+
+#selectable .tooth-4.extracted {
+  width: 70px;
+  background: url(image-path("toothchart-adult-extracted.png")) -248px -30px;
+}
+
+#selectable .tooth-5.extracted {
+  width: 70px;
+  background: url(image-path("toothchart-adult-extracted.png")) -320px -31px;
+}
+
+#selectable .tooth-6.extracted {
+  width: 70px;
+  background: url(image-path("toothchart-adult-extracted.png")) -385px -32px;
+}
+
+#selectable .tooth-7.extracted {
+  width: 70px;
+  background: url(image-path("toothchart-adult-extracted.png")) -453px -41px;
+}
+
+#selectable .tooth-8.extracted {
+  width: 70px;
+  background: url(image-path("toothchart-adult-extracted.png")) -525px -41px;
+}
+
+#selectable .tooth-9.extracted {
+  width: 70px;
+  background: url(image-path("toothchart-adult-extracted.png")) -604px -41px;
+}
+
+#selectable .tooth-10.extracted {
+  width: 70px;
+  background: url(image-path("toothchart-adult-extracted.png")) -676px -41px;
+}
+
+#selectable .tooth-11.extracted {
+  width: 67px;
+  background: url(image-path("toothchart-adult-extracted.png")) -741px -34px;
+}
+
+#selectable .tooth-12.extracted {
+  width: 70px;
+  background: url(image-path("toothchart-adult-extracted.png")) -808px -41px;
+}
+
+#selectable .tooth-13.extracted {
+  width: 70px;
+  background: url(image-path("toothchart-adult-extracted.png")) -874px -41px;
+}
+
+#selectable .tooth-14.extracted {
+  width: 70px;
+  background: url(image-path("toothchart-adult-extracted.png")) -956px -41px;
+}
+
+#selectable .tooth-15.extracted {
+  width: 79px;
+  background: url(image-path("toothchart-adult-extracted.png")) -1029px -41px;
+}
+
+#selectable .tooth-16.extracted {
+  width: 70px;
+  background: url(image-path("toothchart-adult-extracted.png")) -1108px -41px;
+}
+
+#selectable .tooth-32.extracted {
+  width: 68px;
+  background: url(image-path("toothchart-adult-extracted.png")) -24px -272px;
+}
+
+#selectable .tooth-31.extracted {
+  width: 68px;
+  background: url(image-path("toothchart-adult-extracted.png")) -97px -272px;
+}
+
+#selectable .tooth-30.extracted {
+  width: 78px;
+  background: url(image-path("toothchart-adult-extracted.png")) -176px -279px;
+}
+
+#selectable .tooth-29.extracted {
+  width: 68px;
+  background: url(image-path("toothchart-adult-extracted.png")) -252px -286px;
+}
+
+#selectable .tooth-28.extracted {
+  width: 68px;
+  background: url(image-path("toothchart-adult-extracted.png")) -311px -286px;
+}
+
+#selectable .tooth-27.extracted {
+  width: 68px;
+  background: url(image-path("toothchart-adult-extracted.png")) -379px -297px;
+}
+
+#selectable .tooth-26.extracted {
+  width: 68px;
+  background: url(image-path("toothchart-adult-extracted.png")) -448px -297px;
+}
+
+#selectable .tooth-25.extracted {
+  width: 68px;
+  background: url(image-path("toothchart-adult-extracted.png")) -518px -297px;
+}
+
+#selectable .tooth-24.extracted {
+  width: 68px;
+  background: url(image-path("toothchart-adult-extracted.png")) -597px -297px;
+}
+
+#selectable .tooth-23.extracted {
+  width: 68px;
+  background: url(image-path("toothchart-adult-extracted.png")) -661px -297px;
+}
+
+#selectable .tooth-22.extracted {
+  width: 68px;
+  background: url(image-path("toothchart-adult-extracted.png")) -732px -297px;
+}
+
+#selectable .tooth-21.extracted {
+  width: 68px;
+  background: url(image-path("toothchart-adult-extracted.png")) -801px -290px;
+}
+
+#selectable .tooth-20.extracted {
+  width: 68px;
+  background: url(image-path("toothchart-adult-extracted.png")) -871px -283px;
+}
+
+#selectable .tooth-19.extracted {
+  width: 81px;
+  background: url(image-path("toothchart-adult-extracted.png")) -951px -278px;
+}
+
+#selectable .tooth-18.extracted {
+  width: 68px;
+  background: url(image-path("toothchart-adult-extracted.png")) -1033px -278px;
+}
+
+#selectable .tooth-17.extracted {
+  width: 87px;
+  background: url(image-path("toothchart-adult-extracted.png")) -1103px -276px;
+}
+
+/* End tooth chart styles */
 
 .alert-danger.urgent {
   background-color: #E25341;
