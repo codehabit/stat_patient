@@ -1,0 +1,13 @@
+-# .remodal.vita-chart{data: {role: "vita-chart", remodal_id: "modal"}}
+.popover-container{data: {role: "vita-chart"}, style: "display: none;"}
+  .vita-chart
+    %ul.a_row.unstyled{}
+      - VitaColor.a_set.each_with_index do |v, i|
+        %li{"tabindex" => i, data: {role: "shade-picker", value: v.value}, class: v.value.downcase.gsub("3.5", "3-5")}
+      - VitaColor.b_set.each_with_index do |v, i|
+        %li{"tabindex" => i, data: {role: "shade-picker", value: v.value}, class: v.value.downcase}
+      - VitaColor.c_set.each_with_index do |v, i|
+        %li{"tabindex" => i, data: {role: "shade-picker", value: v.value}, class: v.value.downcase}
+      - VitaColor.d_set.each_with_index do |v, i|
+        %li{"tabindex" => i, data: {role: "shade-picker", value: v.value}, class: v.value.downcase}
+

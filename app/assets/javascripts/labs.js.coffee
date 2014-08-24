@@ -8,6 +8,15 @@ $(document).on "ready page:load", ->
 
   $(document).on "click", "[data-previous]", (evt)->
     evt.preventDefault()
+    description_holder = $("[data-role='item-description-holder']")
+    order_components = description_holder.find("[data-role='order-component']")
+    starting_size = order_components.length
+    if starting_size >= 1
+      order_components.last().remove()
+    if starting_size >= 3
+      description_holder.find("[data-role='order-component']").last().remove()
+    if description_holder.find("[data-role='order-component']").length == 0
+      description_holder.fadeOut()
     target = $($(this).data("previous"))
     container = $(this).closest("[data-role*='-container']")
     container.hide()
@@ -17,21 +26,42 @@ $(document).on "ready page:load", ->
     evt.preventDefault()
     description_holder = $("[data-role='item-description-holder']")
     description_holder.fadeIn()
-    item_description = description_holder.text()
     option_text = $(this).text()
-    description_holder.text(item_description + " " + option_text)
-
-  $(document).on "change", "[data-role='item-option-selector']", (evt)->
-    description_holder = $("[data-role='item-description-holder']")
-    description_holder.fadeIn()
-    item_description = description_holder.text()
-    label = $(this).data("label")
-    option_text = label + ": " + $(this).find("option:selected").text()
-    description_holder.text(item_description + " " + option_text)
+    order_component = $("<span/>").text(option_text).attr("data-role", "order-component").addClass("order-component")
+    description_holder.append(order_component)
 
   $(document).on "click", "[data-role='finisher']", (evt)->
     evt.preventDefault()
-    console.log("hi there")
     $("[data-role='chooser-container']").fadeOut()
     $("[data-role='restart']").parent().removeClass("hide")
     # $("[data-role='item-description-holder']").addClass("with-tab")
+
+  $("[data-role='vita-launcher']").popover(
+    placement : 'right'
+    title : 'Choose a shade'
+    html: 'true'
+    content : $("[data-role='vita-chart']").html()
+  )
+
+  $(document).on "click", "[data-role='vita-launcher']", (evt)->
+    display = $(this).data("display")
+    label = $(this).data("label")
+    $("[data-role='vita-chart']").data("display", display)
+    $("[data-role='vita-chart']").data("label", label)
+
+  $(document).on "click", "[data-role='shade-picker']", (evt)->
+    evt.preventDefault()
+    value = $(this).data("value")
+    display = $($("[data-role='vita-chart']").data("display"))
+    label = $("[data-role='vita-chart']").data("label")
+    display.text(value)
+    order_component_container = $("[data-component-type='shades']")
+    description_holder = $("[data-role='item-description-holder']")
+    if order_component_container.length == 0
+      order_component_container = $("<span/>").attr("data-role", "order-component").attr("data-component-type", "shades").addClass("order-component")
+      description_holder.append(order_component_container)
+    order_component = $("<span/>").text(label + " " + value).addClass("order-component")
+    order_component_container.append(order_component)
+    $("[data-role='vita-launcher']").popover("hide")
+
+
