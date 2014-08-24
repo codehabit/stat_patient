@@ -24,6 +24,22 @@ $(window).load ->
   $("#dialog").dialog
     autoOpen: false
     draggable: false
+    modal: true
+    title: "Choose an option"
+    buttons: [
+      {
+        text: "Mark teeth for extraction (coming soon)"
+        click: ->
+          $(".ui-selected").addClass("extracted")
+          $(this).dialog "close"
+      }
+      {
+        text: "Mark teeth as missing (coming soon)"
+        click: ->
+          $(".ui-selected").addClass("missing")
+          $(this).dialog "close"
+      }
+    ]
     close: ->
       $(".temp-selected").removeClass("temp-selected ui-selected")
 
@@ -35,8 +51,6 @@ $(window).load ->
         my: "center",
         at: "center",
         of: e
-      $("#dialog").dialog "option", "title", "Choose an option"
-      $("#dialog").dialog "option", "modal", true
       $("#dialog").dialog "open"
 
   $(document).on "click", "[data-role='urgent-toggle']", (evt)->
