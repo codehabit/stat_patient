@@ -1,0 +1,41 @@
+items:
+  adult:
+    fun:
+      moderate:
+      severe:
+    pain:
+      mild:
+      moderate:
+      severe:
+    infection:
+      odontogentic: 2498
+      perZiodontal: 2499
+      sinus:
+      antibiotic prophylaxis:
+      viral infection:
+      fungal infection:
+    inflammation:
+      - tri-amcinolone actinade
+    preventative:
+      - flouride
+      - biotene
+    sedative:
+      - diazapam
+      - valium
+    emergency:
+      - Epinephrin
+      - benadryl
+      - inhaler
+PENICILLINS:
+  drug: Penicillin V
+    strength: 500mg
+    dosage_form: tab
+    quantity: 28
+    sig: Take one tablet four times a day until all gone.
+    instructions_precautions: Take on an empty stomach.
+
+drugs:
+id strength, name numb
+
+drugs_decision_tree
+drug_id decision_tree_id
