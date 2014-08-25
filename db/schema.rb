@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140824215610) do
+ActiveRecord::Schema.define(version: 20140825113313) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,17 +81,6 @@ ActiveRecord::Schema.define(version: 20140824215610) do
     t.datetime "last_activity_date"
   end
 
-  create_table "ceramics", force: true do |t|
-    t.string   "material"
-    t.string   "shade"
-    t.string   "occlusion"
-    t.string   "contact"
-    t.integer  "laboratory_id"
-    t.integer  "laboratory_oder_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "contacts", force: true do |t|
     t.string   "contactable_type"
     t.integer  "contactable_id"
@@ -102,20 +91,28 @@ ActiveRecord::Schema.define(version: 20140824215610) do
     t.datetime "updated_at"
   end
 
+  create_table "drug_diagnosis_assignments", force: true do |t|
+    t.integer "drug_id"
+    t.integer "diagnosis_id"
+  end
+
   create_table "drugs", force: true do |t|
     t.string   "name"
     t.string   "dispense_amount"
     t.string   "uuid"
-    t.text     "adult_dosing"
+    t.text     "strength"
     t.text     "peds_dosing"
     t.text     "contraindications"
-    t.text     "dosage_forms"
-    t.text     "rx_instructions"
-    t.text     "patient_instructions"
+    t.text     "dosage_form"
+    t.text     "instructions_precautions"
+    t.text     "sig"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "interactions"
     t.text     "pregnancy_lactating_precautions"
+    t.string   "regimen"
+    t.integer  "dea_schedule"
+    t.string   "category"
   end
 
   create_table "lab_items", force: true do |t|
@@ -126,7 +123,6 @@ ActiveRecord::Schema.define(version: 20140824215610) do
     t.integer  "laboratory_order_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "occlusion"
   end
 
   create_table "laboratory_orders", force: true do |t|
@@ -193,18 +189,6 @@ ActiveRecord::Schema.define(version: 20140824215610) do
     t.string   "social_security_number"
   end
 
-  create_table "pfms", force: true do |t|
-    t.string   "material"
-    t.string   "margin"
-    t.string   "pontic"
-    t.string   "occlusion"
-    t.string   "contact"
-    t.integer  "laboratory_id"
-    t.integer  "laboratory_oder_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "practitioners", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -236,15 +220,6 @@ ActiveRecord::Schema.define(version: 20140824215610) do
     t.boolean  "label"
     t.string   "flow_status"
   end
-
-  create_table "tooth_chart_markings", force: true do |t|
-    t.integer "tooth_chart_id"
-    t.integer "tooth_id"
-    t.integer "status_code"
-    t.string  "notes"
-  end
-
-  add_index "tooth_chart_markings", ["tooth_chart_id"], name: "index_tooth_chart_markings_on_tooth_chart_id", using: :btree
 
   create_table "tooth_charts", force: true do |t|
     t.string   "chart_file_name"

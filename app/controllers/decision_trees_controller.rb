@@ -5,6 +5,10 @@ class DecisionTreesController < ApplicationController
     @choices = choices_for @category
   end
 
+  def index
+    @tree = YAML.load_file(File.join('data','drugs', 'diagnosis_decision_tree.yml'))
+  end
+
   private
 
   def choices_for chain
