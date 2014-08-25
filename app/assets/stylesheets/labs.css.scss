@@ -27,7 +27,7 @@
 }
 
 .order-component {
- margin-right: 5px;
+  margin-right: 5px;
 }
 
 .lab-items .next {
@@ -64,13 +64,11 @@ a.back-button {
 
 .restart {
   a {
+    background-color: #fff;
+    color: #868E8C;
     font-size: 14px;
+    padding: 5px;
   }
-  background-color: #f3f0ee;
-  border-radius: 0px 0px 4px 4px;
-  float: left;
-  margin-top: -9px;
-  padding: 5px 5px 5px 5px;
 }
 
 .item-description {
@@ -80,6 +78,11 @@ a.back-button {
   color: #868e8c;
   margin-bottom: 5px;
   padding: 5px;
+}
+
+.item-description.done {
+  background: none;
+  padding: 2px;
 }
 
 .item-description.with-tab {
