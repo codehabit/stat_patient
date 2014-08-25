@@ -1,0 +1,18 @@
+.diagnosis
+  - chain = []
+  - @category.split('.').each do |top_category|
+    - chain  << top_category
+    - next if top_category == 'top'
+    %button.btn.btn-primary.decision-tree{data: {role: 'decision-tree-selector', category: chain.join('.')}}= top_category.humanize
+
+.drug-choices
+  - @choices.each do |choice|
+    - display_choice = choice[0]
+    - choice_category = @category.present? ? "#{@category}.#{display_choice}" : display_choice
+
+    - if @leaf
+      %button.btn.btn-primary.decision-tree{data: {role: 'drug-selector', 'drug-id' => choice.id, category: choice_category}}= choice.selection_name
+
+    - else
+      %button.btn.btn-primary.decision-tree{data: {role: 'decision-tree-selector', category: choice_category}}= display_choice.humanize
+

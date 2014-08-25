@@ -1,0 +1,23 @@
+diagnosis_ids,regimen,category,drug,strength,dosage_form,quantity,sig,instructions_precautions
+,adult,PENICILLINS,Penicillin VK ,500mg,tab,28,Take one tablet four times a day until all gone.,Take on an empty stomach.
+,adult,PENICILLINS,Amoxicillin,500mg,caps,21,Take one capsule three times a day until all gone.,
+,adult,PENICILLINS,Amoxicillin,875mg,tab,14,Take one tablet twice a day until all gone.,
+,adult,PENICILLINS,Amoxicillin/clavulanic acid,500mg/125mg,tabs,21,Take one tablet three times a day until all gone.,Take with food.
+,adult,PENICILLINS,Amoxicillin/clavulanic acid,875mg/125mg,tabs,14,Take one tablet twice a day until all gone.,Take with food.
+,adult,CEPHALOSPORINS,Cephalexin,500mg,caps,28,Take one capsule four times a day until all gone.,Take with food.
+,adult,CEPHALOSPORINS,Cefaclor,500mg,caps,21,Take one capsule three times a day until all gone.,Take with food.
+,adult,CEPHALOSPORINS,Cefprozil,500mg,tabs,14,Take one tablet twice a day until all gone.,Take with food.
+,adult,CEPHALOSPORINS,Cefuroxime,500mg,tabs,14,Take one tablet twice a day until all gone.,Take with food.
+,adult,MACROLIDES,Azithromycin,250mg,tabs,6 ,Take two tablets on Day 1. Then take one tablet daily until all gone.,Take with food. Significant drug intx possible.
+,adult,MACROLIDES,Clarithromycin,500mg,tabs,14,Take one tablet twice a day until all gone.,Take with food.Significant drug intx possible.
+,adult,FLUOROQUINOLONES,Levofloxacin,500mg,tabs,7 ,Take one tablet daily until all gone.,Take with food. May cause irritability and/or insomnia.
+,adult,FLUOROQUINOLONES,Moxifloxacin,400mg,tabs,7 ,Take one tablet daily until all gone.,Take with food. May cause irritability and/or insomnia.
+,adult,LINCOMYCIN,Clindamycin,150mg,cap,56,Take two capsules four times a day until all gone.,Take with food. Inform HCP of first episode crampy diarrhea.
+,adult,LINCOMYCIN,Clindamycin,300mg,cap,28,Take one capsule four times a day until all gone.,Take with food. Inform HCP of first episode crampy diarrhea.
+,adult,TETRACYCLINES,Doxycycline,100mg,tab,14,Take one tablet twice a day until all gone.,Take with food. Avoid sunlight.
+,adult,TETRACYCLINES,Doxycycline,100mg,cap,14,Take one tablet twice a day until all gone.,Take with food. Avoid sunlight.
+,adult,TETRACYCLINES,Minocycline,100mg,cap,14,Take one capsule twice a day until all gone.,Take with food. Avoid sunlight.
+,adult,NITROIMIDAZOLE,Metronidazole,250mg,tab,28,Take one tablet four times a day until all gone.,Take with food.Avoid alcohol.May discolor urine.
+,adult,NITROIMIDAZOLE,Metronidazole,375mg,cap,21,Take one capsule three times a day until all gone.,Take with food.Avoid alcohol.May discolor urine.
+,adult,NITROIMIDAZOLE,Metronidazole,500mg,tab,21,Take one capsule three times a day until all gone.,Take with food.Avoid alcohol.May discolor urine.
+,adult,NITROIMIDAZOLE,Metronidazole,500mg,tab,28,Take one tablet four times a day until all gone.,Take with food.Avoid alcohol.May discolor urine.

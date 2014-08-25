@@ -15,10 +15,11 @@
       = f.text_field :practitioner_id, value: "#{@current_practitioner.full_name} - #{@current_practice.name}", disabled: true
       = f.hidden_field :practitioner_id, value: @current_practitioner.id
       = f.hidden_field :practice_id, value: @current_practice.id
-      = f.select 'drug_id', Drug.all.map{|d| [d.name, d.id]},{label: 'Rx', include_blank: true}, data: {type: 'select2', attr: 'drug_id', change: 'update-rx'}
+      -# = f.select 'drug_id', Drug.all.map{|d| [d.name, d.id]},{label: 'Rx', include_blank: true}, data: {type: 'select2', attr: 'drug_id', change: 'update-rx'}
       = f.text_field :dispense_amount, label: t(:dispense_amount, scope: :prescription)
       = f.text_area :rx_instructions, label: t(:sig, scope: :prescription)
       = f.text_area :patient_instructions, label: t(:precautions, scope: :prescription)
+      = f.hidden_field :drug_id
       = f.date_field :created_at, disabled: true, label: t(:rx_date, scope: :prescription), data: {role: 'date-selector'}
       = f.date_field :expiration_date,  label: t(:expiration_date, scope: :prescription), data: {role: 'date-selector'}
       = f.text_field :refills, data: {role: 'refill-selector'}, label: t(:refills_allowed, scope: :prescription)
@@ -29,6 +30,8 @@
         = f.submit t(:submit, scope: :prescription), class: "btn-standard btn btn-primary send"
 
   .col-sm-5
+    %div{data: {role: 'decision-tree-container'}}
+      = render partial: '/decision_trees/element'
     .body-title Monograph
     .monograph
       %p.drug-attr#title= @prescription_order.drug.try :name

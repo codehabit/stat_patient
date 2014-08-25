@@ -1,3 +1,28 @@
+$(document).on "click", "[data-role='decision-tree-selector']", (e)->
+  category = $(this).data('category')
+  console.log "category is", category
+  url = "/next_element.js?category=#{category}"
+  $.ajax
+    url: url
+    type: 'GET'
+    success: (result) ->
+      console.log result
+
+$(document).on "click", "[data-role='drug-selector']", (e)->
+  category = $(this).data('category')
+  id = $(this).data('drug-id')
+  console.log "drug id is", id
+  url = "/drugs/#{id}"
+  $.ajax
+    url: url
+    type: "GET"
+    success: (result) ->
+      $('#prescription_order_dispense_amount').val(result.dispense_amount)
+      $('#prescription_order_rx_instructions').val(result.sig)
+      $('#prescription_order_patient_instructions').val(result.instructions_precautions)
+      $('#prescription_order_drug_id').val(result.id)
+      monographContent(result)
+
 ready = ->
   $('[data-type="select2"]').select2()
 
@@ -34,4 +59,5 @@ monographContent = (drug) ->
   $('.monograph #peds_dosing').html(drug.peds_dosing)
   $('.monograph #contraindications').html(drug.contraindications)
   $('.monograph #pregnancy_lactating_precautions').html(drug.pregnancy_lactating_precautions)
+
 

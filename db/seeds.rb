@@ -11,6 +11,7 @@ def dentist_limit; 100; end
 
 def make_dentists_from_file dentist_file, use_real_email = false
   wrlog "Making dentists and practices from file #{dentist_file}"
+  wrlog "\n"
   practitioners = []
   count = 0
   ActiveRecord::Base.transaction do
@@ -198,7 +199,7 @@ make_dentists = true
 delete_all = true
 dentist_file = 'data/iowa_dentists_specialists.csv'
 demo_user_file = 'data/demo_users.csv'
-drugs_file = 'data/drugs_list.csv'
+drug_files = ['data/drugs/statpatient_drug_formulary.csv']
 
 
 cases_per_practitioner = (1..2).to_a
@@ -211,8 +212,6 @@ organization_count = 300
 specialties = Specialty.all.map(&:pretty)
 birthday_day_range = (1092..32850).to_a
 marital_status = MaritalStatus.values
-
-
 
 
 if make_dentists
@@ -229,7 +228,8 @@ if make_dentists
   wrlog "\n"
 
 
-  wrlog "\n Make #{organization_count} pharmacies and labs"
+  # wrlog "\n Make #{organization_count} pharmacies and labs"
+  # wrlog "\n"
   # ActiveRecord::Base.transaction do
   #   organization_count.times.map do |t|
   #     wrlog '.'
@@ -241,6 +241,7 @@ if make_dentists
   #   end
   # end
   wrlog "Creating #{patient_count} Patients"
+  wrlog "\n"
   patients = []
   ActiveRecord::Base.transaction do
     patient_count.times.map do
@@ -280,6 +281,7 @@ if make_dentists
 
   wrlog "\n"
   wrlog "Making Cases"
+  wrlog "\n"
 
   Practitioner.all.each  do |practitioner|
     ActiveRecord::Base.transaction do
@@ -321,23 +323,28 @@ if make_drugs
     wrlog "\n Delete all drugs and Rx"
     Drug.delete_all
     PrescriptionOrder.delete_all
+    DrugDiagnosisAssignment.delete_all
   end
 
   wrlog "\n Make drugs and Rx"
-  ActiveRecord::Base.transaction do
-    drug_names = []
-    CSV.foreach(drugs_file, headers: false) do |row|
-      next if row[0].blank?
-      name = row[0].split('- ').first
-      drug_names << name
-    end
-    med_types = %w(tablets spoonfulls capsules lozenges)
-    drug_names.each do |drug|
-      instr = instructions
-      Drug.create name: drug, dispense_amount: instr[:disp],
-        uuid: SecureRandom.uuid, adult_dosing: instr[:dose_ad], peds_dosing: instr[:dose_pd], contraindications: filler,
-        rx_instructions: instr[:rx_instructions], patient_instructions: filler, interactions: filler, pregnancy_lactating_precautions: %w(A B C D X N).sample
-      wrlog drug
+  drug_files.each do |drug_file|
+    ActiveRecord::Base.transaction do
+      CSV.foreach(drug_file, headers: true) do |row|
+
+        drug = Drug.create name: row["name"], regimen: row["regimen"], category: row["category"], dea_schedule: row["dea_schedule"],  strength: row["strength"], dosage_form: row["dosage_form"], dispense_amount: row["dispense_amount"], uuid: SecureRandom.uuid, sig: row["sig"], instructions_precautions: row["instructions_precautions"], pregnancy_lactating_precautions: row["pregnancy_lactating_precautions"], contraindications: row["contraindications"], interactions: row["interactions"]
+
+        wrlog "Drug.."
+        diagnosis_ids = row["diagnosis_ids"]
+
+        if diagnosis_ids.present?
+          diagnosis_ids.split(',').each do |diagnosis_id|
+            DrugDiagnosisAssignment.create drug_id: drug.id, diagnosis_id: diagnosis_id
+            wrlog diagnosis_id
+            wrlog '.'
+          end
+        end
+
+      end
     end
   end
 
@@ -361,7 +368,7 @@ if make_drugs
 
       rx  = PrescriptionOrder.create rx_id: SecureRandom.uuid, practitioner: practitioner, patient: patient, drug: drug, pharmacy: pharmacy, practice: practice
       rx.update_attributes created_at: patient.created_at, expiration_date: (patient.created_at + 30.days)
-      wrlog '.'
+      wrlog 'Rx '
     end
   end
 end
