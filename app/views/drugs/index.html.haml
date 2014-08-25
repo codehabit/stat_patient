@@ -1,0 +1,24 @@
+.body-row
+
+%table{data: {role: "datatableized"}}
+  %thead.inbox-header
+    %th.col-lg-1{data: {hide: "phone", name: "Name"}} Name
+    %th.col-lg-1{data: {hide: "phone", name: "Regimen"}} Regimen
+    %th.col-lg-1{data: {hide: "phone", name: "Strength"}} Strength
+    %th.col-lg-1{data: {hide: "phone", name: "Dispense Amount"}} Dispense
+    %th.col-lg-1{data: {hide: "phone", name: "Dosage Form"}} Dosage Form
+  %tbody
+    - @drugs.each do |drug|
+      %tr.inbox-content{data: {role: 'link-selector', target: edit_drug_url(drug)}}
+        %td.col-lg-1
+          .base= drug.name
+        %td.col-lg-2
+          .base= drug.regimen
+        %td.col-lg-1
+          .base= drug.strength
+        %td.col-lg-1
+          .base= drug.dispense_amount
+        %td.col-lg-1
+          .base= drug.dosage_form
+
+
