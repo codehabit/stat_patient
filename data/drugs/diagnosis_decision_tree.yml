@@ -1,58 +1,59 @@
-adult:
-  pain:
-    mild:
-      id: 2011
-    moderate:
-      id: 2012
-    severe:
-      id: 2013
-  infection:
-    odontogentic:
-      id: 2000
-    periodontal:
-      id: 2001
-    sinus:
-      id: 2002
-    antibiotic_prophylaxis:
-      id: 2003
-    viral_infection:
-      id: 2004
-    fungal_infection:
-      id: 2005
-  inflammation:
-    id: 2006
-  preventative:
-    id: 2007
-  sedative:
-    id: 2008
-  emergency:
-    id: 2009
-pediatric:
-  pain:
-    mild:
-      id: 3011
-    moderate:
-      id: 3012
-    severe:
-      id: 3013
-  infection:
-    odontogentic:
-      id: 3000
-    periodontal:
-      id: 3001
-    sinus:
-      id: 3002
-    antibiotic_prophylaxis:
-      id: 3003
-    viral_infection:
-      id: 3004
-    fungal_infection:
-      id: 3005
-  inflammation:
-    id: 3006
-  preventative:
-    id: 3007
-  sedative:
-    id: 3008
-  emergency:
-    id: 3009
+top:
+  adult:
+    pain:
+      mild:
+        id: 2011
+      moderate:
+        id: 2012
+      severe:
+        id: 2013
+    infection:
+      odontogentic:
+        id: 2000
+      periodontal:
+        id: 2001
+      sinus:
+        id: 2002
+      antibiotic_prophylaxis:
+        id: 2003
+      viral_infection:
+        id: 2004
+      fungal_infection:
+        id: 2005
+    inflammation:
+      id: 2006
+    preventative:
+      id: 2007
+    sedative:
+      id: 2008
+    emergency:
+      id: 2009
+  pediatric:
+    pain:
+      mild:
+        id: 3011
+      moderate:
+        id: 3012
+      severe:
+        id: 3013
+    infection:
+      odontogentic:
+        id: 3000
+      periodontal:
+        id: 3001
+      sinus:
+        id: 3002
+      antibiotic_prophylaxis:
+        id: 3003
+      viral_infection:
+        id: 3004
+      fungal_infection:
+        id: 3005
+    inflammation:
+      id: 3006
+    preventative:
+      id: 3007
+    sedative:
+      id: 3008
+    emergency:
+      id: 3009

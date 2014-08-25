@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :drugs
   resources :laboratory_orders
   root to: "home#index"
+  get 'next_element', to: 'decision_trees#next_element'
   get 'coming_soon', to: 'home#coming_soon'
   post 'select_patient', to: 'home#index'
 end

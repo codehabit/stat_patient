@@ -1,10 +1,14 @@
 class PrescriptionOrdersController < ApplicationController
 
   def new
+    @category = 'top'
+    @choices = Drugs::DiagnosisDecisionTree.send(@category.to_sym)
     @prescription_order = PrescriptionOrder.new rx_id: SecureRandom.uuid, created_at: Date.today, refills: 0, practitioner: @current_practitioner, practice: @current_practice, patient: @current_patient, expiration_date: 30.days.from_now
   end
 
   def create
+    @category = 'top'
+    @choices = Drugs::DiagnosisDecisionTree.send(@category.to_sym)
     @prescription_order = PrescriptionOrder.create(prescription_order_params)
     @current_visit.prescription_orders << @prescription_order if @current_visit
 

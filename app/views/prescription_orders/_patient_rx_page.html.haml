@@ -65,7 +65,7 @@
       .col-sm-9
         .row.rx-info
           .col-sm-11
-            %span.rx-drug-name= drug.name
+            %span.rx-drug-name= drug.selection_name
         .row.rx-info
           .col-sm-3
             = I18n.t(:dispense_amount, scope: :prescription)
@@ -73,7 +73,7 @@
             = po.dispense_amount
         .row.rx-info
           .col-sm-3
-            = I18n.t(:rx_instructions, scope: :prescription)
+            = I18n.t(:sig, scope: :prescription)
           .col-sm-8
             = po.rx_instructions
         .row.rx-info

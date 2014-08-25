@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authenticate_user!
   before_action :get_context
+  skip_before_action :verify_authenticity_token, if: :json_request?
 
   # Skip if we are creating a new patient
   skip_before_action :get_context, if: ->{request.path == patients_path}
@@ -33,4 +34,9 @@ class ApplicationController < ActionController::Base
     @current_patient = @current_visit.patient.decorate
   end
 
+  protected
+
+  def json_request?
+    request.format.json?
+  end
 end
