@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140821232745) do
+ActiveRecord::Schema.define(version: 20140824215610) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -236,6 +236,15 @@ ActiveRecord::Schema.define(version: 20140821232745) do
     t.boolean  "label"
     t.string   "flow_status"
   end
+
+  create_table "tooth_chart_markings", force: true do |t|
+    t.integer "tooth_chart_id"
+    t.integer "tooth_id"
+    t.integer "status_code"
+    t.string  "notes"
+  end
+
+  add_index "tooth_chart_markings", ["tooth_chart_id"], name: "index_tooth_chart_markings_on_tooth_chart_id", using: :btree
 
   create_table "tooth_charts", force: true do |t|
     t.string   "chart_file_name"

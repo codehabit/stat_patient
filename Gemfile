@@ -50,6 +50,7 @@ group :test, :development do
   gem 'quiet_assets'
   gem 'rspec-rails'
   gem 'capybara-select2'
+  gem 'byebug'
 end
 
 group :test do
