@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :attachments do
     resources :annotations, only: [:index, :create, :update, :destroy]
   end
-  resources :attachments
+  resources :tooth_charts, only: [:show, :update]
   resources :prescription_orders do
     get :print, on: :member
     put :submit, on: :member
