@@ -2,16 +2,6 @@
   = render "fixed_lab_item_types_title_bar", title: "Select a material", back: "types"
   - Labs::Catalog.new.items["Ceramic"]["material"].each do |material|
     = button_tag material, class: "btn btn-primary type-button", data: { next: "[data-role='shades-container']"}, role: "item-option"
-.lab-item-types.next{data: {role: "shades-container", last_step: true}}
-  = render "fixed_lab_item_types_title_bar", title: "Setup shades", back: "ceramic"
-  %dl.dl-horizontal
-    - Labs::Catalog.new.items["Ceramic"]["shading"].each do |shade|
-      %dt
-        = link_to shade.capitalize, "#", data: {role: "vita-launcher", target: "[data-role='vita-chart']", display: "[data-role='#{shade.downcase.gsub(' ', '-')}-display']", label: shade}
-      %dd
-        %span.vita-choice{data: {role: "#{shade.downcase.gsub(" ", "-")}-display"}}
-  .row
-    .pull-right
-      = button_tag "Done", class: "btn btn-primary", data: {role: "finisher"}
+= render "shades"
 = render "vita_chart"
 
