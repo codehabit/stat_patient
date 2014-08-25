@@ -1,0 +1,11 @@
+.lab-item-types.next{data: {role: "shades-container", last_step: true}}
+  = render "fixed_lab_item_types_title_bar", title: "Setup shades", back: "ceramic"
+  %dl.dl-horizontal
+    - Labs::Catalog.new.items.lab_item["shading"].each do |shade|
+      %dt
+        = link_to shade.capitalize, "#", data: {role: "vita-launcher", target: "[data-role='vita-chart']", display: "[data-role='#{shade.downcase.gsub(' ', '-')}-display']", label: shade}
+      %dd
+        %span.vita-choice{data: {role: "#{shade.downcase.gsub(" ", "-")}-display"}}
+  .row
+    .pull-right
+      = button_tag "Done", class: "btn btn-primary", data: {role: "finisher"}
