@@ -4,14 +4,14 @@
     .col-sm-10
       .item-description{data: {role: "item-description-holder"}}
       .restart.hide
-        = link_to "Start over", "#", class: "active", data: {role: "restart"}
+        = link_to "Change selection", "#", class: "btn btn-primary", data: {role: "restart"}
       %div{data: {role: "chooser-container"}}
         .lab-item-types{data: {role: "types-container"}}
           .title
             Select a type
           - Labs::Catalog.new.types.each do |type|
             - type_key = type.downcase.gsub("/", "-").gsub(" ", "-")
-            = button_tag type, class: "btn btn-primary type-button", data: {role: "item-option", next: "[data-role='#{type_key}-container']"}
+            = button_tag type, class: "btn btn-primary type-button", data: { next: "[data-role='#{type_key}-container']"}, role: "item-option"
         = render "ceramics"
         = render "temporary_other"
-        -# = render "pfms"
+        = render "pfms"
