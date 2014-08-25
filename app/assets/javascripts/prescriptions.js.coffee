@@ -1,7 +1,7 @@
 $(document).on "click", "[data-role='decision-tree-selector']", (e)->
   category = $(this).data('category')
   console.log "category is", category
-  url = "/next_element.js?category=#{category}"
+  url = "/decision_trees/next_element.js?category=#{category}"
   $.ajax
     url: url
     type: 'GET'
