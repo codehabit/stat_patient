@@ -8,18 +8,18 @@ items:
     contacts:
       -  Normal Proximal Contacts
       -  Light Proximal Contacts
-  "Ceramic":
-    <<: *default
-    material:
-      - Full Zirconia
-      - Zirconia Core/Stacked Porcelain
-      - Lithium Disilicate/Bonded E-Max
     shading:
       - Stump Shade
       - Final Shade
       - Cervical Shade
       - Middle Shade
       - Incisal Shade
+  "Ceramic":
+    <<: *default
+    material:
+      - Full Zirconia
+      - Zirconia Core/Stacked Porcelain
+      - Lithium Disilicate/Bonded E-Max
   "Temporary/Other":
     <<: *default
     type:

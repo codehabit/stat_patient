@@ -9,14 +9,19 @@ $(document).on "ready page:load", ->
     container.hide()
     target.fadeIn()
 
+  $(document).on "click", "[role='item-option']", (evt)->
+    evt.preventDefault()
+    description_holder().fadeIn()
+    option_text = $(this).text()
+    order_component = $("<span/>").text(option_text).attr("data-role", "order-component").addClass("order-component")
+    description_holder().append(order_component)
+
   $(document).on "click", "[data-previous]", (evt)->
     evt.preventDefault()
     order_components = description_holder().find("[data-role='order-component']")
     starting_size = order_components.length
     if starting_size >= 1
       order_components.last().remove()
-    if starting_size >= 3
-      description_holder().find("[data-role='order-component']").last().remove()
     if description_holder().find("[data-role='order-component']").length == 0
       description_holder().fadeOut()
     target = $($(this).data("previous"))
@@ -24,12 +29,6 @@ $(document).on "ready page:load", ->
     container.hide()
     target.fadeIn()
 
-  $(document).on "click", "[role='item-option']", (evt)->
-    evt.preventDefault()
-    description_holder().fadeIn()
-    option_text = $(this).text()
-    order_component = $("<span/>").text(option_text).attr("data-role", "order-component").addClass("order-component")
-    description_holder().append(order_component)
 
   $(document).on "click", "[data-role='finisher']", (evt)->
     evt.preventDefault()
@@ -42,6 +41,7 @@ $(document).on "ready page:load", ->
     evt.preventDefault();
     description_holder().removeClass("done")
     $("[data-role='restart']").parent().addClass("hide")
+    description_holder().find("[data-role='order-component']").last().remove()
     $("[data-role='chooser-container']").fadeIn()
 
   $("[data-role='vita-launcher']").popover(
