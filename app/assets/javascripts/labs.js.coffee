@@ -24,7 +24,13 @@ $(document).on "ready page:load", ->
       order_components.last().remove()
     if description_holder().find("[data-role='order-component']").length == 0
       description_holder().fadeOut()
-    target = $($(this).data("previous"))
+    target_selector = $(this).data("previous")
+    current = $(this).data("current")
+    if target_selector.indexOf("shade") > -1 || current.indexOf("shade") > -1
+      $("[data-role*='shade-display']").text("")
+      $("[data-role='vita-chart']").data("stay-put", false)
+      $("[data-singles]").show()
+    target = $(target_selector)
     container = $(this).closest("[data-role*='-container']")
     container.hide()
     target.fadeIn()
@@ -64,6 +70,9 @@ $(document).on "ready page:load", ->
     $("[data-role='vita-chart']").data("next-step", next_step)
     $("[data-role='vita-chart']").data("stay-put", stay_put)
 
+  $(document).on "click", "[data-hide-singles]", (evt)->
+    $("[data-singles]").hide()
+
   $(document).on "click", "[data-role='shade-picker']", (evt)->
     evt.preventDefault()
     value = $(this).data("value")
@@ -73,6 +82,7 @@ $(document).on "ready page:load", ->
     stay_put = $("[data-role='vita-chart']").data("stay-put")
     if stay_put
       display = $($("[data-role='vita-chart']").data("display"))
+      console.log(display)
       display.text(value)
       order_component_container = $("[data-component-type='shades']")
       if order_component_container.length == 0

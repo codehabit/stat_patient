@@ -1,6 +1,6 @@
 .title-bar
   .title
     = title
-  = link_to "#", class: "back-button pull-right", data: {previous: "[data-role='#{back}-container']"} do
+  = link_to "#", class: "back-button pull-right", data: {current: current, previous: "[data-role='#{back}-container']"} do
     %i.fa.fa-arrow-left
     back
