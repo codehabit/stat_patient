@@ -28,6 +28,10 @@ class PrescriptionOrder < ActiveRecord::Base
     !submitted?
   end
 
+  def editable?
+    submittable?
+  end
+
   def submitted?
     self.flow_status == 'submitted'
   end
