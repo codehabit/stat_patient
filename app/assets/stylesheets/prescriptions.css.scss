@@ -33,13 +33,18 @@
 }
 
 .monograph {
-  border: 1px solid black;
-  min-height: 600px;;
-  padding: 20px;
+  // padding: 20px;
 }
 
 .pt-info {
   font-size: 10px;
+}
+
+[data-role="decision-tree-selector-container"] {
+  padding: 3px;
+  .btn-chosen {
+    background-color: red;
+  }
 }
 
 [data-role="refill-selector"] {

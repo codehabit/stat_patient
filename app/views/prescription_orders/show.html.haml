@@ -16,10 +16,10 @@
 
     -if submittable
       .well
-        Submit to clearing
+        = t(:submit_to_clearing_title, scope: :prescription)
         = bootstrap_form_for(po, url: submit_prescription_order_url(po), method: :put, data: {role: 'patient-form'}, layout: :vertical) do |f|
           = f.select 'pharmacy_id', Pharmacy.all.map{|d| [d.name, d.id]},{include_blank: true, hide_label: true}, class: 'form-control', data: {role: 'pharmacy-selector', type: 'select2'}
-          = f.submit "Submit", class: "btn-standard btn btn-primary"
+          = f.submit t(:submit_to_clearing_button, scope: :prescription), class: "btn-standard btn btn-primary"
 
     .well
       - if po.flow_status.present?

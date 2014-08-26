@@ -85,7 +85,7 @@ ready = ->
       url: url
       type: "GET"
       success: (result) ->
-        $('.pt-info').html(result.age + ' yo ' + result.gender  )
+        # $('.pt-info').html(result.age + ' yo ' + result.gender  )
 
   $('[data-role="rx-print-button"]').on "click", () ->
     window.location = $(this).data('target')
