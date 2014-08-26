@@ -1,11 +1,21 @@
-.lab-item-types.next{data: {role: "shades-container", last_step: true}}
-  = render "fixed_lab_item_types_title_bar", title: "Setup shades", back: "ceramic"
-  %dl.dl-horizontal
-    - Labs::Catalog.new.items.lab_item["shading"].each do |shade|
-      %dt
-        = link_to shade.capitalize, "#", data: {role: "vita-launcher", target: "[data-role='vita-chart']", display: "[data-role='#{shade.downcase.gsub(' ', '-')}-display']", label: shade}
-      %dd
-        %span.vita-choice{data: {role: "#{shade.downcase.gsub(" ", "-")}-display"}}
+.lab-item-types.next{data: {role: "shades-#{type}-container", last_step: true}}
+  = render "fixed_lab_item_types_title_bar", title: "Setup shades", back: back
+  .single-shade-choices
+    - Labs::Catalog.new.items.lab_item.shading.each do |shade|
+      = button_tag shade.capitalize, class: "btn btn-primary type-button", data: {role: "vita-launcher", target: "[data-role='vita-chart']", next_step: next_step, display: "[data-role='#{shade.downcase.gsub(' ', '-')}-display']", label: shade}
+  .row.tri-color
+    .col-sm-4
+      %table.table
+        - Labs::Catalog.new.items.lab_item.regional_shading.each do |shade|
+          %tr
+            %td
+              = button_tag shade.capitalize, class: "btn btn-primary type-button", data: {stay_put: true, role: "vita-launcher", target: "[data-role='vita-chart']", display: "[data-role='#{shade.downcase.gsub(' ', '-')}-display']", label: shade}
+    .col-sm-5
+      .tri-color-shade
+        - position = ["top", "middle", "bottom"]
+        - Labs::Catalog.new.items.lab_item.regional_shading.each_with_index do |shade, i|
+          %div{class: "#{position[i]} vita-choice"}
+            %span{data: {role: "#{shade.downcase.gsub(" ", "-")}-display"}}
   .row
     .pull-right
-      = button_tag "Done", class: "btn btn-primary", data: {role: "finisher"}
+      = button_tag "Next", class: "btn btn-primary", data: {next: next_step}

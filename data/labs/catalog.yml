@@ -11,6 +11,7 @@ items:
     shading:
       - Stump Shade
       - Final Shade
+    regional_shading:
       - Cervical Shade
       - Middle Shade
       - Incisal Shade

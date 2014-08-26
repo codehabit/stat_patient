@@ -13,7 +13,7 @@
         = select2_for(object_type: :case, field_name: :recipient, field_type: Laboratory, label_method: :name, label: "Lab")
         = f.hidden_field :recipient_type, value: "Laboratory"
         = f.hidden_field :originator_id
-        = render "lab_item_selector"
+        = render "lab_item_selector", f: f
         = f.date_field :due_date
         = select2_for(object_type: :laboratory_order, field_name: :shipping_method, field_type: ShippingMethod, label_method: :pretty)
         .print-buttons

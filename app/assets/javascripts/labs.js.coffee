@@ -52,23 +52,39 @@ $(document).on "ready page:load", ->
   )
 
   $(document).on "click", "[data-role='vita-launcher']", (evt)->
+    evt.preventDefault()
     display = $(this).data("display")
     label = $(this).data("label")
+    next_step = $(this).data("next-step")
+    stay_put = $(this).data("stay-put")
+    container = $(this).closest("[data-role*='-container']")
     $("[data-role='vita-chart']").data("display", display)
     $("[data-role='vita-chart']").data("label", label)
+    $("[data-role='vita-chart']").data("container", container)
+    $("[data-role='vita-chart']").data("next-step", next_step)
+    $("[data-role='vita-chart']").data("stay-put", stay_put)
 
   $(document).on "click", "[data-role='shade-picker']", (evt)->
     evt.preventDefault()
     value = $(this).data("value")
-    display = $($("[data-role='vita-chart']").data("display"))
     label = $("[data-role='vita-chart']").data("label")
-    display.text(value)
-    order_component_container = $("[data-component-type='shades']")
-    if order_component_container.length == 0
-      order_component_container = $("<span/>").attr("data-role", "order-component").attr("data-component-type", "shades").addClass("order-component")
-      description_holder().append(order_component_container)
-    order_component = $("<span/>").text(label + " " + value).addClass("order-component")
-    order_component_container.append(order_component)
+    container = $("[data-role='vita-chart']").data("container")
+    next_step = $("[data-role='vita-chart']").data("next-step")
+    stay_put = $("[data-role='vita-chart']").data("stay-put")
+    if stay_put
+      display = $($("[data-role='vita-chart']").data("display"))
+      display.text(value)
+      order_component_container = $("[data-component-type='shades']")
+      if order_component_container.length == 0
+        order_component_container = $("<span/>").attr("data-role", "order-component").attr("data-component-type", "shades").addClass("order-component")
+        description_holder().append(order_component_container)
+      order_component = $("<span/>").text(label + " " + value).addClass("order-component")
+      order_component_container.append(order_component)
+    else
+      target = $(next_step)
+      $(container).hide()
+      $(target).fadeIn()
+      order_component = $("<span/>").text(label + " " + value).attr("data-role", "order-component").addClass("order-component")
+      description_holder().append(order_component)
     $("[data-role='vita-launcher']").popover("hide")
-
 
