@@ -24,7 +24,6 @@ gem 'settingslogic'
 gem 'rails_12factor', group: :production
 gem "select2-rails"
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
-gem "aws-sdk"
 gem 'bootstrap_form'
 gem "nested_form"
 gem 'dropzonejs-rails'

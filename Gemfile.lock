@@ -59,11 +59,6 @@ GEM
     arel (5.0.1.20140414130214)
     autotab-rails (0.0.2)
       railties (>= 3.0)
-    aws-sdk (1.52.0)
-      aws-sdk-v1 (= 1.52.0)
-    aws-sdk-v1 (1.52.0)
-      json (~> 1.4)
-      nokogiri (>= 1.4.4)
     bcrypt (3.1.7)
     bootstrap-sass (3.1.1.1)
       sass (~> 3.2)
@@ -320,7 +315,6 @@ PLATFORMS
 
 DEPENDENCIES
   autotab-rails
-  aws-sdk
   bootstrap-sass (~> 3.1.1)
   bootstrap_form
   bootswatch-rails
