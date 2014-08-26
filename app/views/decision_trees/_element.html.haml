@@ -1,9 +1,13 @@
+- categories = @category.split('.')
+- categories.shift
+- chain = ['top']
 .diagnosis.well
-  - chain = []
-  - @category.split('.').each do |top_category|
-    - chain  << top_category
-    - next if top_category == 'top'
-    %button.btn.btn-primary.decision-tree{data: {role: 'decision-tree-selector', category: chain.join('.')}}= top_category.humanize
+  - if categories.present?
+    - categories.each do |category|
+      - chain  << category
+      %button.btn.btn-primary.btn-chosen.decision-tree{data: {role: 'decision-tree-selector', category: chain.join('.')}}= category.humanize
+  - else
+    Choose a category
 
 .drug-choices.well
   - @choices.each do |choice|

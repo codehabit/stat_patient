@@ -36,8 +36,11 @@ en:
     artifacts: Activity
     no_artifacts:  No activity for this visit yet.
   prescription:
+    submit_to_clearing_button: Submit
+    submit_to_clearing_title: Submit for processing
     submit: Create Prescription
     edit: Edit Prescription
+    new: New Prescription
     print: Print Prescription
     update: Update Prescription
     copy_watermark: COPY
