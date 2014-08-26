@@ -4,7 +4,7 @@
     There are no decision trees currently
   - @assignments.each do |assg|
     %p
-      - name = "#{assg[0]}: #{assg[1].gsub("."," - ").humanize}"
+      - name = assg[1].gsub("."," - ").humanize
       %button.btn{title: "Remove #{name}", data: {role: 'assignment-remover', "drug-id" => @drug_uuid, "diagnosis-id" => assg[0]}}
         %i.fa.fa-2x.fa-times-circle-o
         = name

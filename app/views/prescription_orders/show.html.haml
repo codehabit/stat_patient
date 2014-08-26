@@ -1,23 +1,25 @@
-= render 'patient_rx_page'
+- po = @prescription_order
+- print_target = @current_visit ? visit_path(@current_visit) : prescription_orders_path
+- editable = po.editable?
+- submittable = po.submittable?
 
 .row
-  .col-sm-2
-    .print-buttons.rx-buttons.pull-left
-      - if @current_visit
-        = link_to "Print Prescription",print_prescription_order_path(@prescription_order) , target: 'rx-print', data: {role: 'rx-print-button', target: visit_path(@current_visit)}, class: "btn-standard btn btn-primary "
-      - else
-        = link_to "Print Prescription",print_prescription_order_path(@prescription_order) , target: 'rx-print', data: {role: 'rx-print-button', target: prescription_orders_path}, class: "btn-standard btn btn-primary "
-  .col-sm-10
-    .row
-      -if @prescription_order.submittable?
-        = bootstrap_form_for(@prescription_order, url: submit_prescription_order_url(@prescription_order), method: :put, data: {role: 'patient-form'}, layout: :horizontal) do |f|
-          .col-sm-5
-            .print-buttons.rx-buttons
-              = f.submit "Submit", class: "btn-standard btn btn-primary"
-          .col-sm-5
-            .print-buttons.rx-buttons
-            = f.select 'pharmacy_id', Pharmacy.all.map{|d| [d.name, d.id]},{include_blank: true, hide_label: true}, class: 'form-control', data: {role: 'pharmacy-selector', type: 'select2'}
-      - else
-        .col-sm-11
-          .padded.pull-right
-            = "#{@prescription_order.flow_status.capitalize} on #{l @prescription_order.updated_at}"
+  .col-sm-7
+    = render 'patient_rx_page'
+
+  .col-sm-4.rx-buttons
+
+    = link_to t(:print, scope: :prescription), print_prescription_order_path(po), target: 'rx-print', data: {role: 'rx-print-button', target: print_target}, class: "btn-standard btn btn-primary"
+
+    -if editable
+      = link_to t(:edit, scope: :prescription), edit_prescription_order_path(po), class: 'btn btn-standard btn-primary'
+
+    -if submittable
+      .well
+        Submit to clearing
+        = bootstrap_form_for(po, url: submit_prescription_order_url(po), method: :put, data: {role: 'patient-form'}, layout: :vertical) do |f|
+          = f.select 'pharmacy_id', Pharmacy.all.map{|d| [d.name, d.id]},{include_blank: true, hide_label: true}, class: 'form-control', data: {role: 'pharmacy-selector', type: 'select2'}
+          = f.submit "Submit", class: "btn-standard btn btn-primary"
+
+    .well
+      = "#{po.flow_status.capitalize} on #{l po.updated_at}"
