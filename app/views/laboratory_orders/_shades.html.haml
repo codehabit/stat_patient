@@ -1,8 +1,10 @@
 .lab-item-types.next{data: {role: "shades-#{type}-container", last_step: true}}
   = render "fixed_lab_item_types_title_bar", title: "Setup shades", back: back, current: "shades"
   .single-shade-choices{data: {singles: true}}
-    - Labs::Catalog.new.items.lab_item.shading.each do |shade|
-      = button_tag shade.capitalize, class: "btn btn-primary type-button", data: {role: "vita-launcher", target: "[data-role='vita-chart']", next_step: next_step, display: "[data-role='#{shade.downcase.gsub(' ', '-')}-display']", label: shade}
+    - stump = Labs::Catalog.new.items.lab_item.shading[0]
+    - final = Labs::Catalog.new.items.lab_item.shading[1]
+    = button_tag stump.capitalize, class: "btn btn-primary type-button", data: {role: "vita-launcher", target: "[data-role='vita-chart']", display: "[data-role='stump-shade-display']", label: stump}
+    = button_tag final.capitalize, class: "btn btn-primary type-button", data: {final: true, role: "vita-launcher", target: "[data-role='vita-chart']", display: "[data-role='final-shade-display']", label: final}
   .row.tri-color
     .col-sm-4
       %table.table
