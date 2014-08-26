@@ -1,5 +1,5 @@
 .lab-item-types.next{data: {role: "temporary-other-container"}}
-  = render "fixed_lab_item_types_title_bar", title: "Select a type", back: "types"
+  = render "fixed_lab_item_types_title_bar", title: "Select a type", back: "types", current: "temporary-other"
   - Labs::Catalog.new.items["Temporary/Other"]["type"].each do |type|
     = button_tag type, class: "btn btn-primary type-button", data: {next: "[data-role='occlusion-temporary-other-container']"}, role: "item-option"
 = render "occlusion_contacts", type: "temporary-other", back: "temporary-other"

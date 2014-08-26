@@ -1,8 +1,8 @@
 .lab-item-types.next{data: {role: "occlusion-#{type}-container"}}
-  = render "fixed_lab_item_types_title_bar", title: "Select occlusion type", back: back
+  = render "fixed_lab_item_types_title_bar", title: "Select occlusion type", back: back, current: "occlusion-#{type}"
   - Labs::Catalog.new.items.lab_item["occlusion"].each do |occlusion|
     = button_tag occlusion, class: "btn btn-primary type-button", data: {next: "[data-role='contacts-#{type}-container']"}, role: "item-option"
 .lab-item-types.next{data: {role: "contacts-#{type}-container"}}
-  = render "fixed_lab_item_types_title_bar", title: "Select contact type", back: "occlusion-#{type}"
+  = render "fixed_lab_item_types_title_bar", title: "Select contact type", back: "occlusion-#{type}", current: "contact-#{type}"
   - Labs::Catalog.new.items.lab_item["contacts"].each do |contact|
     = button_tag contact, class: "btn btn-primary type-button", data: {role: "finisher"}, role: "item-option"
