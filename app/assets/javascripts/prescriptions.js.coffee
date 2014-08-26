@@ -1,9 +1,9 @@
 $(document).on "click", "[data-role='assignment-remover']", (e)->
   $this = $(this)
   diagnosis_id= $this.data('diagnosis-id')
-  drug_id = $this.data('drug-id')
+  drug_uuid = $this.data('drug-uuid')
   $this.fadeTo  "slow" , 0.5, ->
-    url = "/decision_trees/remove_element.js?diagnosis_id=#{diagnosis_id}&drug_id=#{drug_id}"
+    url = "/decision_trees/remove_element.js?diagnosis_id=#{diagnosis_id}&drug_uuid=#{drug_uuid}"
     $.ajax
       url: url
       type: 'GET'
@@ -12,8 +12,8 @@ $(document).on "click", "[data-role='assignment-remover']", (e)->
 
 $(document).on "click", "[data-role='decision-tree-builder']", (e)->
   category = $(this).data('category')
-  drug_id = $(this).data('drug-id')
-  url = "/decision_trees/build_element.js?category=#{category}&drug_id=#{drug_id}"
+  drug_uuid = $(this).data('drug-uuid')
+  url = "/decision_trees/build_element.js?category=#{category}&drug_uuid=#{drug_uuid}"
   $.ajax
     url: url
     type: 'GET'
@@ -31,8 +31,8 @@ $(document).on "click", "[data-role='decision-tree-selector']", (e)->
 
 $(document).on "click", "[data-role='drug-selector']", (e)->
   category = $(this).data('category')
-  id = $(this).data('drug-id')
-  url = "/drugs/#{id}"
+  uuid = $(this).data('drug-uuid')
+  url = "/drugs/#{uuid}"
   $.ajax
     url: url
     type: "GET"
@@ -40,15 +40,15 @@ $(document).on "click", "[data-role='drug-selector']", (e)->
       $('#prescription_order_dispense_amount').val(result.dispense_amount)
       $('#prescription_order_rx_instructions').val(result.sig)
       $('#prescription_order_patient_instructions').val(result.instructions_precautions)
-      $('#prescription_order_drug_id').val(result.id)
+      $('#prescription_order_drug_uuid').val(result.uuid)
       monographContent(result)
 
 ready = ->
 
   # load the decision tree chooser on the rx form
   if (decision_tree_container = $("[data-role='decision-tree-selector-container']")).length
-    drug_id = $(decision_tree_container).data('drug-id')
-    url = "/decision_trees/next_element.js?category=top&drug_id=#{drug_id}"
+    drug_uuid = $(decision_tree_container).data('drug-uuid')
+    url = "/decision_trees/next_element.js?category=top&drug_uuid=#{drug_uuid}"
     $.ajax
       url: url
       type: "GET"
@@ -57,8 +57,8 @@ ready = ->
 
   # load the decision tree chooser on the edit drug page
   if (decision_tree_container = $("[data-role='decision-tree-container']")).length
-    drug_id = $(decision_tree_container).data('drug-id')
-    url = "/decision_trees/build_element.js?category=top&drug_id=#{drug_id}"
+    drug_uuid = $(decision_tree_container).data('drug-uuid')
+    url = "/decision_trees/build_element.js?category=top&drug_uuid=#{drug_uuid}"
     $.ajax
       url: url
       type: "GET"

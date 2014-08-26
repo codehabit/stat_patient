@@ -9,16 +9,16 @@ class DecisionTreesController < ApplicationController
   def build_element
     @category = params[:category] || 'top'
     @choices = choices_for @category
-    @drug_id = params[:drug_id]
+    @drug_uuid = params[:drug_uuid]
 
     if @leaf
-      assign_diagnosis(drug_id: @drug_id, diagnosis_id: @leaf_id)
+      assign_diagnosis(drug_uuid: @drug_uuid, diagnosis_id: @leaf_id)
       @category = 'top'
       @choices = choices_for @category
     end
 
     tree = Drugs::DiagnosisDecisionTree
-    @assignments = DrugDiagnosisAssignment.where(drug_id: @drug_id).map do |assg|
+    @assignments = DrugDiagnosisAssignment.where(drug_uuid: @drug_uuid).order('created_at ASC').map do |assg|
       path_for tree, assg.diagnosis_id
     end
   end
@@ -26,13 +26,13 @@ class DecisionTreesController < ApplicationController
   def remove_element
     @category = 'top'
     @choices = choices_for @category
-    @drug_id = params[:drug_id]
+    @drug_uuid = params[:drug_uuid]
     @diagnosis_id = params[:diagnosis_id]
 
-    DrugDiagnosisAssignment.where(drug_id: @drug_id, diagnosis_id: @diagnosis_id).delete_all
+    DrugDiagnosisAssignment.where(drug_uuid: @drug_uuid, diagnosis_id: @diagnosis_id).delete_all
 
     tree = Drugs::DiagnosisDecisionTree
-    @assignments = DrugDiagnosisAssignment.where(drug_id: @drug_id).map do |assg|
+    @assignments = DrugDiagnosisAssignment.where(drug_uuid: @drug_uuid).order('created_at ASC').map do |assg|
       path_for tree, assg.diagnosis_id
     end
   end

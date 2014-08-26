@@ -1,8 +1,12 @@
 class DrugsController < ApplicationController
   respond_to :json
 
+  def new
+    @drug = Drug.new uuid: SecureRandom.uuid
+  end
+
   def show
-    @drug = Drug.find params[:id]
+    @drug = Drug.find_by uuid: params[:id]
     respond_to do |format|
       format.json {render json: @drug.to_json}
       format.html

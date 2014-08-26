@@ -19,7 +19,7 @@
       = f.text_field :dispense_amount, label: t(:dispense_amount, scope: :prescription)
       = f.text_area :rx_instructions, label: t(:sig, scope: :prescription)
       = f.text_area :patient_instructions, label: t(:precautions, scope: :prescription)
-      = f.hidden_field :drug_id
+      = f.hidden_field :drug_uuid
       = f.date_field :created_at, disabled: true, label: t(:rx_date, scope: :prescription), data: {role: 'date-selector'}
       = f.date_field :expiration_date,  label: t(:expiration_date, scope: :prescription), data: {role: 'date-selector'}
       = f.text_field :refills, data: {role: 'refill-selector'}, label: t(:refills_allowed, scope: :prescription)
