@@ -9,9 +9,10 @@
 .lab-item-types.next{data: {role: "pontic-container"}}
   = render "fixed_lab_item_types_title_bar", title: "(Bridge Only) Select a pontic", back: "margin"
   - Labs::Catalog.new.items["PFM"]["Design"]["Pontic"].each do |margin|
-    = button_tag margin, class: "btn btn-primary type-button", data: {next: "[data-role='occlusion-pfm-container']"}, role: "item-option"
-  = button_tag class: "btn btn-primary type-button", data: {next: "[data-role='occlusion-pfm-container']"} do
+    = button_tag margin, class: "btn btn-primary type-button", data: {next: "[data-role='shades-pfm-container']"}, role: "item-option"
+  = button_tag class: "btn btn-primary type-button", data: {next: "[data-role='shades-pfm-container']"} do
     %span
       Next (crown)
     %i.fa.fa-arrow-right
-= render "occlusion_contacts", type: "pfm", back: "pontic"
+= render "shades", type: "pfm", back: "pontic", next_step: "[data-role='occlusion-pfm-container']"
+= render "occlusion_contacts", type: "pfm", back: "shades-pfm"

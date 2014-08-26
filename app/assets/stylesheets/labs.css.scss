@@ -88,3 +88,59 @@ a.back-button {
 .item-description.with-tab {
   border-radius: 4px 4px 4px 0;
 }
+
+.btn-removable {
+  background-color: #ef6958;
+}
+
+.tri-color {
+  padding-top: 15px;
+}
+
+.tri-color .btn {
+  margin-bottom: 10px;
+}
+
+.tri-color .single-shade-choices {
+  border-bottom: 1px solid #000;
+}
+
+.tri-color .table {
+  margin-top: 6%;
+}
+
+.table tr.with-divider {
+  // border-bottom: 1px solid #000;
+}
+
+.tri-color .table td {
+  line-height: 2;
+  padding: 4px;
+  vertical-align: middle;
+}
+
+.tri-color .table td.value {
+  padding: 0;
+}
+
+.tri-color-shade {
+  background: url(image_path("tri_color_shade.png")) no-repeat;
+  height: 173px;
+  width: 100%;
+}
+
+.vita-choice.top {
+  padding-top: 23%;
+}
+
+.vita-choice {
+  color: #1dbc9c;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 2;
+  padding-left: 35%;
+  span {
+    vertical-align: middle;
+  }
+}
+
