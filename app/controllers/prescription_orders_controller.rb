@@ -51,14 +51,16 @@ class PrescriptionOrdersController < ApplicationController
   end
 
   def edit
+    @category = 'top'
+    @choices = Drugs::DiagnosisDecisionTree.send(@category.to_sym)
     @prescription_order = PrescriptionOrder.find params[:id]
     @patient = @prescription_order.patient.decorate
     respond_to do |format|
       format.html do
-        if ['printed', 'submitted'].include?(@prescription_order.flow_status)
-          redirect_to prescription_order_path(@prescription_order)
-        else
+        if @prescription_order.editable?
           render
+        else
+          redirect_to prescription_order_path(@prescription_order)
         end
       end
     end

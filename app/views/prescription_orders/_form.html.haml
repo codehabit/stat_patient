@@ -27,7 +27,10 @@
       = f.check_box :dispense_only_as_written, label: t(:dispense_only_as_written, scope: :prescription)
       = f.check_box :label
       .submit
-        = f.submit t(:submit, scope: :prescription), class: "btn-standard btn btn-primary send"
+        - if @prescription_order.persisted?
+          = f.submit t(:update, scope: :prescription), class: "btn-standard btn btn-primary send"
+        - else
+          = f.submit t(:submit, scope: :prescription), class: "btn-standard btn btn-primary send"
 
   .col-sm-5
     %div{data: {role: 'decision-tree-selector-container'}}
