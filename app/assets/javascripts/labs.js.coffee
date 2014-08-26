@@ -28,6 +28,7 @@ $(document).on "ready page:load", ->
     current = $(this).data("current")
     if target_selector.indexOf("shade") > -1 || current.indexOf("shade") > -1
       $("[data-role*='shade-display']").text("")
+      $("[data-role='vita-chart']").data("final", false)
     target = $(target_selector)
     container = $(this).closest("[data-role*='-container']")
     container.hide()
@@ -36,10 +37,10 @@ $(document).on "ready page:load", ->
 
   $(document).on "click", "[data-role='finisher']", (evt)->
     evt.preventDefault()
+
     $("[data-role='chooser-container']").fadeOut()
     $("[data-role='item-description-holder']").addClass("done")
     $("[data-role='restart']").parent().removeClass("hide")
-    # $("[data-role='item-description-holder']").addClass("with-tab")
 
   $(document).on "click", "[data-role='restart']", (evt)->
     evt.preventDefault();
