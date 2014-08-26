@@ -125,7 +125,6 @@ ActiveRecord::Schema.define(version: 20140826042955) do
     t.integer  "laboratory_order_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "occlusion"
   end
 
   create_table "laboratory_orders", force: true do |t|
