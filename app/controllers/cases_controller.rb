@@ -5,13 +5,16 @@ class CasesController < ApplicationController
 
   def new
     @case = Case.new(patient: @current_patient, originator: @current_practitioner)
+    create_tooth_chart!
     @uuid = UUID.generate
   end
 
   def create
+    tooth_chart_id = case_params.delete :tooth_chart_id
     @case = Case.new(case_params)
     if @case.valid?
       CaseUpdater.originate(@case, request)
+      ToothChart.find(tooth_chart_id).update_attribute(:case_id, @case.id)
       if @current_visit.present?
         @current_visit.cases << @case
         redirect_to visit_path(@current_visit)
@@ -73,6 +76,12 @@ class CasesController < ApplicationController
 
   def case_params
     params.require(:case).permit!
+  end
+
+  def create_tooth_chart!
+    file = File.new(Rails.root + "app/assets/images/AdultToothChart_1.jpg", "r")
+    @case.tooth_chart = ToothChart.create(chart: file)
+    file.close
   end
 end
 

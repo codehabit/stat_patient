@@ -1,5 +1,3 @@
-= link_to image_tag(@case.tooth_chart.chart.url(:web_viewer)), "#modal"
-
 .remodal{data: {remodal_id: "modal"}}
   %ul#tooth-chart{data: {tooth_chart_path: tooth_chart_path(@case.tooth_chart)}}
     -(1..16).each do |i|

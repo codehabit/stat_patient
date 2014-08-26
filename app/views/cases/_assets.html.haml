@@ -1,3 +1,4 @@
 / .case-tooth-chart
 /   = image_tag @case.tooth_chart.chart.url(:web_viewer), class: "tooth-chart-annotate", data: {index: tooth_chart_annotations_path(@case.tooth_chart)}
+= link_to image_tag(@case.tooth_chart.chart.url(:web_viewer)), "#modal"
 = render partial: "adult_tooth_chart"
