@@ -20,7 +20,5 @@
       .submit
         = f.submit "update", class: "btn-standard btn btn-primary send"
   .col-lg-5.padded
-    Current Trees
-    - @paths.each do |id,  path|
-      %p= path
+    %div{data: {role: 'decision-tree-container', 'drug-id' => @drug.id}}
 

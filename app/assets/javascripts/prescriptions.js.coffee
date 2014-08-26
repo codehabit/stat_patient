@@ -1,17 +1,37 @@
+$(document).on "click", "[data-role='assignment-remover']", (e)->
+  $this = $(this)
+  diagnosis_id= $this.data('diagnosis-id')
+  drug_id = $this.data('drug-id')
+  $this.fadeTo  "slow" , 0.5, ->
+    url = "/decision_trees/remove_element.js?diagnosis_id=#{diagnosis_id}&drug_id=#{drug_id}"
+    $.ajax
+      url: url
+      type: 'GET'
+      success: (result) ->
+        return true
+
+$(document).on "click", "[data-role='decision-tree-builder']", (e)->
+  category = $(this).data('category')
+  drug_id = $(this).data('drug-id')
+  url = "/decision_trees/build_element.js?category=#{category}&drug_id=#{drug_id}"
+  $.ajax
+    url: url
+    type: 'GET'
+    success: (result) ->
+      return true
+
 $(document).on "click", "[data-role='decision-tree-selector']", (e)->
   category = $(this).data('category')
-  console.log "category is", category
   url = "/decision_trees/next_element.js?category=#{category}"
   $.ajax
     url: url
     type: 'GET'
     success: (result) ->
-      console.log result
+      return true
 
 $(document).on "click", "[data-role='drug-selector']", (e)->
   category = $(this).data('category')
   id = $(this).data('drug-id')
-  console.log "drug id is", id
   url = "/drugs/#{id}"
   $.ajax
     url: url
@@ -24,6 +44,26 @@ $(document).on "click", "[data-role='drug-selector']", (e)->
       monographContent(result)
 
 ready = ->
+
+  # load the decision tree chooser on the rx form
+  if (decision_tree_container = $("[data-role='decision-tree-selector-container']")).length
+    drug_id = $(decision_tree_container).data('drug-id')
+    url = "/decision_trees/next_element.js?category=top&drug_id=#{drug_id}"
+    $.ajax
+      url: url
+      type: "GET"
+      success: (result) ->
+
+
+  # load the decision tree chooser on the edit drug page
+  if (decision_tree_container = $("[data-role='decision-tree-container']")).length
+    drug_id = $(decision_tree_container).data('drug-id')
+    url = "/decision_trees/build_element.js?category=top&drug_id=#{drug_id}"
+    $.ajax
+      url: url
+      type: "GET"
+      success: (result) ->
+
   $('[data-type="select2"]').select2()
 
   $('[data-change="update-rx"]').change ->
@@ -53,7 +93,7 @@ ready = ->
 $(document).on('ready page:load', ready)
 
 monographContent = (drug) ->
-  $('.monograph #title').html(drug.name)
+  $('.monograph #title').html("#{drug.name} #{drug.strength}")
   $('.monograph #interactions').html(drug.interactions)
   $('.monograph #adult_dosing').html(drug.adult_dosing)
   $('.monograph #peds_dosing').html(drug.peds_dosing)

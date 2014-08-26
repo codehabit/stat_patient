@@ -1,0 +1,26 @@
+%h3 Current Decision Trees
+.well
+  - if @assignments.blank?
+    There are no decision trees currently
+  - @assignments.each do |assg|
+    %p
+      - name = "#{assg[0]}: #{assg[1].gsub("."," - ").humanize}"
+      %button.btn{title: "Remove #{name}", data: {role: 'assignment-remover', "drug-id" => @drug_id, "diagnosis-id" => assg[0]}}
+        %i.fa.fa-2x.fa-times-circle-o
+        = name
+
+.diagnosis.well
+  - if @category == 'top'
+    Click categories below to add a decision tree
+  - chain = []
+  - @category.split('.').each do |top_category|
+    - chain  << top_category
+    - next if top_category == 'top'
+    %button.btn.btn-primary.decision-tree{data: {'drug-id' => @drug_id, role: 'decision-tree-builder', category: chain.join('.')}}= top_category.humanize
+
+.drug-choices.well
+  - @choices.compact.each do |choice|
+    - display_choice = choice[0]
+    - choice_category = @category.present? ? "#{@category}.#{display_choice}" : display_choice
+    %button.btn.btn-primary.decision-tree{data: {role: 'decision-tree-builder', 'drug-id' => @drug_id, category: choice_category}}= display_choice.humanize
+
