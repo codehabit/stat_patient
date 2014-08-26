@@ -10,11 +10,6 @@ class DrugsController < ApplicationController
   end
 
   def edit
-    @paths = {}
-    tree = Drugs::DiagnosisDecisionTree
-    DrugDiagnosisAssignment.where(drug_id: @drug.id).each do |assg|
-      @paths[assg] = tree.path_for assg.diagnosis_id
-    end
     @drug = Drug.find params[:id]
   end
 

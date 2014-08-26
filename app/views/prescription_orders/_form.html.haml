@@ -30,15 +30,12 @@
         = f.submit t(:submit, scope: :prescription), class: "btn-standard btn btn-primary send"
 
   .col-sm-5
-    %div{data: {role: 'decision-tree-container'}}
+    %div{data: {role: 'decision-tree-selector-container'}}
       = render partial: '/decision_trees/element'
     .body-title Monograph
     .monograph
-      %p.drug-attr#title= @prescription_order.drug.try :name
-      %p.drug-attr Adult Dosing
-      %p.drug-desc#adult_dosing= @prescription_order.drug.try :adult_dosing
-      %p.drug-attr Peds Dosing
-      %p.drug-desc#peds_dosing= @prescription_order.drug.try :peds_dosing
+      .body-title
+        %p.drug-attr#title= @prescription_order.drug.try :selection_name
       %p.drug-attr Contraindications & Cautions
       %p.drug-desc#contraindications= @prescription_order.drug.try :contraindications
       %p.drug-attr Interactions

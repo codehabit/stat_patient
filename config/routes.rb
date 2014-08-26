@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   root to: "home#index"
   resources :decision_trees do
     get 'next_element', to: 'decision_trees#next_element', on: :collection
+    get 'build_element', to: 'decision_trees#build_element', on: :collection
+    get 'remove_element', to: 'decision_trees#remove_element', on: :collection
   end
   get 'coming_soon', to: 'home#coming_soon'
   post 'select_patient', to: 'home#index'
