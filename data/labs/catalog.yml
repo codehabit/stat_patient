@@ -20,11 +20,6 @@ items:
       - Full Zirconia
       - Zirconia Core/Stacked Porcelain
       - Lithium Disilicate/Bonded E-Max
-  "Temporary/Other":
-    <<: *default
-    type:
-      - Provisional
-      - Diagnostic wax up
   "PFM":
     <<: *default
     "Material":
@@ -52,4 +47,9 @@ items:
       -  Non Precious
   "Composite":
     <<: *default
+  "Temporary/Other":
+    <<: *default
+    type:
+      - Provisional
+      - Diagnostic wax up
 

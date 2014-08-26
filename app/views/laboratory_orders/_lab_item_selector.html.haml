@@ -13,5 +13,7 @@
             - type_key = type.downcase.gsub("/", "-").gsub(" ", "-")
             = button_tag type, class: "btn btn-primary type-button", data: { next: "[data-role='#{type_key}-container']"}, role: "item-option"
         = render "ceramics"
-        = render "temporary_other"
         = render "pfms"
+        = render "metals"
+        = render "composite"
+        = render "temporary_other"
