@@ -12,18 +12,9 @@ class Case < ActiveRecord::Base
   has_one :tooth_chart
   validates :recipient, presence: true
   validates :patient, presence: true
-  before_create :add_tooth_chart
 
   def artifact_type
     "Message"
-  end
-
-  private
-
-  def add_tooth_chart
-    file = File.new(Rails.root + "app/assets/images/AdultToothChart_1.jpg", "r")
-    self.tooth_chart = ToothChart.new(chart: file)
-    file.close
   end
 
 end

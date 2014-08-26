@@ -10,6 +10,7 @@
         = f.hidden_field :recipient_type, value: "Practitioner"
         = f.hidden_field :originator_id
         = f.text_field :subject
+        = f.hidden_field :tooth_chart_id, value: @case.tooth_chart.id
         - if @current_patient.present?
           = f.text_field :patient_id, value: @current_patient.full_name_with_dob, disabled: true
           = f.hidden_field :patient_id, value: @current_patient.id
@@ -25,7 +26,8 @@
       .tooth-chart
         = bs_tabs do |tab|
           = tab.bs_tab_for "Adult", true do
-            = image_tag "AdultToothChart_1.jpg"
+            = link_to image_tag("AdultToothChart_1.jpg"), "#modal"
+            = render "adult_tooth_chart"
           = tab.bs_tab_for "Child" do
             Coming Soon
           = tab.bs_tab_for "Perio" do
