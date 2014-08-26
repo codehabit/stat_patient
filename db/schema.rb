@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140825113313) do
+ActiveRecord::Schema.define(version: 20140826042955) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,8 +92,10 @@ ActiveRecord::Schema.define(version: 20140825113313) do
   end
 
   create_table "drug_diagnosis_assignments", force: true do |t|
-    t.integer "drug_id"
-    t.integer "diagnosis_id"
+    t.integer  "diagnosis_id"
+    t.string   "drug_uuid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "drugs", force: true do |t|
@@ -205,7 +207,6 @@ ActiveRecord::Schema.define(version: 20140825113313) do
   create_table "prescription_orders", force: true do |t|
     t.integer  "patient_id"
     t.integer  "practitioner_id"
-    t.integer  "drug_id"
     t.string   "dispense_amount"
     t.text     "rx_instructions"
     t.text     "patient_instructions"
@@ -219,7 +220,17 @@ ActiveRecord::Schema.define(version: 20140825113313) do
     t.boolean  "dispense_only_as_written"
     t.boolean  "label"
     t.string   "flow_status"
+    t.string   "drug_uuid"
   end
+
+  create_table "tooth_chart_markings", force: true do |t|
+    t.integer "tooth_chart_id"
+    t.integer "tooth_id"
+    t.integer "status_code"
+    t.string  "notes"
+  end
+
+  add_index "tooth_chart_markings", ["tooth_chart_id"], name: "index_tooth_chart_markings_on_tooth_chart_id", using: :btree
 
   create_table "tooth_charts", force: true do |t|
     t.string   "chart_file_name"

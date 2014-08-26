@@ -338,7 +338,7 @@ if make_drugs
 
         if diagnosis_ids.present?
           diagnosis_ids.split(',').each do |diagnosis_id|
-            DrugDiagnosisAssignment.create drug_id: drug.id, diagnosis_id: diagnosis_id
+            DrugDiagnosisAssignment.create drug_uuid: drug.uuid, diagnosis_id: diagnosis_id
             wrlog diagnosis_id
             wrlog '.'
           end

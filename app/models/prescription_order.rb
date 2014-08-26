@@ -1,12 +1,12 @@
 class PrescriptionOrder < ActiveRecord::Base
-  belongs_to :pharmacy #, -> { where organization_type: 'pharmacy' }, class_name: 'Organization'
+  belongs_to :pharmacy
   belongs_to :patient
   belongs_to :practitioner
   belongs_to :practice
-  belongs_to :drug
+  has_one :drug, foreign_key: :uuid, primary_key: :drug_uuid
   belongs_to :visit
 
-  validates_presence_of :patient, :practitioner, :drug
+  validates_presence_of :patient, :practitioner, :drug_uuid
 
   def subject
     drug.name

@@ -20,5 +20,5 @@
       .submit
         = f.submit "update", class: "btn-standard btn btn-primary send"
   .col-lg-5.padded
-    %div{data: {role: 'decision-tree-container', 'drug-id' => @drug.id}}
+    %div{data: {role: 'decision-tree-container', 'drug-uuid' => @drug.uuid}}
 

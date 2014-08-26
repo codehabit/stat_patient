@@ -1,7 +1,3 @@
 class DrugDiagnosisAssignment < ActiveRecord::Base
-  belongs_to :drug
-
-  def drugs diag_id
-    where(diagnosis_id: diag_id).drugs
-  end
+  has_one :drug, foreign_key: :uuid, primary_key: :drug_uuid
 end
