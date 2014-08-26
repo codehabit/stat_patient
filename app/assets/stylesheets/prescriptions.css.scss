@@ -62,8 +62,9 @@
   padding-left: 10px;
 }
 
-.rx-buttons {
+.rx-buttons > a {
   margin: 10px;
+  margin-left: 0px;
   color: white !important;
 }
 

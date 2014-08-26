@@ -37,6 +37,8 @@ en:
     no_artifacts:  No activity for this visit yet.
   prescription:
     submit: Create Prescription
+    edit: Edit Prescription
+    print: Print Prescription
     update: Update Prescription
     copy_watermark: COPY
     precautions: Patient Precautions
