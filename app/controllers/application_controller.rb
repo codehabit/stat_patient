@@ -30,8 +30,15 @@ class ApplicationController < ActionController::Base
 
   def get_visit_context
     return unless session[:visit_id]
-    @current_visit = Visit.find session[:visit_id]
+    @current_visit = Visit.find_where id:  session[:visit_id]
+    clear_visit_context if @current_visit.blank?
     @current_patient = @current_visit.patient.decorate
+  end
+
+  def clear_visit_context
+    session[:visit_id] = nil
+    @current_visit = nil
+    @current_patiet = nil
   end
 
   protected
