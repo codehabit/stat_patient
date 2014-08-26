@@ -22,4 +22,5 @@
           = f.submit "Submit", class: "btn-standard btn btn-primary"
 
     .well
-      = "#{po.flow_status.capitalize} on #{l po.updated_at}"
+      - if po.flow_status.present?
+        = "#{po.flow_status.capitalize} on #{l po.updated_at}"
