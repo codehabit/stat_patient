@@ -4,20 +4,25 @@ class LaboratoryOrdersController < ApplicationController
   end
 
   def create
+    lab_item = LabItem.new(laboratory_order_params.delete(:lab_item))
+    laboratory_order_params[:lab_item] = lab_item
     @laboratory_order = LaboratoryOrder.create laboratory_order_params
     @current_visit.laboratory_orders << @laboratory_order if @current_visit
     if @laboratory_order.valid?
       flash[:success] = "Laboratory order #{view_context.link_to(@laboratory_order.id, view_context.laboratory_order_path(@laboratory_order))} created"
-      if @current_visit
-        redirect_to visit_path(@current_visit)
-      else
-        redirect_to root_path
-      end
+      redirect_to @laboratory_order
     else
       flash[:error] = @laboratory_order.errors.full_messages.join(', ')
       render action: :new
     end
   end
+
+  # This is for after printing or submitting
+      # if @current_visit
+      #   redirect_to visit_path(@current_visit)
+      # else
+      #   redirect_to root_path
+      # end
 
   def show
     @laboratory_order = LaboratoryOrder.find params[:id]

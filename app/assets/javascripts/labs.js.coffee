@@ -37,7 +37,11 @@ $(document).on "ready page:load", ->
 
   $(document).on "click", "[data-role='finisher']", (evt)->
     evt.preventDefault()
-
+    final_order = "Bridge/Crown"
+    order_components = description_holder().find("[data-role='order-component']")
+    $.each order_components, (index, value)->
+      final_order = final_order + " | " + $(value).text()
+    $("[data-role='final-order-input']").val(final_order)
     $("[data-role='chooser-container']").fadeOut()
     $("[data-role='item-description-holder']").addClass("done")
     $("[data-role='restart']").parent().removeClass("hide")
@@ -76,7 +80,6 @@ $(document).on "ready page:load", ->
     container = $("[data-role='vita-chart']").data("container")
     display = $($("[data-role='vita-chart']").data("display"))
     final = $("[data-role='vita-chart']").data("final")
-    console.log final
     if final
       $("[data-role*='shade-display']").text(value)
     else
