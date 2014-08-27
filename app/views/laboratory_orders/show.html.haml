@@ -1,15 +1,24 @@
-.row.body-element
-  %span.body-title Laboratory Order: #{@laboratory_order.subject}
-.row.body-element
-  .col-xs-5
-    %dl.dl-horizontal
-      %dt
-        Patient
-        %dd= @laboratory_order.patient.decorate.full_name_with_dob if @laboratory_order.patient.present?
-      %dt
-        Originator
-        - if @laboratory_order.originator.present?
-          %dd= @laboratory_order.originator.decorate.full_name_with_suffix
-        - else
-          %dd Not Specified
+.case-form.lab-form
+  .row.body-element
+    %span.body-title Laboratory Order: #{@laboratory_order.subject}
+  .row.body-element
+    .col-xs-5
+      %dl.dl-horizontal
+        %dt
+          Patient
+          %dd= @laboratory_order.patient.decorate.full_name_with_dob if @laboratory_order.patient.present?
+        %dt
+          Ordered By
+          - if @laboratory_order.originator.present?
+            %dd= @laboratory_order.originator.decorate.full_name_with_suffix
+          - else
+            %dd Not Specified
+        %dt
+          Order description
+          %dd= @laboratory_order.lab_item.description
 
+      .print-buttons
+        = link_to "Print ship label", "#", class: "btn btn-primary send"
+        = link_to "Print packing slip", "#", class: "btn btn-primary send"
+      .pull-right.submit
+        = link_to "Submit Order", "#", class: "btn-standard btn btn-primary send"
