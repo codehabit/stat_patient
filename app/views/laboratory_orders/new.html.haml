@@ -2,7 +2,7 @@
   .row.body-element
     %span.body-title
       New Lab Order
-  .row.body-element
+  .row.body-element.form-elements
     = bootstrap_nested_form_for(@laboratory_order,  data: {role: 'patient-form'}, layout: :horizontal) do |f|
       .col-sm-6
         = f.fields_for LabItem.new do |builder|
@@ -21,10 +21,9 @@
         = select2_for(object_type: :laboratory_order, field_name: :shipping_method, field_type: ShippingMethod, label_method: :pretty)
         .pull-right.submit
           = f.submit "Create Order", class: "btn-standard btn btn-primary send"
+      .col-sm-6.large-input
+        = f.text_area :special_instructions, rows: 10, placeholder: "Special instructions"
     .col-sm-6.dropzone-container
       = render "shared/images_drag_and_drop"
-      .col-sm-6
-        .large-input
-          = f.text_area :special_instructions, rows: 10, placeholder: "Special instructions"
 .row.body-element
   .dropzone{data: {role: "image-previews"}}
