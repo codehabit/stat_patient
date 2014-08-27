@@ -32,6 +32,21 @@ $(window).load ->
     title: "Choose an option"
     buttons: [
       {
+        text: "Mark teeth for observation"
+        click: ->
+          $(".ui-selected").addClass("observation")
+          $.ajax
+            url: $("#tooth-chart").data("tooth-chart-path")
+            type: "PUT"
+            dataType: 'json'
+            data: {tooth_chart_markings_attributes: JSON.stringify(assembleToothChartMarkingData(3).get()), notes: $("#tooth_chart_observation").val()}
+            success: (data) ->
+              if data.new_case
+                $("#new_case").append("<input type='hidden' name='case[message_ids][]' value='#{data.message_id}'>")
+
+          $(this).dialog "close"
+      }
+      {
         text: "Mark teeth for extraction"
         click: ->
           $(".ui-selected").addClass("extracted")
@@ -56,13 +71,15 @@ $(window).load ->
     ]
     close: ->
       $(".temp-selected").removeClass("temp-selected ui-selected")
+      $("#tooth_chart_observation").val("")
 
-  $.get $("#tooth-chart").data("tooth-chart-path"), (data) ->
-    $.each data.tooth_chart_markings, (index, marking) ->
-      $(".tooth-#{marking.tooth_id}").addClass("#{marking.status}")
+  if $("#tooth-chart").length > 0
+    $.get $("#tooth-chart").data("tooth-chart-path"), (data) ->
+      $.each data.tooth_chart_markings, (index, marking) ->
+        $(".tooth-#{marking.tooth_id}").addClass("#{marking.status}")
 
   $("#tooth-chart").selectable
-    cancel: ".extracted, .missing"
+    cancel: ".extracted, .missing, .observation"
     selected: ->
       $(".ui-selected").addClass("temp-selected")
     stop: (e) ->
