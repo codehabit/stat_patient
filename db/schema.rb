@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140826042955) do
+ActiveRecord::Schema.define(version: 20140827133338) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,6 +81,17 @@ ActiveRecord::Schema.define(version: 20140826042955) do
     t.datetime "last_activity_date"
   end
 
+  create_table "ceramics", force: true do |t|
+    t.string   "material"
+    t.string   "shade"
+    t.string   "occlusion"
+    t.string   "contact"
+    t.integer  "laboratory_id"
+    t.integer  "laboratory_oder_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "contacts", force: true do |t|
     t.string   "contactable_type"
     t.integer  "contactable_id"
@@ -125,6 +136,7 @@ ActiveRecord::Schema.define(version: 20140826042955) do
     t.integer  "laboratory_order_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "occlusion"
   end
 
   create_table "laboratory_orders", force: true do |t|
@@ -139,6 +151,7 @@ ActiveRecord::Schema.define(version: 20140826042955) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "recipient_type"
+    t.string   "uuid"
   end
 
   create_table "messages", force: true do |t|
@@ -189,6 +202,18 @@ ActiveRecord::Schema.define(version: 20140826042955) do
     t.string   "gender"
     t.string   "marital_status"
     t.string   "social_security_number"
+  end
+
+  create_table "pfms", force: true do |t|
+    t.string   "material"
+    t.string   "margin"
+    t.string   "pontic"
+    t.string   "occlusion"
+    t.string   "contact"
+    t.integer  "laboratory_id"
+    t.integer  "laboratory_oder_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "practitioners", force: true do |t|
