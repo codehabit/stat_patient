@@ -10,6 +10,14 @@
   width: 100%;
 }
 
+.body-element.no-left {
+  padding-left: 0;
+}
+
+.submit input[type='checkbox'] {
+  margin: 10px 8px 0px 0px;
+}
+
 .case-form .body-element.contact-info {
   margin-bottom: 20px;
 }

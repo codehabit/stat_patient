@@ -19,9 +19,12 @@
         -# Removing since there is no use case yet for this. Leaving in commented out.
         -# = f.text_field :case_number
         = render "shared/message_form", f: f, hide_label: false
-        .pull-right.submit
-          = f.check_box :urgent, label: "Mark message as urgent"
-          = f.submit "Send", class: "btn-standard btn btn-primary send"
+        .form-group
+          %label.control-label.col-sm-2
+          .col-sm-10
+            .submit
+              = f.submit "Send", class: "btn-standard btn btn-primary send"
+              = f.check_box :urgent, label: "Mark message as urgent"
     .col-sm-6
       .tooth-chart
         = bs_tabs do |tab|
