@@ -1,0 +1,21 @@
+.body-row
+  %table{data: {role: "datatableized"}}
+    %thead.inbox-header
+      %th.col-lg-1{data: {hide: "phone", name: "Name"}} Name
+      %th.col-lg-1{data: {hide: "phone", name: "Type"}} Type
+      %th.col-lg-1{data: {hide: "phone", name: "National Provider Identifier"}} NPI
+      %th.col-lg-1{data: {hide: "phone", name: "Time Zone"}} Time Zone
+    %tbody
+      - @organizations.each do |organization|
+        %tr.inbox-content{data: {role: 'link-selector', target: edit_organization_url(organization)}}
+          %td.col-lg-1
+            .base= organization.name
+          %td.col-lg-2
+            .base= organization.type
+          %td.col-lg-2
+            .base= organization.national_provider_identifier
+          %td.col-lg-1
+            .base= organization.time_zone
+
+
+
