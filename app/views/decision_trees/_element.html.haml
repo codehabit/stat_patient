@@ -4,10 +4,11 @@
 .diagnosis.well
   .title-box
     .body-title Formulary
-  - if categories.present?
-    - categories.each do |category|
-      - chain  << category
-      %button.btn.btn-primary.btn-chosen.decision-tree{data: {role: 'decision-tree-selector', category: chain.join('.')}}= category.humanize
+  .chosen-items
+    - if categories.present?
+      - categories.each do |category|
+        - chain  << category
+        %button.btn.btn-primary.btn-chosen.decision-tree{data: {role: 'decision-tree-selector', category: chain.join('.')}}= category.humanize
 
 .drug-choices.well
   - if @category == 'top'
@@ -41,5 +42,3 @@
     %p.drug-desc#interactions
     %p.drug-attr Pregnancy / Lactating Precautions
     %p.drug-desc#pregnancy_lactating_precautions
-
-
