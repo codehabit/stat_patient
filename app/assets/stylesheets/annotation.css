@@ -122,6 +122,7 @@
 }
 .image-annotate-edit-area {
     border: 1px solid black;
+    outline: 1px solid white; /* Alex: This is to make the boxes show up better on xrays*/
     cursor: move;
     display: block;
     height: 60px;
