@@ -1,7 +1,7 @@
 .decision-tree {
   background-color: white;
-  border: 1px solid black;
-  color: green;
+  border: 1px solid $tree-selection;
+  color: $tree-selection;
 }
 
 .btn-chosen {
@@ -46,7 +46,7 @@
 }
 
 .title-box {
-  border-bottom: 1px solid green;
+  border-bottom: 1px solid $body-title-color;
   margin-bottom: 10px;
 }
 
@@ -55,11 +55,19 @@
   // padding: 20px;
 }
 
+.leaf-selector:hover{
+    color: black;
+  }
 .leaf-selector {
-  color: green;
-  width: 190px;
+  background-color: white;
+  float: left;
+  color: $tree-selection;
+  font-size: 1.2em;
+  width: 48%;
   cursor: pointer;
-  margin: 15px;
+  margin: 5px;
+  text-decoration: bold;
+  border: none;
   margin-left: 0px;
 }
 
@@ -67,10 +75,14 @@
   font-size: 10px;
 }
 
-
-
 [data-role="decision-tree-selector-container"] {
   padding: 3px;
+  border-radius: 0.3em;
+  overflow: hidden;
+  background-color: white;
+  .well {
+  background-color: white;
+}
 }
 
 [data-role="refill-selector"] {
