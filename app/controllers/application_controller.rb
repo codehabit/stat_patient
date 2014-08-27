@@ -20,6 +20,7 @@ class ApplicationController < ActionController::Base
   def set_practice_context
     @current_practitioner = @current_user.practitioner
     @current_practice = @current_practitioner.practices.first
+    Time.zone = @current_practice.time_zone if @current_practice && @current_practice.time_zone.present?
   end
 
   def set_visit_context visit

@@ -17,9 +17,11 @@ Rails.application.routes.draw do
     put :submit, on: :member
   end
   resources :organizations
-  resources :laboratories
-  resources :pharmacies
-  resources :practices
+
+  resources :laboratories, controller: 'organizations'
+  resources :pharmacies, controller: 'organizations'
+  resources :practices, controller: 'organizations'
+
   resources :drugs
   resources :laboratory_orders
   root to: "home#index"
