@@ -18,11 +18,11 @@
         = render "lab_item_selector", f: f
         .spacer
         = f.date_field :due_date
-        = select2_for(object_type: :laboratory_order, field_name: :shipping_method, field_type: ShippingMethod, label_method: :pretty)
+        = f.select :shipping_method_name, options_for_select(ShippingMethod.all.map(&:value)), {placeholder: "Select a shipping method"}, include_blank: true, data: {role: 'select2'}
         .pull-right.submit
           = f.submit "Create Order", class: "btn-standard btn btn-primary send"
       .col-sm-6.large-input
-        = f.text_area :special_instructions, rows: 10, placeholder: "Special instructions", label: nil
+        = f.text_area :special_instructions, rows: 10, placeholder: "Special instructions", hide_label: true
     .col-sm-6.dropzone-container
       = render "shared/images_drag_and_drop"
 .row.body-element
