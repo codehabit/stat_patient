@@ -4,6 +4,7 @@ class DecisionTreesController < ApplicationController
   def next_element
     @category = params[:category]
     @choices = choices_for @category
+    @drug_uuid = params[:drug_uuid]
   end
 
   def build_element

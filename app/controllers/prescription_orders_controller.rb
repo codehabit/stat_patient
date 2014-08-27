@@ -13,9 +13,9 @@ class PrescriptionOrdersController < ApplicationController
     @current_visit.prescription_orders << @prescription_order if @current_visit
 
     if @prescription_order.valid?
+      flash[:success] = "Prescription order #{view_context.link_to(@prescription_order.id, view_context.prescription_order_path(@prescription_order))} was created"
       redirect_to prescription_order_path(@prescription_order)
     else
-
       flash[:error] = @prescription_order.errors.full_messages.join(', ')
       render action: :new
     end
@@ -39,6 +39,7 @@ class PrescriptionOrdersController < ApplicationController
     if (@prescription_order = PrescriptionOrder.find params[:id]).submittable?
       @patient = @prescription_order.patient.decorate
       @prescription_order.update_attributes prescription_order_params.merge(flow_status: 'submitted')
+      flash[:success] = "Prescription order #{view_context.link_to(@prescription_order.id, view_context.prescription_order_path(@prescription_order))} was submitted"
       if @current_visit.present?
         redirect_to visit_path(@current_visit)
       else
@@ -55,6 +56,7 @@ class PrescriptionOrdersController < ApplicationController
     @choices = Drugs::DiagnosisDecisionTree.send(@category.to_sym)
     @prescription_order = PrescriptionOrder.find params[:id]
     @patient = @prescription_order.patient.decorate
+
     respond_to do |format|
       format.html do
         if @prescription_order.editable?
@@ -69,6 +71,7 @@ class PrescriptionOrdersController < ApplicationController
   def update
     @prescription_order = PrescriptionOrder.find params[:id]
     @prescription_order.update_attributes prescription_order_params
+    flash[:success] = "Prescription order #{view_context.link_to(@prescription_order.id, view_context.prescription_order_path(@prescription_order))} was updated"
     redirect_to prescription_order_path(@prescription_order)
   end
 
