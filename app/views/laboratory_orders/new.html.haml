@@ -17,12 +17,13 @@
         = f.hidden_field :recipient_type, value: "Laboratory"
         = f.hidden_field :originator_id
         = render "lab_item_selector", f: f
+        .spacer
         = f.date_field :due_date
         = select2_for(object_type: :laboratory_order, field_name: :shipping_method, field_type: ShippingMethod, label_method: :pretty)
         .pull-right.submit
           = f.submit "Create Order", class: "btn-standard btn btn-primary send"
       .col-sm-6.large-input
-        = f.text_area :special_instructions, rows: 10, placeholder: "Special instructions"
+        = f.text_area :special_instructions, rows: 10, placeholder: "Special instructions", label: nil
     .col-sm-6.dropzone-container
       = render "shared/images_drag_and_drop"
 .row.body-element

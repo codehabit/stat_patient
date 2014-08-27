@@ -1,7 +1,4 @@
 .large-input {
-  position: absolute;
-  bottom: 0;
-  right: 0;
 }
 
 .large-input textarea {
@@ -28,9 +25,6 @@
 
 .lab-form .dropzone-container {
   margin-top: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
 }
 
 .lab_item_types .type {
@@ -79,15 +73,21 @@ a.back-button {
 .type-button {
   font-size: 12px;
   margin-bottom: 5px;
+  background-color: white;
+  border: 1px solid #1dbc9c;
+  color: #1dbc9c;
 }
 
 .restart {
   a {
-    background-color: #fff;
-    color: #868E8C;
+    color: #1dbc9c;
     font-size: 14px;
     padding: 5px;
   }
+}
+
+.spacer {
+  height: 10px;
 }
 
 .item-description {
@@ -106,10 +106,6 @@ a.back-button {
 
 .item-description.with-tab {
   border-radius: 4px 4px 4px 0;
-}
-
-.btn-removable {
-  background-color: #ef6958;
 }
 
 .tri-color {
