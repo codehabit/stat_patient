@@ -1,5 +1,7 @@
-%table{data: {role: "datatableized"}}
+%table{data: {role: "inbox-datatableized"}}
   %thead.inbox-header
+    %th.col-sm-1
+    %th.col-sm-1.glyphicon.glyphicon-star
     %th.col-sm-1.glyphicon.glyphicon-exclamation-sign
     %th.col-lg-3{data: {class: "expand"}} Started By
     %th.col-lg-4{data: {hide: "phone", name: "To"}} To: Subject
@@ -12,10 +14,12 @@
       - read_state = rcase.read? ? "read" : "unread"
       %tr.inbox-content{data: {role: 'row-selector'}, class: "#{read_state}"}
         %td.col-sm-1
-          - if rcase.urgent?
-            .urgent.btn.btn-xs
-              Urgent
+          = rcase.starred? ? 1 : 0
+        %td.col-sm-1
           %i{class: rcase.starred? ? "glyphicon glyphicon-star" : "glyphicon glyphicon-star-empty", data: {action: "star", url: case_star_path(rcase)}}
+        %td.col-sm-1
+          - if rcase.urgent?
+            .urgent.btn.btn-xs Urgent
         %td.col-lg-3{data: {role: 'link-selector', target: case_url(rcase)}}
           .base= rcase.originator.full_name
           .meta= rcase.created_at.strftime("%B %d, %l:%M %p")
