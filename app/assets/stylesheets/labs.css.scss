@@ -74,8 +74,14 @@ a.back-button {
   font-size: 12px;
   margin-bottom: 5px;
   background-color: white;
-  border: 1px solid #1dbc9c;
-  color: #1dbc9c;
+  border: 1px solid $tree-selection;
+  color: $tree-selection;
+}
+
+.type-button:hover {
+  background-color: $tree-selected;
+  border: 1px solid $tree-selection;
+  color: #fff;
 }
 
 .restart {
