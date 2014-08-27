@@ -130,7 +130,7 @@ end
 def create_org row, type
   # todo: check for previous existance
   name = row['office'].gsub('Dental', kinds[type])
-  attrs = {name: name, national_provider_identifier: Faker::Number.number(10)}
+  attrs = {name: name, national_provider_identifier: Faker::Number.number(10), time_zone: "Central Time (US & Canada)"}
   org = type.classify.constantize.send(:create, attrs)
   org.addresses <<  Address.create(street1: row['primary_address_street'], city: row['primary_address_city'], state: row['primary_address_state'], postal_code: row['primary_address_postalcode'])
 
