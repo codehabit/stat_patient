@@ -9,14 +9,15 @@ class ToothChartsController < ApplicationController
     markings_attributes = JSON.parse(tooth_chart_params["tooth_chart_markings_attributes"])
     response_json = {new_case: tooth_chart.case.nil?}
     if tooth_chart_params["notes"]
-      message = Message.new({body: make_custom_message(markings_attributes), sender: current_user.practitioner})
+      message_text = make_custom_message(markings_attributes)
       if tooth_chart.case
+        message = Message.new({body: message_text, sender: current_user.practitioner})
         message.recipient = tooth_chart.case.originator == message.sender ? tooth_chart.case.recipient : tooth_chart.case.originator
         message.patient = tooth_chart.case.patient
         message.case = tooth_chart.case
+        message.save
       end
-      message.save
-      response_json[:message] = message.id
+      response_json[:message_text] = message_text
     end
     tooth_chart.update_attributes(tooth_chart_markings_attributes: markings_attributes)
     render json: response_json
