@@ -37,12 +37,13 @@
         = tab.bs_tab_for "Images" do
           .tabbed
             = render "images"
-  .row.body-element
+  .row.body-element.no-left
     .col-lg-6
-      .print-buttons
-        = link_to "Print ship label", "#", class: "btn btn-primary send"
-        = link_to "Print packing slip", "#", class: "btn btn-primary send"
-      .pull-right.submit
-        = link_to "Submit Order", "#", class: "btn-standard btn btn-primary send"
+      .pull-left
+        .print-buttons
+          = link_to "Print ship label", "#", class: "btn btn-primary send"
+          = link_to "Print packing slip", "#", class: "btn btn-primary send"
+        .pull-right.submit.pull-left
+          = link_to "Submit Order", "#", class: "btn-standard btn btn-primary send"
 
 
