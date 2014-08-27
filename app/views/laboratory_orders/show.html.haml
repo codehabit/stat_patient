@@ -1,8 +1,10 @@
 .case-form.lab-form
   .row.body-element
     %span.body-title Laboratory Order: #{@laboratory_order.subject}
+    %h3= @laboratory_order.recipient.name
   .row.body-element
-    .col-xs-5
+    .col-lg-6
+
       %dl.dl-horizontal
         %dt
           Patient
@@ -16,9 +18,19 @@
         %dt
           Order description
           %dd= @laboratory_order.lab_item.description
-
+        %dt
+          Special instructions
+          %dd= @laboratory_order.lab_item.special_instructions
+    .col-lg-6
+      = image_tag("toothchartarch.png")
+  .row.body-element
+    = render "images"
+  .row.body-element
+    .col-lg-6
       .print-buttons
         = link_to "Print ship label", "#", class: "btn btn-primary send"
         = link_to "Print packing slip", "#", class: "btn btn-primary send"
       .pull-right.submit
         = link_to "Submit Order", "#", class: "btn-standard btn btn-primary send"
+
+
