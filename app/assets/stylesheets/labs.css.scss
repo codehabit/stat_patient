@@ -1,3 +1,9 @@
+.large-input {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
 .large-input textarea {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -16,8 +22,15 @@
   text-align: right;
 }
 
+.form-elements {
+  position: relative;
+}
+
 .lab-form .dropzone-container {
   margin-top: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
 .lab_item_types .type {
