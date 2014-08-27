@@ -4,6 +4,7 @@ class LaboratoryOrder < ActiveRecord::Base
   belongs_to :recipient, polymorphic: true
   belongs_to :visit
   has_one :lab_item
+  has_many :attachments, as: :attachable
   accepts_nested_attributes_for :lab_item
 
   def artifact_type
