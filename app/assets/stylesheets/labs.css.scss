@@ -1,4 +1,5 @@
-.large-input {
+.large-input .col-sm-10{
+  width: 100%;
 }
 
 .large-input textarea {
@@ -6,8 +7,11 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   height: 35%;
-  margin-top: 10px;
   width: 100%;
+}
+
+.case-form .body-element.contact-info {
+  margin-bottom: 20px;
 }
 
 .lab-form a.send {
@@ -70,7 +74,26 @@ a.back-button {
   padding: 10px;
 }
 
-.case-form.lab-form label {
+.lab-item-types.display {
+  margin-bottom: 10px;
+}
+
+.lab-form .tabbed {
+  background-color: #fff;
+  height: 352px;
+}
+
+.details-left-aligned dt {
+  text-align: left;
+}
+
+label[for='laboratory_order_special_instructions'] {
+  display: none;
+}
+
+.display label {
+  font-size: 18px;
+  font-weight: 100;
   line-height: 0;
 }
 
