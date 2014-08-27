@@ -14,5 +14,5 @@
       %dd= @case.patient.decorate.full_name_with_dob if @case.patient.present?
     %dt
       Notes
-      %dd= @case.messages.first.body
+      %dd= @case.messages.order("created_at asc").first.body
 

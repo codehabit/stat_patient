@@ -3,7 +3,8 @@ class ToothChartMarking < ActiveRecord::Base
 
   STATUS_CODES = {
     1 => "extracted",
-    2 => "missing"
+    2 => "missing",
+    3 => "observation"
   }
 
   def status

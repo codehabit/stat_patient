@@ -11,10 +11,21 @@ class CasesController < ApplicationController
 
   def create
     tooth_chart_id = case_params.delete :tooth_chart_id
+    message_ids = case_params.delete :message_ids
     @case = Case.new(case_params)
     if @case.valid?
       CaseUpdater.originate(@case, request)
       ToothChart.find(tooth_chart_id).update_attribute(:case_id, @case.id)
+      if message_ids
+        message_ids.each do |message_id|
+          message = Message.find message_id
+          message.recipient = @case.originator == message.sender ? @case.recipient : @case.originator
+          message.patient = @case.patient
+          message.case = @case
+          message.created_at = Time.now
+          message.save
+        end
+      end
       if @current_visit.present?
         @current_visit.cases << @case
         redirect_to visit_path(@current_visit)
