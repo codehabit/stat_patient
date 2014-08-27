@@ -16,11 +16,13 @@
         = f.hidden_field :recipient_type, value: "Laboratory"
         = f.hidden_field :originator_id
         = render "lab_item_selector", f: f
-        .spacer
-        = f.date_field :due_date
+        = f.date_field :due_date, data: {role: "date-selector"}
         = f.select :shipping_method_name, options_for_select(ShippingMethod.all.map(&:value)), {placeholder: "Select a shipping method"}, include_blank: true, data: {role: 'select2'}
-        .pull-right.submit
-          = f.submit "Create Order", class: "btn-standard btn btn-primary send"
+        .form-group
+          %label.control-label.col-sm-2
+          .col-sm-10
+            .submit
+              = f.submit "Create Order", class: "btn-standard btn btn-primary send"
       .col-sm-6.large-input
         = f.text_area :special_instructions, rows: 10, placeholder: "Special instructions", hide_label: true
     .col-sm-6.dropzone-container
