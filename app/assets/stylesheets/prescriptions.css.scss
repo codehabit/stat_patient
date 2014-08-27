@@ -1,4 +1,17 @@
 .decision-tree {
+  background-color: white;
+  border: 1px solid black;
+  color: green;
+}
+
+.btn-chosen {
+  color: white;
+  background-color: #1DBC9C;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.drug-selector {
 }
 
 .drug-choices {
@@ -32,20 +45,29 @@
   text-align: center;
 }
 
+.title-box {
+  border-bottom: 1px solid green;
+  margin-bottom: 10px;
+}
+
 .monograph {
+  display: none;
   // padding: 20px;
+}
+
+.leaf-selector {
+  color: green;
+  width: 190px;
+  cursor: pointer;
+  margin: 15px;
+  margin-left: 0px;
 }
 
 .pt-info {
   font-size: 10px;
 }
 
-.btn-chosen {
-  color: white;
-  background-color: blue;
-  font-weight: bold;
-  font-size: 18px;
-}
+
 
 [data-role="decision-tree-selector-container"] {
   padding: 3px;
