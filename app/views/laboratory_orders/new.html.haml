@@ -5,8 +5,7 @@
   .row.body-element.form-elements
     = bootstrap_nested_form_for(@laboratory_order,  data: {role: 'patient-form'}, layout: :horizontal) do |f|
       .col-sm-6
-        = f.fields_for LabItem.new do |builder|
-          = builder.hidden_field :description, data: {role: "final-order-input"}
+        = f.hidden_field :description, data: {role: "final-order-input"}
         = f.hidden_field :uuid, value: @uuid
         - if @current_patient.present?
           = f.text_field :patient_id, value: @current_patient.full_name_with_dob, disabled: true
