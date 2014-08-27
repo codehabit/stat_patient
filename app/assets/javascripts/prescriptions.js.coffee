@@ -41,6 +41,7 @@ $(document).on "click", "[data-role='drug-selector']", (e)->
       $('#prescription_order_rx_instructions').val(result.sig)
       $('#prescription_order_patient_instructions').val(result.instructions_precautions)
       $('#prescription_order_drug_uuid').val(result.uuid)
+      $('.leaves').hide()
       monographContent(result)
 
 ready = ->
@@ -99,5 +100,7 @@ monographContent = (drug) ->
   $('.monograph #peds_dosing').html(drug.peds_dosing)
   $('.monograph #contraindications').html(drug.contraindications)
   $('.monograph #pregnancy_lactating_precautions').html(drug.pregnancy_lactating_precautions)
+  $('.monograph').show()
+
 
 

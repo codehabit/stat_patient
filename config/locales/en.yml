@@ -35,6 +35,11 @@ en:
     submit: Go
     artifacts: Activity
     no_artifacts:  No activity for this visit yet.
+
+  tree:
+    choose_patient_category: Please start with a patient category...
+    choose_condition: Now choose a condition...
+    choose_drug: Available Drugs
   prescription:
     submit_to_clearing_button: Submit
     submit_to_clearing_title: Submit for processing

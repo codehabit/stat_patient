@@ -42,20 +42,8 @@
 
 
     .col-sm-6
-      .body-title Selector
       %div.well{data: {role: 'decision-tree-selector-container'}}
         = render partial: '/decision_trees/element'
-      .body-title Monograph
-      .monograph.well
-        .body-title
-          %p.drug-attr#title= @prescription_order.drug.try :selection_name
-        %p.drug-attr Contraindications & Cautions
-        %p.drug-desc#contraindications= @prescription_order.drug.try :contraindications
-        %p.drug-attr Interactions
-        %p.drug-desc#interactions= @prescription_order.drug.try :interactions
-        %p.drug-attr Pregnancy / Lactating Precautions
-        %p.drug-desc#pregnancy_lactating_precautions= @prescription_order.drug.try :pregnancy_lactating_precautions
-
 .row
   .col-sm-12
     Rx ID:
