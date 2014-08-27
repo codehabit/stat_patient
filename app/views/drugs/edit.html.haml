@@ -17,8 +17,11 @@
       = f.text_area :instructions_precautions
       = f.text_area :sig
       = f.text_field :pregnancy_lactating_precautions
-      .submit
-        = f.submit "update", class: "btn-standard btn btn-primary send"
+      .form-group
+        %label.control-label.col-sm-2
+        .col-sm-10
+          .submit
+            = f.submit "update", class: "btn-standard btn btn-primary send"
   .col-lg-5.padded
     %div{data: {role: 'decision-tree-container', 'drug-uuid' => @drug.uuid}}
 
