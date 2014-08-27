@@ -42,7 +42,9 @@ $(window).load ->
             data: {tooth_chart_markings_attributes: JSON.stringify(assembleToothChartMarkingData(3).get()), notes: $("#tooth_chart_observation").val()}
             success: (data) ->
               if data.new_case
-                $("#new_case").append("<input type='hidden' name='case[message_ids][]' value='#{data.message_id}'>")
+                $("#case_messages_attributes_0_body").append("\n" + data.message_text)
+              else
+                location.reload()
 
           $(this).dialog "close"
       }
