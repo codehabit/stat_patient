@@ -1,4 +1,6 @@
 .remodal{data: {remodal_id: "modal"}}
+  .title
+    Select one or more teeth to interact
   %ul#tooth-chart{data: {tooth_chart_path: tooth_chart_path(@case.tooth_chart)}}
     -(1..16).each do |i|
       %li{class: ["tooth", "tooth-#{i}", ("middle" if i==8)], data: {tooth_id: i}}

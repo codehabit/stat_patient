@@ -27,6 +27,8 @@
               = f.check_box :urgent, label: "Mark message as urgent"
     .col-sm-6
       .tooth-chart
+        .title
+          %em Click on the tooth chart to interact
         = bs_tabs do |tab|
           = tab.bs_tab_for "Adult", true do
             = link_to image_tag("AdultToothChart_1.jpg"), "#modal"
