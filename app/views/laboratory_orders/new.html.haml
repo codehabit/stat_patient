@@ -16,6 +16,7 @@
         = f.hidden_field :recipient_type, value: "Laboratory"
         = f.hidden_field :originator_id
         = render "lab_item_selector", f: f
+        = f.text_area :description, label: "Removable"
         = f.date_field :due_date, data: {role: "date-selector"}
         = f.select :shipping_method_name, options_for_select(ShippingMethod.all.map(&:value)), {label: "Shipping method"},  data: {role: 'select2'}
         .form-group
