@@ -104,3 +104,6 @@ $(window).load ->
     marked = current_value == "true"
     button_text = if marked then "Unmark as urgent" else "Mark as urgent"
     self.text(button_text)
+
+  $("[data-role='case-subject-typeahead']").autocomplete
+    source: $("[data-role='case-subject-typeahead']").data("source")
