@@ -1,7 +1,5 @@
 - if (images = @laboratory_order.attachments.where(type: 'Image')).present?
   .image-gallery
-    .title
-      Uploaded images
     - images.each do |attachment|
       = link_to "#", id: "#{attachment.asset_file_name}-viewer" do
         .image
