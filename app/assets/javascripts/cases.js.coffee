@@ -84,6 +84,7 @@ $(window).load ->
   $("#tooth-chart").selectable
     cancel: ".extracted, .missing, .observation"
     selected: ->
+      $(".extracted, .missing, .observation").removeClass("ui-selected")
       $(".ui-selected").addClass("temp-selected")
     stop: (e) ->
       $("#tooth-chart-dialog").dialog "option", "position",
