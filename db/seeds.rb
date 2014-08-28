@@ -315,6 +315,9 @@ if make_dentists
   Case.all.each do |c|
     latest_message = c.messages.order("created_at DESC").first
     c.update last_activity_date: latest_message.created_at
+    file = File.new(Rails.root + "app/assets/images/AdultToothChart_1.jpg", "r")
+    c.update tooth_chart: ToothChart.create(chart: file)
+    file.close
   end
 end
 
