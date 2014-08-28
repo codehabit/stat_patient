@@ -1,6 +1,6 @@
 .lab-items
   .form-group
-    %label.control-label.col-sm-2{for: :lab_item} Requisition
+    %label.control-label.col-sm-2{for: :lab_item} Bridge/Crown
     .col-sm-10
       .item-description{data: {role: "item-description-holder"}}
       .restart.hide
@@ -15,7 +15,7 @@
               = button_tag type, class: "btn btn-primary type-button", data: { next: "[data-role='occlusion-#{type_key}-container']"}, role: "item-option"
             - else
               = button_tag type, class: "btn btn-primary type-button", data: { next: "[data-role='#{type_key}-container']"}, role: "item-option"
-          = button_tag "Removable", class: "btn btn-primary type-button btn-removable", data: { next: "[data-role='removable-container']"}, role: "item-option"
+          -# = button_tag "Removable", class: "btn btn-primary type-button btn-removable", data: { next: "[data-role='removable-container']"}, role: "item-option"
         = render "ceramics"
         = render "pfms"
         = render "metals"
