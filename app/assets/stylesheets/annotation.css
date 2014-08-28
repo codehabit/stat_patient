@@ -1,5 +1,5 @@
 .image-annotate-add {
-    background: #fff url(asterisk_yellow.png) no-repeat 3px 3px;
+    background: #fff url(image-path("asterisk_yellow.png")) no-repeat 3px 3px;
     border: solid 1px #ccc !important;
     color: #000 !important;
     cursor: pointer;
@@ -137,13 +137,13 @@
     opacity: 0.8;
 }
 .image-annotate-edit-ok {
-    background-image: url(accept.png);
+    background-image: url(image-path("accept.png"));
 }
 .image-annotate-edit-delete {
-    background-image: url(delete.png);
+    background-image: url(image-path("delete.png"));
 }
 .image-annotate-edit-close {
-    background-image: url(cross.png);
+    background-image: url(image-path("cross.png"));
 }
 .ui-resizable {
     position: relative;
