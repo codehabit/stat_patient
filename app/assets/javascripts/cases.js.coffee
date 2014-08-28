@@ -44,6 +44,7 @@ $(window).load ->
               if data.new_case
                 $("#case_messages_attributes_0_body").append("\n" + data.message_text)
               else
+                $.remodal.lookup[$('[data-remodal-id=modal]').data('remodal')].close()
                 location.reload()
 
           $(this).dialog "close"
