@@ -28,6 +28,8 @@
             = rcase.recipient.first_name
             = ":"
             %span.subject= rcase.subject
+            - if rcase.has_attachments?
+              %i.fa.fa-paperclip
         - most_recent = rcase.messages.from_participant.order("created_at DESC").first
         %td.col-lg-3{data: {role: 'link-selector', target: case_url(rcase)}}
           = most_recent.try(:sender).try(:full_name)

@@ -17,5 +17,9 @@ class Case < ActiveRecord::Base
     "Message"
   end
 
+  def has_attachments?
+    messages.select{|message| message.attachments.present?}.length > 0
+  end
+
 end
 
