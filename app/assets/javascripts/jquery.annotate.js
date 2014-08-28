@@ -453,7 +453,7 @@
         ///   Sets the position of an annotation.
         /// </summary>
         this.form.html(text);
-        this.form.hide();
+        // this.form.hide();
 
         // Resize
         this.area.children('div').height(editable.area.height() + 'px');
