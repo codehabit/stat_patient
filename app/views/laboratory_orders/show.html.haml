@@ -12,7 +12,10 @@
         %label{for: :description}
           Requistion:
         .description
-          = @laboratory_order.description
+          - if @laboratory_order.description.empty?
+            = @laboratory_order.removable
+          - else
+            = @laboratory_order.description
       %dl.dl-horizontal.details-left-aligned
         %dt
           Patient
