@@ -57,8 +57,15 @@ ready = ->
 
 
   # load the decision tree chooser on the edit drug page
-  if (decision_tree_container = $("[data-role='decision-tree-container']")).length
+  if (decision_tree_container = $("[data-role='decision-tree-selector-container']")).length
     drug_uuid = $(decision_tree_container).data('drug-uuid')
+    if drug_uuid
+      url = "/drugs/#{drug_uuid}"
+      $.ajax
+        url: url
+        type: "GET"
+        success: (result) ->
+          monographContent(result)
     url = "/decision_trees/build_element.js?category=top&drug_uuid=#{drug_uuid}"
     $.ajax
       url: url

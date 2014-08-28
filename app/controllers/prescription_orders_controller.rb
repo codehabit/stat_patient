@@ -33,6 +33,7 @@ class PrescriptionOrdersController < ApplicationController
   def show
     @prescription_order = PrescriptionOrder.find params[:id]
     @patient = @prescription_order.patient.decorate
+    @drug_uuid = @prescription_order.drug.uuid
   end
 
   def submit
@@ -55,6 +56,7 @@ class PrescriptionOrdersController < ApplicationController
     @category = 'top'
     @choices = Drugs::DiagnosisDecisionTree.send(@category.to_sym)
     @prescription_order = PrescriptionOrder.find params[:id]
+    @drug_uuid = @prescription_order.drug.uuid
     @patient = @prescription_order.patient.decorate
 
     respond_to do |format|
