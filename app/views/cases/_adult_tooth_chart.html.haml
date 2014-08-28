@@ -2,8 +2,10 @@
   %ul#tooth-chart{data: {tooth_chart_path: tooth_chart_path(@case.tooth_chart)}}
     -(1..16).each do |i|
       %li{class: ["tooth", "tooth-#{i}"], data: {tooth_id: i}}
+        = i
     -32.downto(17) do |i|
       %li{class: ["tooth", "tooth-#{i}"], data: {tooth_id: i}}
+        = i
 
 #tooth-chart-dialog
   = text_area_tag 'tooth_chart_observation'

@@ -42,7 +42,7 @@
       .pull-left
         .print-buttons
           = link_to "Print ship label", "#", class: "btn btn-primary send"
-          = link_to "Print packing slip", "#", class: "btn btn-primary send"
+          = link_to "Print packing slip", print_laboratory_order_path(@laboratory_order), class: "btn btn-primary send"
         .pull-right.submit.pull-left
           = link_to "Submit Order", "#", class: "btn-standard btn btn-primary send"
 

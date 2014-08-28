@@ -23,7 +23,9 @@ Rails.application.routes.draw do
   resources :practices, controller: 'organizations'
 
   resources :drugs
-  resources :laboratory_orders
+  resources :laboratory_orders do
+    get :print, on: :member
+  end
   root to: "home#index"
   resources :decision_trees do
     get 'next_element', to: 'decision_trees#next_element', on: :collection

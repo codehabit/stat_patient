@@ -204,3 +204,11 @@ label[for='laboratory_order_special_instructions'] {
   }
 }
 
+.print-container {
+  margin-left: 0;
+}
+
+.print-container .lab-item-types {
+  border: 1px solid #000;
+  margin: 20px;
+}

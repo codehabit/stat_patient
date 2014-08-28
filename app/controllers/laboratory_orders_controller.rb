@@ -18,6 +18,11 @@ class LaboratoryOrdersController < ApplicationController
     end
   end
 
+  def print
+    @laboratory_order = LaboratoryOrder.find params[:id]
+    render layout: 'print'
+  end
+
   # This is for after printing or submitting
       # if @current_visit
       #   redirect_to visit_path(@current_visit)
