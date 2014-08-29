@@ -76,6 +76,20 @@ a.btn-small {
   font-size: $message-default-font-size * 0.9;
 }
 
+.btn.btn-tree-selector {
+  font-size: 12px;
+  margin-bottom: 5px;
+  background-color: white;
+  border: 1px solid $tree-selection;
+  color: $tree-selection;
+}
+
+.btn.btn-tree-selector:hover {
+  background-color: $tree-selected;
+  border: 1px solid $tree-selection;
+  color: #fff;
+}
+
 a.btn,.btn {
   color: #fff;
   font-size: 11px;

@@ -12,10 +12,10 @@
           - Labs::Catalog.new.types.each do |type|
             - type_key = type.downcase.gsub("/", "-").gsub(" ", "-")
             - if type_key == "composite"
-              = button_tag type, class: "btn btn-primary type-button", data: { next: "[data-role='occlusion-#{type_key}-container']"}, role: "item-option"
+              = button_tag type, class: "btn btn-primary btn-tree-selector", data: { next: "[data-role='occlusion-#{type_key}-container']"}, role: "item-option"
             - else
-              = button_tag type, class: "btn btn-primary type-button", data: { next: "[data-role='#{type_key}-container']"}, role: "item-option"
-          -# = button_tag "Removable", class: "btn btn-primary type-button btn-removable", data: { next: "[data-role='removable-container']"}, role: "item-option"
+              = button_tag type, class: "btn btn-primary btn-tree-selector", data: { next: "[data-role='#{type_key}-container']"}, role: "item-option"
+          -# = button_tag "Removable", class: "btn btn-primary btn-tree-selector btn-removable", data: { next: "[data-role='removable-container']"}, role: "item-option"
         = render "ceramics"
         = render "pfms"
         = render "metals"
