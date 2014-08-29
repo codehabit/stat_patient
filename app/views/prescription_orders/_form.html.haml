@@ -1,4 +1,4 @@
-.case-form.lab-form
+.stat-form.lab-form
   .row.body-element
     .col-sm-12
       %span.body-title
@@ -43,9 +43,9 @@
           .col-sm-10
             .submit
             - if @prescription_order.persisted?
-              = f.submit t(:update, scope: :prescription), class: "btn-standard btn btn-primary send"
+              = f.submit t(:update, scope: :prescription), class: "btn btn-primary btn-action"
             - else
-              = f.submit t(:submit, scope: :prescription), class: "btn-standard btn btn-primary send"
+              = f.submit t(:submit, scope: :prescription), class: "btn btn-primary btn-action"
 
 
     .col-sm-6

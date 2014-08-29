@@ -139,28 +139,6 @@ a.print {
   padding: 10px 40px 10px 40px;
 }
 
-.case-form .submit {
-  .btn {
-    margin-top: 15px;
-    padding: 10px 40px 10px 40px;
-  }
-  position: relative;
-}
-
-.case-form .body-element {
-  margin-bottom: 40px;
-}
-
-.case-form label {
-  color: $body-title-color;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 30px;
-  padding-top: 0 !important;
-  padding-right: 0;
-  padding-bottom: 10px;
-}
-
 form.dropzone {
   text-align: center;
   width: 100%;
@@ -188,16 +166,6 @@ form.dropzone {
   margin-top: 17px;
 }
 
-.btn-standard {
-  color: #fff;
-  font-size: 11px;
-  text-transform: uppercase;
-}
-
-.send {
-  background-color: $navbar-bg;
-  border-color: $navbar-bg;
-}
 
 ::-webkit-scrollbar {
     // -webkit-appearance: none;

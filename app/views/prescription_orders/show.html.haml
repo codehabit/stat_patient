@@ -9,18 +9,18 @@
 
   .col-sm-4.rx-buttons
 
-    = link_to t(:print, scope: :prescription), print_prescription_order_path(po), target: 'rx-print', data: {role: 'rx-print-button', target: print_target}, class: "btn-standard btn btn-primary"
+    = link_to t(:print, scope: :prescription), print_prescription_order_path(po), target: 'rx-print', data: {role: 'rx-print-button', target: print_target}, class: "btn btn-primary btn-action"
 
     -if editable
-      = link_to t(:edit, scope: :prescription), edit_prescription_order_path(po), class: 'btn btn-standard btn-primary'
+      = link_to t(:edit, scope: :prescription), edit_prescription_order_path(po), class: 'btn btn-primary btn-action'
 
     -if submittable
       .well
         = t(:submit_to_clearing_title, scope: :prescription)
         = bootstrap_form_for(po, url: submit_prescription_order_url(po), method: :put, data: {role: 'patient-form'}, layout: :vertical) do |f|
           = f.select 'pharmacy_id', Pharmacy.all.map{|d| [d.name, d.id]},{include_blank: true, hide_label: true}, class: 'form-control', data: {role: 'pharmacy-selector', type: 'select2'}
-          = f.submit t(:submit_to_clearing_button, scope: :prescription), class: "btn-standard btn btn-primary"
+          = f.submit t(:submit_to_clearing_button, scope: :prescription), class: "btn btn-primary btn-action"
 
-    .well
-      - if po.flow_status.present?
+    - if po.flow_status.present?
+      .well
         = "#{po.flow_status.capitalize} on #{l po.updated_at}"
