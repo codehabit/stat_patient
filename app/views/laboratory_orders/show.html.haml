@@ -1,4 +1,4 @@
-.case-form.lab-form
+.stat-form.lab-form
   .row.body-element
     %span.body-title Laboratory Order #{@laboratory_order.subject}
   .row.body-element
@@ -43,10 +43,10 @@
   .row.body-element.no-left
     .col-lg-6
       .pull-left
-        .print-buttons
-          = link_to "Print ship label", "#", class: "btn btn-primary send"
-          = link_to "Print packing slip", print_laboratory_order_path(@laboratory_order), class: "btn btn-primary send"
+        .submit
+          = link_to "Print ship label", "#", class: "btn btn-primary btn-action"
+          = link_to "Print packing slip", print_laboratory_order_path(@laboratory_order), class: "btn btn-primary btn-action"
         .pull-right.submit.pull-left
-          = link_to "Submit Order", "#", class: "btn-standard btn btn-primary send"
+          = link_to "Submit Order", "#", class: "btn btn-primary btn-action"
 
 

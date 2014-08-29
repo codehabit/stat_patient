@@ -1,4 +1,4 @@
-.case-form.lab-form
+.stat-form.lab-form
   .row.body-element
     %span.body-title
       New Lab Order
@@ -23,7 +23,7 @@
           %label.control-label.col-sm-2
           .col-sm-10
             .submit
-              = f.submit "Create Order", class: "btn-standard btn btn-primary send"
+              = f.submit "Create Order", class: "btn btn-primary btn-action"
       .col-sm-6.large-input
         = f.text_area :special_instructions, rows: 10, placeholder: "Special instructions", hide_label: true
     .col-sm-6.dropzone-container
