@@ -29,7 +29,7 @@
           .leaf-selector{data: {role: 'drug-selector', 'drug-uuid' => choice.uuid, category: choice_category}}= choice.selection_name
 
       - else
-        %button.btn.btn-primary.decision-tree{data: {role: 'decision-tree-selector', category: choice_category}}= display_choice.humanize
+        %button.btn.btn-primary.btn-tree-selector{data: {role: 'decision-tree-selector', category: choice_category}}= display_choice.humanize
 
   .monograph.well
     Selected Drug

@@ -16,11 +16,11 @@
   - @category.split('.').each do |top_category|
     - chain  << top_category
     - next if top_category == 'top'
-    %button.btn.btn-primary.decision-tree{data: {'drug-uuid' => @drug_uuid, role: 'decision-tree-builder', category: chain.join('.')}}= top_category.humanize
+    %button.btn.btn-primary.btn-tree-selector{data: {'drug-uuid' => @drug_uuid, role: 'decision-tree-builder', category: chain.join('.')}}= top_category.humanize
 
 .drug-choices.well
   - @choices.compact.each do |choice|
     - display_choice = choice[0]
     - choice_category = @category.present? ? "#{@category}.#{display_choice}" : display_choice
-    %button.btn.btn-primary.decision-tree{data: {role: 'decision-tree-builder', 'drug-uuid' => @drug_uuid, category: choice_category}}= display_choice.humanize
+    %button.btn.btn-primary.btn-tree-selector{data: {role: 'decision-tree-builder', 'drug-uuid' => @drug_uuid, category: choice_category}}= display_choice.humanize
 

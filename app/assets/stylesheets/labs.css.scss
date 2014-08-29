@@ -18,7 +18,7 @@
   margin: 10px 8px 0px 0px;
 }
 
-.stat-form .body-element.contact-info {
+.body-element.contact-info {
   margin-bottom: 20px;
 }
 
@@ -105,22 +105,9 @@ label[for='laboratory_order_special_instructions'] {
   line-height: 0;
 }
 
-.type-button {
-  font-size: 12px;
-  margin-bottom: 5px;
-  background-color: white;
-  border: 1px solid $tree-selection;
-  color: $tree-selection;
-}
 
 .description-label {
   display: inline-block;
-}
-
-.type-button:hover {
-  background-color: $tree-selected;
-  border: 1px solid $tree-selection;
-  color: #fff;
 }
 
 .restart {
