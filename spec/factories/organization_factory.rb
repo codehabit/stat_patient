@@ -9,6 +9,7 @@ FactoryGirl.define do
 
   factory :laboratory do
     name {Faker::Company.name}
+    addresses { build_list :address, 1 }
   end
 
   factory :pharmacy do
