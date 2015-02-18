@@ -1,8 +1,15 @@
+- if @case.urgent?
+  .row.body-element
+    .alert.alert-danger.col-sm-3.urgent
+      Marked urgent by #{@case.originator.full_name}
 .row.body-element
-  = render "add_participant"
-.row.body-element
-  = render "data"
-  = render "assets"
+  .col-lg-6
+    .row
+      = render "participants"
+    .row
+      = render "data"
+  .col-lg-6
+    = render "assets"
 .row.body-element
   = render "main_images"
 .row.body-element

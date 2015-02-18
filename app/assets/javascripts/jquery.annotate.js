@@ -27,26 +27,38 @@
         this.image.after(this.canvas);
 
         // Give the canvas and the container their size and background
+        this.parents(".remodal-overlay").show(); // hack for modals
         this.canvas.height(this.height());
         this.canvas.width(this.width());
+        this.parents(".remodal-overlay").hide(); // hack for modals
         this.canvas.css('background-image', 'url("' + this.attr('src') + '")');
         this.canvas.children('.image-annotate-view, .image-annotate-edit').height(this.height());
         this.canvas.children('.image-annotate-view, .image-annotate-edit').width(this.width());
 
-        // Add the behavior: hide/show the notes when hovering the picture
-        this.canvas.hover(function() {
-            if ($(this).children('.image-annotate-edit').css('display') == 'none') {
-                $(this).children('.image-annotate-view').show();
-            }
-        }, function() {
-            $(this).children('.image-annotate-view').hide();
-        });
+        $(this.canvas).children('.image-annotate-view').show();
 
-        this.canvas.children('.image-annotate-view').hover(function() {
-            $(this).show();
-        }, function() {
-            $(this).hide();
-        });
+        // Add the behavior: hide/show the notes when hovering the picture
+        // this.canvas.hover(function() {
+        //     if ($(this).children('.image-annotate-edit').css('display') == 'none') {
+        //         $(this).children('.image-annotate-view').show();
+        //         console.log("1");
+        //         console.log(this);
+        //     }
+        // }, function() {
+        //     $(this).children('.image-annotate-view').hide();
+        //     console.log("2");
+        //     console.log(this);
+        // });
+
+        // this.canvas.children('.image-annotate-view').hover(function() {
+        //     $(this).show();
+        //     console.log("3");
+        //     console.log(this);
+        // }, function() {
+        //     $(this).hide();
+        //     console.log("4");
+        //     console.log(this);
+        // });
 
         // load the notes
         if (this.useAjax) {
@@ -187,6 +199,7 @@
             }
 
             editable.destroy();
+            image.canvas.children('.image-annotate-view').show();
         });
         editable.form.append(ok);
     };
@@ -324,11 +337,12 @@
 
         // Add the behavior: hide/display the note when hovering the area
         var annotation = this;
-        this.area.hover(function() {
-            annotation.show();
-        }, function() {
-            annotation.hide();
-        });
+        annotation.show();
+        // this.area.hover(function() {
+        //     annotation.show();
+        // }, function() {
+        //     annotation.hide();
+        // });
 
         // Edit a note feature
         if (this.editable) {
@@ -439,7 +453,7 @@
         ///   Sets the position of an annotation.
         /// </summary>
         this.form.html(text);
-        this.form.hide();
+        // this.form.hide();
 
         // Resize
         this.area.children('div').height(editable.area.height() + 'px');

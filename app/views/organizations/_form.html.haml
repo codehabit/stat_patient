@@ -1,0 +1,9 @@
+= bootstrap_form_for(@organization, layout: :horizontal) do |f|
+  = f.text_field :name
+  = f.hidden_field :type
+  .zone.padded
+    = f.time_zone_select :time_zone
+
+  .submit
+    = f.submit "update", class: "btn-standard btn btn-primary send"
+

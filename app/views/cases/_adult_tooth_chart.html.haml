@@ -1,0 +1,15 @@
+.remodal{data: {remodal_id: "modal"}}
+  .title
+    Select one or more teeth to interact
+  %ul#tooth-chart{data: {tooth_chart_path: tooth_chart_path(@case.tooth_chart)}}
+    -(1..16).each do |i|
+      %li{class: ["tooth", "tooth-#{i}", ("middle" if i==8)], data: {tooth_id: i}}
+        %span.top-tooth
+          = "#{i}"
+    -32.downto(17) do |i|
+      %li{class: ["tooth", "tooth-#{i}", ("middle" if i==25)], data: {tooth_id: i}}
+        %span.bottom-tooth
+          = "#{i}"
+
+#tooth-chart-dialog
+  = text_area_tag 'tooth_chart_observation'

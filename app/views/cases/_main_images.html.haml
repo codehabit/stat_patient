@@ -3,10 +3,17 @@
     .title
       Uploaded images
     - images.each do |attachment|
-      = link_to "#", id: "#{attachment.asset_file_name}-viewer" do
-        .image
-          %span
-            = image_tag attachment.asset.url(:thumb), data: {"zoom-image" => attachment.asset.url(:original), role: "zoom"}
+      .labeled-image
+        - if attachment.annotations.present?
+          - anno_count = attachment.annotations.count
+          .annotation-label
+            Click to see #{pluralize(anno_count, "annotation")}
+        = link_to "#", id: "#{attachment.asset_file_name}-viewer" do
+          .image
+            %span
+              = link_to image_tag(attachment.asset.url(:thumb), data: {"zoom-image" => attachment.asset.url(:original), role: "zoom"}), "#testmodal#{attachment.id}"
+              .remodal{data: {remodal_id: "testmodal#{attachment.id}"}}
+                = image_tag attachment.asset.url(:original), class: "annotate", data: {get_url: attachment_annotations_path(attachment), create_url: attachment_annotations_path(attachment), delete_url: attachment_annotations_path(attachment)}
 - if (files = @case.messages.first.attachments.where("type != 'Image'")).present?
   .image-gallery
     .title

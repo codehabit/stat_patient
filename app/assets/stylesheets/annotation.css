@@ -1,14 +1,14 @@
 .image-annotate-add {
-    background: #fff url(asterisk_yellow.png) no-repeat 3px 3px;
+    background: #fff url(image-path("asterisk_yellow.png")) no-repeat 3px 3px;
     border: solid 1px #ccc !important;
     color: #000 !important;
     cursor: pointer;
     display: block;
     float: left;
     font-family: Verdana, Sans-Serif;
-    font-size: 12px !important;    
+    font-size: 12px !important;
     /*height: 18px;*/
-    line-height: 18px;    
+    line-height: 18px;
     padding: 2px 4px 2px 24px;
     margin: 5px 0;
     /*width: 64px;*/
@@ -71,6 +71,7 @@
     padding: 7px;
     position: absolute;
     width: 264px;
+    z-index: 101;
 }
 #image-annotate-edit-form form {
     clear: right;
@@ -87,7 +88,7 @@
 #image-annotate-edit-form textarea {
     height: 50px;
     font-family: Verdana, Sans-Serif;
-    font-size: 12px;    
+    font-size: 12px;
     width: 248px;
 }
 #image-annotate-edit-form fieldset {
@@ -107,9 +108,9 @@
     color: #333;
     cursor: pointer;
     display: block;
-    float: left;    
+    float: left;
     font-family: Verdana, Sans-Serif;
-    font-size: 12px;        
+    font-size: 12px;
     height: 24px;
     line-height: 20px;
     padding: 2px 0 2px 24px;
@@ -121,6 +122,7 @@
 }
 .image-annotate-edit-area {
     border: 1px solid black;
+    outline: 1px solid white; /* Alex: This is to make the boxes show up better on xrays*/
     cursor: move;
     display: block;
     height: 60px;
@@ -135,13 +137,13 @@
     opacity: 0.8;
 }
 .image-annotate-edit-ok {
-    background-image: url(accept.png);
+    background-image: url(image-path("accept.png"));
 }
 .image-annotate-edit-delete {
-    background-image: url(delete.png);
+    background-image: url(image-path("delete.png"));
 }
 .image-annotate-edit-close {
-    background-image: url(cross.png);
+    background-image: url(image-path("cross.png"));
 }
 .ui-resizable {
     position: relative;

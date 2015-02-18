@@ -1,0 +1,56 @@
+items:
+  lab_item: &default
+    occlusion:
+      -  Normal Occlusion
+      -  Light Occlusion
+      -  Out of Occlusion
+      -  No Excursive Interference (flat occlusion)
+    contacts:
+      -  Normal Proximal Contacts
+      -  Light Proximal Contacts
+    shading:
+      - Stump Shade
+      - Final Shade
+    regional_shading:
+      - Cervical Shade
+      - Middle Shade
+      - Incisal Shade
+  "Ceramic":
+    <<: *default
+    material:
+      - Full Zirconia
+      - Zirconia Core/Stacked Porcelain
+      - Lithium Disilicate/Bonded E-Max
+  "PFM":
+    <<: *default
+    "Material":
+      - Noble
+      - High Noble Yellow Metal
+      - High Noble White metal
+      - Non Precious/ Base Metal
+    "Design":
+      "Margin":
+        - Lingual collar (specify size in notes)
+        - Full Metal collar (specify size in notes)
+        - Facial Finish in Porcelain
+        - Metal Occlusal Excluding Buccal Cusp
+        - Metal Occlusal Including Buccal Cusp
+        - Metal Lingual
+      "Pontic":
+        -  Modified
+        -  Ovate
+        -  Sanitary
+  "All Metal":
+    material:
+      -  Noble
+      -  High Noble Yellow Metal
+      -  High Noble White Metal
+      -  Non Precious
+  "Composite":
+    <<: *default
+  "Temporary/Other":
+    <<: *default
+    type:
+      - Provisional
+      - Diagnostic wax up
+

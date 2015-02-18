@@ -1,0 +1,18 @@
+.lab-item-types.next{data: {role: "pfm-container"}}
+  = render "fixed_lab_item_types_title_bar", title: "Select a material", back: "types", current: "pfm"
+  - Labs::Catalog.new.items["PFM"]["Material"].each do |material|
+    = button_tag material, class: "btn btn-primary btn-tree-selector", data: {next: "[data-role='margin-container']"}, role: "item-option"
+.lab-item-types.next{data: {role: "margin-container"}}
+  = render "fixed_lab_item_types_title_bar", title: "Design: select a margin", back: "pfm", current: "margin"
+  - Labs::Catalog.new.items["PFM"]["Design"]["Margin"].each do |margin|
+    = button_tag margin, class: "btn btn-primary btn-tree-selector", data: {next: "[data-role='pontic-container']"}, role: "item-option"
+.lab-item-types.next{data: {role: "pontic-container"}}
+  = render "fixed_lab_item_types_title_bar", title: "(Bridge Only) Select a pontic", back: "margin", current: "pontic"
+  - Labs::Catalog.new.items["PFM"]["Design"]["Pontic"].each do |margin|
+    = button_tag margin, class: "btn btn-primary btn-tree-selector", data: {next: "[data-role='shades-pfm-container']"}, role: "item-option"
+  = button_tag class: "btn btn-primary btn-tree-selector", data: {next: "[data-role='shades-pfm-container']"} do
+    %span
+      Next (crown)
+    %i.fa.fa-arrow-right
+= render "shades", type: "pfm", back: "pontic", next_step: "[data-role='occlusion-pfm-container']"
+= render "occlusion_contacts", type: "pfm", back: "shades-pfm"

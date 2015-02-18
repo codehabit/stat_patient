@@ -1,0 +1,34 @@
+- patient = @visit.patient.decorate
+.row.body-element
+  .col-xs-12.padded
+    %span.body-title
+      Visit Progress:  #{patient.full_name} 
+    %p.meta #{l @visit.visit_start_dttm, format: :datetime}
+.row.body-element
+  .col-xs-5.well
+    %p Description: #{patient.pt_description}
+    %p Seen by: #{@current_practitioner.full_name} at #{@current_practice.name}
+  .col-xs-7
+    %h4 Patient History
+    = render partial:  'shared/patient_history', locals: {patient: patient, visit: @visit}
+
+.row.body-element
+  %h4= t(:artifacts, scope: :visit)
+  - if @visit.artifacts.blank?
+    %span.empty-message
+      = t(:no_artifacts, scope: :visit)
+  - else
+    %table.table.table-condensed.table-responsive.inbox-content
+      %thead.inbox-header
+        %th Kind
+        %th Subject
+        %th Status
+        %th Created
+      %tbody
+        - @visit.artifacts.each do |rcase|
+          %tr.inbox-content{data: {role: 'link-selector', target: polymorphic_url(rcase)}}
+            %td= rcase.artifact_type
+            %td= rcase.subject
+            %td= rcase.respond_to?(:status) ? rcase.status : "-"
+            %td= l rcase.created_at, format: :datetime
+

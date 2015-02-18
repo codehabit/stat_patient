@@ -1,3 +1,22 @@
+.btn-chosen {
+  color: white;
+  background-color: $tree-selected;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.drug-selector {
+}
+
+.drug-choices {
+  button {
+  margin: 3px;
+}
+}
+
+.diagnosis {
+}
+
 .padded {
   padding-top: 10px;
 }
@@ -20,16 +39,53 @@
   text-align: center;
 }
 
+.title-box {
+  border-bottom: 1px solid $body-title-color;
+  margin-bottom: 10px;
+}
+
 .monograph {
-  border: 1px solid black;
-  min-height: 600px;;
-  padding: 20px;
+  display: none;
+  // padding: 20px;
+}
+
+.leaf-selector:hover{
+    color: black;
+  }
+.leaf-selector {
+  background-color: white;
+  float: left;
+  color: $tree-selection;
+  font-size: 1.2em;
+  width: 48%;
+  cursor: pointer;
+  margin: 5px;
+  text-decoration: bold;
+  border: none;
+  margin-left: 0px;
 }
 
 .pt-info {
   font-size: 10px;
 }
 
+[data-role="decision-tree-selector-container"] {
+  padding: 3px;
+  border-radius: 0.3em;
+  overflow: hidden;
+  background-color: white;
+  .well {
+  background-color: white;
+}
+}
+
+[data-role="refill-selector"] {
+  width: 120px;
+}
+
+[data-role="date-selector"] {
+  width: 200px
+}
 .drug-attr {
   font-weight: bold;
   font-size: 18px;
@@ -46,12 +102,14 @@
   padding-left: 10px;
 }
 
-.rx-buttons {
+.rx-buttons > a {
   margin: 10px;
+  margin-left: 0px;
   color: white !important;
 }
 
 .rx-paper {
+  page-break-after:always;
   background: white;
   border: 1px solid black;
   padding: 20px;
@@ -99,8 +157,17 @@
   margin-top: 0px;
 }
 
+[data-role="rx-form"] .submit {
+  input {
+    padding: 10px 40px 10px 40px;
+    position: relative;
+    font-size: 1.2em;
+    left: 50%;
+  }
+}
+
 .rx-logo {
-  background-image:  url('rx-logo-60.png');
+  background-image:  asset-url('rx-logo-60.png');
   background-repeat: no-repeat;
   height: 60px;
   margin: 10px;

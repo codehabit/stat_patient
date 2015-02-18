@@ -1,11 +1,27 @@
+.large-input .col-sm-10{
+  width: 100%;
+}
+
 .large-input textarea {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   height: 35%;
-  margin-top: 10px;
   width: 100%;
 }
+
+.body-element.no-left {
+  padding-left: 0;
+}
+
+.submit input[type='checkbox'] {
+  margin: 10px 8px 0px 0px;
+}
+
+.body-element.contact-info {
+  margin-bottom: 20px;
+}
+
 .lab-form a.send {
   color: #fff;
   margin-left: 10px;
@@ -15,7 +31,171 @@
   text-align: right;
 }
 
+.form-elements {
+  position: relative;
+}
+
 .lab-form .dropzone-container {
   margin-top: 0;
 }
 
+.lab_item_types .type {
+  background-color: #1dbc9c;
+  display: inline-block;
+  margin: 5px;
+  padding: 5px;
+}
+
+.single-shade-choices {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+}
+
+.order-component {
+  margin-right: 5px;
+}
+
+.lab-items .next {
+  display: none;
+  .pull-right {
+    margin-right: 20px;
+  }
+}
+
+a.back-button {
+  display: inline-block;
+  font-size: 17px;
+}
+
+.lab-item-types .title {
+  margin-bottom: 15px;
+}
+
+.next .title {
+  display: inline-block;
+}
+
+.lab-item-types {
+  background-color: #fff;
+  border-radius: 4px;
+  color: #868e8c;
+  padding: 10px;
+}
+
+.lab-item-types.display {
+  margin-bottom: 10px;
+}
+
+.lab-form .tabbed {
+  background-color: #fff;
+  height: 352px;
+}
+
+.details-left-aligned dt {
+  text-align: left;
+}
+
+label[for='laboratory_order_special_instructions'] {
+  display: none;
+}
+
+.display label {
+  font-size: 18px;
+  font-weight: 100;
+  line-height: 0;
+}
+
+
+.description-label {
+  display: inline-block;
+}
+
+.restart {
+  a {
+    color: #1dbc9c;
+    font-size: 14px;
+    padding: 5px;
+  }
+}
+
+.spacer {
+  height: 10px;
+}
+
+.item-description {
+  background-color: #fff;
+  border-radius: 4px;
+  display: none;
+  color: #868e8c;
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
+.item-description.done {
+  background: none;
+  padding: 2px;
+}
+
+.item-description.with-tab {
+  border-radius: 4px 4px 4px 0;
+}
+
+.tri-color {
+  padding-top: 15px;
+}
+
+.tri-color .btn {
+  margin-bottom: 10px;
+}
+
+.tri-color .single-shade-choices {
+  border-bottom: 1px solid #000;
+}
+
+.tri-color .table {
+  margin-top: 6%;
+}
+
+.table tr.with-divider {
+  // border-bottom: 1px solid #000;
+}
+
+.tri-color .table td {
+  line-height: 2;
+  padding: 4px;
+  vertical-align: middle;
+}
+
+.tri-color .table td.value {
+  padding: 0;
+}
+
+.tri-color-shade {
+  background: url(image_path("tri_color_shade.png")) no-repeat;
+  height: 173px;
+  width: 100%;
+}
+
+.vita-choice.top {
+  padding-top: 23%;
+}
+
+.vita-choice {
+  color: #1dbc9c;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 2;
+  padding-left: 35%;
+  span {
+    vertical-align: middle;
+  }
+}
+
+.print-container {
+  margin-left: 0;
+}
+
+.print-container .lab-item-types {
+  border: 1px solid #000;
+  margin: 20px;
+}

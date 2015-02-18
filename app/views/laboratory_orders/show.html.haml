@@ -1,0 +1,52 @@
+.stat-form.lab-form
+  .row.body-element
+    %span.body-title Laboratory Order #{@laboratory_order.subject}
+  .row.body-element
+    .col-lg-6
+      .row.body-element.contact-info
+        %h3= "To: #{@laboratory_order.recipient.name}"
+        - address = @laboratory_order.recipient.addresses.first
+        .street= address.street1
+        .city-state-zip= "#{address.city} #{address.state} #{address.postal_code}"
+      .lab-item-types.display
+        %label{for: :description}
+          Requistion:
+        .description
+          - if @laboratory_order.description.empty?
+            = @laboratory_order.removable
+          - else
+            = @laboratory_order.description
+      %dl.dl-horizontal.details-left-aligned
+        %dt
+          Patient
+          %dd= @laboratory_order.patient.decorate.full_name_with_dob if @laboratory_order.patient.present?
+        %dt
+          Ordered By
+          - if @laboratory_order.originator.present?
+            %dd= @laboratory_order.originator.decorate.full_name_with_suffix
+          - else
+            %dd Not Specified
+        %dt
+          Special instructions
+          %dd= @laboratory_order.special_instructions
+        %dt
+          Shipping method
+          %dd= @laboratory_order.shipping_method_name
+    .col-lg-6
+      = bs_tabs do |tab|
+        = tab.bs_tab_for "Arch Tooth Chart", true do
+          .tabbed
+            = image_tag("toothchartarch.png")
+        = tab.bs_tab_for "Images" do
+          .tabbed
+            = render "images"
+  .row.body-element.no-left
+    .col-lg-6
+      .pull-left
+        .submit
+          = link_to "Print ship label", "#", class: "btn btn-primary btn-action"
+          = link_to "Print packing slip", print_laboratory_order_path(@laboratory_order), class: "btn btn-primary btn-action"
+        .pull-right.submit.pull-left
+          = link_to "Submit Order", "#", class: "btn btn-primary btn-action"
+
+

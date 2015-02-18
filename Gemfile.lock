@@ -66,6 +66,9 @@ GEM
     bootswatch-rails (3.1.1.1)
       railties (>= 3.1)
     builder (3.2.2)
+    byebug (3.2.0)
+      columnize (~> 0.8)
+      debugger-linecache (~> 1.2)
     capistrano (3.2.1)
       i18n
       rake (>= 10.0.0)
@@ -104,10 +107,12 @@ GEM
       execjs
     coffee-script-source (1.7.0)
     colorize (0.7.3)
+    columnize (0.8.9)
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
     daemons (1.1.9)
     database_cleaner (1.0.0.RC1)
+    debugger-linecache (1.2.0)
     devise (3.2.4)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -179,6 +184,7 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.1)
+    newrelic_rpm (3.9.1.236)
     nokogiri (1.6.2.1)
       mini_portile (= 0.6.0)
     orm_adapter (0.5.0)
@@ -312,6 +318,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.1.1)
   bootstrap_form
   bootswatch-rails
+  byebug
   capistrano-rails
   capybara
   capybara-select2
@@ -337,6 +344,7 @@ DEPENDENCIES
   launchy
   lodash-rails
   nested_form
+  newrelic_rpm
   paperclip!
   pg
   pry

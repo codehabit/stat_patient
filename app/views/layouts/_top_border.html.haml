@@ -12,18 +12,26 @@
           = link_to "Patients", patients_path
       %li
         %span.pull-left
+          = link_to "Formulary", drugs_path
+      %li
+        %span.pull-left
           = link_to "Practitioners", practitioners_path
       %li
         %span.pull-left
-          - if @patient.present?
-            -# = link_to "PT: #{@patient.decorate.full_name}", patient_path(@patient)
+          - if @current_visit.present?
+            = link_to "Visit:", visit_path(@current_visit)
+            = link_to @current_patient.full_name, patient_path(@current_patient)
+            = link_to visit_path(@current_visit), title: 'End the current visit', method: :delete do
+              %i.glyphicon.glyphicon-remove
           -else
-            = link_to 'No patient selected', "#"
+            = link_to 'No visit, click to start', new_visit_path
+
     %ul.nav.navbar-nav.navbar-right
       %li
         - if user_signed_in?
           %span.pull-right.logout-link
-            = link_to "Hello #{current_user.practitioner.decorate.full_name}", "#"
+            - if @current_practitioner
+              = link_to "Hello #{@current_practitioner.decorate.full_name}", practitioner_path(@current_practitioner)
             = link_to destroy_user_session_path, method: :delete, data: {role: 'signout'} do
               %i.glyphicon.glyphicon-remove
               Logout

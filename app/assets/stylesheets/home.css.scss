@@ -11,6 +11,16 @@
   }
 }
 
+.vertical-menu {
+  .active {
+    a {
+      color: white;
+    }
+    padding-left: 5px !important;
+    background-color: $tree-selected;
+  }
+}
+
 .login-link a {
   color: white !important;
   padding-right: 30px;
@@ -125,6 +135,10 @@
   }
 }
 
+.meta {
+  font-size: $message-meta-font-size;
+  color: $message-meta-color;
+}
 .inbox-content {
   color: $message-default-color;
   font-size: $message-inbox-font-size;
@@ -137,10 +151,6 @@
   }
   .base {
   }
-  .meta {
-    font-size: $message-meta-font-size;
-    color: $message-meta-color;
-  }
   .deleter {
     color: $message-subject-color;
     font-size: $message-default-font-size * 1.3;
@@ -150,6 +160,10 @@
 .inbox-content.read td {
   background-color: #f3f0ee;
   font-weight: 100;
+}
+
+.inbox-content.read .urgent.btn {
+  background-color: #868E8C;
 }
 
 .inbox-content.unread td {

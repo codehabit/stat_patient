@@ -1,40 +1,57 @@
+.stat-form.lab-form
+  .row.body-element
+    .col-sm-12
+      %span.body-title
+        - if @prescription_order.persisted?
+          = t(:edit, scope: :prescription)
+        - else
+          = t(:new, scope: :prescription)
+
+  .row.body-element
+    .col-sm-6
+      = bootstrap_form_for(@prescription_order,  data: {role: 'rx-form'}, layout: :horizontal) do |f|
+        = f.hidden_field :rx_id
+        - if @current_patient.present?
+          = f.text_field :patient_id, value: "#{@current_patient.full_name_with_dob} (#{@current_patient.pt_description})", disabled: true
+          = f.hidden_field :patient_id, value: @current_patient.id
+        -else
+          = f.select 'patient_id', Patient.all.map{|d| [d.decorate.last_first_with_dob_and_descr, d.id]},{include_blank: true}, data: {type: 'select2', change: 'update-pt'}
+        .form-group
+          .col-sm-2
+          .col-sm-10.pt-info
+        = f.text_field :practitioner_id, value: "#{@current_practitioner.full_name} - #{@current_practice.name}", disabled: true
+        = f.hidden_field :practitioner_id, value: @current_practitioner.id
+        = f.hidden_field :practice_id, value: @current_practice.id
+        -# = f.select 'drug_id', Drug.all.map{|d| [d.name, d.id]},{label: 'Rx', include_blank: true}, data: {type: 'select2', attr: 'drug_id', change: 'update-rx'}
+        = f.text_field :dispense_amount, label: t(:dispense_amount, scope: :prescription)
+        = f.text_area :rx_instructions, label: t(:sig, scope: :prescription)
+        = f.text_area :patient_instructions, label: t(:precautions, scope: :prescription)
+        = f.hidden_field :drug_uuid
+        .form-group
+          .col-sm-12
+            = f.date_field :created_at, disabled: true, label: t(:rx_date, scope: :prescription), data: {role: 'date-selector'}
+            = f.date_field :expiration_date,  label: t(:expiration_date, scope: :prescription), data: {role: 'date-selector'}
+        = f.text_field :refills, data: {role: 'refill-selector'}, label: t(:refills_allowed, scope: :prescription)
+
+        .form-group
+          .col-sm-2
+          .col-sm-10.pt-info
+            = f.check_box :dispense_only_as_written, label: t(:dispense_only_as_written, scope: :prescription)
+            = f.check_box :label
+        .form-group
+          %label.control-label.col-sm-2
+          .col-sm-10
+            .submit
+            - if @prescription_order.persisted?
+              = f.submit t(:update, scope: :prescription), class: "btn btn-primary btn-action"
+            - else
+              = f.submit t(:submit, scope: :prescription), class: "btn btn-primary btn-action"
+
+
+    .col-sm-6
+      %div.well{data: {role: 'decision-tree-selector-container', drug_uuid: @drug_uuid}}
+        = render partial: '/decision_trees/element'
 .row
-  .col-sm-6
-    = bootstrap_form_for(@prescription_order,  data: {role: 'patient-form'}, layout: :horizontal) do |f|
-      = f.text_field :rx_id, label: "Rx ID", disabled: true
-      = f.hidden_field :rx_id
-      = f.select 'patient_id', Patient.all.map{|d| [d.decorate.last_first_with_dob, d.id]},{include_blank: true}, data: {type: 'select2', change: 'update-pt'}
-      .form-group
-        .col-sm-2
-        .col-sm-10.pt-info
-          = @patient.try(:pt_description)
-      = f.text_field :practitioner_id, value: "#{@practitioner.full_name} - #{@current_practice.name}", disabled: true
-      = f.select 'drug_id', Drug.all.map{|d| [d.name, d.id]},{label: 'Rx', include_blank: true}, data: {type: 'select2', attr: 'drug_id', change: 'update-rx'}
-      = f.text_field :dispense_amount
-      = f.text_area :rx_instructions, label: 'SIG'
-      = f.text_area :patient_instructions
-      = f.date_field :created_at, disabled: true, label: 'Created'
-      = f.date_field :expiration_date,  label: 'Expires'
-      = f.text_field :refills
-
-      = f.check_box :dispense_only_as_written
-      = f.check_box :label
-      .submit.pull-right
-        = f.submit "Save", class: "btn-standard btn btn-primary"
-
-  .col-sm-1
-  .col-sm-5
-    .body-title Monograph
-    .monograph
-      %p.drug-attr#title= @prescription_order.drug.try :name
-      %p.drug-attr Adult Dosing
-      %p.drug-desc#adult_dosing= @prescription_order.drug.try :adult_dosing
-      %p.drug-attr Peds Dosing
-      %p.drug-desc#peds_dosing= @prescription_order.drug.try :peds_dosing
-      %p.drug-attr Contraindications & Cautions
-      %p.drug-desc#contraindications= @prescription_order.drug.try :contraindications
-      %p.drug-attr Interactions
-      %p.drug-desc#interactions= @prescription_order.drug.try :interactions
-      %p.drug-attr Pregnancy / Lactating Precautions
-      %p.drug-desc#pregnancy_lactating_precautions= @prescription_order.drug.try :pregnancy_lactating_precautions
-
+  .col-sm-12
+    Rx ID:
+    = @prescription_order.rx_id

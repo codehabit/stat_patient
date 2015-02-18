@@ -1,0 +1,23 @@
+.lab-item-types.next{data: {role: "shades-#{type}-container", last_step: true}}
+  = render "fixed_lab_item_types_title_bar", title: "Setup shades", back: back, current: "shades"
+  .single-shade-choices{data: {singles: true}}
+    - stump = Labs::Catalog.new.items.lab_item.shading[0]
+    - final = Labs::Catalog.new.items.lab_item.shading[1]
+    = button_tag stump.capitalize, class: "btn btn-primary btn-tree-selector", data: {role: "vita-launcher", target: "[data-role='vita-chart']", display: "[data-role='stump-shade-display']", label: stump}
+    = button_tag final.capitalize, class: "btn btn-primary btn-tree-selector", data: {final: true, role: "vita-launcher", target: "[data-role='vita-chart']", display: "[data-role='final-shade-display']", label: final}
+  .row.tri-color
+    .col-sm-4
+      %table.table
+        - Labs::Catalog.new.items.lab_item.regional_shading.each do |shade|
+          %tr
+            %td
+              = button_tag shade.capitalize, class: "btn btn-primary btn-tree-selector", data: {stay_put: true, role: "vita-launcher", target: "[data-role='vita-chart']", display: "[data-role='#{shade.downcase.gsub(' ', '-')}-display']", label: shade, hide_singles: true}
+    .col-sm-5
+      .tri-color-shade
+        - position = ["top", "middle", "bottom"]
+        - Labs::Catalog.new.items.lab_item.regional_shading.each_with_index do |shade, i|
+          %div{class: "#{position[i]} vita-choice"}
+            %span{data: {role: "#{shade.downcase.gsub(" ", "-")}-display"}}
+  .row
+    .pull-right
+      = button_tag "Next", class: "btn btn-primary", data: {next: next_step}

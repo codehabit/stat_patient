@@ -1,0 +1,27 @@
+.row.body-element
+  .col-lg-8.padded
+    %span.body-title Edit #{@drug.selection_name}
+.row.body-element
+  .col-lg-6.padded
+    = bootstrap_form_for(@drug, layout: :horizontal) do |f|
+      = f.text_field :name
+      = f.text_field :strength
+      = f.text_field :dosage_form
+      = f.text_field :regimen
+      = f.text_field :category
+      = f.text_field :dea_schedule
+
+      = f.text_field :dispense_amount
+      = f.text_area :contraindications
+      = f.text_area :interactions
+      = f.text_area :instructions_precautions
+      = f.text_area :sig
+      = f.text_field :pregnancy_lactating_precautions
+      .form-group
+        %label.control-label.col-sm-2
+        .col-sm-10
+          .submit
+            = f.submit "update", class: "btn-standard btn btn-primary send"
+  .col-lg-5.padded
+    %div{data: {role: 'decision-tree-container', 'drug-uuid' => @drug.uuid}}
+

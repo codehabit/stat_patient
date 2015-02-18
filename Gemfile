@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby "2.1.2"
 
 gem 'rails', '4.1.1'
 gem 'pg'
@@ -35,6 +36,7 @@ gem 'gs'
 gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 gem 'lodash-rails'
 gem 'chewy'
+gem 'newrelic_rpm'
 
 group :development do
   gem 'spring'
@@ -48,6 +50,7 @@ group :test, :development do
   gem 'quiet_assets'
   gem 'rspec-rails'
   gem 'capybara-select2'
+  gem 'byebug'
 end
 
 group :test do

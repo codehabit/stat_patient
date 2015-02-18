@@ -1,0 +1,5 @@
+.lab-item-types.next{data: {role: "all-metal-container"}}
+  = render "fixed_lab_item_types_title_bar", title: "Select a material", back: "types", current: "all-metal"
+  - Labs::Catalog.new.items["PFM"]["Material"].each do |material|
+    = button_tag material, class: "btn btn-primary btn-tree-selector", data: {next: "[data-role='occlusion-all-metal-container']"}, role: "item-option"
+= render "occlusion_contacts", type: "all-metal", back: "all-metal"

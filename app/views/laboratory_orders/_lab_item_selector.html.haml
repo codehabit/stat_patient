@@ -1,0 +1,25 @@
+.lab-items
+  .form-group
+    %label.control-label.col-sm-2{for: :lab_item} Bridge/Crown
+    .col-sm-10
+      .item-description{data: {role: "item-description-holder"}}
+      .restart.hide
+        = link_to "Change selection", "#", data: {role: "restart"}
+      %div{data: {role: "chooser-container"}}
+        .lab-item-types{data: {role: "types-container"}}
+          .title
+            Select a type
+          - Labs::Catalog.new.types.each do |type|
+            - type_key = type.downcase.gsub("/", "-").gsub(" ", "-")
+            - if type_key == "composite"
+              = button_tag type, class: "btn btn-primary btn-tree-selector", data: { next: "[data-role='occlusion-#{type_key}-container']"}, role: "item-option"
+            - else
+              = button_tag type, class: "btn btn-primary btn-tree-selector", data: { next: "[data-role='#{type_key}-container']"}, role: "item-option"
+          -# = button_tag "Removable", class: "btn btn-primary btn-tree-selector btn-removable", data: { next: "[data-role='removable-container']"}, role: "item-option"
+        = render "ceramics"
+        = render "pfms"
+        = render "metals"
+        = render "composite"
+        = render "temporary_other"
+        = render "vita_chart"
+        = render "removables", f: f

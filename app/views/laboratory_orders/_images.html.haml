@@ -1,0 +1,22 @@
+- if (images = @laboratory_order.attachments.where(type: 'Image')).present?
+  .image-gallery
+    - images.each do |attachment|
+      = link_to "#", id: "#{attachment.asset_file_name}-viewer" do
+        .image
+          %span
+            = link_to image_tag(attachment.asset.url(:web_viewer), data: {"zoom-image" => attachment.asset.url(:original), role: "zoom"}), "#testmodal#{attachment.id}"
+            .remodal{data: {remodal_id: "testmodal#{attachment.id}"}}
+              = image_tag attachment.asset.url(:original), class: "annotate", data: {get_url: attachment_annotations_path(attachment), create_url: attachment_annotations_path(attachment), delete_url: attachment_annotations_path(attachment)}
+- if (files = @laboratory_order.attachments.where("type != 'Image'")).present?
+  .image-gallery
+    .title
+      Uploaded files
+    - files.each do |attachment|
+      = link_to attachment.asset.url do
+        .document
+          .inner
+            %p
+              %span.fa-stack.fa-sm
+                %i{class: "fa fa-file-#{attachment.doc_type.dasherize}-o fa-stack-2x"}
+            %p.truncate
+              = attachment.asset_file_name

@@ -1,3 +1,3 @@
 class Annotation < ActiveRecord::Base
-  belongs_to :tooth_chart
+  belongs_to :attachment
 end

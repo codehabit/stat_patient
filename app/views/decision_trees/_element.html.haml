@@ -1,0 +1,44 @@
+- categories = @category.split('.')
+- categories.shift
+- chain = ['top']
+.diagnosis.well
+  .title-box
+    .body-title Formulary
+  .chosen-items
+    - if categories.present?
+      - categories.each do |category|
+        - chain  << category
+        %button.btn.btn-primary.btn-chosen.decision-tree{data: {role: 'decision-tree-selector', category: chain.join('.')}}= category.humanize
+
+.drug-choices.well
+  - if @category == 'top'
+    = t(:choose_patient_category, scope: :tree)
+  - elsif @leaf
+    .leaves
+      = t(:choose_drug, scope: :tree)
+  - else
+    = t(:choose_condition, scope: :tree)
+  %p
+  - @choices.each do |choice|
+    - if choice
+      - display_choice = choice[0]
+      - choice_category = @category.present? ? "#{@category}.#{display_choice}" : display_choice
+
+      - if @leaf
+        .leaves
+          .leaf-selector{data: {role: 'drug-selector', 'drug-uuid' => choice.uuid, category: choice_category}}= choice.selection_name
+
+      - else
+        %button.btn.btn-primary.btn-tree-selector{data: {role: 'decision-tree-selector', category: choice_category}}= display_choice.humanize
+
+  .monograph.well
+    Selected Drug
+    .body-title.drug-attr#title
+    .title-box
+      .body-title Monograph
+    %p.drug-attr Contraindications & Cautions
+    %p.drug-desc#contraindications
+    %p.drug-attr Interactions
+    %p.drug-desc#interactions
+    %p.drug-attr Pregnancy / Lactating Precautions
+    %p.drug-desc#pregnancy_lactating_precautions

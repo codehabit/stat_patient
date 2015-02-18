@@ -49,4 +49,11 @@ describe PractitionersController do
      visit practitioner_path(practitioner)
      expect(page).to have_content practitioner.email
   end
+
+  context 'practice info' do
+    it 'has the name' do
+      visit practitioner_path(practitioner)
+      expect(page).to have_content practitioner.memberships.first.name
+    end
+  end
 end

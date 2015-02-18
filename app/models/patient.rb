@@ -5,6 +5,8 @@ class Patient < ActiveRecord::Base
   has_many :messages
   has_many :attachments, as: :attachable
   has_many :prescription_orders
+  has_many :laboratory_orders
+  has_many :visits
 
   def practitioners
     cases.map(&:originator)

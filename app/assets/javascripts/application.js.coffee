@@ -31,4 +31,7 @@
 # = require dataTables/extras/dataTables.responsive
 # = require dataTablesInit
 # = require prescriptions
+# = require inbox
+# = require jquery.remodal
+# = require labs
 #

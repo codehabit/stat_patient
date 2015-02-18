@@ -1,0 +1,54 @@
+.popover {
+  min-width: 395px;
+}
+
+.vita-chart {
+  background: #fff;
+  border-radius: 4px;
+  max-width: 100%;
+}
+
+.vita-chart li:hover {
+  border: solid 1px #ef6958;
+  border-radius: 4px;
+}
+
+.vita-chart {
+  .a1{ background: url(image_path("a1.png"));}
+  .a2{ background: url(image_path("a2.png"));}
+  .a3{ background: url(image_path("a3.png"));}
+  .a3-5{ background: url(image_path("a3.5.png"));}
+  .a4{ background: url(image_path("a4.png"));}
+  .b1{ background: url(image_path("b1.png"));}
+  .b2{ background: url(image_path("b2.png"));}
+  .b3{ background: url(image_path("b3.png"));}
+  .b4{ background: url(image_path("b4.png"));}
+  .c1{ background: url(image_path("c1.png"));}
+  .c2{ background: url(image_path("c2.png"));}
+  .c3{ background: url(image_path("c3.png"));}
+  .c4{ background: url(image_path("c4.png"));}
+  .d2{ background: url(image_path("d2.png"));}
+  .d3{ background: url(image_path("d3.png"));}
+  .d4{ background: url(image_path("d4.png"));}
+}
+
+.vita-chart ul {
+  margin-top: 10px;
+  margin-left: -45px;
+}
+
+.remodal.vita-chart .title {
+  font-family: 'Open Sans', sans-serif;
+  color: $body-text-color;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.vita-chart li {
+  background-color: #fff;
+  display: inline-block;
+  height: 75px;
+  margin: 5px;
+  width: 75px;
+}
+

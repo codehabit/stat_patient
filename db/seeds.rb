@@ -11,13 +11,13 @@ def dentist_limit; 100; end
 
 def make_dentists_from_file dentist_file, use_real_email = false
   wrlog "Making dentists and practices from file #{dentist_file}"
+  wrlog "\n"
   practitioners = []
   count = 0
   ActiveRecord::Base.transaction do
     CSV.foreach(dentist_file, headers: true) do |row|
       count += 1
       break if count > dentist_limit
-      practice = create_practice(row)
 
       next if invalid_data(row)
 
@@ -30,7 +30,18 @@ def make_dentists_from_file dentist_file, use_real_email = false
       end
 
       if user.valid?
-        practitioners << create_practitioner(user, practice, row)
+        practitioner = create_practitioner(user, row)
+        practitioners << practitioner
+
+        %w(Practice Laboratory Pharmacy).each  do |kind|
+          practice = create_org(row, kind)
+          practice.members << practitioner
+          5.times do
+            practice.members << create_practitioner(user)
+          end
+
+          practice.save
+        end
         wrlog '.'
 
       else
@@ -96,22 +107,31 @@ def user_email row, use_real = false
   end
 end
 
-def create_practitioner user, practice, row
-  practitioner = Practitioner.create(user_id: user.id, first_name: user.first_name, last_name: user.last_name, salutation: row['salutation'], suffix: row['suffix'], title: row['title'], specialty: row['specialty'])
+def create_practitioner user, row = nil
+  if row.present?
+    attrs = {first_name: user.first_name, last_name: user.last_name, salutation: row['salutation'], suffix: row['suffix'], title: row['title'], specialty: row['specialty']}
+  else
+    attrs = {first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, salutation: 'Mr.', suffix: 'DDS', title: '', specialty: 'Cosmetic'}
+    user = User.create email: Faker::Internet.safe_email, first_name: attrs[:first_name], last_name: attrs[:last_name] rescue nil
+  end
 
+  return unless user.present?
+  practitioner = Practitioner.create(attrs.merge(user_id: user.id))
   update_dea_identifier practitioner
 
   user.update_attribute( :practitioner, practitioner)
 
-  practice.members << practitioner
-  practice.save
-
   practitioner
 end
 
-def create_practice row
+def kinds
+  @kinds ||= {'Practice' => 'Dental', 'Laboratory' => 'Manufacturing', 'Pharmacy' => 'Pharmaceutical'}
+end
+def create_org row, type
   # todo: check for previous existance
-  org = Practice.create name: row['office'], national_provider_identifier: Faker::Number.number(10)
+  name = row['office'].gsub('Dental', kinds[type])
+  attrs = {name: name, national_provider_identifier: Faker::Number.number(10), time_zone: "Central Time (US & Canada)"}
+  org = type.classify.constantize.send(:create, attrs)
   org.addresses <<  Address.create(street1: row['primary_address_street'], city: row['primary_address_city'], state: row['primary_address_state'], postal_code: row['primary_address_postalcode'])
 
   contacts= {work_phone: row['phone_work'], work_fax: row['phone_fax'], mobile_phone: row['phone_mobile'], email: row['email1'], website: row['website']}
@@ -179,7 +199,7 @@ make_dentists = true
 delete_all = true
 dentist_file = 'data/iowa_dentists_specialists.csv'
 demo_user_file = 'data/demo_users.csv'
-drugs_file = 'data/drugs_list.csv'
+drug_files = ['data/drugs/statpatient_drug_formulary.csv']
 
 
 cases_per_practitioner = (1..2).to_a
@@ -192,8 +212,6 @@ organization_count = 300
 specialties = Specialty.all.map(&:pretty)
 birthday_day_range = (1092..32850).to_a
 marital_status = MaritalStatus.values
-
-
 
 
 if make_dentists
@@ -210,18 +228,20 @@ if make_dentists
   wrlog "\n"
 
 
-  wrlog "\n Make #{organization_count} pharmacies and labs"
-  ActiveRecord::Base.transaction do
-    organization_count.times.map do |t|
-      wrlog '.'
-      Laboratory.create name: Faker::Company.name
-    end
-    organization_count.times.map do |t|
-      wrlog '.'
-      Pharmacy.create name: Faker::Company.name
-    end
-  end
+  # wrlog "\n Make #{organization_count} pharmacies and labs"
+  # wrlog "\n"
+  # ActiveRecord::Base.transaction do
+  #   organization_count.times.map do |t|
+  #     wrlog '.'
+  #     Laboratory.create name: Faker::Company.name
+  #   end
+  #   organization_count.times.map do |t|
+  #     wrlog '.'
+  #     Pharmacy.create name: Faker::Company.name
+  #   end
+  # end
   wrlog "Creating #{patient_count} Patients"
+  wrlog "\n"
   patients = []
   ActiveRecord::Base.transaction do
     patient_count.times.map do
@@ -261,6 +281,7 @@ if make_dentists
 
   wrlog "\n"
   wrlog "Making Cases"
+  wrlog "\n"
 
   Practitioner.all.each  do |practitioner|
     ActiveRecord::Base.transaction do
@@ -291,6 +312,13 @@ if make_dentists
     end
     wrlog ' | '
   end
+  Case.all.each do |c|
+    latest_message = c.messages.order("created_at DESC").first
+    c.update last_activity_date: latest_message.created_at
+    file = File.new(Rails.root + "app/assets/images/AdultToothChart_1.jpg", "r")
+    c.update tooth_chart: ToothChart.create(chart: file)
+    file.close
+  end
 end
 
 if make_drugs
@@ -298,23 +326,28 @@ if make_drugs
     wrlog "\n Delete all drugs and Rx"
     Drug.delete_all
     PrescriptionOrder.delete_all
+    DrugDiagnosisAssignment.delete_all
   end
 
   wrlog "\n Make drugs and Rx"
-  ActiveRecord::Base.transaction do
-    drug_names = []
-    CSV.foreach(drugs_file, headers: false) do |row|
-      next if row[0].blank?
-      name = row[0].split('- ').first
-      drug_names << name
-    end
-    med_types = %w(tablets spoonfulls capsules lozenges)
-    drug_names.each do |drug|
-      instr = instructions
-      Drug.create name: drug, dispense_amount: instr[:disp],
-        uuid: SecureRandom.uuid, adult_dosing: instr[:dose_ad], peds_dosing: instr[:dose_pd], contraindications: filler,
-        rx_instructions: instr[:rx_instructions], patient_instructions: filler, interactions: filler, pregnancy_lactating_precautions: %w(A B C D X N).sample
-      wrlog drug
+  drug_files.each do |drug_file|
+    ActiveRecord::Base.transaction do
+      CSV.foreach(drug_file, headers: true) do |row|
+
+        drug = Drug.create name: row["name"], regimen: row["regimen"], category: row["category"], dea_schedule: row["dea_schedule"],  strength: row["strength"], dosage_form: row["dosage_form"], dispense_amount: row["dispense_amount"], uuid: SecureRandom.uuid, sig: row["sig"], instructions_precautions: row["instructions_precautions"], pregnancy_lactating_precautions: row["pregnancy_lactating_precautions"], contraindications: row["contraindications"], interactions: row["interactions"]
+
+        wrlog "Drug.."
+        diagnosis_ids = row["diagnosis_ids"]
+
+        if diagnosis_ids.present?
+          diagnosis_ids.split(',').each do |diagnosis_id|
+            DrugDiagnosisAssignment.create drug_uuid: drug.uuid, diagnosis_id: diagnosis_id
+            wrlog diagnosis_id
+            wrlog '.'
+          end
+        end
+
+      end
     end
   end
 
@@ -332,13 +365,13 @@ if make_drugs
       practitioner = patient.reload.practitioners.sample
       # patient may not have a case, therefor no practitioner
       next unless practitioner
-      practice = practitioner.memberships.first
+      practice = practitioner.practices.first
       pharmacy = pharmacies.sample
       drug = drugs.sample
 
       rx  = PrescriptionOrder.create rx_id: SecureRandom.uuid, practitioner: practitioner, patient: patient, drug: drug, pharmacy: pharmacy, practice: practice
       rx.update_attributes created_at: patient.created_at, expiration_date: (patient.created_at + 30.days)
-      wrlog '.'
+      wrlog 'Rx '
     end
   end
 end

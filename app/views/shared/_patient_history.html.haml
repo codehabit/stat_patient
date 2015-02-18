@@ -1,0 +1,79 @@
+= bs_tabs do |tab|
+  = tab.bs_tab_for "Visits", true do
+    - other_visits = (patient.visits - [visit]).sort{|a,b| b.visit_start_dttm <=> a.visit_start_dttm}
+    - if other_visits.blank?
+      %span.empty-message
+        There are no other visits for this patient
+    - else
+      %table.table.table-condensed.table-responsive.inbox-content
+        %thead.inbox-header
+          %th Site
+          %th Date
+        %tbody
+          - other_visits.each do |rcase|
+            %tr.inbox-content{data: {role: 'link-selector', target: polymorphic_url(rcase)}}
+              %td
+                .base= rcase.practitioner.full_name
+                .meta= rcase.organization.name
+              %td
+                .base= l rcase.visit_start_dttm
+                .meta= l rcase.visit_start_dttm, format: :time
+  = tab.bs_tab_for "Prescriptions", false do
+    - rx_history = patient.prescription_orders.order('created_at desc')
+    - if rx_history.blank?
+      %span.empty-message
+        There are no prescriptions for this patient
+    - else
+      %table.table.table-condensed.table-responsive.inbox-content
+        %thead.inbox-header
+          %th Drug
+          %th Date
+        %tbody
+          - rx_history.each do |rcase|
+            %tr.inbox-content{data: {role: 'link-selector', target: polymorphic_url(rcase)}}
+              %td
+                .base= rcase.drug.name
+                .meta= rcase.rx_instructions
+              %td
+                .base= l rcase.created_at
+                .meta= l rcase.created_at, format: :time
+  = tab.bs_tab_for "Messages", false do
+    - history = patient.cases.order('created_at DESC')
+    - if history.blank?
+      %span.empty-message
+        There are no messages involving this patient
+    - else
+      %table.table.table-condensed.table-responsive.inbox-content
+        %thead.inbox-header
+          %th Subject
+          %th Date
+        %tbody
+          - history.each do |rcase|
+            %tr.inbox-content{data: {role: 'link-selector', target: polymorphic_url(rcase)}}
+              %td
+                .base= rcase.subject
+                .meta= rcase.recipient.decorate.full_name
+              %td
+                .base= l rcase.created_at
+                .meta= l rcase.created_at, format: :time
+
+  = tab.bs_tab_for "Lab Orders", false do
+    - history = patient.laboratory_orders.order('created_at DESC')
+    - if history.blank?
+      %span.empty-message
+        There are no lab orders for this patient
+    - else
+      %table.table.table-condensed.table-responsive.inbox-content
+        %thead.inbox-header
+          %th Subject
+          %th Date
+        %tbody
+          - history.each do |rcase|
+            %tr.inbox-content{data: {role: 'link-selector', target: polymorphic_url(rcase)}}
+              %td
+                .base= rcase.subject
+                -# .meta= rcase.recipient.decorate.full_name
+              %td
+                .base= l rcase.created_at
+                .meta= l rcase.created_at, format: :time
+
