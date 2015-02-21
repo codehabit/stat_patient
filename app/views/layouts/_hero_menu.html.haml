@@ -1,10 +1,10 @@
-- icons = {statimage: ['fa-file-photo-o', new_case_url], statlab: ['fa-gears', new_laboratory_order_path], statscript: ['fa-edit', new_prescription_order_path], statclaim: ['fa-file-text', coming_soon_url], schedule: ['fa-calendar',coming_soon_url]}
+- icons = {messagecenter: ['fa-envelope-o', root_url], statimage: ['fa-file-photo-o', new_case_url], statlab: ['fa-gears', new_laboratory_order_path], statscript: ['fa-edit', new_prescription_order_path]}
 
 -icons.each do |stat_service, stuff|
   .hero-icon-container
     = link_to stuff[1], data: {role: 'close-menu', target: stuff[1]}  do
       .hero-icon
-        %span.fa-stack.fa-lg
+        %span.fa-stack.fa-md
           %i.fa.fa-circle.fa-stack-2x.fa-inverse
           %i{class: "fa #{stuff[0]} fa-stack-1x"}
       .hero-caption
