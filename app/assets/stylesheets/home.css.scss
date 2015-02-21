@@ -2,6 +2,11 @@
   background-color: $top-bar-bg;
   height: $top-bar-height;
   padding-top: 10px;
+  .title {
+    color: $top-bar-text-color;
+    margin-right: 10px;
+    text-transform:uppercase;
+  }
   a {
     color: $top-bar-text-color;
     padding: 5px;
@@ -42,9 +47,12 @@
   a { color: $navbar-color;}
   height: $navbar-height;
   .stat-brand {
-    a { color: $navbar-color;}
-    margin: 0px;
-    padding: $navbar-height * 0.01;
+    display: inline-block;
+    .link {
+      color: $navbar-color;
+      display: table-cell;
+      padding-bottom: 20%;
+    }
   }
   li.active {
     background-color: $navbar-selected-bg;
@@ -70,17 +78,16 @@
 }
 
 .context-bar-menu {
-  background-color: $hero-menu-bg;
-  text-align: center;
+  background-color: $navbar-bg;
+  // text-align: center;
   .hero-icon-container {
-    float: left;
-      padding: 20px 30px 0px 0px;
+    display: inline-block;
+    margin-bottom: -5px;
+    padding: 5px 30px 0px 0px;
 
     .hero-icon {
       text-align: center;
-      margin-bottom: 10px;
-      color: $hero-icon-color;
-      a { color: $navbar-color;}
+      color: $row-selected-background-color;
       font-size: $hero-icon-size;
     }
     a .hero-caption {
@@ -206,15 +213,21 @@
   }
 
   .stat-brand {
+    display: inline-block;
     padding-top: $footer-bar-height * 0.2;
     padding-left: 0;
   }
  }
 
+.navbar-header {
+  float: none;
+}
+
 .vertical-menu {
+  position: absolute;
   text-align: left;
   a {
-    text-decoration: none; 
+    text-decoration: none;
     font-size: 1.4em;
   }
   .menu-item {
