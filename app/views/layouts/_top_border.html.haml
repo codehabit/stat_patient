@@ -2,11 +2,8 @@
   .col-lg-12
     %ul.nav.navbar-nav.navbar-left
       %li
-        %span.pull-left
-          - if @current_practice
-            = link_to  @current_practice.try(:name), organization_path(@current_practice)
-          -else
-            = link_to 'No practice selected', "#"
+        %span.pull-left.title
+          Administration:
       %li
         %span.pull-left
           = link_to "Patients", patients_path
@@ -16,15 +13,6 @@
       %li
         %span.pull-left
           = link_to "Practitioners", practitioners_path
-      %li
-        %span.pull-left
-          - if @current_visit.present?
-            = link_to "Visit:", visit_path(@current_visit)
-            = link_to @current_patient.full_name, patient_path(@current_patient)
-            = link_to visit_path(@current_visit), title: 'End the current visit', method: :delete do
-              %i.glyphicon.glyphicon-remove
-          -else
-            = link_to 'No visit, click to start', new_visit_path
 
     %ul.nav.navbar-nav.navbar-right
       %li
