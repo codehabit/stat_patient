@@ -32,6 +32,7 @@
 # = require dataTablesInit
 # = require prescriptions
 # = require inbox
+# = require home
 # = require jquery.remodal
 # = require labs
 #
