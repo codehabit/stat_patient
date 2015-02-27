@@ -4,3 +4,4 @@ $(document).on "ready page:load", ->
     $.get '/home/inbox', (data) ->
       $("[data-role='inbox']").html(data)
       initDataTables()
+      mainSetup()
