@@ -1,4 +1,4 @@
-ready = ->
+window.mainSetup = ->
 
   $('[data-role="link-selector"]').on "click", () ->
     window.location = $(this).data('target')
@@ -17,4 +17,5 @@ ready = ->
     $(".equal-height-div").each (index, element) ->
       $(element).height highestBox
 
-$(document).on('ready page:load', ready)
+$(document).on('ready page:load', mainSetup)
+
