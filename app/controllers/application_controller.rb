@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 
   def get_context
     return unless current_user
-    # set_practice_context
+    set_practice_context
     # get_visit_context
   end
 
