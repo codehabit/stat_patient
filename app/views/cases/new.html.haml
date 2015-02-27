@@ -8,7 +8,7 @@
         = f.hidden_field :urgent, data: {role: "urgent-toggle"}
         = select2_for(object_type: :case, field_name: :recipient, field_type: Practitioner, label_method: :full_name)
         = f.hidden_field :recipient_type, value: "Practitioner"
-        = f.hidden_field :originator_id
+        = f.hidden_field :originator_id, value: @current_user.practitioner.id
         = f.text_field :subject, data: {role: "case-subject-typeahead", source: CaseSubject.all.map(&:value)}
         = f.hidden_field :tooth_chart_id, value: @case.tooth_chart.id
         - if @current_patient.present?

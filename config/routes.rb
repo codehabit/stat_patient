@@ -27,6 +27,8 @@ Rails.application.routes.draw do
     get :print, on: :member
   end
   root to: "home#index"
+  get '/home/live', to: 'home#live'
+  get '/home/inbox', to: 'home#inbox'
   resources :decision_trees do
     get 'next_element', to: 'decision_trees#next_element', on: :collection
     get 'build_element', to: 'decision_trees#build_element', on: :collection
