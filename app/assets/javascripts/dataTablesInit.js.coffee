@@ -1,4 +1,7 @@
 $(document).on "ready page:load", ->
+  initDataTables()
+
+initDataTables = ->
   responsiveHelper = undefined
   breakpointDefinition =
     tablet: 1024
@@ -45,3 +48,5 @@ $(document).on "ready page:load", ->
 
 
   tableElement.fnSetColumnVis( 0, false );
+
+window.initDataTables = initDataTables
