@@ -12,6 +12,7 @@ class CaseUpdater
 
     def reply(the_case, request)
       the_case.last_activity_date = Time.new
+      the_case.new_reply = true
       the_case.save
       message = the_case.messages.order("created_at DESC").first
       recipient = the_case.originator == message.sender ? the_case.recipient : the_case.originator

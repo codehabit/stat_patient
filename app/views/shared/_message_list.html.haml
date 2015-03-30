@@ -10,8 +10,8 @@
     %th.col-lg-2{data: {hide: "phone", name: "Read"}} Read
     %th.col-lg-2{data: {hide: "phone", name: "X"}} Archive
   %tbody
-    - @patient_cases.each do |rcase|
-      - read_state = rcase.read? ? "read" : "unread"
+    - cases.each do |rcase|
+      - read_state = rcase.has_unread?(@current_practitioner) ? "unread" : "read"
       %tr.inbox-content{data: {role: 'row-selector'}, class: "#{read_state}"}
         %td.col-sm-1
           = rcase.starred? ? 1 : 0

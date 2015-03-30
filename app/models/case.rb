@@ -21,5 +21,9 @@ class Case < ActiveRecord::Base
     messages.select{|message| message.attachments.present?}.length > 0
   end
 
+  def has_unread?(current_practitioner)
+    new_reply = self.new_reply? && self.messages.last.practitioner_id != current_practitioner.id
+    new_reply || !self.read?
+  end
 end
 

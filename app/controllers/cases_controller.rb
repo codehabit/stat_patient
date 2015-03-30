@@ -76,7 +76,7 @@ class CasesController < ApplicationController
     if @case.recipient.user != current_user && @case.originator.user != current_user
       redirect_to root_path
     end
-    @case.update(read: true)
+    @case.update(read: true, new_reply: false)
   end
 
   def edit

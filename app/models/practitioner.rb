@@ -46,6 +46,7 @@ class Practitioner < ActiveRecord::Base
     contacts.where(contact_type: 'email').first.try(:info) ||
       memberships.first.try(:email)
   end
+
   def work_phone
     contacts.where(contact_type: 'work_phone').first.try(:info) ||
       memberships.first.try(:work_phone)

@@ -1,11 +1,7 @@
 class HomeController < ApplicationController
   def index
-    patient_cases
-  end
-
-  def inbox
-    patient_cases
-    render partial: 'shared/inbox'
+    inbox_cases
+    sent_cases
   end
 
   def live
@@ -18,8 +14,12 @@ class HomeController < ApplicationController
 
   private
 
-  def patient_cases
-    @patient_cases = current_user.practitioner.involved_cases.order("urgent ASC, last_activity_date DESC")
+  def inbox_cases
+    @inbox_cases = current_user.practitioner.received_cases.order("urgent ASC, last_activity_date DESC")
+  end
+
+  def sent_cases
+    @sent_cases = current_user.practitioner.originations.order("urgent ASC, last_activity_date DESC")
   end
 end
 
