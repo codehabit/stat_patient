@@ -5,8 +5,13 @@ class HomeController < ApplicationController
   end
 
   def live
+    inbox_cases
+    sent_cases
+    cases = inbox_cases + sent_cases
+    ids = cases.select {|c| c.unread?(@current_practitioner)}.map(&:id)
+    data = {ids: ids}
     response.headers["Content-Type"] = "text/event-stream"
-    response.stream.write "data: refresh\n\n"
+    response.stream.write "data: #{data.to_json}\n\n"
   end
 
   def coming_soon

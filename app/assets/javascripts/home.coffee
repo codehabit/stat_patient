@@ -1,11 +1,10 @@
-# $(document).on "ready page:load", ->
-#   if window.location.pathname == "/"
-#     source = new EventSource('/home/live')
-    # source.addEventListener 'message', (e) ->
-    #   $.get '/home/inbox', (data) ->
-    #     $("[data-role='inbox']").html(data)
-    #     initDataTables()
-    #     mainSetup()
+$(document).on "ready page:load", ->
+  source = new EventSource('/home/live')
+  source.addEventListener 'message', (e) ->
+    data = $.parseJSON(e.data)
+    $.each data.ids, (index, id) ->
+      $("[data-id='#{id}']").addClass("unread")
+      $("[data-id='#{id}']").removeClass("read")
 
 $(document).on "click", "[data-role='message-list-selector']", ->
   target_selector = "[data-role='#{$(this).data("target")}']"

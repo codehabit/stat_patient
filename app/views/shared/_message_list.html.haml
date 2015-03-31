@@ -1,44 +1,43 @@
-%table{data: {role: "inbox-datatableized"}}
-  %thead.inbox-header
-    %th.col-sm-1
-    %th.col-sm-1.glyphicon.glyphicon-star
-    %th.col-sm-1.glyphicon.glyphicon-exclamation-sign
-    %th.col-lg-3{data: {class: "expand"}} Started By
-    %th.col-lg-4{data: {hide: "phone", name: "To"}} To: Subject
-    %th.col-lg-3{data: {hide: "phone", name: "Replied By"}} Last Reply By
-    %th.col-lg-3{data: {hide: "phone", name: "On"}} Replied On
-    %th.col-lg-2{data: {hide: "phone", name: "Read"}} Read
-    %th.col-lg-2{data: {hide: "phone", name: "X"}} Archive
-  %tbody
-    - cases.each do |rcase|
-      - read_state = rcase.has_unread?(@current_practitioner) ? "unread" : "read"
-      %tr.inbox-content{data: {role: 'row-selector'}, class: "#{read_state}"}
-        %td.col-sm-1
-          = rcase.starred? ? 1 : 0
-        %td.col-sm-1
-          %i{class: rcase.starred? ? "glyphicon glyphicon-star" : "glyphicon glyphicon-star-empty", data: {action: "star", url: case_star_path(rcase)}}
-        %td.col-sm-1
-          - if rcase.urgent?
-            .urgent.btn.btn-xs Urgent
-        %td.col-lg-3{data: {role: 'link-selector', target: case_url(rcase)}}
-          .base= rcase.originator.full_name
-          .meta= rcase.created_at.strftime("%B %d, %l:%M %p")
-        %td.col-lg-4{data: {role: 'link-selector', target: case_url(rcase)}}
-          .base
-            = rcase.recipient.first_name
-            = ":"
-            %span.subject= rcase.subject
-            - if rcase.has_attachments?
-              %i.fa.fa-paperclip
-        - most_recent = rcase.messages.from_participant.order("created_at DESC").first
-        %td.col-lg-3{data: {role: 'link-selector', target: case_url(rcase)}}
-          = most_recent.try(:sender).try(:full_name)
-        %td.col-lg-3{data: {role: 'link-selector', target: case_url(rcase), order: most_recent.created_at.to_i}}
-          .meta= most_recent.created_at.strftime("%b %d")
-          .meta= most_recent.created_at.strftime("%l:%M %p")
-        %td.col-lg-2{data: {role: 'link-selector', target: case_url(rcase)}}
-          .meta= rcase.read? ? "Read" : "Unread"
-        %td.col-lg-2.deleter
-          = link_to "javascript:null(0);", data: {warning: 'coming-soon', message: "Archive this case"} do
-            %i.fa.fa-archive
+%thead.inbox-header
+  %th.col-sm-1
+  %th.col-sm-1.glyphicon.glyphicon-star
+  %th.col-sm-1.glyphicon.glyphicon-exclamation-sign
+  %th.col-lg-3{data: {class: "expand"}} Started By
+  %th.col-lg-4{data: {hide: "phone", name: "To"}} To: Subject
+  %th.col-lg-3{data: {hide: "phone", name: "Replied By"}} Last Reply By
+  %th.col-lg-3{data: {hide: "phone", name: "On"}} Replied On
+  %th.col-lg-2{data: {hide: "phone", name: "Read"}} Read
+  %th.col-lg-2{data: {hide: "phone", name: "X"}} Archive
+%tbody
+  - cases.each do |rcase|
+    - read_state = rcase.unread?(@current_practitioner) ? "unread" : "read"
+    %tr.inbox-content{data: {id: rcase.id, role: 'row-selector'}, class: "#{read_state}"}
+      %td.col-sm-1
+        = rcase.starred? ? 1 : 0
+      %td.col-sm-1
+        %i{class: rcase.starred? ? "glyphicon glyphicon-star" : "glyphicon glyphicon-star-empty", data: {action: "star", url: case_star_path(rcase)}}
+      %td.col-sm-1
+        - if rcase.urgent?
+          .urgent.btn.btn-xs Urgent
+      %td.col-lg-3{data: {role: 'link-selector', target: case_url(rcase)}}
+        .base= rcase.originator.full_name
+        .meta= rcase.created_at.strftime("%B %d, %l:%M %p")
+      %td.col-lg-4{data: {role: 'link-selector', target: case_url(rcase)}}
+        .base
+          = rcase.recipient.first_name
+          = ":"
+          %span.subject= rcase.subject
+          - if rcase.has_attachments?
+            %i.fa.fa-paperclip
+      - most_recent = rcase.messages.from_participant.order("created_at DESC").first
+      %td.col-lg-3{data: {role: 'link-selector', target: case_url(rcase)}}
+        = most_recent.try(:sender).try(:full_name)
+      %td.col-lg-3{data: {role: 'link-selector', target: case_url(rcase), order: most_recent.created_at.to_i}}
+        .meta= most_recent.created_at.strftime("%b %d")
+        .meta= most_recent.created_at.strftime("%l:%M %p")
+      %td.col-lg-2{data: {role: 'link-selector', target: case_url(rcase)}}
+        .meta= rcase.read? ? "Read" : "Unread"
+      %td.col-lg-2.deleter
+        = link_to "javascript:null(0);", data: {warning: 'coming-soon', message: "Archive this case"} do
+          %i.fa.fa-archive
 
