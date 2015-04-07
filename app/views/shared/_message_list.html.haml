@@ -1,0 +1,15 @@
+%thead.inbox-header
+  %th.col-sm-1
+  %th.col-sm-1.glyphicon.glyphicon-star
+  %th.col-sm-1.glyphicon.glyphicon-exclamation-sign
+  %th.col-lg-3{data: {class: "expand"}} Started By
+  %th.col-lg-4{data: {hide: "phone", name: "To"}} To: Subject
+  %th.col-lg-3{data: {hide: "phone", name: "Replied By"}} Last Reply By
+  %th.col-lg-3{data: {hide: "phone", name: "On"}} Replied On
+  %th.col-lg-2{data: {hide: "phone", name: "Read"}} Read
+  %th.col-lg-2{data: {hide: "phone", name: "X"}} Archive
+%tbody
+  - cases.each do |rcase|
+    - read_state = rcase.unread?(@current_practitioner) ? "unread" : "read"
+    = render partial: "shared/case_row", locals: {rcase: rcase, read_state: read_state}
+

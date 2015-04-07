@@ -1,10 +1,10 @@
 .vertical-menu
   .menu-item.active
-    = link_to coming_soon_path do
+    = link_to "#", data: {role: "message-list-selector", target: "inbox"}do
       %i.fa.fa-inbox
       Inbox
   .menu-item
-    = link_to coming_soon_path do
+    = link_to "#", data: {role: "message-list-selector", target: "sent"} do
       %i.fa.fa-send
       Sent
   .menu-item

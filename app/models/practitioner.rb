@@ -16,6 +16,8 @@ class Practitioner < ActiveRecord::Base
   has_many :received_messages, as: :recipient, class_name: Message
   has_many :contacts, as: :contactable
   has_many :addresses, as: :addressable
+  has_many :read_receipts
+  has_many :visits
 
   has_many :visits
 
@@ -46,6 +48,7 @@ class Practitioner < ActiveRecord::Base
     contacts.where(contact_type: 'email').first.try(:info) ||
       memberships.first.try(:email)
   end
+
   def work_phone
     contacts.where(contact_type: 'work_phone').first.try(:info) ||
       memberships.first.try(:work_phone)

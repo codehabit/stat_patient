@@ -1,12 +1,4 @@
 GIT
-  remote: git://github.com/rweng/jquery-datatables-rails.git
-  revision: ee838ffc755e7c205a416870efb4f27400eb2c53
-  specs:
-    jquery-datatables-rails (2.1.10.0.3)
-      jquery-rails
-      sass-rails
-
-GIT
   remote: git://github.com/thoughtbot/paperclip.git
   revision: a424b82daed0247d5926ddbff14dffb8553b1695
   specs:
@@ -152,6 +144,11 @@ GEM
     jbuilder (2.1.1)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
+    jquery-datatables-rails (3.2.0)
+      actionpack (>= 3.1)
+      jquery-rails
+      railties (>= 3.1)
+      sass-rails
     jquery-rails (3.1.1)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
@@ -335,7 +332,7 @@ DEPENDENCIES
   gs
   haml
   jbuilder (~> 2.0)
-  jquery-datatables-rails!
+  jquery-datatables-rails (~> 3.2.0)
   jquery-rails
   jquery-ui-rails
   jquery-zoom-rails

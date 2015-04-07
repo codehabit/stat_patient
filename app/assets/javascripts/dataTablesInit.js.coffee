@@ -2,49 +2,32 @@ $(document).on "ready page:load", ->
   initDataTables()
 
 initDataTables = ->
-  responsiveHelper = undefined
-  breakpointDefinition =
-    tablet: 1024
-    phone: 480
-
   tableElement = $("[data-role='datatableized']")
   tableElement.dataTable
     "sPaginationType": "bootstrap"
     autoWidth: false
     stateSave: false
     order: []
-    preDrawCallback: ->
-      responsiveHelper = new ResponsiveDatatablesHelper(tableElement, breakpointDefinition)  unless responsiveHelper
-      return
+  initTable("[data-role='inbox'] table")
+  initTable("[data-role='sent'] table")
 
-    rowCallback: (nRow) ->
-      responsiveHelper.createExpandIcon nRow
-      return
-
-    drawCallback: (oSettings) ->
-      responsiveHelper.respond()
-      return
-
-  tableElement = $("[data-role='inbox-datatableized']")
+initTable = (selector) ->
+  tableElement = $(selector)
   tableElement.dataTable
-    "sPaginationType": "bootstrap"
     autoWidth: false
     stateSave: false
     order: []
     bStateSave: true
-    #aaSortingFixed: [[0,'desc']]
     aoColumnDefs: [{ aDataSort: [ 0, 1 ], aTargets: [ 1 ]} ]
-    preDrawCallback: ->
-      responsiveHelper = new ResponsiveDatatablesHelper(tableElement, breakpointDefinition)  unless responsiveHelper
-      return
+  tableElement.fnSetColumnVis( 0, false );
 
-    rowCallback: (nRow) ->
-      responsiveHelper.createExpandIcon nRow
-      return
+resetTable = (selector) ->
+  $(selector).dataTable().fnDestroy()
+  initTable(selector)
 
-    drawCallback: (oSettings) ->
-      responsiveHelper.respond()
-      return
+window.resetTable = resetTable
+window.initTable = initTable
+window.initDataTables = initDataTables
 
 
   tableElement.fnSetColumnVis( 0, false );
