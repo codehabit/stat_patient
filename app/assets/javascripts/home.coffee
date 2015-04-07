@@ -18,7 +18,8 @@ $(document).on "ready page:load", ->
         else
           add_row(id)
 
-$(document).on "click", "[data-role='message-list-selector']", ->
+$(document).on "click", "[data-role='message-list-selector']", (evt) ->
+  evt.preventDefault()
   target_selector = "[data-role='#{$(this).data("target")}']"
   $("[data-showing]").hide()
   $(target_selector).attr("data-showing", true)

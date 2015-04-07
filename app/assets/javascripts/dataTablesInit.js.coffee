@@ -28,3 +28,4 @@ resetTable = (selector) ->
 window.resetTable = resetTable
 window.initTable = initTable
 window.initDataTables = initDataTables
+
