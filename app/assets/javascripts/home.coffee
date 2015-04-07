@@ -1,10 +1,22 @@
+add_row = (id) ->
+  $.get "/home/table_row/#{id}", (data) ->
+    inbox = $("[data-role='inbox'] table")
+    inbox.dataTable().fnDestroy()
+    inbox.prepend(data)
+    initTable(inbox)
+
 $(document).on "ready page:load", ->
-  source = new EventSource('/home/live')
-  source.addEventListener 'message', (e) ->
-    data = $.parseJSON(e.data)
-    $.each data.ids, (index, id) ->
-      $("[data-id='#{id}']").addClass("unread")
-      $("[data-id='#{id}']").removeClass("read")
+  if window.location.pathname == "/"
+    source = new EventSource('/home/live')
+    source.addEventListener 'message', (e) ->
+      data = $.parseJSON(e.data)
+      $.each data.ids, (index, id) ->
+        existing_row = $("[data-id='#{id}']")
+        if existing_row.length > 0
+          existing_row.addClass("unread")
+          existing_row.removeClass("read")
+        else
+          add_row(id)
 
 $(document).on "click", "[data-role='message-list-selector']", ->
   target_selector = "[data-role='#{$(this).data("target")}']"

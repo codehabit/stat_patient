@@ -14,6 +14,12 @@ class HomeController < ApplicationController
     response.stream.write "data: #{data.to_json}\n\n"
   end
 
+  def table_row
+    rcase = Case.find(params[:id])
+    read_state = rcase.unread?(@current_practitioner) ? "unread" : "read"
+    render partial: "shared/case_row", locals: {rcase: rcase, read_state: read_state}
+  end
+
   def coming_soon
   end
 

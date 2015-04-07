@@ -22,4 +22,11 @@ initTable = (selector) ->
     aoColumnDefs: [{ aDataSort: [ 0, 1 ], aTargets: [ 1 ]} ]
   tableElement.fnSetColumnVis( 0, false );
 
+resetTable = (selector) ->
+  $(selector).dataTable().fnDestroy()
+  initTable(selector)
+
+window.resetTable = resetTable
+window.initTable = initTable
 window.initDataTables = initDataTables
+

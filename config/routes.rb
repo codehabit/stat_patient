@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   root to: "home#index"
   get '/home/live', to: 'home#live'
   get '/home/inbox', to: 'home#inbox'
+  get '/home/table_row/:id', to: 'home#table_row'
   resources :decision_trees do
     get 'next_element', to: 'decision_trees#next_element', on: :collection
     get 'build_element', to: 'decision_trees#build_element', on: :collection
