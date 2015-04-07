@@ -28,8 +28,3 @@ resetTable = (selector) ->
 window.resetTable = resetTable
 window.initTable = initTable
 window.initDataTables = initDataTables
-
-
-  tableElement.fnSetColumnVis( 0, false );
-
-window.initDataTables = initDataTables
