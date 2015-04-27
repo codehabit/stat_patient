@@ -164,16 +164,25 @@
   }
 }
 
-.inbox-content.read td {
+.sent-content td {
   background-color: #f3f0ee;
   font-weight: 100;
 }
 
-.inbox-content.read .urgent.btn {
+.sent-content .urgent.btn {
   background-color: #868E8C;
 }
 
-.inbox-content.unread td {
+.inbox-content .read td {
+  background-color: #f3f0ee;
+  font-weight: 100;
+}
+
+.inbox-content .read .urgent.btn {
+  background-color: #868E8C;
+}
+
+.inbox-content .unread td {
   background-color: $message-list-bg;
   font-weight: bold;
 }

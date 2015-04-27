@@ -1,7 +1,6 @@
 window.mainSetup = ->
 
-  $('[data-role="link-selector"]').on "click", () ->
-    window.location = $(this).data('target')
+  hookup_row_links()
 
   $(document).on "click", "[data-role='signout']", ->
     $.totalStorage('context-bar-state', 'open')
@@ -18,4 +17,10 @@ window.mainSetup = ->
       $(element).height highestBox
 
 $(document).on('ready page:load', mainSetup)
+
+hookup_row_links = ->
+  $('[data-role="link-selector"]').on "click", () ->
+    window.location = $(this).data('target')
+
+window.hookup_row_links = hookup_row_links
 

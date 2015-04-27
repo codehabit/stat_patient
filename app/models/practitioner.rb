@@ -30,8 +30,9 @@ class Practitioner < ActiveRecord::Base
   end
 
   def involved_cases
-    ids = originations.map(&:id) + received_cases.map(&:id)
-    Case.where(id: ids)
+    (originations + received_cases).sort do |a,b|
+      a.updated_at <=> b.updated_at
+    end
   end
 
   def involved_cases_for patient

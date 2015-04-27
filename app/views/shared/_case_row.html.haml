@@ -1,4 +1,5 @@
 %tr.inbox-content{data: {id: rcase.id, role: 'row-selector'}, class: "#{read_state}"}
+  %td.col-sm-1= rcase.id
   %td.col-sm-1
     = rcase.starred? ? 1 : 0
   %td.col-sm-1

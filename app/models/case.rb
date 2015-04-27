@@ -25,7 +25,12 @@ class Case < ActiveRecord::Base
   def unread?(current_practitioner)
     receipts = ReadReceipt.where(read_case: self, practitioner: current_practitioner).order("created_at DESC")
     latest_message = self.messages.order("created_at DESC").first
-    receipts.blank? || (latest_message.present? && receipts.first.created_at < latest_message.created_at)
+
+    no_read_receipts_and_isnt_sender = receipts.blank? && self.originator.id != current_practitioner.id
+    messages_and_no_read_receipts = latest_message.present? && receipts.blank? && self.messages.count > 1
+    read_receipts_but_new_message = ((latest_message.present? && self.messages.count > 1) && (receipts.present? && receipts.first.created_at < latest_message.created_at))
+
+    no_read_receipts_and_isnt_sender || messages_and_no_read_receipts || read_receipts_but_new_message
   end
 end
 
