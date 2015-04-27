@@ -46,8 +46,17 @@ $(document).on "click", "[data-role='archiver']", (e) ->
       $("[data-role='inbox'] [data-id=#{id}]").remove()
       add_row(id, "archived")
 
+$(document).on "click", "[data-role='restorer']", (e) ->
+  e.preventDefault()
+  $.ajax
+    method: "PUT"
+    url: $(this).data("target")
+    success: (data) ->
+      id = data.id
+      $("[data-role='archived'] [data-id=#{id}]").remove()
+
 $(document).on "ready page:load", ->
-  # setup_live()
+  setup_live()
 
 $(document).on "click", "[data-role='message-list-selector']", (evt) ->
   evt.preventDefault()

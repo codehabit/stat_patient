@@ -14,5 +14,5 @@
       = render partial: 'shared/message_list', locals: {cases: @sent_cases}
   .col-lg-10{data: {role: "archived"}, style: "display: none;"}
     %table.sent-content
-      = render partial: 'shared/message_list', locals: {cases: @archived_cases}
+      = render partial: 'shared/message_list', locals: {cases: @archived_cases, list_type: "archived"}
 

@@ -1,3 +1,4 @@
+- list_type ||= "inbox"
 %tr.inbox-content{data: {id: rcase.id, role: 'row-selector'}, class: "#{read_state}"}
   %td.col-sm-1= rcase.id
   %td.col-sm-1
@@ -24,8 +25,13 @@
     .meta= most_recent.created_at.strftime("%b %d")
     .meta= most_recent.created_at.strftime("%l:%M %p")
   %td.col-lg-2{data: {role: 'link-selector', target: case_url(rcase)}}
-    .meta= rcase.read? ? "Read" : "Unread"
-  %td.col-lg-2.deleter
-    = link_to "javascript:null(0);", data: {role: "archiver", target: case_archive_path(rcase)} do
-      %i.fa.fa-archive
+    .meta= read_state == "read" ? "Read" : "Unread"
+  - if rcase.archived?
+    %td.col-lg-2.deleter
+      = link_to "javascript:null(0);", data: {role: "restorer", target: case_restore_path(rcase)} do
+        %i.fa.fa-inbox
+  - else
+    %td.col-lg-2.deleter
+      = link_to "javascript:null(0);", data: {role: "archiver", target: case_archive_path(rcase)} do
+        %i.fa.fa-archive
 

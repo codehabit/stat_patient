@@ -1,3 +1,4 @@
+- list_type ||= "inbox"
 %thead.inbox-header
   %th.col-sm-1
   %th.col-sm-1
@@ -8,9 +9,9 @@
   %th.col-lg-3{data: {hide: "phone", name: "Replied By"}} Last Reply By
   %th.col-lg-3{data: {hide: "phone", name: "On"}} Replied On
   %th.col-lg-2{data: {hide: "phone", name: "Read"}} Read
-  %th.col-lg-2{data: {hide: "phone", name: "X"}} Archive
+  %th.col-lg-2{data: {hide: "phone", name: "X"}}= list_type == "archived" ? "Inbox" : "Archive"
 %tbody
   - cases.each do |rcase|
     - read_state = rcase.unread?(@current_practitioner) ? "unread" : "read"
-    = render partial: "shared/case_row", locals: {rcase: rcase, read_state: read_state}
+    = render partial: "shared/case_row", locals: {rcase: rcase, read_state: read_state, list_type: list_type}
 

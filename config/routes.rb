@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     put :add_participant
     put :star
     put :archive
+    put :restore
   end
   resources :attachments do
     resources :annotations, only: [:index, :create, :update, :destroy]
