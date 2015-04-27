@@ -17,7 +17,7 @@ class LiveState
       candidates.tap do |memo|
         current_hash.each do |k,v|
           candidate_for_diff = incoming_hash[k]
-          if candidate_for_diff.updated_at > v.updated_at
+          if candidate_for_diff.present? && candidate_for_diff.updated_at > v.updated_at
             memo << candidate_for_diff
           end
         end

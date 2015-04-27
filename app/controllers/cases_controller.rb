@@ -83,6 +83,13 @@ class CasesController < ApplicationController
     @case = Case.find(params[:id])
   end
 
+  def archive
+    @case = Case.find(params[:case_id])
+    @case.update archived: true
+    message = {id: @case.id}
+    render json: message.to_json
+  end
+
   private
 
   def case_params

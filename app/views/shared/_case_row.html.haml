@@ -26,6 +26,6 @@
   %td.col-lg-2{data: {role: 'link-selector', target: case_url(rcase)}}
     .meta= rcase.read? ? "Read" : "Unread"
   %td.col-lg-2.deleter
-    = link_to "javascript:null(0);", data: {warning: 'coming-soon', message: "Archive this case"} do
+    = link_to "javascript:null(0);", data: {role: "archiver", target: case_archive_path(rcase)} do
       %i.fa.fa-archive
 

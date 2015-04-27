@@ -12,6 +12,7 @@ initDataTables = ->
     order: []
   initTable("[data-role='inbox'] table")
   initTable("[data-role='sent'] table")
+  initTable("[data-role='archived'] table")
 
 initTable = (selector) ->
   tableElement = $(selector)

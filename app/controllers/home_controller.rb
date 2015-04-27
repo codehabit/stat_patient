@@ -7,11 +7,12 @@ class HomeController < ApplicationController
 
   def index
     involved_cases = @current_practitioner.involved_cases
-    involved_with_activity = involved_cases.select {|c| c.messages.where(recipient_id: @current_practitioner.id)}
+    involved_with_activity = involved_cases.select {|c| c.messages.where(recipient_id: @current_practitioner.id).present? && !c.archived?}
     @inbox_cases = involved_with_activity
     @inbox_cases = @inbox_cases.sort {|a,b| b.updated_at <=> a.updated_at}
     LiveState.register_latest(@current_practitioner.id, unread_for_inbox)
     @sent_cases = current_user.practitioner.originations.order("urgent ASC, last_activity_date DESC")
+    @archived_cases = @current_practitioner.originations.where(archived: true) + @current_practitioner.received_cases.where(archived: true)
   end
 
   def live
@@ -39,7 +40,7 @@ class HomeController < ApplicationController
 
   def unread_for_inbox
     cases = @current_practitioner.involved_cases
-    cases.select {|c| c.unread?(@current_practitioner)}
+    cases.select {|c| c.unread?(@current_practitioner) && !c.archived}
   end
 end
 

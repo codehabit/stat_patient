@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     put :reply
     put :add_participant
     put :star
+    put :archive
   end
   resources :attachments do
     resources :annotations, only: [:index, :create, :update, :destroy]
