@@ -13,7 +13,7 @@
     .meta= rcase.created_at.strftime("%B %d, %l:%M %p")
   %td.col-lg-4{data: {role: 'link-selector', target: case_url(rcase)}}
     .base
-      = rcase.recipient.first_name
+      = "#{rcase.patient.first_name} #{rcase.patient.last_name}"
       = ":"
       %span.subject= rcase.subject
       - if rcase.has_attachments?
@@ -24,8 +24,8 @@
   %td.col-lg-3{data: {role: 'link-selector', target: case_url(rcase), order: most_recent.created_at.to_i}}
     .meta= most_recent.created_at.strftime("%b %d")
     .meta= most_recent.created_at.strftime("%l:%M %p")
-  %td.col-lg-2{data: {role: 'link-selector', target: case_url(rcase)}}
-    .meta= read_state == "read" ? "Read" : "Unread"
+  -# %td.col-lg-2{data: {role: 'link-selector', target: case_url(rcase)}}
+  -#   .meta= read_state == "read" ? "Read" : "Unread"
   - if rcase.archived?
     %td.col-lg-2.deleter
       = link_to "javascript:null(0);", data: {role: "restorer", target: case_restore_path(rcase)} do
