@@ -48,6 +48,7 @@
   height: $navbar-height;
   .stat-brand {
     display: inline-block;
+    margin-right: 70px;
     .link {
       color: $navbar-color;
       display: table-cell;
@@ -83,6 +84,7 @@
   .hero-icon-container {
     display: inline-block;
     margin-bottom: -5px;
+    margin-right: 30px;
     padding: 5px 30px 0px 0px;
 
     .hero-icon {
