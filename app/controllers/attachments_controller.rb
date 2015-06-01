@@ -1,13 +1,21 @@
 class AttachmentsController < ApplicationController
+  respond_to :json
+
   def create
     if params[:file].content_type == "application/pdf"
-      Pdf.create(asset: params[:file], attachable_uuid: params[:attachments][:message_uuid])
+      @created = Pdf.create(asset: params[:file], attachable_uuid: params[:attachments][:message_uuid])
     elsif MsDoc.ms_type?(params[:file].content_type)
-      MsDoc.create(asset: params[:file], attachable_uuid: params[:attachments][:message_uuid])
+      @created = MsDoc.create(asset: params[:file], attachable_uuid: params[:attachments][:message_uuid])
     else
-      Image.create(asset: params[:file], attachable_uuid: params[:attachments][:message_uuid])
+      @created = Image.create(asset: params[:file], attachable_uuid: params[:attachments][:message_uuid])
     end
-    render nothing: true
+    message = {created_id: @created.id}
+    respond_with message, location: attachment_path(@created)
+  end
+
+  def show
+    @attachment = Attachment.find(params[:id])
+    render layout: false
   end
 end
 

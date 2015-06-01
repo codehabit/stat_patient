@@ -12,6 +12,22 @@ $(document).on "ready page:load", ->
   $("[data-role='dropzone-enabled']").dropzone(
     # addRemoveLinks: true
     previewsContainer: "[data-role='image-previews']"
+    success: (data) ->
+      previewElement = $(data.previewElement)
+      attachment_id = $.parseJSON(data.xhr.response).created_id
+      $.get "/attachments/#{attachment_id}", (image) ->
+        $(".main-business").append(image)
+        annotatable_image = $("[data-annotatable-id=#{attachment_id}] .annotate")
+        annotatable_image.annotateImage
+          editable: true
+          useAjax: true
+          getUrl: annotatable_image.data("get-url")
+          createUrl: annotatable_image.data("create-url")
+          deleteUrl: annotatable_image.data("delete-url")
+
+      previewElement.on "click", ->
+        $("[data-annotatable-id=#{attachment_id}]").remodal().open()
+        $("[data-annotatable-id=#{attachment_id}]").show()
   )
 
   $("[data-role='zoom']").elevateZoom()
