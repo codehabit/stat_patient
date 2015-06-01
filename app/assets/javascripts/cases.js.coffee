@@ -57,7 +57,13 @@ $(window).load ->
             url: $("#tooth-chart").data("tooth-chart-path")
             type: "PUT"
             dataType: 'json'
-            data: {tooth_chart_markings_attributes: JSON.stringify assembleToothChartMarkingData(1).get()}
+            data: {tooth_chart_markings_attributes: JSON.stringify(assembleToothChartMarkingData(1).get()), notes: $("#tooth_chart_observation").val()}
+            success: (data) ->
+              if data.new_case
+                $("#case_messages_attributes_0_body").append("\n" + data.message_text)
+              else
+                $.remodal.lookup[$('[data-remodal-id=modal]').data('remodal')].close()
+                location.reload()
           $(this).dialog "close"
       }
       {
@@ -68,7 +74,13 @@ $(window).load ->
             url: $("#tooth-chart").data("tooth-chart-path")
             type: "PUT"
             dataType: 'json'
-            data: {tooth_chart_markings_attributes: JSON.stringify assembleToothChartMarkingData(2).get()}
+            data: {tooth_chart_markings_attributes: JSON.stringify(assembleToothChartMarkingData(2).get()), notes: $("#tooth_chart_observation").val()}
+            success: (data) ->
+              if data.new_case
+                $("#case_messages_attributes_0_body").append("\n" + data.message_text)
+              else
+                $.remodal.lookup[$('[data-remodal-id=modal]').data('remodal')].close()
+                location.reload()
           $(this).dialog "close"
       }
     ]
