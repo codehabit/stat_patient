@@ -2,6 +2,8 @@ assembleToothChartMarkingData = (status) ->
   $(".ui-selected").map ->
     {tooth_id: $(this).data("tooth-id"), status_code: status}
 
+remodals = {}
+
 $(document).on "ready page:load", ->
   $("[data-role='select2']").select2(
     placeholder: $(this).attr("placeholder")
@@ -17,17 +19,20 @@ $(document).on "ready page:load", ->
       attachment_id = $.parseJSON(data.xhr.response).created_id
       $.get "/attachments/#{attachment_id}", (image) ->
         $(".main-business").append(image)
-        annotatable_image = $("[data-annotatable-id=#{attachment_id}] .annotate")
-        annotatable_image.annotateImage
-          editable: true
-          useAjax: true
-          getUrl: annotatable_image.data("get-url")
-          createUrl: annotatable_image.data("create-url")
-          deleteUrl: annotatable_image.data("delete-url")
+        annotatable_image = $("[data-annotatable-id=#{attachment_id}] img")
+        annotatable_image.on "load", ->
+          annotatable_image.annotateImage
+            editable: true
+            useAjax: true
+            getUrl: annotatable_image.data("get-url")
+            createUrl: annotatable_image.data("create-url")
+            deleteUrl: annotatable_image.data("delete-url")
 
       previewElement.on "click", ->
-        $("[data-annotatable-id=#{attachment_id}]").remodal().open()
-        $("[data-annotatable-id=#{attachment_id}]").show()
+        console.log $("[data-annotatable-id=#{attachment_id}]")
+        unless remodals[attachment_id]
+          remodals[attachment_id] = $("[data-annotatable-id=#{attachment_id}]").remodal(hashTracking: false)
+        remodals[attachment_id].open()
   )
 
   $("[data-role='zoom']").elevateZoom()
