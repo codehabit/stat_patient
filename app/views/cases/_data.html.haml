@@ -13,6 +13,6 @@
       Patient
       %dd= @case.patient.decorate.full_name_with_dob if @case.patient.present?
     %dt
-      Notes
+      Message
       %dd= @case.messages.order("created_at asc").first.body
 

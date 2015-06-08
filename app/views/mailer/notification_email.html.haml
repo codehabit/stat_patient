@@ -10,7 +10,7 @@
       Patient:
       %span= @message.patient.decorate.full_name_with_dob
     %p
-      Notes:
+      Message:
       %span= @message.body
     %p
       %span= link_to("View the message here", "#{Url.from_request(@request)}#{case_path(@case)}")
