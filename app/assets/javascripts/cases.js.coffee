@@ -60,7 +60,7 @@ $(window).load ->
             url: $("#tooth-chart").data("tooth-chart-path")
             type: "PUT"
             dataType: 'json'
-            data: {tooth_chart_markings_attributes: JSON.stringify(assembleToothChartMarkingData(3).get()), notes: $("#tooth_chart_observation").val()}
+            data: {tooth_chart_markings_attributes: JSON.stringify(assembleToothChartMarkingData(3).get()), notes: "Observation - #{$("#tooth_chart_observation").val()}"}
             success: (data) ->
               if data.new_case
                 $("#case_messages_attributes_0_body").append("\n" + data.message_text)
@@ -78,7 +78,7 @@ $(window).load ->
             url: $("#tooth-chart").data("tooth-chart-path")
             type: "PUT"
             dataType: 'json'
-            data: {tooth_chart_markings_attributes: JSON.stringify(assembleToothChartMarkingData(1).get()), notes: $("#tooth_chart_observation").val()}
+            data: {tooth_chart_markings_attributes: JSON.stringify(assembleToothChartMarkingData(1).get()), notes: "Extraction - #{$("#tooth_chart_observation").val()}"}
             success: (data) ->
               if data.new_case
                 $("#case_messages_attributes_0_body").append("\n" + data.message_text)
@@ -95,7 +95,7 @@ $(window).load ->
             url: $("#tooth-chart").data("tooth-chart-path")
             type: "PUT"
             dataType: 'json'
-            data: {tooth_chart_markings_attributes: JSON.stringify(assembleToothChartMarkingData(2).get()), notes: $("#tooth_chart_observation").val()}
+            data: {tooth_chart_markings_attributes: JSON.stringify(assembleToothChartMarkingData(2).get()), notes: "Missing - #{$("#tooth_chart_observation").val()}"}
             success: (data) ->
               if data.new_case
                 $("#case_messages_attributes_0_body").append("\n" + data.message_text)
