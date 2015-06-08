@@ -64,7 +64,7 @@ class CasesController < ApplicationController
     @case.attributes = case_params
     if @case.valid?
       CaseUpdater.reply(@case, request)
-      redirect_to case_path(@case)
+      redirect_to root_path
     else
       render action: :show
     end
