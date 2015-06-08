@@ -679,7 +679,13 @@ ul#tooth-chart {
 }
 
 .annotation-label {
-  color: #868e8c;
+  background-color: #76d7c4;
+  border-radius: 4px;
+  color: #fff;
+  display: inline-block;
   font-size: 13px;
-  padding-bottom: 0;
+  margin-bottom: 4px;
+  padding: 4px;
 }
+
+

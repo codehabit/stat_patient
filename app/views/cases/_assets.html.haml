@@ -1,6 +1,6 @@
-/ .case-tooth-chart
-/   = image_tag @case.tooth_chart.chart.url(:web_viewer), class: "tooth-chart-annotate", data: {index: tooth_chart_annotations_path(@case.tooth_chart)}
 - if @case.tooth_chart.present?
+  - if @case.tooth_chart.tooth_chart_markings.present?
+    .annotation-label= "Click tooth chart to see #{pluralize(@case.tooth_chart.tooth_chart_markings.count, 'annotation')}"
   = link_to image_tag("AdultToothChart_1.jpg"), "#modal", class: "tooth-chart-trigger"
   -# = link_to "tooth chart", "#modal", class: "tooth-chart-trigger"
   = render partial: "adult_tooth_chart"

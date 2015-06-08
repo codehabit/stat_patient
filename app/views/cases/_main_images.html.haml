@@ -6,8 +6,9 @@
       .labeled-image
         - if attachment.annotations.present?
           - anno_count = attachment.annotations.count
-          .annotation-label
-            Click to see #{pluralize(anno_count, "annotation")}
+          .wrapper
+            .annotation-label
+              Click image to see #{pluralize(anno_count, "annotation")}
         = link_to "#", id: "#{attachment.asset_file_name}-viewer" do
           .image
             %span
