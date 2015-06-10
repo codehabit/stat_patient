@@ -6,7 +6,9 @@
   = f.input :salutation
   = f.input :npi
   = f.input :dea_identifier
+
   %br
+
   = f.fields_for :practices do |builder|
     = builder.input :name, label: "Practice name"
     = builder.fields_for :addresses do |addy|
