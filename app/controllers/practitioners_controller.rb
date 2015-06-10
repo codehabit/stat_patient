@@ -2,7 +2,8 @@ class PractitionersController < ApplicationController
 
   def new
     @practitioner = Practitioner.new
-    @practitioner.practices.build if @practitioner.practices.empty?
+    @practitioner.practices.build
+    @practitioner.practices.first.addresses.build
   end
 
   def create
