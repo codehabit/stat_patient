@@ -2,6 +2,7 @@ class PractitionersController < ApplicationController
 
   def new
     @practitioner = Practitioner.new
+    @practitioner.practices.build if @practitioner.practices.empty?
   end
 
   def create
@@ -20,6 +21,7 @@ class PractitionersController < ApplicationController
 
   def edit
     @practitioner = Practitioner.find params[:id]
+    @practitioner.practices.build if @practitioner.practices.empty?
   end
 
   def update

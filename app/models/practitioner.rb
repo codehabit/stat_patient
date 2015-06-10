@@ -20,6 +20,7 @@ class Practitioner < ActiveRecord::Base
   has_many :visits
 
   has_many :visits
+  accepts_nested_attributes_for :practices
 
   def full_name
     "#{first_name} #{last_name}"

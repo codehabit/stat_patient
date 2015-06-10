@@ -2,6 +2,10 @@
   = f.input :first_name
   = f.input :last_name
   = f.input :specialty
+  = f.input :title
+  = f.input :salutation
+  = f.fields_for :practices do |builder|
+    = builder.input :name, label: "Practice name"
   .button-group.pull-right
     = link_to "Cancel", practitioners_path, class: "btn btn-default"
     = f.submit class: "btn btn-primary"
