@@ -15,6 +15,7 @@
         %th= t(:practice_name)
         %th= t(:phone)
         %th= t(:email)
+        %th Action
         %th
 
       %tbody
@@ -25,5 +26,6 @@
             %td= practitioner.practice_name
             %td= practitioner.work_phone
             %td= practitioner.email
+            %td= link_to "Edit", edit_practitioner_path(practitioner)
     = paginate @practitioners
 

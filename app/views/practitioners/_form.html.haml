@@ -4,6 +4,7 @@
   = f.input :specialty
   = f.input :title
   = f.input :salutation
+  %br
   = f.fields_for :practices do |builder|
     = builder.input :name, label: "Practice name"
   .button-group.pull-right
