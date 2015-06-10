@@ -7,6 +7,7 @@ class Organization < ActiveRecord::Base
   has_many :addresses, as: :addressable
   has_many :watched_cases, as: :case_watcher
   has_many :watchable_cases, through: :watched_cases
+  accepts_nested_attributes_for :addresses
 
   def work_phone
     contacts.where(contact_type: 'work_phone').first.try(:info)

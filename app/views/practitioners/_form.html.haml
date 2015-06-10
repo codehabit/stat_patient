@@ -4,9 +4,18 @@
   = f.input :specialty
   = f.input :title
   = f.input :salutation
+  = f.input :npi
+  = f.input :dea_identifier
   %br
   = f.fields_for :practices do |builder|
     = builder.input :name, label: "Practice name"
+    = builder.fields_for :addresses do |addy|
+      = addy.input :street1, label: "Street address 1"
+      = addy.input :street2, label: "Street address 2"
+      = addy.input :city, label: "City"
+      = addy.input :state, label: "State"
+      = addy.input :postal_code, label: "Zip code"
+
   .button-group.pull-right
     = link_to "Cancel", practitioners_path, class: "btn btn-default"
     = f.submit class: "btn btn-primary"
