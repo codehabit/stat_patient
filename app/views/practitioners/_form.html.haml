@@ -4,7 +4,6 @@
   = f.input :specialty
   = f.input :title
   = f.input :salutation
-  = f.input :npi, label: "NPI"
   = f.input :dea_identifier, label: "DEA"
   = f.input :primary_phone
   = f.input :email
@@ -14,6 +13,7 @@
 
   = f.fields_for :practices, wrapper: :bootstrap3_horizontal, html: {class: "form-horizontal"} do |builder|
     = builder.input :name, label: "Practice name"
+    = builder.input :national_provider_identifier, label: "NPI"
     = builder.fields_for :contacts do |cont|
       = cont.input :info, label: "Primary phone"
     = builder.fields_for :addresses do |addy|

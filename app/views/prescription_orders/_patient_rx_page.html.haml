@@ -21,6 +21,8 @@
       .row
         .col-sm-6
           %p Prescribed by: #{pr.full_name_with_suffix}
+        .col-sm-6
+          %p DEA: #{pr.dea_identifier}
 
         .col-sm-6
           %p= "NPI: #{practice.national_provider_identifier}"
