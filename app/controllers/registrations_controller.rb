@@ -3,8 +3,16 @@ class RegistrationsController < Devise::RegistrationsController
 
   def build_resource(hash=nil)
     self.resource = resource_class.new_with_session(hash || {}, session)
-    practitioner_attrs = params[:user].present? ? params[:user].delete(:practitioner) : {}
-    self.resource.practitioner = Practitioner.create(practitioner_attrs)
+    if params[:user].present?
+      practitioner_attrs = params[:user].delete(:practitioner)
+      email = params[:user][:email]
+      p = Practitioner.new(practitioner_attrs)
+      p.contacts << Contact.new(contact_type: "email", info: email)
+      p.save
+      self.resource.practitioner = p
+    else
+      self.resource.practitioner = Practitioner.new
+    end
   end
 end
 

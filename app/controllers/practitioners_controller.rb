@@ -4,6 +4,8 @@ class PractitionersController < ApplicationController
     @practitioner = Practitioner.new
     @practitioner.practices.build
     @practitioner.practices.first.addresses.build
+    @practitioner.contacts.build(contact_type: "email")
+    @practitioner.contacts.build(contact_type: "work_phone")
   end
 
   def create
@@ -22,6 +24,8 @@ class PractitionersController < ApplicationController
 
   def edit
     @practitioner = Practitioner.find params[:id]
+    @practitioner.contacts.build(contact_type: "email") if @practitioner.contacts.where(contact_type: "email").empty?
+    @practitioner.contacts.build(contact_type: "work_phone") if @practitioner.contacts.where(contact_type: "work_phone").empty?
     if @practitioner.practices.empty?
       @practitioner.practices.build
       @practitioner.practices.first.addresses.build
