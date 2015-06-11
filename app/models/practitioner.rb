@@ -23,6 +23,10 @@ class Practitioner < ActiveRecord::Base
   accepts_nested_attributes_for :practices
   accepts_nested_attributes_for :contacts
 
+  def work_phone
+    self.primary_phone
+  end
+
   def full_name
     "#{first_name} #{last_name}"
   end
@@ -45,16 +49,6 @@ class Practitioner < ActiveRecord::Base
 
   def practice_name
     practices.first.try(:name)
-  end
-
-  def email
-    contacts.where(contact_type: 'email').first.try(:info) ||
-      memberships.first.try(:email)
-  end
-
-  def work_phone
-    contacts.where(contact_type: 'work_phone').first.try(:info) ||
-      memberships.first.try(:work_phone)
   end
 end
 

@@ -6,14 +6,16 @@
   = f.input :salutation
   = f.input :npi, label: "NPI"
   = f.input :dea_identifier, label: "DEA"
-  = f.fields_for :contacts do |cont|
-    - label = cont.object.contact_type == "work_phone" ? "Phone" : "Email"
-    = cont.input :info, label: label
+  = f.input :primary_phone
+  = f.input :email
 
-  %br
+  %h4
+    Practice info
 
   = f.fields_for :practices, wrapper: :bootstrap3_horizontal, html: {class: "form-horizontal"} do |builder|
     = builder.input :name, label: "Practice name"
+    = builder.fields_for :contacts do |cont|
+      = cont.input :info, label: "Primary phone"
     = builder.fields_for :addresses do |addy|
       = addy.input :street1, label: "Street address 1"
       = addy.input :street2, label: "Street address 2"
