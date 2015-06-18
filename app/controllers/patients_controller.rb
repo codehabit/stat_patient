@@ -35,6 +35,7 @@ class PatientsController < ApplicationController
   end
 
   def create
+    patient_params[:practitioners] = [@current_practitioner]
     Patient.create(patient_params)
     redirect_to patients_path
   end
@@ -71,6 +72,7 @@ class PatientsController < ApplicationController
 
   def patient_params
     attrs = PatientParams.new(params).as_hash
+    attrs[:practitioners] = [@current_practitioner]
     attrs.require(:patient).permit!
   end
 end
