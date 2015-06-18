@@ -11,7 +11,12 @@ module ApplicationHelper
       end +
       content_tag(:div, class: "col-sm-10") do
         placeholder = options[:label] || field_name.to_s.humanize
-        select_tag(input_field_name, options_from_collection_for_select(field_type.all.decorate, :id, label_method), {placeholder: "Select a #{placeholder}", include_blank: true, data: {role: 'select2'}}) +
+        if field_type == Patient
+          collection = @current_practitioner.practice_patients.decorate
+        else
+          collection = field_type.all.decorate
+        end
+        select_tag(input_field_name, options_from_collection_for_select(collection, :id, label_method), {placeholder: "Select a #{placeholder}", include_blank: true, data: {role: 'select2'}}) +
         if error_class.present?
           message = "You must select a #{field_name}"
           content_tag(:span, message, class: "help-block")

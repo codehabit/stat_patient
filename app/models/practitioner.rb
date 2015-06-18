@@ -18,8 +18,9 @@ class Practitioner < ActiveRecord::Base
   has_many :addresses, as: :addressable
   has_many :read_receipts
   has_many :visits
+  has_many :practitioner_patients
+  has_many :practice_patients, through: :practitioner_patients, source: :patient
 
-  has_many :visits
   accepts_nested_attributes_for :practices
   accepts_nested_attributes_for :contacts
 

@@ -7,6 +7,8 @@ class Patient < ActiveRecord::Base
   has_many :prescription_orders
   has_many :laboratory_orders
   has_many :visits
+  has_many :practitioner_patients
+  has_many :practitioners, through: :practitioner_patients
 
   def practitioners
     cases.map(&:originator)

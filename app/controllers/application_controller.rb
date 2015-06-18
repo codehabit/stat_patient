@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   skip_before_action :verify_authenticity_token, if: :json_request?
 
   # Skip if we are creating a new patient
-  skip_before_action :get_context, if: ->{request.path == patients_path}
+  # skip_before_action :get_context, if: ->{request.path == patients_path}
 
   private
 

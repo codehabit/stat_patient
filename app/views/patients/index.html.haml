@@ -1,7 +1,13 @@
 .row.body-element
   %span.body-title Patients
   %span.pull-right
-    = link_to "Add New Patient", new_patient_path, class: "btn btn-primary"
+    .inline
+      = link_to "Add New Patient", new_patient_path, class: "btn btn-primary"
+    .inline
+      %h4 Import patients from file
+      = form_for :patients, url: ingest_patients_path, method: :put do |f|
+        = f.file_field :file
+        = f.submit "Upload", class: "btn btn-xs btn-primary"
 .listing
   - if @patients.blank?
     %span.empty-message

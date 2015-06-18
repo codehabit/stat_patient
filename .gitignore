@@ -5,6 +5,7 @@
 *.swo
 *.swp
 *~
+~*
 .DS_Store
 .powrc
 .rspec

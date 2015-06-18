@@ -38,6 +38,7 @@ gem 'jquery-datatables-rails', '~> 3.2.0'
 gem 'lodash-rails'
 gem 'chewy'
 gem 'newrelic_rpm'
+gem 'smarter_csv'
 
 group :development do
   gem 'spring'

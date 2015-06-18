@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {registrations: "registrations"}
-  resources :patients
+  resources :patients do
+    put :ingest, on: :collection
+  end
+
   resources :practitioners
   resources :visits
   resources :cases do
