@@ -15,7 +15,7 @@
           = f.text_field :patient_id, value: "#{@current_patient.full_name_with_dob} (#{@current_patient.pt_description})", disabled: true
           = f.hidden_field :patient_id, value: @current_patient.id
         -else
-          = f.select 'patient_id', Patient.all.map{|d| [d.decorate.last_first_with_dob_and_descr, d.id]},{include_blank: true}, data: {type: 'select2', change: 'update-pt'}
+          = f.select 'patient_id', @current_practitioner.patients.map{|d| [d.decorate.last_first_with_dob_and_descr, d.id]},{include_blank: true}, data: {type: 'select2', change: 'update-pt'}
         .form-group
           .col-sm-2
           .col-sm-10.pt-info
