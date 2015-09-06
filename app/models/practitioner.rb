@@ -20,6 +20,8 @@ class Practitioner < ActiveRecord::Base
   has_many :visits
   has_many :practitioner_patients
   has_many :practice_patients, through: :practitioner_patients, source: :patient
+  has_many :spokes, class_name: Practitioner, foreign_key: :hub_id
+  belongs_to :hub, class_name: Practitioner
 
   accepts_nested_attributes_for :practices
   accepts_nested_attributes_for :contacts

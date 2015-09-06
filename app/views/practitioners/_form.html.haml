@@ -7,6 +7,7 @@
   = f.input :dea_identifier, label: "DEA"
   = f.input :primary_phone
   = f.input :email
+  = f.association :spokes, label: "My circle", label_method: Proc.new { |p| "#{p.first_name} #{p.last_name}"}
 
   %h4
     Practice info
