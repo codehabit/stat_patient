@@ -13,9 +13,19 @@ module ApplicationHelper
         placeholder = options[:label] || field_name.to_s.humanize
         if field_type == Patient
           collection = @current_practitioner.practice_patients.decorate
-        else
+        elsif !options.has_key? :collection
           collection = field_type.all.decorate
         end
+
+        #############################################################
+        # NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE    #
+        # refactor the above collection logic to just use the below #
+        #############################################################
+
+        if options.has_key? :collection
+          collection = options[:collection]
+        end
+
         select_tag(input_field_name, options_from_collection_for_select(collection, :id, label_method), {placeholder: "Select a #{placeholder}", include_blank: true, data: {role: 'select2'}}) +
         if error_class.present?
           message = "You must select a #{field_name}"

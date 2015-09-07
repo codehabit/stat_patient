@@ -20,6 +20,11 @@
       %dt
         Phone
         %dd= @practitioner.work_phone
+    .circle.well
+      %h4 My Circle
+      %ul.unstyled
+        - @practitioner.spokes.each do |spoke|
+          %li= spoke.decorate.full_name
     .contact-info
       %p Address Info
       - @practitioner.addresses.each do |adrs|
