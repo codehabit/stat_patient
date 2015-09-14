@@ -1,9 +1,15 @@
-= bootstrap_form_for(@organization, layout: :horizontal) do |f|
-  = f.text_field :name
-  = f.hidden_field :type
-  .zone.padded
-    = f.time_zone_select :time_zone
+.col-lg-8
+  = bootstrap_form_for(@organization, layout: :horizontal) do |f|
+    = f.text_field :name
+    = f.hidden_field :type
+    = f.fields_for :addresses do |address|
+      = address.text_field :street1
+      = address.text_field :city
+      = address.text_field :state
+      = address.text_field :postal_code
+    .zone.padded
+      = f.time_zone_select :time_zone
 
-  .submit
-    = f.submit "update", class: "btn-standard btn btn-primary send"
+    .submit
+      = f.submit "update", class: "btn-standard btn btn-primary send"
 
