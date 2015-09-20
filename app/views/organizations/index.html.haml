@@ -1,5 +1,6 @@
 .body-row
-  %table{data: {role: "datatableized"}}
+  %table
+    - #{data: {role: "datatableized"}}
     %thead.inbox-header
       %th.col-lg-1{data: {hide: "phone", name: "Name"}} Name
       %th.col-lg-1{data: {hide: "phone", name: "Type"}} Type

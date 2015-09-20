@@ -4,9 +4,13 @@
     = f.hidden_field :type
     = f.fields_for :addresses do |address|
       = address.text_field :street1
+      = address.text_field :street2
       = address.text_field :city
       = address.text_field :state
       = address.text_field :postal_code
+    = f.fields_for :members do |practitioner|
+      = practitioner.text_field :email
+      = practitioner.text_field :primary_phone
     .zone.padded
       = f.time_zone_select :time_zone
 

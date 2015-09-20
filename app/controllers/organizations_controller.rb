@@ -29,6 +29,7 @@ class OrganizationsController < ApplicationController
     # Right now, the only "ask" is for the ability to create a new laboratory.
     @organization = Laboratory.new
     @organization.addresses.build
+    @organization.members.build
   end
 
   def index
