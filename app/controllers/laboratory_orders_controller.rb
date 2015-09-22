@@ -18,6 +18,12 @@ class LaboratoryOrdersController < ApplicationController
     end
   end
 
+  def submit
+    laboratory_order = LaboratoryOrder.find params[:id]
+    LabOrderSubmitter.submit(laboratory_order, request)
+    redirect_to laboratory_order
+  end
+
   def print
     @laboratory_order = LaboratoryOrder.find params[:id]
     render layout: 'print'

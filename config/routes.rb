@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   resources :drugs
   resources :laboratory_orders do
     get :print, on: :member
+    post :submit, on: :member
   end
   root to: "home#index"
   get '/home/live', to: 'home#live'

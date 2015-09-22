@@ -6,7 +6,8 @@ class Mailer < ActionMailer::Base
     @practitioner = message.recipient
     @case = message.case
     @message = message
-    mail(to: @practitioner.user.email, subject: "Message from StatPatient: #{@case.subject}")
+    email = @practitioner.user.present? ? @practitioner.user.email : @practitioner.email
+    mail(to: email, subject: "Message from StatPatient: #{@case.subject}")
   end
 
   def participant_added_email(message, request)

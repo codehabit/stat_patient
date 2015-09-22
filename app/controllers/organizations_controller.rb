@@ -8,9 +8,13 @@ class OrganizationsController < ApplicationController
   end
 
   def create
+    password = params[:laboratory][:members_attributes]["0"].delete("password")
+    password_confirmation = params[:laboratory][:members_attributes]["0"].delete("password_confirmation")
     organization = Organization.new
     organization.attributes = organization_params
     if organization.valid?
+      practitioner = organization.members.first
+      user = User.create(practitioner: practitioner, email: practitioner.email, password: password, password_confirmation: password_confirmation, first_name: practitioner.first_name, last_name: practitioner.last_name)
       organization.save
       redirect_to organizations_path
     else
@@ -30,6 +34,7 @@ class OrganizationsController < ApplicationController
     @organization = Laboratory.new
     @organization.addresses.build
     @organization.members.build
+    @organization.members.first.user = User.new
   end
 
   def index

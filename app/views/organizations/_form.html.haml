@@ -8,9 +8,17 @@
       = address.text_field :city
       = address.text_field :state
       = address.text_field :postal_code
+    %h3 Contact info
     = f.fields_for :members do |practitioner|
-      = practitioner.text_field :email
+      = practitioner.text_field :first_name
+      = practitioner.text_field :last_name
+      = practitioner.text_field :title
+      = practitioner.text_field :salutation
       = practitioner.text_field :primary_phone
+      = practitioner.text_field :email
+      = practitioner.fields_for :user do |user|
+        = practitioner.password_field :password
+        = practitioner.password_field :password_confirmation
     .zone.padded
       = f.time_zone_select :time_zone
 

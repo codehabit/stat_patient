@@ -3,6 +3,7 @@ class Organization < ActiveRecord::Base
   has_many :laboratory_orders, foreign_key: 'laboratory_id'
   has_many :organization_memberships
   has_many :members, through: :organization_memberships, source: :practitioner
+  # TODO - ran out of time to get the has_many :through to work in the form
   has_many :contacts, as: :contactable
   has_many :addresses, as: :addressable
   has_many :watched_cases, as: :case_watcher
