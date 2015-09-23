@@ -38,9 +38,17 @@ class OrganizationsController < ApplicationController
   end
 
   def index
-    @organizations = Organization.all
+    # TODO - only allow management of Laboratories
+    @organizations = Laboratory.all
     @per_page = 100
   end
+
+  def destroy
+    org = Organization.find(params[:id])
+    org.destroy
+    redirect_to organizations_path
+  end
+
   private
 
   def organization_params

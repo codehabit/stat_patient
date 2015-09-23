@@ -6,6 +6,7 @@
       %th.col-lg-1{data: {hide: "phone", name: "Type"}} Type
       %th.col-lg-1{data: {hide: "phone", name: "National Provider Identifier"}} NPI
       %th.col-lg-1{data: {hide: "phone", name: "Time Zone"}} Time Zone
+      %th.col-lg-1 Action
     %tbody
       - @organizations.each do |organization|
         %tr.inbox-content{data: {role: 'link-selector', target: edit_organization_url(organization)}}
@@ -17,6 +18,8 @@
             .base= organization.national_provider_identifier
           %td.col-lg-1
             .base= organization.time_zone
+          %td.col-lg-1
+            .base= link_to "Delete", organization_path(organization), method: :delete
 
 
 
