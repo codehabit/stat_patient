@@ -21,17 +21,16 @@
           Patient
           %dd= @laboratory_order.patient.decorate.full_name_with_dob if @laboratory_order.patient.present?
         %dt
-          Ordered By
-          - if @laboratory_order.originator.present?
-            %dd= @laboratory_order.originator.decorate.full_name_with_suffix
-          - else
-            %dd Not Specified
-        %dt
           Special instructions
           %dd= @laboratory_order.special_instructions
         %dt
           Shipping method
           %dd= @laboratory_order.shipping_method_name
+      .row.body-element.contact-info
+        %h3= "Ordered By: #{@laboratory_order.originator.decorate.full_name_with_suffix}"
+        - address = @laboratory_order.originator.practices.first.addresses.first
+        .street= address.street1
+        .city-state-zip= "#{address.city} #{address.state} #{address.postal_code}"
     .col-lg-6
       = bs_tabs do |tab|
         = tab.bs_tab_for "Arch Tooth Chart", true do
@@ -46,7 +45,8 @@
         .submit
           = link_to "Print ship label", "#", class: "btn btn-primary btn-action"
           = link_to "Print packing slip", print_laboratory_order_path(@laboratory_order), class: "btn btn-primary btn-action"
-        .pull-right.submit.pull-left
-          = link_to "Submit Order", submit_laboratory_order_path(@laboratory_order), method: :post, class: "btn btn-primary btn-action"
+        - unless @laboratory_order.submitted?
+          .pull-right.submit.pull-left
+            = link_to "Submit Order", submit_laboratory_order_path(@laboratory_order), method: :post, class: "btn btn-primary btn-action"
 
 

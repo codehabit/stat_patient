@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150923113309) do
+ActiveRecord::Schema.define(version: 20150923120127) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -164,6 +164,7 @@ ActiveRecord::Schema.define(version: 20150923113309) do
     t.string   "uuid"
     t.text     "description"
     t.string   "removable"
+    t.boolean  "submitted"
   end
 
   create_table "messages", force: true do |t|

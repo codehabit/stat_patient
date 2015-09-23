@@ -12,6 +12,7 @@ class LabOrderSubmitter
     message = Message.create(body: "New lab order", case: the_case)
     the_case.messages << message
     CaseUpdater.originate(the_case, request)
+    order.update(submitted: true)
   end
 end
 
