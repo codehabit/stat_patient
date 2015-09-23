@@ -7,3 +7,4 @@ class LaboratoryOrderUpdater
     end
   end
 end
+

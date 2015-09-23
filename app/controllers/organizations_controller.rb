@@ -23,9 +23,19 @@ class OrganizationsController < ApplicationController
   end
 
   def update
+    password = params[:laboratory][:members_attributes]["0"].delete("password")
+    password_confirmation = params[:laboratory][:members_attributes]["0"].delete("password_confirmation")
     organization = Organization.find params[:id]
-    organization.update_attributes organization_params
-    redirect_to organizations_path
+    organization.attributes = organization_params
+    if organization.valid?
+      practitioner = organization.members.first
+      user = User.find_or_create_by(email: practitioner.email)
+      user.update(practitioner: practitioner, password: password, password_confirmation: password_confirmation, first_name: practitioner.first_name, last_name: practitioner.last_name)
+      organization.save
+      redirect_to organizations_path
+    else
+      render action: :edit
+    end
   end
 
   def new

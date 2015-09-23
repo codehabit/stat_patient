@@ -15,7 +15,8 @@
         %th Sent
       %tbody
         - @cases.each do |rcase|
-          %tr{data: {role: 'link-selector', target: case_url(rcase)}}
+          - target = rcase.flavor == "lab_order" ? laboratory_url(rcase.passthrough_id) : case_url(rcase)
+          %tr{data: {role: 'link-selector', target: target}}
             %td= rcase.originator.decorate.full_name
             %td= rcase.subject
             %td= rcase.patient.decorate.full_name_with_dob
