@@ -13,5 +13,6 @@
       Message:
       %span= @message.body
     %p
-      %span= link_to("View the message here", "#{Url.from_request(@request)}#{case_path(@case)}")
+      - path = @case.flavor == "lab_order" ? laboratory_order_path(@case.passthrough_id) : case_path(@case)
+      %span= link_to("View the message here", "#{Url.from_request(@request)}#{path}")
 
