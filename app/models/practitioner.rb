@@ -26,6 +26,10 @@ class Practitioner < ActiveRecord::Base
   accepts_nested_attributes_for :practices
   accepts_nested_attributes_for :contacts
 
+  before_destroy do |m|
+    m.user.destroy if m.user.present?
+  end
+
   def work_phone
     self.primary_phone
   end

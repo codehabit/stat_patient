@@ -26,6 +26,8 @@
             %td= practitioner.practice_name
             %td= practitioner.work_phone
             %td= practitioner.email
-            %td= link_to "Edit", edit_practitioner_path(practitioner)
+            %td
+              = link_to "Edit", edit_practitioner_path(practitioner)
+              = link_to "Delete", practitioner_path(practitioner), method: :delete
     = paginate @practitioners
 

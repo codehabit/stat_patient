@@ -37,10 +37,16 @@ class PractitionersController < ApplicationController
     redirect_to practitioners_path
   end
 
+  def destroy
+    practitioner = Practitioner.find params[:id]
+    practitioner.destroy
+    redirect_to practitioners_path
+  end
+
   private
 
   def practitioner_params
     params.require(:practitioner).permit!
   end
-
 end
+
