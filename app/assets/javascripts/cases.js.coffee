@@ -37,6 +37,15 @@ $(document).on "ready page:load", ->
 
   $("[data-role='zoom']").elevateZoom()
 
+update_message = (data) ->
+  current = $("#case_messages_attributes_0_body").val()
+  if data.new_case
+    $("#case_messages_attributes_0_body").val(current + "\n" + data.message_text)
+  else
+    $("#case_messages_attributes_0_body").val(current + "\n" + data.message_text)
+    $.remodal.lookup[$('[data-remodal-id=modal]').data('remodal')].close()
+    location.reload()
+
 $(window).load ->
   $(".annotate").each ->
     $(this).annotateImage
@@ -62,12 +71,7 @@ $(window).load ->
             dataType: 'json'
             data: {tooth_chart_markings_attributes: JSON.stringify(assembleToothChartMarkingData(3).get()), notes: "Observation - #{$("#tooth_chart_observation").val()}"}
             success: (data) ->
-              if data.new_case
-                $("#case_messages_attributes_0_body").append("\n" + data.message_text)
-              else
-                $.remodal.lookup[$('[data-remodal-id=modal]').data('remodal')].close()
-                location.reload()
-
+              update_message(data)
           $(this).dialog "close"
       }
       {
@@ -80,11 +84,7 @@ $(window).load ->
             dataType: 'json'
             data: {tooth_chart_markings_attributes: JSON.stringify(assembleToothChartMarkingData(1).get()), notes: "Extraction - #{$("#tooth_chart_observation").val()}"}
             success: (data) ->
-              if data.new_case
-                $("#case_messages_attributes_0_body").append("\n" + data.message_text)
-              else
-                $.remodal.lookup[$('[data-remodal-id=modal]').data('remodal')].close()
-                location.reload()
+              update_message(data)
           $(this).dialog "close"
       }
       {
@@ -97,11 +97,7 @@ $(window).load ->
             dataType: 'json'
             data: {tooth_chart_markings_attributes: JSON.stringify(assembleToothChartMarkingData(2).get()), notes: "Missing - #{$("#tooth_chart_observation").val()}"}
             success: (data) ->
-              if data.new_case
-                $("#case_messages_attributes_0_body").append("\n" + data.message_text)
-              else
-                $.remodal.lookup[$('[data-remodal-id=modal]').data('remodal')].close()
-                location.reload()
+              update_message(data)
           $(this).dialog "close"
       }
     ]
