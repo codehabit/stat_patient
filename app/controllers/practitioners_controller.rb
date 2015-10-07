@@ -32,7 +32,7 @@ class PractitionersController < ApplicationController
 
   def update
     practitioner = Practitioner.find params[:id]
-    practitioner.update_attributes practitioner_params
+    practitioner.update practitioner_params
     flash[:notice]  = "Successfully updated practitioner #{practitioner.decorate.full_name}"
     redirect_to practitioners_path
   end
