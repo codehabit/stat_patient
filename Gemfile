@@ -39,7 +39,7 @@ gem 'lodash-rails'
 gem 'chewy'
 gem 'newrelic_rpm'
 gem 'smarter_csv'
-gem 'aws-sdk'
+gem 'aws-sdk', '< 2.0'
 
 group :development do
   gem 'spring'
