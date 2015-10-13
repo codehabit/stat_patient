@@ -17,11 +17,12 @@ module ApplicationHelper
           collection = field_type.all.decorate
         end
 
+
+
         #############################################################
         # NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE NOTE    #
         # refactor the above collection logic to just use the below #
         #############################################################
-
         if options.has_key? :collection
           collection = options[:collection]
         end
