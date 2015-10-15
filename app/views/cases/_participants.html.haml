@@ -9,5 +9,6 @@
   .row
     .add-participant
       = nested_form_for @case, url: case_add_participant_path(@case), method: :put, layout: :horizontal do |f|
-        = f.select :watching_practice_ids, options_from_collection_for_select(Practice.all, :id, :name), {include_blank: true}, placeholder: "Add a participant", data: {role: "select2"}
+        - spokes = @case.originator.spokes.map {|p| p.memberships.first}
+        = f.select :watching_practice_ids, options_from_collection_for_select(spokes, :id, :name), {include_blank: true}, placeholder: "Add a participant", data: {role: "select2"}
         = f.submit "Send", class: "btn btn-sm"

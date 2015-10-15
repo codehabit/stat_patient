@@ -16,7 +16,8 @@ class Organization < ActiveRecord::Base
     contacts.where(contact_type: 'work_phone').first.try(:info)
   end
   def email
-    contacts.where(contact_type: 'email').first.try(:info)
+    email = contacts.where(contact_type: 'email').first.try(:info)
+    email || members.first.email
   end
   def work_fax
     contacts.where(contact_type: 'work_fax').first.try(:info)
