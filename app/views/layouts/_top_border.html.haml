@@ -13,7 +13,9 @@
         - if user_signed_in?
           %span.pull-right.logout-link
             - if @current_practitioner
-              = link_to "Hello #{@current_practitioner.decorate.full_name}", practitioner_path(@current_practitioner)
+              = link_to practitioner_path(@current_practitioner) do
+                %i.glyphicon.glyphicon-cog
+                Hello #{@current_practitioner.decorate.full_name}
             = link_to destroy_user_session_path, method: :delete, data: {role: 'signout'} do
               %i.glyphicon.glyphicon-remove
               Logout
