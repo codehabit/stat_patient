@@ -3,7 +3,7 @@ class Case < ActiveRecord::Base
   belongs_to :recipient, polymorphic: true
   belongs_to :visit
   has_many :case_watchers
-  has_many :watching_practices, through: :case_watchers, source: :watcher, source_type: "Practice"
+  has_many :watching_practices, through: :case_watchers, source: :watcher, source_type: "Organization"
   has_many :read_receipts
   accepts_nested_attributes_for :watching_practices
   belongs_to :originator, class_name: Practitioner
