@@ -4,6 +4,10 @@ class PractitionerDecorator < Draper::Decorator
     "#{object.first_name} #{object.last_name}"
   end
 
+  def full_name_with_specialty
+    "#{object.full_name} (#{object.specialty})"
+  end
+
   def full_name_with_suffix
     "#{object.full_name}, #{object.suffix}"
   end
