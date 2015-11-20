@@ -5,7 +5,8 @@ class PractitionerDecorator < Draper::Decorator
   end
 
   def full_name_with_specialty
-    "#{object.full_name} (#{object.specialty})"
+    practice_name = object.practices.present? ? object.practices.first.name : ""
+    "#{object.full_name} - #{practice_name} (#{object.specialty})"
   end
 
   def full_name_with_suffix
