@@ -20,7 +20,8 @@
 @import 'select2-bootstrap';
 @import 'bootswatch/flatly/bootswatch';
 @import 'theme-colors';
-@import 'font-awesome';
+@import "font-awesome-sprockets";
+@import "font-awesome";
 @import 'home';
 @import 'header';
 @import 'main';
