@@ -39,5 +39,5 @@ production:
   <<: *default
   database: stat_patient_production
   username: stat_patient
-  host: ec2-52-34-154-214.us-west-2.compute.amazonaws.com
+  # host: ec2-52-34-154-214.us-west-2.compute.amazonaws.com
   password: <%= ENV['STAT_PATIENT_DATABASE_PASSWORD'] %>
