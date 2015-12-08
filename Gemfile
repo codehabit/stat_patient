@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 # ruby "2.1.2"
 
-gem 'rails', '4.2.0'
+gem 'rails', '4.2.5'
 gem 'pg'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
@@ -34,7 +34,7 @@ gem 'jquery_total_storage_rails'
 gem 'jquery-zoom-rails'
 gem 'gs'
 # gem 'jquery-datatables-rails'#, github: 'rweng/jquery-datatables-rails'
-gem 'jquery-datatables-rails', '~> 3.2.0'
+gem 'jquery-datatables-rails', github: "rweng/jquery-datatables-rails", branch: "master"
 gem 'lodash-rails'
 gem 'chewy'
 gem 'newrelic_rpm'
