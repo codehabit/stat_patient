@@ -1,0 +1,21 @@
+.row.body-element
+  %span.body-title Laboratory Orders
+  %span.pull-right
+    = link_to "Create a Laboratory order", new_laboratory_order_path, class: "btn btn-small btn-primary"
+.listing
+  - if @orders.blank?
+    %span.empty-message
+      There are no laboratory orders
+  - else
+    = paginate @orders
+    %table.table.table-condensed.table-responsive
+      %thead
+        %th Lab
+        %th Order date
+        %th Description
+      %tbody
+        - @orders.each do |order|
+          %tr{data: {role: 'link-selector', target: laboratory_order_url(order)}}
+            %td= order.recipient.name
+            %td= order.created_at.strftime("%Y-%m-%d %l:%M:%S %P")
+            %td= order.description

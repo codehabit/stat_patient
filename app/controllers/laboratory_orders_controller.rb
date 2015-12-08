@@ -40,6 +40,11 @@ class LaboratoryOrdersController < ApplicationController
     @laboratory_order = LaboratoryOrder.find params[:id]
   end
 
+  def index
+    page = params[:page] || 1
+    @orders = LaboratoryOrder.where(originator_id: current_user.practitioner.id).order('created_at DESC').page(page)
+  end
+
   private
 
   def laboratory_order_params
