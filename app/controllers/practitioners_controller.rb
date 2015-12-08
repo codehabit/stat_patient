@@ -34,7 +34,7 @@ class PractitionersController < ApplicationController
     practitioner = Practitioner.find params[:id]
     practitioner.update practitioner_params
     flash[:notice]  = "Successfully updated practitioner #{practitioner.decorate.full_name}"
-    redirect_to practitioners_path
+    redirect_to practitioner_path(practitioner)
   end
 
   def destroy

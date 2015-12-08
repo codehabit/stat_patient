@@ -13,7 +13,7 @@ describe PractitionersController do
   let(:new_first_name) {'joe'}
   before do
     visit practitioners_path
-    click_link I18n.t(:edit_practitioner)
+    click_link "Edit"
     fill_in 'practitioner_first_name', with: new_first_name
   end
 
@@ -23,9 +23,9 @@ describe PractitionersController do
       expect(page).to have_content new_first_name
     end
 
-    it 'returns to the listing page' do
+    it 'returns to the show page' do
       click_button 'Update Practitioner'
-      expect(current_path).to eq practitioners_path
+      expect(current_path).to eq practitioner_path(practitioner)
     end
   end
 
