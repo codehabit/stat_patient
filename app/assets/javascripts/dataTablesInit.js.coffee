@@ -13,6 +13,14 @@ initDataTables = ->
   initTable("[data-role='inbox'] table")
   initTable("[data-role='sent'] table")
   initTable("[data-role='archived'] table")
+  initLabsTable()
+
+initLabsTable = () ->
+  console.log("HELLOO THERE")
+  tableElement = $("[data-role='labs'] table")
+  tableElement.dataTable
+    autoWidth: false
+    stateSave: false
 
 initTable = (selector) ->
   tableElement = $(selector)
