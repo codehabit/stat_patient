@@ -29,6 +29,13 @@ class LaboratoryOrdersController < ApplicationController
     render layout: 'print'
   end
 
+  def close
+    @laboratory_order = LaboratoryOrder.find params[:id]
+    @laboratory_order.update(closed: true)
+    message = {id: @laboratory_order.id}
+    render json: message.to_json
+  end
+
   # This is for after printing or submitting
       # if @current_visit
       #   redirect_to visit_path(@current_visit)
@@ -45,6 +52,11 @@ class LaboratoryOrdersController < ApplicationController
     @closed_orders = LaboratoryOrder.where(closed: true, originator_id: current_user.practitioner.id).order('created_at DESC').page(page)
     @active_orders = LaboratoryOrder.where("closed is null OR closed is false").where(originator_id: current_user.practitioner.id).order('created_at DESC').page(page)
     @all_orders = LaboratoryOrder.where(originator_id: current_user.practitioner.id).order('created_at DESC').page(page)
+  end
+
+  def table_row
+    order = LaboratoryOrder.find(params[:id])
+    render partial: "order_row", locals: {order: order, list_type: "closed"}
   end
 
   private

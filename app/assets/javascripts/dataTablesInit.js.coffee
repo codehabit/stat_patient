@@ -13,11 +13,15 @@ initDataTables = ->
   initTable("[data-role='inbox'] table")
   initTable("[data-role='sent'] table")
   initTable("[data-role='archived'] table")
-  initLabsTable()
+  initLabsTables()
 
-initLabsTable = () ->
-  console.log("HELLOO THERE")
-  tableElement = $("[data-role='labs'] table")
+initLabsTables = () ->
+  for tableType in ["active-orders", "closed-orders", "all-orders"]
+    do ->
+      initLabsTable(tableType)
+
+initLabsTable = (tableType) ->
+  tableElement = $("[data-role='#{tableType}'] table")
   tableElement.dataTable
     autoWidth: false
     stateSave: false
@@ -40,4 +44,6 @@ resetTable = (selector) ->
 window.resetTable = resetTable
 window.initTable = initTable
 window.initDataTables = initDataTables
+window.initLabsTables = initLabsTables
+window.initLabsTable = initLabsTable
 

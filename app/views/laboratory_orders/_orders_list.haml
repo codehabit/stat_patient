@@ -1,25 +1,12 @@
+- list_type ||= "active"
 %thead.inbox-header
   %th.col-sm-4 Lab
   %th.col-sm-3 Patient
   %th.col-sm-3 Order date
   %th.col-sm-1 Type
   %th.col-sm-2 Status
-  %th.col-sm-2 Close
+  - if list_type != "closed"
+    %th.col-sm-2 Close
 %tbody
   - orders.each do |order|
-    - target = laboratory_order_url(order)
-    %tr.inbox-content{class: "unread", data: {id: order.id, role: 'row-selector'}}
-      %td.col-lg-4{data: {role: 'link-selector', target: target}}
-        = order.recipient.name
-      %td.col-lg-3{data: {role: 'link-selector', target: target}}
-        = order.patient.decorate.full_name
-      %td.col-lg-3{data: {role: 'link-selector', target: target}}
-        = order.created_at.strftime("%_m/%d/%y")
-      - type = order.removable.blank? ? "Fixed" : "Removable"
-      %td.col-lg-1{data: {role: 'link-selector', target: target}}
-        = type
-      %td.col-lg-2{data: {role: 'link-selector', target: target}}
-        = "Active"
-      %td.col-lg-2.deleter
-        = link_to "javascript:null(0);", data: {role: "archiver", target: close_laboratory_order_path(order)} do
-          %i.fa.fa-archive
+    = render partial: "order_row", locals: {order: order, list_type: list_type}

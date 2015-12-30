@@ -26,7 +26,7 @@
         = render partial: 'orders_list', locals: { orders: @active_orders }
     .col-lg-10{data: {role: "closed-orders"}, style: "display: none;"}
       %table.inbox-content
-        = render partial: 'orders_list', locals: { orders: @closed_orders }
+        = render partial: 'orders_list', locals: { orders: @closed_orders, list_type: "closed" }
     .col-lg-10{data: {role: "all-orders"}, style: "display: none;"}
       %table.inbox-content
         = render partial: 'orders_list', locals: { orders: @all_orders }

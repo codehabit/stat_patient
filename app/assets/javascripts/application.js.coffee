@@ -34,4 +34,5 @@
 # = require home
 # = require jquery.remodal
 # = require labs
+# = require lab_tables
 #

@@ -1,0 +1,24 @@
+- list_type ||= "active"
+- target = laboratory_order_url(order)
+- read_state = order.closed? ? "read" : "unread"
+%tr.inbox-content{class: read_state, data: {id: order.id, role: 'row-selector'}}
+  %td.col-lg-4{data: {role: 'link-selector', target: target}}
+    = order.recipient.name
+  %td.col-lg-3{data: {role: 'link-selector', target: target}}
+    = order.patient.decorate.full_name
+  %td.col-lg-3{data: {role: 'link-selector', target: target}}
+    = order.created_at.strftime("%_m/%d/%y")
+  - type = order.removable.blank? ? "Fixed" : "Removable"
+  %td.col-lg-1{data: {role: 'link-selector', target: target}}
+    = type
+  %td.col-lg-2{data: {role: 'link-selector', target: target}}
+    - state = order.closed? ? "Closed" : "Active"
+    = state
+  - if list_type != "closed"
+    - if order.closed?
+      %td.col-lg-2{data: {role: 'link-selector', target: target}}
+        = "-"
+    - else
+      %td.col-lg-2.deleter
+        = link_to "javascript:null(0);", data: {role: "order-closer", target: close_laboratory_order_path(order)} do
+          %i.fa.fa-archive
