@@ -42,7 +42,9 @@ class LaboratoryOrdersController < ApplicationController
 
   def index
     page = params[:page] || 1
-    @orders = LaboratoryOrder.where(originator_id: current_user.practitioner.id).order('created_at DESC').page(page)
+    @closed_orders = LaboratoryOrder.where(closed: true, originator_id: current_user.practitioner.id).order('created_at DESC').page(page)
+    @active_orders = LaboratoryOrder.where("closed is null OR closed is false").where(originator_id: current_user.practitioner.id).order('created_at DESC').page(page)
+    @all_orders = LaboratoryOrder.where(originator_id: current_user.practitioner.id).order('created_at DESC').page(page)
   end
 
   private
