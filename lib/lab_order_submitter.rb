@@ -7,7 +7,8 @@ class LabOrderSubmitter
       patient: order.patient,
       originator: order.originator,
       flavor: "lab_order",
-      passthrough_id: order.id
+      passthrough_id: order.id,
+      subject: "New Lab Order"
     )
     message = Message.create(body: "New lab order", case: the_case)
     the_case.messages << message
