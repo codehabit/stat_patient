@@ -139,7 +139,12 @@ a.print {
   padding: 10px 40px 10px 40px;
 }
 
+.dropzone.dz-drag-hover {
+  background: #F0FFFF;
+}
 form.dropzone {
+  border: solid 1px black;
+  padding: 10px;
   text-align: center;
   width: 100%;
   p {
