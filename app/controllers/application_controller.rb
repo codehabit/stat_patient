@@ -4,7 +4,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authenticate_user!
   before_action :get_context
-  skip_before_action :verify_authenticity_token, if: :json_request?
+  skip_before_action :verify_authenticity_token
+  skip_before_action :get_context, if: -> {
+    devise_destroy = params[:controller] == Devise::SessionsController && params[:action] == "destroy"
+    devise_destroy || json_request?
+  }
 
   # Skip if we are creating a new patient
   # skip_before_action :get_context, if: ->{request.path == patients_path}
